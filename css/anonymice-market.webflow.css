@@ -279,6 +279,10 @@ hr {
   display:none !important;
 }
 
+.hide-loading {
+  display:none !important;
+}
+
 select {
   border: solid .3em #333333;
   margin: 2px;

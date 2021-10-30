@@ -238,13 +238,13 @@ function startLoading(txHash) {
     // show loading div in center of screen (processing... etherscan link in new tab on click)
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
     $("#etherscan-link").attr("href", etherscanLink);
-    $("#etherscan-link").removeClass("hidden");
+    $("#etherscan-link").removeClass("hide-loading");
 }
 
 async function endLoading() {
     $("#etherscan-link").text("Transaction Finished.");
     await sleep(3000);
-    $("#etherscan-link").addClass("hidden");
+    $("#etherscan-link").addClass("hide-loading");
     
     //show some sort of success message briefly
 }
