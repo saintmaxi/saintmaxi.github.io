@@ -1,0 +1,195 @@
+.dark {
+    color:white;
+}
+
+input.dark {
+    color: black;
+    border: solid grey .3em
+}
+
+input.dark:focus {
+    outline: white solid .25em;;
+  }
+
+select.dark {
+    border: solid .3em grey;
+  }
+
+.eth-logo.dark {
+    fill: white;
+}
+
+#discord.dark {
+    fill: white;
+  }
+
+#og-tooltip.dark {
+    fill: white;
+}
+
+#jump-icon.dark {
+    fill: white;
+}
+
+#directory.dark {
+    border-bottom: solid .5em grey;
+    background-color: grey;
+}
+
+#jump-to-directory.dark {
+    background-color: grey;
+    border-left: solid .3em black;
+    border-top: solid .3em black;
+}
+
+#jump-to-directory.dark:hover {
+    background-color: rgb(184, 184, 184);
+  }
+
+#directory.dark button {
+    border: solid .3em grey;
+    background-color: black;
+}
+
+#directory.dark button:hover {
+    background-color: rgb(184, 184, 184);
+}
+
+.body-div.dark {
+    background-color: #232830;
+}
+
+.body-section.dark {
+    background-color: #232830;
+}
+
+.section.dark {
+    background-color: #0A0A0B;
+}
+
+.footer.dark {
+    border-top: solid 16px grey;
+    background-color: #0A0A0B;
+}
+
+div#wallet-div.body-div.dark {
+    background-color: #0A0A0B;
+}
+
+hr.dark {
+    background-color: grey;
+    border: 0 grey;
+    margin:0;
+    padding: 8px;
+}
+
+#banner.dark {
+    border-bottom: solid 16px grey;
+  }
+
+#wallet.dark {
+    background-color: grey;
+    border: .3em solid white;
+    color: white;
+}
+
+#wallet.dark:hover {
+    background-color:rgb(184, 184, 184);
+}
+
+.stats-box.dark {
+    background-color: #0A0A0B;
+    border-color: grey;
+    border-style: outset;
+}
+
+.stats-box.dark h5 {
+    color: white;
+}
+
+.stats-box.dark p {
+    color: white;
+}
+
+#click-info.dark {
+    background-color: #0A0A0B;
+    border: outset 1em grey;
+}
+
+.button.dark {
+    background-color: grey;
+    border: .3em solid white;
+}
+  
+.button.dark:hover{
+    background-color:rgb(184, 184, 184);
+}
+
+select.dark {
+    background-color: #0A0A0B;
+    border: solid .3em white;
+    color: white;
+}
+
+.main-content.dark {
+    padding: 15px;
+    border: outset lightgrey 1em;
+    background-color: #0A0A0B;
+}
+
+.main-content.dark .body-div.dark {
+    background-color: #0A0A0B;
+}
+
+.mice-on-sale.dark {
+    background-color: #0A0A0B;
+    border: outset grey .5em;
+}
+
+.mice-image.dark {
+    background-color: #232830;
+    border: solid white .3em;
+}
+
+.mice-on-sale.dark:hover {
+    background-color: #15151809;
+    border: outset lightgrey .5em;
+    cursor: pointer;
+  }
+
+.info-image.dark {
+    background-color: #232830;
+    border: solid darkgray 1em;
+    display: block;
+    margin:auto;
+}
+
+.trait-box.dark {
+    border: solid .2em white;
+    background-color: grey;
+}
+
+.trait-box-header.dark {
+    color: black;
+    background-color: white;
+}
+
+.question.dark {
+    color: lightgrey;
+}
+
+#etherscan-link.dark {
+    background-color: white;
+    color: black;
+}
+
+#etherscan-link.dark div {
+    color: black;
+}
+
+/* mobile */
+@media screen and (max-width: 600px){
+    #jump-to-directory.dark {
+        border-left: none;
+    }
+}

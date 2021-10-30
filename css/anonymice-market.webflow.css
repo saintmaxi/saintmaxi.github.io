@@ -1,0 +1,537 @@
+input {
+  text-align: center;
+  border: solid #333333 .3em;
+}
+
+input:focus {
+  outline: #4A69CE solid .25em;;
+}
+
+.heading {
+  color: #fff;
+  text-align: center;
+}
+
+.text-block {
+  text-align: center;
+}
+
+.text-block-2 {
+  text-align: center;
+}
+
+.columns {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+#banner {
+  border-bottom: solid 16px #333333;
+}
+
+#directory {
+  display: inline-block;
+  background-color: #333333;
+  height: 80px;
+  width: 100%;
+  text-align: center;
+  border-bottom: solid .5em #333333;
+}
+
+#directory button {
+  vertical-align: top;
+  color: white;
+  margin-left: -5px;
+  margin-right: -3px;
+  padding-top: 4px;
+  width: 19.6%;
+  height: 100%;
+}
+
+#jump-to-directory {
+  position: fixed;
+  text-decoration: none;
+  background-color: #333333;
+  border-left: solid .3em grey;
+  border-top: solid .3em grey;
+  color: white;
+  padding: 5px;
+  right: 0px;
+  bottom: 0px;
+}
+
+#jump-to-directory:hover {
+  background-color: rgb(184, 184, 184);
+}
+
+hr {
+  background-color: #333333;
+  border: 0 #333333;
+  margin:0;
+  padding: 8px;
+}
+
+#collection-stats {
+  text-align: center;
+}
+
+.stats-box {
+  font-size: 1vw;
+  display: inline-block;
+  height: 30%;
+  background-color: #CEAE4A;
+  color: #333333;
+  border-radius: .2em;
+  border: outset 1em #333333;
+  width: 30%;
+  height: 100%;
+  margin: -4px;
+  text-align: center;
+}
+
+.stats-box h5{
+  font-size: 1.3vw;
+}
+
+.stats-box img {
+  height: 1.8vw;
+  padding-right:10px;
+  margin-bottom: 10px;
+}
+
+.floor {
+  display: inline-block;
+}
+
+.mice-on-sale-block {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: row;
+  -ms-flex-direction: row;
+  flex-direction: row;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-flex-wrap: wrap;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.mice-image {
+  background-color: white;
+  border: solid #333333 .3em;
+  margin:10px;
+}
+
+.mice-on-sale .eth-logo {
+  height: 15px;
+  width: 20px;
+}
+
+.button {
+  background-color: #4A69CE;
+  border: .3em solid #333333;
+}
+
+.button:hover{
+  background-color:#849df0;
+}
+
+.heading-2 {
+  text-align: center;
+}
+
+.heading-3 {
+  text-align: center;
+}
+
+.heading-4 {
+  text-align: center;
+}
+
+.section {
+  background-color: #ceae4a;
+}
+
+.body-section {
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #fff;
+}
+
+.footer {
+  border-top: solid 16px #333333;
+  padding-top: 40px;
+  padding-bottom: 40px;
+  background-color: #ceaf4a;
+}
+
+#jump-icon {
+  cursor: pointer;
+}
+
+.mice-on-sale {
+  min-width: 22%;;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: 20px;
+  margin-right: 5px;
+  margin-left: 5px;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  border: outset #333333 .5em;
+  padding: 5px;
+  background-color: #ceae4a;
+}
+
+.mice-on-sale:hover {
+  border: outset grey .5em;
+  background-color: #e4ca7d;
+  cursor: pointer;
+}
+
+.body-div {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+  -webkit-flex-direction: column;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+}
+
+.main-content {
+  padding: 15px;
+  border: solid #333333 1em;
+  background-color: #ceae4a;
+}
+
+#wallet {
+  background-color: white;
+  border: .3em solid #333333;
+  color: black;
+}
+
+#wallet:hover {
+  background-color:rgb(184, 184, 184);
+}
+
+#discord {
+  width:4vw;
+  height:4vw;
+  position: absolute;
+  top:70px;
+  right: 10px;
+}
+
+#darkmodetoggle {
+  cursor: pointer;
+  width:4vw;
+  height:4vw;
+  position: absolute;
+  top:5px;
+  right: 10px;
+}
+
+.hidden {
+  display:none !important;
+}
+
+select {
+  border: solid .3em #333333;
+  margin: 2px;
+}
+
+select:focus {
+  outline: none;
+}
+
+#click-info {
+  background-color: #cfae4b;
+  z-index: 9999;
+  color:white;
+  position:fixed;
+  top:75px;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto; 
+  width: 55%;
+  height: 85%;
+  border: outset 1em #333333;
+  padding: 5px;
+}
+
+#close {
+  float: right;
+  cursor: pointer;
+  display:inline-block;
+  padding-top: 25px;
+  font-size: 3vw;
+  color: red;
+}
+
+.info-image {
+  background-color: white;
+  border: solid #333333 1em;
+  display: block;
+  margin:auto;
+}
+
+#traits {
+  text-align: center;
+} 
+
+.trait-box {
+  font-size: 1vw;
+  display: inline-block;
+  height: 40%;
+  background-color: white;
+  color: #333333;
+  margin: 4px;
+  border-radius: .2em;
+  border: solid .2em #333333;
+  width: 30%;
+  text-align: center;
+}
+
+.trait-box-header {
+  padding:4px;
+  color: white;
+  background-color: #333333;
+}
+
+.question {
+  color: white;
+}
+
+#footer {
+  padding:10px;
+}
+
+#etherscan-link {
+    text-align: center;
+    text-decoration: none;
+    width: 30%;
+    position: fixed;
+    height: 80px;
+    top: 50%;
+    left: 50%;
+    background-color: black;
+    color: white;
+    padding: 20px;
+    transform: translate(-50%, -50%);
+}
+
+/* mobile */
+@media screen and (max-width: 600px){
+  #etherscan-link {
+    width: 40%;
+  }
+
+  h1 {
+    font-size: 4.5vw;
+  }
+
+  .columns {
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: column;
+    -ms-flex-direction: column;
+    flex-direction: column;
+  }
+
+  #wallet {
+    width:90%;
+    font-size:2.45vw;
+  }
+
+  #darkmodetoggle {
+    right: 2px;
+    width:8vw;
+    height:8vw;
+  }
+
+  #discord {
+    width:7vw;
+    height:7vw;
+    top:35px;
+    right: 4px;
+  }
+
+  #directory {
+    height: 80px;
+  }
+
+  #directory button {
+    vertical-align: top;
+    font-size: 2vw;
+    margin-left: 0;
+    margin-right: 0;
+    width: 17%;
+    height: 100%;
+  } 
+
+  #jump-to-directory {
+    text-align: center;
+    width: 100%;
+    font-size: 3vw;
+    border-left: none;
+  }
+
+  #footer {
+    font-size: 1.5vw;
+  }
+
+  .heading-4 {
+    font-size:4vw;
+  }
+
+  .stats-box {
+    font-size: 3vw;
+  }
+  
+  .stats-box h5{
+    font-size: 4vw;
+  }
+
+  .stats-box img {
+    height: 6vw;
+    padding-right:10px;
+    margin-bottom: 10px;
+  }
+
+  #reset-filter-div {
+    text-align: center;
+  }
+
+  #reset-filter-div button {
+    width:100%;
+    margin-top: 10px;
+  }
+
+  #filter-results-count-container {
+    text-align: center;
+  }
+
+  /*needs work*/
+  #click-info {
+    position: absolute;
+    top:600px;
+    width: 100%;
+    height: 1175px;
+  }
+
+  .trait-box {
+    width: 100%;
+    font-size: 5vw;
+  }
+
+  #click-info-header {
+    font-size: 7vw;
+  }
+
+  #close {
+    font-size: 6vw;
+  }
+}
+
+/*iPad*/
+@media only screen and (device-width: 768px), (device-width: 1024px) {
+
+  #etherscan-link {
+    width: 40%;
+  }
+
+  #discord {
+    width:5vw;
+    height:5vw;
+    top:50px;
+  }
+
+  #directory {
+    height: 60px;
+  }
+
+  #directory button {
+    vertical-align: top;
+    font-size: 1.5vw;
+    margin-left: 0;
+    margin-right: 0;
+    width: 17%;
+    height: 100%;
+  } 
+
+  .stats-box {
+    font-size: 1.5vw;
+  }
+  
+  .stats-box h5{
+    font-size: 2vw;
+  }
+
+  .stats-box img {
+    height: 3vw;
+    padding-right:10px;
+    margin-bottom: 10px;
+  }
+  /*needs work*/
+  #click-info {
+    position: absolute;
+    top:600px;
+    width: 70%;
+    height: 1200px;
+  }
+
+  .trait-box {
+    height: 80px;;
+    width: 100%;
+    font-size: 2.9vw;
+  }
+
+  #close {
+    font-size: 6vw;
+  }
+}
