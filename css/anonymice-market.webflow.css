@@ -1,6 +1,11 @@
+:root {
+  --main-bg-color: #f4b83f;
+  --main-border-color: #333333;
+}
+
 input {
   text-align: center;
-  border: solid #333333 .3em;
+  border: solid var(--main-border-color) .3em;
 }
 
 input:focus {
@@ -36,16 +41,21 @@ input:focus {
 }
 
 #banner {
-  border-bottom: solid 16px #333333;
+  border-bottom: solid 16px var(--main-border-color);
+}
+
+.button {
+  background-color: #4A69CE;
+  border: .3em solid var(--main-border-color);
 }
 
 #directory {
   display: inline-block;
-  background-color: #333333;
+  background-color: var(--main-border-color);
   height: 80px;
   width: 100%;
   text-align: center;
-  border-bottom: solid .5em #333333;
+  border-bottom: solid 1em var(--main-border-color);
 }
 
 #directory button {
@@ -60,8 +70,7 @@ input:focus {
 
 #jump-to-directory {
   position: fixed;
-  text-decoration: none;
-  background-color: #333333;
+  background-color: var(--main-border-color);
   border-left: solid .3em grey;
   border-top: solid .3em grey;
   color: white;
@@ -71,12 +80,13 @@ input:focus {
 }
 
 #jump-to-directory:hover {
+  cursor: pointer;
   background-color: rgb(184, 184, 184);
 }
 
 hr {
-  background-color: #333333;
-  border: 0 #333333;
+  background-color: var(--main-border-color);
+  border: 0 var(--main-border-color);
   margin:0;
   padding: 8px;
 }
@@ -89,10 +99,10 @@ hr {
   font-size: 1vw;
   display: inline-block;
   height: 30%;
-  background-color: #CEAE4A;
-  color: #333333;
+  background-color: var(--main-bg-color);
+  color: var(--main-border-color);
   border-radius: .2em;
-  border: outset 1em #333333;
+  border: outset 1em var(--main-border-color);
   width: 30%;
   height: 100%;
   margin: -4px;
@@ -138,18 +148,30 @@ hr {
 
 .mice-image {
   background-color: white;
-  border: solid #333333 .3em;
+  border: solid var(--main-border-color) .3em;
   margin:10px;
 }
 
-.mice-on-sale .eth-logo {
-  height: 15px;
-  width: 20px;
+.eth-logo {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 1.7em;
 }
 
-.button {
-  background-color: #4A69CE;
-  border: .3em solid #333333;
+.listing-eth-logo {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 1.3em;
+}
+
+
+.click-info-eth-logo {
+  font-family: 'Arial';
+  font-style: normal;
+  font-weight: bolder;
+  font-size: 1.3em;
 }
 
 .button:hover{
@@ -169,7 +191,7 @@ hr {
 }
 
 .section {
-  background-color: #ceae4a;
+  background-color: var(--main-bg-color);
 }
 
 .body-section {
@@ -179,10 +201,10 @@ hr {
 }
 
 .footer {
-  border-top: solid 16px #333333;
+  border-top: solid 16px var(--main-border-color);
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #ceaf4a;
+  background-color: var(--main-bg-color);
 }
 
 #jump-icon {
@@ -211,14 +233,14 @@ hr {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  border: outset #333333 .5em;
+  border: outset var(--main-border-color) .5em;
   padding: 5px;
-  background-color: #ceae4a;
+  background-color: var(--main-bg-color);
 }
 
 .mice-on-sale:hover {
   border: outset grey .5em;
-  background-color: #e4ca7d;
+  background-color: #fcd17d;
   cursor: pointer;
 }
 
@@ -244,13 +266,13 @@ hr {
 
 .main-content {
   padding: 15px;
-  border: solid #333333 1em;
-  background-color: #ceae4a;
+  border: solid var(--main-border-color) 1em;
+  background-color: var(--main-bg-color);
 }
 
 #wallet {
   background-color: white;
-  border: .3em solid #333333;
+  border: .3em solid var(--main-border-color);
   color: black;
 }
 
@@ -258,21 +280,23 @@ hr {
   background-color:rgb(184, 184, 184);
 }
 
-#discord {
-  width:4vw;
-  height:4vw;
+#toolbar {
   position: absolute;
-  top:70px;
-  right: 10px;
+  display: inline;
+  text-align: center;
+  top: 5px;
+  right: 5px;
+}
+
+#discord {
+  width:3.5vw;
+  height:3.5vh;
 }
 
 #darkmodetoggle {
   cursor: pointer;
   width:4vw;
-  height:4vw;
-  position: absolute;
-  top:5px;
-  right: 10px;
+  height:4vh;
 }
 
 .hidden {
@@ -284,7 +308,7 @@ hr {
 }
 
 select {
-  border: solid .3em #333333;
+  border: solid .3em var(--main-border-color);
   margin: 2px;
 }
 
@@ -293,58 +317,110 @@ select:focus {
 }
 
 #click-info {
-  background-color: #cfae4b;
+  background-color: var(--main-bg-color);
   z-index: 9999;
   color:white;
   position:fixed;
   top:75px;
-  left: 0; 
-  right: 0; 
-  margin-left: auto; 
-  margin-right: auto; 
-  width: 55%;
-  height: 85%;
-  border: outset 1em #333333;
+  left: 50%;
+    transform: translate(-50%, 0);
+  width: 55vw;
+  height: 85vh;
+  border: outset 1em var(--main-border-color);
   padding: 5px;
 }
 
+#click-info-header {
+  color: var(--main-border-color);
+  font-size: 2.5vw;
+}
+
+#click-info-spacer {
+  color: var(--main-border-color);
+  position: relative;
+  min-height: 10%;
+  font-size: 2vw;
+}
+
+#spacer-content {
+  position: absolute;
+  text-align: center;
+  width: 100%;
+  height: 50%;
+  bottom: 25%; 
+  line-height: 100%;
+}
+
 #close {
-  float: right;
+  position: absolute;
+  min-height: 4vw;
+  position: fixed;
+top: 2vw;
+right: .4vw;
+  text-align: right;
   cursor: pointer;
-  display:inline-block;
-  padding-top: 25px;
   font-size: 3vw;
   color: red;
+  z-index: 9999;
+}
+
+#img-container {
+  height: 40%;
+  position: relative;
 }
 
 .info-image {
+  bottom: 0px;
+  height: 80%;
+  position: absolute;
+  left: 0; 
+  right: 0; 
+  margin-left: auto; 
+  margin-right: auto;
   background-color: white;
-  border: solid #333333 1em;
+  border: solid var(--main-border-color) 1em;
   display: block;
   margin:auto;
 }
 
 #traits {
+  height: 40%;
   text-align: center;
 } 
 
 .trait-box {
   font-size: 1vw;
   display: inline-block;
-  height: 40%;
+  position: relative;
+  height: 33%;
   background-color: white;
-  color: #333333;
+  color: var(--main-border-color);
   margin: 4px;
   border-radius: .2em;
-  border: solid .2em #333333;
+  border: solid .2em var(--main-border-color);
   width: 30%;
   text-align: center;
 }
 
+
 .trait-box-header {
-  padding:4px;
+  padding:.5vw;
   color: white;
-  background-color: #333333;
+  position: absolute;
+  top: 0%;
+  height: 35%;
+  width: 100%;
+  background-color: var(--main-border-color);
+}
+
+.trait-box-value {
+  height: 65%;
+  width: 100%;
+  position: absolute;               
+   top: 50%;
+   text-align: center;
+   /* left: 50%;                  */
+   /* transform: translate(-50%, -50%); */
 }
 
 .question {
@@ -392,17 +468,23 @@ select:focus {
     font-size:2.45vw;
   }
 
+  #toolbar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
   #darkmodetoggle {
-    right: 2px;
     width:8vw;
     height:8vw;
   }
 
+
+
   #discord {
     width:7vw;
     height:7vw;
-    top:35px;
-    right: 4px;
+    padding-left: 4px;
   }
 
   #directory {
@@ -462,23 +544,59 @@ select:focus {
 
   /*needs work*/
   #click-info {
-    position: absolute;
-    top:600px;
-    width: 100%;
-    height: 1175px;
-  }
-
-  .trait-box {
-    width: 100%;
-    font-size: 5vw;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    top: 50%;;
+    width: 95vw;
+    height: 90vh;
   }
 
   #click-info-header {
-    font-size: 7vw;
+    font-size: 6.3vw;
+  }
+
+  #img-container {
+    height: 20%;
+  }
+
+  .info-image {
+    border: solid var(--main-border-color) .5em;
+    height: 75%;
+    margin-top: 3vh;
+  }
+
+  #traits {
+    height: 70%;
+  }
+
+  .trait-box {
+    width: 95%;
+    font-size: 1.2vh;
+    height: 8%;
+  }
+
+  .trait-box-header {
+    padding-bottom: 2vh;
+    height: 40%;
+  }
+
+  .trait-box-value {
+    height: 60%;
+  }
+
+  #click-info-spacer {
+    min-height: 7%;
+  }
+
+  #spacer-content {
+  bottom: 20%; 
+
+    font-size: 5vw;
   }
 
   #close {
-    font-size: 6vw;
+    font-size: 5vw;
   }
 }
 
@@ -489,10 +607,15 @@ select:focus {
     width: 40%;
   }
 
+  #toolbar {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+  }
+
   #discord {
     width:5vw;
     height:5vw;
-    top:50px;
   }
 
   #directory {
@@ -523,19 +646,59 @@ select:focus {
   }
   /*needs work*/
   #click-info {
-    position: absolute;
-    top:600px;
-    width: 70%;
-    height: 1200px;
+    left: 50%;
+    transform: translate(-50%, 0);
+    position: fixed;
+    top: 50px;;
+    height: 95vh;
+  }
+
+  #click-info-header {
+    font-size: 3.5vw;
+  }
+
+  #click-info-spacer {
+    min-height: 10%;
+  }
+
+  #img-container {
+    height: 22%;
+  }
+
+  #spacer-content {
+    font-size: 1.4em;
+  }
+
+  #traits {
+    height: 80%;
   }
 
   .trait-box {
-    height: 80px;;
-    width: 100%;
-    font-size: 2.9vw;
+    height: 7.5%;;
+    width: 95%;
+    font-size: 1.5vw;
+  }
+
+  .trait-box-header {
+    padding-bottom: 1.5vh;
   }
 
   #close {
-    font-size: 6vw;
+    font-size: 4.5vw;
+  }
+}
+
+/*Weird huge screens*/
+@media screen and (min-width: 1700px){
+  .stats-box {
+    font-size: .7vw;
+  }
+  
+  .stats-box h5{
+    font-size: .9vw;
+  }
+
+  #click-info-header {
+    font-size: 2vw;
   }
 }

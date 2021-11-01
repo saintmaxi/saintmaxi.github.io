@@ -6,10 +6,10 @@ $.getJSON('../assets/mice_data.json', function(json) {
 
 var miceObjectMap = new Map();
 
-function jumpToLastMice() {
-    let target = $("#jump-past-listings").position().top - 500;
+function jumpToLocation(elementID) {
+    let target = $(elementID).position().top;
     $([document.documentElement, document.body]).animate({
-        scrollTop: target}, 1000);
+        scrollTop: target}, 100);
 }
 
 
@@ -34,32 +34,35 @@ function resetFilters() {
     filters = new Map();
     $("select").each(function() { this.selectedIndex = 0 });
     $(".hidden").removeClass("hidden");
-    $("#filter-results-count").text(`${listedMice.length} Mice Found`);
-    for (let i = 0; i < listedMice.length; i++) {
-        let mouse = listedMice[i];
+    $("#filter-results-count").text(`${listedMice.size} Mice Found`);
+    let _listedMiceArray = Array.from(listedMice.values());
+    for (let i = 0; i < _listedMiceArray.length; i++) {
+        let mouse = _listedMiceArray[i];
         mouse.fakeJSX = $(`#${mouse.elementID}`).get(0).outerHTML;
     }
 }
 
 function _filterTraits() {
     let keys = Array.from(filters.keys());
+    let _listedMiceArray = Array.from(listedMice.values());
     for (let i = 0; i < keys.length; i++) {
         let type = keys[i];
-        for (let i = 0; i < listedMice.length; i++) {
-            let mouse = listedMice[i];
+        for (let i = 0; i < _listedMiceArray.length; i++) {
+            let mouse = _listedMiceArray[i];
             if (mouse[type] != filters.get(type)) {
                 $(`#${mouse.elementID}`).addClass("hidden");
                 mouse.fakeJSX = $(`#${mouse.elementID}`).get(0).outerHTML;
             } 
         }
     }
-    let displayed = listedMice.length - $(".mice-on-sale.hidden").length;
+    let displayed = listedMice.size - $(".mice-on-sale.hidden").length;
     $("#filter-results-count").text(`${displayed} Mice Found`);
 }
 
 function _unfilterTraits(type, trait) {
-    for (let i = 0; i < listedMice.length; i++) {
-        let mouse = listedMice[i];
+    let _listedMiceArray = Array.from(listedMice.values());
+    for (let i = 0; i < _listedMiceArray.length; i++) {
+        let mouse = _listedMiceArray[i];
         if (mouse[type] != trait) {
             $(`#${mouse.elementID}`).removeClass("hidden");
             mouse.fakeJSX = $(`#${mouse.elementID}`).get(0).outerHTML;
@@ -91,7 +94,8 @@ function _populateFilters() {
 
 function sortBy(type) {
     $("#mice-on-sale-block").empty();
-    let _currentListings = JSON.parse(JSON.stringify(listedMice));
+    let _listedMiceArray = Array.from(listedMice.values());
+    let _currentListings = _listedMiceArray;
     if (type == "PriceHighToLow") {
         _currentListings.sort((a, b) => (a.price < b.price) ? 1 : -1)
     }
@@ -137,15 +141,22 @@ function showInfo(miceID) {
     let _mice = miceObjectMap.get(_miceId);
     let _propertiesToDisplay = ["original", "character", "earrings", "eyes", "hat", 
                                 "mouth", "neck", "nose", "whiskers"];
-    let _infoFakeJSX = `<h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' width=250 class='info-image'><br>`;
+    let _infoFakeJSX = "";
     
     for (let i = 0; i < _propertiesToDisplay.length; i++) {
         _property = _propertiesToDisplay[i];
         _value = _mice[_property];
-        _infoFakeJSX += `<div class='trait-box'><p class='trait-box-header'>${_property}:</p><p>${_value}</p></div>`;
+        _infoFakeJSX += `<div class='trait-box'><p class='trait-box-header'>${_property}:</p><p class="trait-box-value">${_value}</p></div>`;
+    }
+
+    let _micePrice = _mice.price;
+    let _hidden = "";
+    if (_micePrice == null) {
+        _micePrice = "Not Listed"
+        _hidden = "hidden";
     }
     
-    $("#mice-on-sale-block").append(`<div id='click-info' class='click-info'><div id='close' onclick='closeInfo();'>x</div><div id='traits'>${_infoFakeJSX}</div></div>`);
+    $("#mice-on-sale-block").append(`<div id='click-info' class='click-info'><span id="close" onclick='closeInfo();'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'></div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='traits'>${_infoFakeJSX}</div></div>`);
     if (darkModeOn) {
         $(".click-info").addClass("dark");
         $(".click-info *").addClass("dark");

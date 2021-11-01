@@ -1,10 +1,16 @@
+:root.dark {
+    --main-dark-bg-color: #0A0A0B;
+    --secondary-dark-bg-color: #232830;
+    --main-dark-border-color: grey;
+  }
+
 .dark {
     color:white;
 }
 
 input.dark {
     color: black;
-    border: solid grey .3em
+    border: solid var(--main-dark-border-color) .3em
 }
 
 input.dark:focus {
@@ -12,7 +18,7 @@ input.dark:focus {
   }
 
 select.dark {
-    border: solid .3em grey;
+    border: solid .3em var(--main-dark-border-color);
   }
 
 .eth-logo.dark {
@@ -32,12 +38,12 @@ select.dark {
 }
 
 #directory.dark {
-    border-bottom: solid .5em grey;
-    background-color: grey;
+    border-bottom: solid 1em var(--main-dark-border-color);
+    background-color: var(--main-dark-border-color);
 }
 
 #jump-to-directory.dark {
-    background-color: grey;
+    background-color: var(--main-dark-border-color);
     border-left: solid .3em black;
     border-top: solid .3em black;
 }
@@ -47,7 +53,7 @@ select.dark {
   }
 
 #directory.dark button {
-    border: solid .3em grey;
+    border: solid .3em var(--main-dark-border-color);
     background-color: black;
 }
 
@@ -56,39 +62,39 @@ select.dark {
 }
 
 .body-div.dark {
-    background-color: #232830;
+    background-color: var(--secondary-dark-bg-color);
 }
 
 .body-section.dark {
-    background-color: #232830;
+    background-color: var(--secondary-dark-bg-color);
 }
 
 .section.dark {
-    background-color: #0A0A0B;
+    background-color: var(--main-dark-bg-color);
 }
 
 .footer.dark {
-    border-top: solid 16px grey;
-    background-color: #0A0A0B;
+    border-top: solid 16px var(--main-dark-border-color);
+    background-color: var(--main-dark-bg-color);
 }
 
 div#wallet-div.body-div.dark {
-    background-color: #0A0A0B;
+    background-color: var(--main-dark-bg-color);
 }
 
 hr.dark {
-    background-color: grey;
-    border: 0 grey;
+    background-color: var(--main-dark-border-color);
+    border: 0 var(--main-dark-border-color);
     margin:0;
     padding: 8px;
 }
 
 #banner.dark {
-    border-bottom: solid 16px grey;
+    border-bottom: solid 16px var(--main-dark-border-color);
   }
 
 #wallet.dark {
-    background-color: grey;
+    background-color: var(--main-dark-border-color);
     border: .3em solid white;
     color: white;
 }
@@ -98,8 +104,8 @@ hr.dark {
 }
 
 .stats-box.dark {
-    background-color: #0A0A0B;
-    border-color: grey;
+    background-color: var(--main-dark-bg-color);
+    border-color: var(--main-dark-border-color);
     border-style: outset;
 }
 
@@ -112,12 +118,16 @@ hr.dark {
 }
 
 #click-info.dark {
-    background-color: #0A0A0B;
-    border: outset 1em grey;
+    background-color: var(--main-dark-bg-color);
+    border: outset 1em var(--main-dark-border-color);
+}
+
+#click-info-header {
+    color: white;
 }
 
 .button.dark {
-    background-color: grey;
+    background-color: var(--main-dark-border-color);
     border: .3em solid white;
 }
   
@@ -126,39 +136,39 @@ hr.dark {
 }
 
 select.dark {
-    background-color: #0A0A0B;
+    background-color: var(--main-dark-bg-color);
     border: solid .3em white;
     color: white;
 }
 
 .main-content.dark {
     padding: 15px;
-    border: outset lightgrey 1em;
-    background-color: #0A0A0B;
+    border: outset var(--main-dark-border-color) 1em;
+    background-color: var(--main-dark-bg-color);
 }
 
 .main-content.dark .body-div.dark {
-    background-color: #0A0A0B;
+    background-color: var(--main-dark-bg-color);
 }
 
 .mice-on-sale.dark {
-    background-color: #0A0A0B;
-    border: outset grey .5em;
+    background-color: var(--main-dark-bg-color);
+    border: outset var(--main-dark-border-color) .5em;
 }
 
 .mice-image.dark {
-    background-color: #232830;
+    background-color: var(--secondary-dark-bg-color);
     border: solid white .3em;
 }
 
 .mice-on-sale.dark:hover {
-    background-color: #15151809;
-    border: outset lightgrey .5em;
+    background-color: #9494a5e1;
+    border: outset var(--main-dark-border-color) .5em;
     cursor: pointer;
   }
 
 .info-image.dark {
-    background-color: #232830;
+    background-color: var(--secondary-dark-bg-color);
     border: solid darkgray 1em;
     display: block;
     margin:auto;
@@ -166,7 +176,7 @@ select.dark {
 
 .trait-box.dark {
     border: solid .2em white;
-    background-color: grey;
+    background-color: var(--main-dark-border-color);
 }
 
 .trait-box-header.dark {
@@ -175,7 +185,7 @@ select.dark {
 }
 
 .question.dark {
-    color: lightgrey;
+    color: var(--main-dark-border-color);
 }
 
 #etherscan-link.dark {

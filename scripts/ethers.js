@@ -31,7 +31,7 @@ const parseEther = (eth_) => { return ethers.utils.parseEther(eth_) }; // multip
 
 const getChainId = async() => { return await signer.getChainId() };
 
-var listedMice = [];
+var listedMice = new Map();
 
 // mice updater functions
 const updateAvailableMice = async() => {
@@ -55,6 +55,7 @@ const updateAvailableMice = async() => {
         $("#your-mice").append(_fakeJSX);
     };
 };
+
 // mice updater functions
 const updateYourMarketMice = async() => {
     const _miceInMarket = await marketplace.getMiceOnSaleByAddress( (await getAddress()) );
@@ -71,8 +72,6 @@ const updateYourMarketMice = async() => {
         _darkClass = "";
     }
 
-    const ethLogo = $(".eth-logo")[0].outerHTML;
-
     if (_miceInMarket.length == 0) {
         $("#your-market-mice").text('No mice listed.');
         $("#your-update-mice").text('No mice listed.');
@@ -84,7 +83,7 @@ const updateYourMarketMice = async() => {
             const _micePrice = _miceListing.price;
             const _micePriceInETH = formatEther(_micePrice);
             const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
-            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_micePriceInETH}<span>${ethLogo}</span></div><div>${_listingPrivacy}</div></div>`;
+            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_micePriceInETH}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
             $("#your-market-mice").append(_fakeJSX);
             $("#your-update-mice").append(_fakeJSX);
         };
@@ -93,14 +92,12 @@ const updateYourMarketMice = async() => {
 
 // marketplace updater functions
 const updateMarketListings = async() => {
-        console.log(`updating market listings`);
+    console.log(`updating market listings`);
     const _currentMiceOnSale = await marketplace.getAllMiceOnSale();
-        console.log({_currentMiceOnSale});
+
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
 
     $("#mice-on-sale-block").empty();
-    
-    const ethLogo = $(".eth-logo")[0].outerHTML;
 
     let _darkClass;
     if (darkModeOn) {
@@ -110,26 +107,49 @@ const updateMarketListings = async() => {
         _darkClass = "";
     }
 
-    floor = 9999999999999;
-    listedMice = [];
+    $("#filter-results-count").text(`${_currentMiceOnSale.length} Mice Found`);
+
+    let floor = 9999999999999;
+    listedMice = new Map();
     for (let i = 0; i < _currentMiceOnSale.length; i++) {
         const _miceId = _currentMiceOnSale[i];
         const _miceOnSale = new Mice(_miceId);
         const _miceListing = await marketplace.miceForSaleToTokenId(_miceId);
         const _micePrice = _miceListing.price;
         const _micePriceInETH = formatEther(_micePrice);
-        if (_micePriceInETH < floor) floor = _micePriceInETH;
+
+        let _priceText = _micePriceInETH;
+        if (_micePriceInETH == 0) {
+            _priceText = "0";
+        }
+        else if (_micePriceInETH < 0.0001) {
+            _priceText = "< 0.0001";
+        }
+        else if (_micePriceInETH > 1000) {
+            _priceText = "> 1000";
+        }
+        if (_micePriceInETH < floor) {
+            floor = _micePriceInETH;
+        }
+
         const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_micePriceInETH}<span>${ethLogo}</span></div><div>${_listingPrivacy}</div><button class="button w-button${_darkClass}" onclick="stopProp(event);buyMice(${_miceId});">Buy Mice</button></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div><button class="button w-button${_darkClass}" onclick="stopProp(event);buyMice(${_miceId});">Buy Mice</button></div>`;
         _miceOnSale.price = Number(_micePriceInETH);
         _miceOnSale.privacy = _listingPrivacy;
         _miceOnSale.fakeJSX = _fakeJSX;
-        listedMice.push(_miceOnSale);
+        listedMice.set(Number(_miceId), _miceOnSale);
         $("#mice-on-sale-block").append(_fakeJSX); 
     };
-    $("#filter-results-count").text(`${listedMice.length} Mice Found`);
+
+    if (floor == 0) {
+        floor = "0";
+    }
+    else if (floor < 0.0001) {
+        floor = "< 0.0001";
+    }
     $("#floor").text(floor);
 };
+
 const checkPrivateSaleAddress = async() => {
     const _miceId = $("#privateSaleLookup-miceId").val();
     const _miceListing = await marketplace.miceForSaleToTokenId(_miceId);
@@ -141,6 +161,7 @@ const checkPrivateSaleAddress = async() => {
 const approveMiceToMarketplace = async() => {
     await anonymice.setApprovalForAll(marketplaceAddress, true);
 };
+
 const checkApprovalOfMice = async() => {
     if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
         console.log(`mice not approved, requesting approval`);
@@ -156,12 +177,14 @@ const buyMice = async(tokenId_) => {
     const _price = _listing.price;
     await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {await waitForTransaction(tx_)});
 };
+
 const putMiceUpForSaleInternal = async() => {
     const _tokenId = $("#publicSale-miceId").val();
     const _priceInETH = $("#publicSale-price").val();
     const _priceInWei = parseEther((_priceInETH).toString());
     await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {await waitForTransaction(tx_)});
 };
+
 const putMiceUpForSale = async() => {
     if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
         console.log(`mice not approved, requesting approval`);
@@ -175,6 +198,7 @@ const putMiceUpForSale = async() => {
         await putMiceUpForSaleInternal();
     };
 };
+
 const putMiceUpForPrivateSaleInternal = async() => {
     const _tokenId = $("#privateSale-miceId").val();
     const _priceInETH = $("#privateSale-price").val();
@@ -182,6 +206,7 @@ const putMiceUpForPrivateSaleInternal = async() => {
     const _toAddress = $("#privateSale-address").val();
     await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {await waitForTransaction(tx_)});
 };
+
 const putMiceUpForPrivateSale = async() => {
     if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
         console.log(`mice not approved, requesting approval`);
@@ -195,6 +220,7 @@ const putMiceUpForPrivateSale = async() => {
         await putMiceUpForPrivateSaleInternal();
     };
 };
+
 const removeMiceOnSale = async() => {
     const _tokenId = $("#removeMice-miceId").val();
     await marketplace.removeMiceOnSale(_tokenId).then( async(tx_) => {await waitForTransaction(tx_)});
@@ -218,13 +244,28 @@ const updateHolders = async() => {
 }
 
 const updateMarketplaceDetails = async() => {
+    console.log("updating")
+    await updateAvailableMice();
     await updateHolders();
     await updateInfo();
     await updateMarketListings();
-    await updateAvailableMice();
     await updateYourMarketMice();
     $("#privateSaleLookup-address").empty();
+    console.log("done updating")
 };
+
+const disallowConcurrency = (fn) => {
+    let inprogressPromise = Promise.resolve()
+  
+    return async (...args) => {
+      await inprogressPromise
+      inprogressPromise = inprogressPromise.then(() => fn(...args))
+      
+      return inprogressPromise
+    }
+  }
+
+const syncAsyncFunction = disallowConcurrency(updateMarketplaceDetails)
 
 const waitForTransaction = async(tx_) => {
     startLoading(tx_.hash);
@@ -238,11 +279,13 @@ function startLoading(txHash) {
     // show loading div in center of screen (processing... etherscan link in new tab on click)
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
     $("#etherscan-link").attr("href", etherscanLink);
+    $("#loading-div").append("PROCESSING...<br>CLICK FOR ETHERSCAN");
     $("#etherscan-link").removeClass("hide-loading");
 }
 
 async function endLoading() {
-    $("#etherscan-link").text("Transaction Finished.");
+    $("#loading-div").html("");
+    $("#loading-div").append("TRANSACTION SENT.<br>FOLLOW ON ETHERSCAN.");
     await sleep(3000);
     $("#etherscan-link").addClass("hide-loading");
     
