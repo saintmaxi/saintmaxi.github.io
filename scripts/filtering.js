@@ -1,3 +1,5 @@
+screen.orientation.lock('portrait')
+
 var miceData;
 
 $.getJSON('../assets/mice_data.json', function(json) {

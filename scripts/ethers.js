@@ -276,11 +276,13 @@ const waitForTransaction = async(tx_) => {
 };
 
 function startLoading(txHash) {
+    const loadingDiv = `<a href="" class="hide-loading" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div id="loading-div-${txHash}"></div></a>`;
     // show loading div in center of screen (processing... etherscan link in new tab on click)
+    $("body").append(loadingDiv);
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
-    $("#etherscan-link").attr("href", etherscanLink);
-    $("#loading-div").append("PROCESSING...<br>CLICK FOR ETHERSCAN");
-    $("#etherscan-link").removeClass("hide-loading");
+    $(`#etherscan-link-${txHash}`).attr("href", etherscanLink);
+    $(`#loading-div-${txHash}`).append("PROCESSING...<br>CLICK FOR ETHERSCAN");
+    $(`#etherscan-link-${txHash}`).removeClass("hide-loading");
 }
 
 async function endLoading() {
