@@ -1,4 +1,3 @@
-screen.orientation.lock('portrait')
 
 var miceData;
 
