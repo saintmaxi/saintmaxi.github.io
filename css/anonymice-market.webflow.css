@@ -490,7 +490,7 @@ right: .4vw;
 
   #discord {
     position: absolute;
-    top: 4px;
+    top: 0px;
     left: 4px;;
     width:6.3vw;
     height:6.3vw;
