@@ -282,7 +282,7 @@ const updateInfo = async() => {
     // };
 };
 
-const updateHolders = async() => {
+const updateStats = async() => {
     $.getJSON('https://raw.githubusercontent.com/saintmaxi/anonymice/main/holders_today.json', function(holderData) {
         $("#holder-count").text(`${holderData["Holders"]}`);
     });
@@ -299,7 +299,7 @@ const updateMarketplaceDetails = async() => {
     $("#pending-transactions").append(loadingDiv);
     $("#pending-transactions").removeClass("hide-loading");
     await updateAvailableMice();
-    await updateHolders();
+    await updateStats();
     await updateInfo();
     await updateMarketListings();
     await updateYourMarketMice();
