@@ -123,6 +123,10 @@ hr {
   display: inline-block;
 }
 
+#volume {
+  display: inline-block;
+}
+
 .mice-on-sale-block {
   display: -webkit-box;
   display: -webkit-flex;

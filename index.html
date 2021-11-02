@@ -56,6 +56,14 @@
             <h5 class="floor" id="floor">#### </h5><span class="eth-logo">Ξ</span>
           <p>Floor</p>
         </div>
+        <div class="w-col-3 stats-box">
+          <h5 id="volume">####</h5><span class="eth-logo">Ξ</span>
+          <p>Volume</p>
+        </div>
+        <div class="w-col-3 stats-box">
+          <h5 id="mice-sold">####</h5>
+          <p>Mice Sold</p>
+        </div>
       </div>
     </div>
     <div class="body-section wf-section" id="create-listing">
@@ -204,7 +212,7 @@
               <div><form><input type="text" id="updatePrice-miceId" name="updatePrice-miceId" placeholder="Input Mice ID" value=""></form></div><br>
               <div>Enter Price in ETH</div>
               <div><form><input type="number" id="updatePrice-price" name="updatePrice-price" placeholder="Input Price in ETH" value=""></form></div><br>
-              <a href="#" class="button w-button" onclick=INSERT_UPDATE_PRICE_FUNCTION>Update Price</a>
+              <a href="#" class="button w-button" onclick=updateMiceOnSalePrice()>Update Price</a>
             </div>
           </div>
           <div class="w-col w-col-6">
@@ -214,7 +222,7 @@
               <div><form><input type="text" id="updatePrivacy-miceId" name="updatePrivacy-miceId" placeholder="Input Mice ID" value=""></form></div><br>
               <div>Enter Address to Private Sale</div>
               <div><form><input type="text" id="updatePrivacy-address" name="updatePrivacy-address" placeholder="Input Address" value=""></form></div><br>
-              <a href="#" class="button w-button" onclick=INSERT_UPDATE_PRIVACY_FUNCTION>Update Privacy</a>
+              <a href="#" class="button w-button" onclick=updateMiceOnSalePrivacy()>Update Privacy</a>
             </div>
           </div>
         </div>
