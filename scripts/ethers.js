@@ -80,11 +80,11 @@ const updateYourMarketMice = async() => {
     else {
         for (let i = 0; i < _miceInMarket.length; i++) {
             const _miceId = _miceInMarket[i];
+            const _listedMice = listedMice.get(Number(_miceId));
             const _miceListing = await marketplace.miceForSaleToTokenId(_miceId);
-            const _micePrice = _miceListing.price;
-            const _micePriceInETH = formatEther(_micePrice);
+            const _priceText = _listedMice.priceText;
             const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
-            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_micePriceInETH}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
+            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
             $("#your-market-mice").append(_fakeJSX);
             $("#your-update-mice").append(_fakeJSX);
         };
@@ -136,6 +136,7 @@ const updateMarketListings = async() => {
         const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
         const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div><button class="button w-button${_darkClass}" onclick="stopProp(event);buyMice(${_miceId});">Buy Mice</button></div>`;
         _miceOnSale.price = Number(_micePriceInETH);
+        _miceOnSale.priceText = _priceText;
         _miceOnSale.privacy = _listingPrivacy;
         _miceOnSale.fakeJSX = _fakeJSX;
         listedMice.set(Number(_miceId), _miceOnSale);

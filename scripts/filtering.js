@@ -174,6 +174,7 @@ class Mice {
         this.miceID = Number(miceID);
         this.original = this.miceID < 2000 ? "Yes" : "No";
         this.price = null;
+        this.priceText = null;
         this.privacy = null;
         this.fakeJSX = null;
         try {
