@@ -619,7 +619,7 @@ right: .4vw;
 }
 
 /*iPad*/
-@media only screen and (device-width: 768px), (device-width: 1024px) {
+@media only screen and (device-width: 768px), (device-width: 834px), (device-width: 1024px) {
 
   #toolbar {
     position: absolute;
