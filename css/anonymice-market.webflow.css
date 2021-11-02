@@ -105,7 +105,9 @@ hr {
   border: outset 1em var(--main-border-color);
   width: 30%;
   height: 100%;
-  margin: -4px;
+  margin-left: -4px;
+  margin-right: -4px;
+  /* margin-top: 4px; */
   text-align: center;
 }
 
