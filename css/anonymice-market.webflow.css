@@ -323,7 +323,7 @@ select:focus {
   position:fixed;
   top:75px;
   left: 50%;
-    transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
   width: 55vw;
   height: 85vh;
   border: outset 1em var(--main-border-color);
@@ -419,8 +419,6 @@ right: .4vw;
   position: absolute;               
    top: 50%;
    text-align: center;
-   /* left: 50%;                  */
-   /* transform: translate(-50%, -50%); */
 }
 
 .question {
@@ -431,25 +429,25 @@ right: .4vw;
   padding:10px;
 }
 
-#etherscan-link {
+#pending-transactions {
     text-align: center;
-    text-decoration: none;
-    width: 30%;
+    min-width: 20%;
     position: fixed;
-    height: 80px;
-    top: 50%;
-    left: 50%;
-    background-color: black;
-    color: white;
-    padding: 20px;
-    transform: translate(-50%, -50%);
+    bottom: 20px;
+    left: 20px;
+}
+
+.loading-div {
+  width: 100%;
+  text-decoration: none;
+  height: 80px;
+  background-color: black;
+  color: white;
+  padding: 20px;
 }
 
 /* mobile */
 @media screen and (max-width: 600px){
-  #etherscan-link {
-    width: 40%;
-  }
 
   h1 {
     font-size: 4.5vw;
@@ -598,14 +596,18 @@ right: .4vw;
   #close {
     font-size: 5vw;
   }
+
+  #pending-transactions {
+    min-width: 85%;
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translate(-50%, 0);
+  }
 }
 
 /*iPad*/
 @media only screen and (device-width: 768px), (device-width: 1024px) {
-
-  #etherscan-link {
-    width: 40%;
-  }
 
   #toolbar {
     position: absolute;

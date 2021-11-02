@@ -275,23 +275,25 @@ const waitForTransaction = async(tx_) => {
     });
 };
 
+var pendingTransactions = new Set();
+
 function startLoading(txHash) {
-    const loadingDiv = `<a href="" class="hide-loading" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div id="loading-div-${txHash}"></div></a>`;
-    // show loading div in center of screen (processing... etherscan link in new tab on click)
-    $("body").append(loadingDiv);
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
-    $(`#etherscan-link-${txHash}`).attr("href", etherscanLink);
-    $(`#loading-div-${txHash}`).append("PROCESSING...<br>CLICK FOR ETHERSCAN");
-    $(`#etherscan-link-${txHash}`).removeClass("hide-loading");
+    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">PROCESSING...<br>CLICK FOR ETHERSCAN</div></a><br>`;
+    $("#pending-transactions").append(loadingDiv);
+    $("#pending-transactions").removeClass("hide-loading");
+    pendingTransactions.add(txHash);
 }
 
-async function endLoading() {
-    $("#loading-div").html("");
-    $("#loading-div").append("TRANSACTION SENT.<br>FOLLOW ON ETHERSCAN.");
+async function endLoading(txHash) {
+    $(`#loading-div-${txHash}`).html("");
+    $(`#loading-div-${txHash}`).append("TRANSACTION SENT.<br>FOLLOW ON ETHERSCAN.");
     await sleep(3000);
-    $("#etherscan-link").addClass("hide-loading");
-    
-    //show some sort of success message briefly
+    $(`#etherscan-link-${txHash}`).remove();
+    pendingTransactions.delete(txHash);
+    if (pendingTransactions.size == 0) {
+        $("#pending-transactions").addClass("hide-loading");
+    }
 }
 
 function sleep(ms) {

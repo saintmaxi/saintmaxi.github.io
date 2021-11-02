@@ -188,14 +188,10 @@ select.dark {
     color: var(--main-dark-border-color);
 }
 
-#etherscan-link.dark {
+.loading-div.dark {
     background-color: white;
     color: black;
-}
-
-#etherscan-link.dark div {
-    color: black;
-}
+  }
 
 /* mobile */
 @media screen and (max-width: 600px){
