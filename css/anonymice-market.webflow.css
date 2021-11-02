@@ -295,14 +295,15 @@ hr {
 }
 
 #discord {
-  width:3.5vw;
-  height:3.5vh;
+  width:4.5vw;
+  height:4.5vh;
+  margin-bottom: 2px;
 }
 
 #darkmodetoggle {
   cursor: pointer;
   width:4vw;
-  height:4vh;
+  height:5vh;
 }
 
 .hidden {
@@ -474,21 +475,26 @@ right: .4vw;
 
   #toolbar {
     position: absolute;
+    width: 100%;
     top: 5px;
     right: 5px;
   }
 
   #darkmodetoggle {
-    width:8vw;
-    height:8vw;
-  }
-
-
-
-  #discord {
+    position: absolute;
+    top: 0px;
+    right: 0px;;
     width:7vw;
     height:7vw;
-    padding-left: 4px;
+  }
+
+  #discord {
+    position: absolute;
+    top: 4px;
+    left: 4px;;
+    width:6.5vw;
+    height:6.5vw;
+    margin-left: 8px;
   }
 
   #directory {
@@ -621,9 +627,21 @@ right: .4vw;
     right: 5px;
   }
 
+  #darkmodetoggle {
+    position: absolute;
+    top: 0px;
+    right: 0px;;
+    width:5.5vw;
+    height:5.5vw;
+  }
+
   #discord {
-    width:5vw;
-    height:5vw;
+    position: absolute;
+    top: 4.5vh;
+    right: 4px;
+    width:4.7vw;
+    height:4.7vw;
+    margin-left: 8px;
   }
 
   #directory {
