@@ -51,7 +51,7 @@ const updateAvailableMice = async() => {
     for (let i = 0; i < _miceInWallet.length; i++) {
         const _miceId = _miceInWallet[i];
         new Mice(_miceId);
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div></div>`;
         $("#your-mice").append(_fakeJSX);
     };
 };
@@ -83,7 +83,7 @@ const updateYourMarketMice = async() => {
             const _micePrice = _miceListing.price;
             const _micePriceInETH = formatEther(_micePrice);
             const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
-            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_micePriceInETH}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
+            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_micePriceInETH}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
             $("#your-market-mice").append(_fakeJSX);
             $("#your-update-mice").append(_fakeJSX);
         };
@@ -182,7 +182,10 @@ const putMiceUpForSaleInternal = async() => {
     const _tokenId = $("#publicSale-miceId").val();
     const _priceInETH = $("#publicSale-price").val();
     const _priceInWei = parseEther((_priceInETH).toString());
-    await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {await waitForTransaction(tx_)});
+    await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {
+        $(`#available-mice-${_tokenId}`).remove();
+        await waitForTransaction(tx_)
+    });
 };
 
 const putMiceUpForSale = async() => {
@@ -204,7 +207,10 @@ const putMiceUpForPrivateSaleInternal = async() => {
     const _priceInETH = $("#privateSale-price").val();
     const _priceInWei = parseEther((_priceInETH).toString());
     const _toAddress = $("#privateSale-address").val();
-    await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {await waitForTransaction(tx_)});
+    await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
+        $(`#available-mice-${_tokenId}`).remove();
+        await waitForTransaction(tx_);
+    });
 };
 
 const putMiceUpForPrivateSale = async() => {
@@ -223,7 +229,10 @@ const putMiceUpForPrivateSale = async() => {
 
 const removeMiceOnSale = async() => {
     const _tokenId = $("#removeMice-miceId").val();
-    await marketplace.removeMiceOnSale(_tokenId).then( async(tx_) => {await waitForTransaction(tx_)});
+    await marketplace.removeMiceOnSale(_tokenId).then( async(tx_) => {
+        $(`#my-listed-mice-${_tokenId}`).remove();
+        await waitForTransaction(tx_)
+    });
 };
 
 // update info
@@ -254,24 +263,11 @@ const updateMarketplaceDetails = async() => {
     console.log("done updating")
 };
 
-const disallowConcurrency = (fn) => {
-    let inprogressPromise = Promise.resolve()
-  
-    return async (...args) => {
-      await inprogressPromise
-      inprogressPromise = inprogressPromise.then(() => fn(...args))
-      
-      return inprogressPromise
-    }
-  }
-
-const syncAsyncFunction = disallowConcurrency(updateMarketplaceDetails)
-
 const waitForTransaction = async(tx_) => {
     startLoading(tx_.hash);
     provider.once(tx_.hash, async (transaction_) => {
-        endLoading(tx_.hash);
-        await updateMarketplaceDetails();
+        await endLoading(tx_.hash);
+        // await updateMarketplaceDetails();
     });
 };
 
@@ -293,6 +289,7 @@ async function endLoading(txHash) {
     pendingTransactions.delete(txHash);
     if (pendingTransactions.size == 0) {
         $("#pending-transactions").addClass("hide-loading");
+        await updateMarketplaceDetails();
     }
 }
 
