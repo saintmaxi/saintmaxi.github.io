@@ -136,6 +136,7 @@ const updateMarketListings = async() => {
         _miceOnSale.fakeJSX = _fakeJSX;
         listedMice.set(Number(_miceId), _miceOnSale);
         $("#mice-on-sale-block").append(_fakeJSX); 
+        floor = Number(Number(floor).toFixed(4));
     };
 
     if (floor == 0) {
@@ -158,7 +159,7 @@ const checkPrivateSaleAddress = async() => {
 };
 
 function getPriceText(_micePriceInETH) {
-    let _priceText;
+    let _priceText = _micePriceInETH;
     if (_micePriceInETH == 0) {
         _priceText = "0";
     }
@@ -169,7 +170,7 @@ function getPriceText(_micePriceInETH) {
         _priceText = "> 1000";
     }
     else {
-        _priceText = _micePriceInETH;
+        _priceText = Number(Number(_micePriceInETH).toFixed(4));
     }
     return _priceText;
 }
@@ -346,7 +347,7 @@ const updateStats = async() => {
         $("#holder-count").text(`${holderData["Holders"]}`);
     });
     await marketplace.totalAmountOfEthTraded().then(async(vol) => {
-        $("#volume").text(formatEther(vol.toString()));
+        $("#volume").text(Number(Number(formatEther(vol.toString())).toFixed(2)));
     });
     await marketplace.totalAmountOfMiceSold().then(async(miceSold) => {
         $("#mice-sold").text(miceSold);
