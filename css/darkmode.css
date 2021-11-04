@@ -8,6 +8,10 @@
     color:white;
 }
 
+body.dark {
+    background-color: var(--secondary-dark-bg-color);
+}
+
 input.dark {
     color: black;
     border: solid var(--main-dark-border-color) .3em
