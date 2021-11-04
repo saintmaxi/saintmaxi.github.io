@@ -42,13 +42,7 @@ const updateAvailableMice = async() => {
 
     $("#your-mice").empty();
 
-    let _darkClass;
-    if (darkModeOn) {
-        _darkClass = " dark";
-    }
-    else {
-        _darkClass = "";
-    }
+    let _darkClass = getDarkMode();
 
     for (let i = 0; i < _miceInWallet.length; i++) {
         const _miceId = _miceInWallet[i];
@@ -66,13 +60,7 @@ const updateYourMarketMice = async() => {
     $("#your-market-mice").empty();
     $("#your-update-mice").empty();
 
-    let _darkClass;
-    if (darkModeOn) {
-        _darkClass = " dark";
-    }
-    else {
-        _darkClass = "";
-    }
+    let _darkClass = getDarkMode();
 
     if (_miceInMarket.length == 0) {
         $("#your-market-mice").text('No mice listed.');
@@ -103,13 +91,7 @@ const updateMarketListings = async() => {
 
     $("#mice-on-sale-block").empty();
 
-    let _darkClass;
-    if (darkModeOn) {
-        _darkClass = " dark";
-    }
-    else {
-        _darkClass = "";
-    }
+    let _darkClass = getDarkMode();
 
     $("#filter-results-count").text(`${_currentMiceOnSale.length} Mice Found`);
 
@@ -356,10 +338,8 @@ const updateStats = async() => {
 
 const updateMarketplaceDetails = async() => {
     loading = true;
-    let darkClass = "";
-    if (darkModeOn) {
-        darkClass = " dark";
-    }
+    let darkClass = getDarkMode();
+
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE...</div><br>`;
     $("#pending-transactions").append(loadingDiv);
     await updateAvailableMice();
@@ -405,10 +385,7 @@ function cachePendingTransactions(page) {
 }
 
 function startLoading(txHash) {
-    let darkClass = "";
-    if (darkModeOn) {
-        darkClass = " dark";
-    }
+    let darkClass = getDarkMode();
 
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
     const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div${darkClass}" id="loading-div-${txHash}">PROCESSING...<br>CLICK FOR ETHERSCAN</div></a><br>`;
@@ -433,10 +410,7 @@ function sleep(ms) {
 }
 
 async function displayErrorMessage(message) {
-    let darkClass = "";
-    if (darkModeOn) {
-        darkClass = " dark";
-    }
+    let darkClass = getDarkMode();
 
     console.log(message);
     let fakeJSX = `<div class="${darkClass}" id="error-popup"><p>${message}</p></div>`;

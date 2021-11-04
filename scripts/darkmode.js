@@ -19,3 +19,14 @@ function addDark() {
     }
 
 }
+
+function getDarkMode() {
+    let _darkClass;
+    if (darkModeOn) {
+        _darkClass = " dark";
+    }
+    else {
+        _darkClass = "";
+    }
+    return _darkClass;
+}
