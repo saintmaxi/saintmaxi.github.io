@@ -366,8 +366,8 @@ select:focus {
   position: absolute;
   min-height: 4vw;
   position: fixed;
-top: 2vw;
-right: .4vw;
+  top: 2vw;
+  right: .4vw;
   text-align: right;
   cursor: pointer;
   font-size: 3vw;
@@ -455,6 +455,10 @@ right: .4vw;
   background-color: black;
   color: white;
   padding: 20px;
+}
+
+.etherscan-link {
+  text-decoration: none;
 }
 
 #mice-sales-container {
