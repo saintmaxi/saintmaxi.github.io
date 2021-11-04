@@ -432,8 +432,13 @@ function sleep(ms) {
 }
 
 async function displayErrorMessage(message) {
+    let darkClass = "";
+    if (darkModeOn) {
+        darkClass = " dark";
+    }
+
     console.log(message);
-    let fakeJSX = `<div id="error-popup"><p>${message}</p></div>`;
+    let fakeJSX = `<div class="${darkClass}" id="error-popup"><p>${message}</p></div>`;
     $("#directory").append(fakeJSX);
     await sleep(2500);
     $("#error-popup").remove();

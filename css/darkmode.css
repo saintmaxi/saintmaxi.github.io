@@ -193,6 +193,16 @@ select.dark {
     color: black;
   }
 
+#error-popup.dark {
+    background-color: var(--main-dark-bg-color);
+    border-color: var(--main-dark-border-color);
+    color: white;
+}
+
+#error-popup.dark p {
+    background-color: var(--main-dark-bg-color);
+}
+
 /* mobile */
 @media screen and (max-width: 600px){
     #jump-to-directory.dark {
