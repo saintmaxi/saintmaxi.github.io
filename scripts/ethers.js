@@ -343,11 +343,11 @@ const updateMarketplaceDetails = async() => {
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE...</div><br>`;
     $("#pending-transactions").append(loadingDiv);
     await updateAvailableMice();
+    await getSalesHistory();
     await updateStats();
     await updateInfo();
     await updateMarketListings();
     await updateYourMarketMice();
-    await getSalesHistory();
     $("#privateSaleLookup-address").empty();
     $("#refresh-notification").remove();
     loading = false;

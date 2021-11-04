@@ -470,10 +470,13 @@ select:focus {
 
 #mice-sales-container table {
   margin: auto;
+  border-collapse: separate;
+  border-spacing: 0 1em;
 }
 
 #mice-sales-container th, td {
   padding:.5vw;
+  margin: .5vw;
   text-align: center;
 }
 
@@ -499,6 +502,11 @@ select:focus {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
+}
+
+.sale-row:hover{
+  background-color: #fcd17d;
+  cursor: pointer;
 }
 
 /* mobile */

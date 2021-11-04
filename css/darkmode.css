@@ -203,6 +203,10 @@ select.dark {
     background-color: var(--main-dark-bg-color);
 }
 
+.sale-row.dark:hover {
+    background-color: rgb(184, 184, 184);
+}
+
 /* mobile */
 @media screen and (max-width: 600px){
     #jump-to-directory.dark {
