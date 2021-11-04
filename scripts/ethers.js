@@ -190,98 +190,144 @@ const checkApprovalOfMice = async() => {
 
 // marketplace functions
 const buyMice = async(tokenId_) => {
-    const _listing = await marketplace.miceForSaleToTokenId(tokenId_);
-    const _price = _listing.price;
-    await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
-        $(`#mice-for-sale-${tokenId_}`).remove();
-        $(`#update-listing #my-listed-mice-${tokenId_}`).remove();
-        $(`#remove-listing #my-listed-mice-${tokenId_}`).remove();
-        await waitForTransaction(tx_.hash)
-    });
+    try {
+        const _listing = await marketplace.miceForSaleToTokenId(tokenId_);
+        const _price = _listing.price;
+        await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
+            $(`#mice-for-sale-${tokenId_}`).remove();
+            $(`#update-listing #my-listed-mice-${tokenId_}`).remove();
+            $(`#remove-listing #my-listed-mice-${tokenId_}`).remove();
+            await waitForTransaction(tx_.hash)
+        });
+    }
+    catch (error) {
+        errorMsg = error.error.message;
+        if (errorMsg.includes("insufficient funds")) {
+            displayErrorMessage("Error: Insufficient Funds");
+        }
+        else {
+            displayErrorMessage(errorMsg);
+        }
+    }
 };
 
 const putMiceUpForSaleInternal = async() => {
-    const _tokenId = $("#publicSale-miceId").val();
-    const _priceInETH = $("#publicSale-price").val();
-    const _priceInWei = parseEther((_priceInETH).toString());
-    await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {
-        $(`#available-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_.hash)
-    });
+    try {
+        const _tokenId = $("#publicSale-miceId").val();
+        const _priceInETH = $("#publicSale-price").val();
+        const _priceInWei = parseEther((_priceInETH).toString());
+        await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {
+            $(`#available-mice-${_tokenId}`).remove();
+            await waitForTransaction(tx_.hash)
+        });
+    }
+    catch (error) {
+        displayErrorMessage(error.error.message);
+    }
 };
 
 const putMiceUpForSale = async() => {
-    if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-        console.log(`mice not approved, requesting approval`);
-        await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
-            provider.once(tx_.hash, async (transaction_) => {
-                await putMiceUpForSaleInternal();
+    try {
+        if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
+            console.log(`mice not approved, requesting approval`);
+            await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
+                provider.once(tx_.hash, async (transaction_) => {
+                    await putMiceUpForSaleInternal();
+                });
             });
-        });
-    } else {
-        // console.log(`mice already approved`);
-        await putMiceUpForSaleInternal();
-    };
+        } else {
+            // console.log(`mice already approved`);
+            await putMiceUpForSaleInternal();
+        };
+    }
+    catch (error) {
+        displayErrorMessage(error.error.message);
+    }
 };
 
 const putMiceUpForPrivateSaleInternal = async() => {
-    const _tokenId = $("#privateSale-miceId").val();
-    const _priceInETH = $("#privateSale-price").val();
-    const _priceInWei = parseEther((_priceInETH).toString());
-    const _toAddress = $("#privateSale-address").val();
-    await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
-        $(`#available-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_.hash);
-    });
+    try {
+        const _tokenId = $("#privateSale-miceId").val();
+        const _priceInETH = $("#privateSale-price").val();
+        const _priceInWei = parseEther((_priceInETH).toString());
+        const _toAddress = $("#privateSale-address").val();
+        await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
+            $(`#available-mice-${_tokenId}`).remove();
+            await waitForTransaction(tx_.hash);
+        });
+    }
+    catch (error) {
+        displayErrorMessage(error.error.message);
+    }
 };
 
 const putMiceUpForPrivateSale = async() => {
-    if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-        console.log(`mice not approved, requesting approval`);
-        await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
-            provider.once(tx_.hash, async (transaction_) => {
-                await putMiceUpForPrivateSaleInternal();
+    try {
+        if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
+            console.log(`mice not approved, requesting approval`);
+            await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
+                provider.once(tx_.hash, async (transaction_) => {
+                    await putMiceUpForPrivateSaleInternal();
+                });
             });
-        });
-    } else {
-        // console.log(`mice already approved`);
-        await putMiceUpForPrivateSaleInternal();
-    };
+        } else {
+            // console.log(`mice already approved`);
+            await putMiceUpForPrivateSaleInternal();
+        };
+    }
+    catch (error) {
+        displayErrorMessage(error.error.message);
+    }
 };
 
 const removeMiceOnSale = async() => {
-    const _tokenId = $("#removeMice-miceId").val();
-    await marketplace.removeMiceOnSale(_tokenId).then( async(tx_) => {
-        $(`#mice-for-sale-${_tokenId}`).remove();
-        $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-        $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_.hash)
-    });
+    try {
+        const _tokenId = $("#removeMice-miceId").val();
+        await marketplace.removeMiceOnSale(_tokenId).then( async(tx_) => {
+            $(`#mice-for-sale-${_tokenId}`).remove();
+            $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
+            $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+            await waitForTransaction(tx_.hash)
+        });
+    }
+    catch (error) {
+        displayErrorMessage(error.error.message);
+    }
 };
 
 const updateMiceOnSalePrice = async() => {
-    const _tokenId = $("#updatePrice-miceId").val();
-    const _priceInETH = $("#updatePrice-price").val();
-    const _priceInWei = parseEther((_priceInETH).toString());
-    await marketplace.updateMiceOnSale(_tokenId, _priceInWei).then( async(tx_) => {
-        $(`#mice-for-sale-${_tokenId}`).remove();
-        $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-        $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_.hash)
-    });
+    try {
+        const _tokenId = $("#updatePrice-miceId").val();
+        const _priceInETH = $("#updatePrice-price").val();
+        const _priceInWei = parseEther((_priceInETH).toString());
+        await marketplace.updateMiceOnSale(_tokenId, _priceInWei).then( async(tx_) => {
+            $(`#mice-for-sale-${_tokenId}`).remove();
+            $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
+            $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+            await waitForTransaction(tx_.hash)
+        });
+    }
+    catch (error) {
+        displayErrorMessage(error.error.message);
+    }
 };
 
 const updateMiceOnSalePrivacy = async() => {
-    const _tokenId = $("#updatePrivacy-miceId").val();
-    const _priceInETH = listedMice.get(Number(_tokenId)).price;
-    const _priceInWei = parseEther((_priceInETH).toString());
-    const _toAddress = $("#updatePrivacy-address").val();
-    await marketplace.updateMiceOnSaleToPrivate(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
-        $(`#mice-for-sale-${_tokenId}`).remove();
-        $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-        $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_.hash)
-    });
+    try {
+        const _tokenId = $("#updatePrivacy-miceId").val();
+        const _priceInETH = listedMice.get(Number(_tokenId)).price;
+        const _priceInWei = parseEther((_priceInETH).toString());
+        const _toAddress = $("#updatePrivacy-address").val();
+        await marketplace.updateMiceOnSaleToPrivate(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
+            $(`#mice-for-sale-${_tokenId}`).remove();
+            $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
+            $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+            await waitForTransaction(tx_.hash)
+        });
+    }
+    catch (error) {
+        displayErrorMessage(error.error.message);
+    }
 };
 
 // update info
@@ -330,6 +376,7 @@ const updateMarketplaceDetails = async() => {
 const waitForTransaction = async(tx_) => {
     startLoading(tx_);
     provider.once(tx_, async (transaction_) => {
+        // console.log(transaction_);
         await endLoading(tx_);
     });
 };
@@ -352,9 +399,7 @@ else {
 }
 
 function cachePendingTransactions(page) {
-    // console.log(pendingTransactions);
     localStorage.setItem("pendingTxs", JSON.stringify(Array.from(pendingTransactions)));
-    // console.log("set pending");
     window.location.href=page;
 }
 
@@ -372,7 +417,6 @@ function startLoading(txHash) {
 }
 
 async function endLoading(txHash) {
-    // console.log("ending load for ", txHash)
     $(`#loading-div-${txHash}`).html("");
     $(`#loading-div-${txHash}`).append(`TRANSACTION SENT.<br>FOLLOW ON ETHERSCAN.`);
     await sleep(1000);
@@ -385,7 +429,15 @@ async function endLoading(txHash) {
 
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
-  }
+}
+
+async function displayErrorMessage(message) {
+    console.log(message);
+    let fakeJSX = `<div id="error-popup"><p>${message}</p></div>`;
+    $("#directory").append(fakeJSX);
+    await sleep(2500);
+    $("#error-popup").remove();
+}
 
 setInterval( async() => {
     await updateInfo();
@@ -397,7 +449,7 @@ ethereum.on("accountsChanged", async (accounts_) => {
 });
 
 window.onload = async() => {
-    if (!loading) {
+    if (!loading && pendingTransactions.size <1) {
         await updateMarketplaceDetails();
     }
 };
