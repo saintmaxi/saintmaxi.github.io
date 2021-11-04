@@ -67,22 +67,51 @@
         </div>
       </div>
     </div>
-  </div>
+    <br>
     <HR>
-    <div class="body-section wf-section">
-      <div class="main-content" id="mice-sales-container">
-        <h3 class="heading-3">Sales History</h3>
-        <table id="mice-sales">
-          <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>From</th>
-            <th>To</th>
-          </tr>
-        </table>
+  <div class="body-section wf-section" id="remove-listing">
+    <div class="w-container main-content">
+      <h2 class="heading-3">Remove your Mice From Sale</h2>
+      <h3 class="heading-3">Your Market Mice</h3>
+      <div id="your-market-mice" class="mice-on-sale-block">Loading...</div><br><br>
+      <div class="body-div">
+        <div>Enter Mice ID</div>
+        <div><form><input type="text" id="removeMice-miceId" name="removeMice-miceId" placeholder="Input Mice ID" value=""></form></div><br>
+        <a href="#" class="button w-button" onclick=removeMiceOnSale()>Remove Mice from Sale</a>
       </div>
+    </div>
   </div>
-
+  <HR>
+    <div class="body-section wf-section" id="update-listing">
+      <div class="w-container main-content">
+        <h2 class="heading-2">Update Listing</h2>
+        <h3 class="heading-3">Your Available Mice</h3>
+        <div id="your-update-mice" class="mice-on-sale-block">Loading...</div><br><br>
+        <div class="w-row">
+          <div class="w-col w-col-6">
+            <div class="body-div">
+              <h3>Update Price</h3>
+              <div>Enter Mice ID</div>
+              <div><form><input type="text" id="updatePrice-miceId" name="updatePrice-miceId" placeholder="Input Mice ID" value=""></form></div><br>
+              <div>Enter Price in ETH</div>
+              <div><form><input type="number" id="updatePrice-price" name="updatePrice-price" placeholder="Input Price in ETH" value=""></form></div><br>
+              <a href="#" class="button w-button" onclick=updateMiceOnSalePrice()>Update Price</a>
+            </div>
+          </div>
+          <div class="w-col w-col-6">
+            <div class="body-div">
+              <h3>Update to Private</h3>
+              <div>Enter Mice ID</div>
+              <div><form><input type="text" id="updatePrivacy-miceId" name="updatePrivacy-miceId" placeholder="Input Mice ID" value=""></form></div><br>
+              <div>Enter Address to Private Sale</div>
+              <div><form><input type="text" id="updatePrivacy-address" name="updatePrivacy-address" placeholder="Input Address" value=""></form></div><br>
+              <a href="#" class="button w-button" onclick=updateMiceOnSalePrivacy()>Update Privacy</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
   <div class="footer wf-section" id="footer">
     <div class="w-container">
       <div><strong>Disclaimer: This is a royalty-free marketplace was created for Anonymice only. Use at your own risk. We are not responsible for any losses if there are any incurred.<br>
@@ -106,7 +135,6 @@
   <!-- Ethers -->
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
   <!-- Ethers Implementation -->
-  <script src="./scripts/ethers.js"></script>
-  <script src="./scripts/salesHistory.js" type="text/javascript"></script>
+  <script src="./scripts/ethers.js"></script>   
 </body>
 </html>

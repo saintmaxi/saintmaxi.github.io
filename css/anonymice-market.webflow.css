@@ -129,6 +129,10 @@ hr {
   display: inline-block;
 }
 
+#og-tooltip:hover {
+  cursor: pointer;
+}
+
 .mice-on-sale-block {
   display: -webkit-box;
   display: -webkit-flex;
@@ -451,6 +455,22 @@ right: .4vw;
   background-color: black;
   color: white;
   padding: 20px;
+}
+
+#mice-sales-container {
+  width:90%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: .9vw;
+}
+
+#mice-sales-container table {
+  margin: auto;
+}
+
+#mice-sales-container th, td {
+  padding:.5vw;
+  text-align: center;
 }
 
 /* mobile */

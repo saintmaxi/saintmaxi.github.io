@@ -41,48 +41,37 @@
     <button class="button" onclick="cachePendingTransactions('edit-listing.html')">Edit Listing</button>
     <button class="button" onclick="cachePendingTransactions('faq.html')">FAQ</button>
   </div>
-  <div class="body-section wf-section">
-    <div class="w-container">
-      <h2 class="heading-2">Collection Stats</h2>
-      <div class="w-row" id="collection-stats">
-        <div class="w-col-3 stats-box">
-          <h5>3550</h5>
-          <p>Items</p>
-        </div>
-        <div class="w-col-3 stats-box">
-          <h5 id="holder-count">####</h5>
-          <p>Holders</p>
-          </div>
-        <div class="w-col-3 stats-box">
-            <h5 class="floor" id="floor">#### </h5><span class="eth-logo">Ξ</span>
-          <p>Floor</p>
-        </div>
-        <div class="w-col-3 stats-box">
-          <h5 id="volume">####</h5><span class="eth-logo">Ξ</span>
-          <p>Volume</p>
-        </div>
-        <div class="w-col-3 stats-box">
-          <h5 id="mice-sold">####</h5>
-          <p>Mice Sold</p>
-        </div>
-      </div>
+  <div class="body-section wf-section" id="faq">
+    <div class="w-container main-content">
+      <h2 class="heading-2">FAQ</h2>
+      <h4 class="question">> What is Anonymice?</h4>
+      <p class="answer">Anonymice is a collection of 3550 100% on-chain generative NFTs. All Mice data is stored entirely on the Ethereum blockchain. Whereas other projects relying on IPFS and
+        APIs are susceptible to disappearing, Mice will persist into eternity.
+      </p>
+      <h4 class="question">> Why should I use this marketplace over OpenSea?</h4>
+      <p class="answer">Anonymice Marketplace is completely <span style="color:white;font-weight: bolder;">royalty-free</span>. The only fees users pay are to cover gas for their transactions.</p>
+      <h4 class="question">> How many Mice are available to own?</h4>
+      <p class="answer">While OpenSea lists 10k items in the collection, only 3550 are available to own due to the unique burn-to-mint mechanic employed by the project.
+        The rest, while still visible, are stored in an inaccessible burn address and effectively unavailable.
+      </p>
+      <h4 class="question">> What can I do with my Mice?</h4>
+      <p class="answer">Currently, all adult Mice can be staked to earn one $CHEETH per day. $CHEETH is a utility token used within the Mice ecosystem.
+        Owners can also stake two Mice in a separate breeding contract to create a baby Mice with traits linked to its parents. Owning an adult or baby also gives access
+        to private Discord channels, including #mice-alpha for high-quality NFT information. Additional utility is constantly being added for Mice.
+      </p>
+      <h4 class="question">> How is the holder count calculated?</h4>
+      <p class="answer">Because the CHEETH and breeding contracts take possession of all staked mice, these addresses are linked to thousands of mice. Typically, over 90% of all mice are staked at any given time,
+         resulting in a misleadlingly low owner count on OpenSea. Thus, we use a custom script to calculate the true number of owners, which can be found here: 
+         <a href="https://gist.github.com/saintmaxi/75dac0ea88a9181ab4f467b5e40c61c0">Holder Calculation</a>.
+      </p>
+      <h4 class="question" id="og-question"> What is an "OG" Anonymice?</h4>
+      <p class="answer">An OG Anonymice is any Mice with an ID less than 2000. These Mice were the only ones mintable with ETH; the rest were minted with $CHEETH earned by staking Mice. 
+        OG Mice offer a slight advantage in breeding babies with rare traits.</p>
+      <h4 class="question" id="og-question"> Where can I find more resources?</h4>
+      <p class="answer">A community member set up a <a href="https://anonymice.org/resources">website</a> with various Mice resources.
+      <br>Our <a href="http://discord.gg/BAyzSyRsWF">Discord</a> is also a great place to ask questions.</p>  
     </div>
   </div>
-    <HR>
-    <div class="body-section wf-section">
-      <div class="main-content" id="mice-sales-container">
-        <h3 class="heading-3">Sales History</h3>
-        <table id="mice-sales">
-          <tr>
-            <th>Item</th>
-            <th>Price</th>
-            <th>From</th>
-            <th>To</th>
-          </tr>
-        </table>
-      </div>
-  </div>
-
   <div class="footer wf-section" id="footer">
     <div class="w-container">
       <div><strong>Disclaimer: This is a royalty-free marketplace was created for Anonymice only. Use at your own risk. We are not responsible for any losses if there are any incurred.<br>
@@ -106,7 +95,6 @@
   <!-- Ethers -->
   <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
   <!-- Ethers Implementation -->
-  <script src="./scripts/ethers.js"></script>
-  <script src="./scripts/salesHistory.js" type="text/javascript"></script>
+  <script src="./scripts/ethers.js"></script>   
 </body>
 </html>

@@ -14,7 +14,6 @@ const anonymiceAbi = () => {
 const marketplaceAddress = "0xF356D734695a1B7041Ab98d843905DC6d1bB216b";
 const marketplaceAbi = () => {
     return '[ { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "seller", "type": "address" }, { "indexed": false, "internalType": "address", "name": "privateSaleAddress", "type": "address" } ], "name": "ListingUpdated", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "seller", "type": "address" }, { "indexed": true, "internalType": "address", "name": "buyer", "type": "address" } ], "name": "MiceBought", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "seller", "type": "address" }, { "indexed": false, "internalType": "address", "name": "privateSaleAddress", "type": "address" } ], "name": "MicePutUpForSale", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "address", "name": "owner", "type": "address" } ], "name": "MiceRemovedFromSale", "type": "event" }, { "inputs": [], "name": "anonymiceAddress", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" } ], "name": "buyMice", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [], "name": "getAllMiceOnSale", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getAmountOfMiceOnSale", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "address_", "type": "address" } ], "name": "getAmountOfMiceOnSaleByAddress", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "address_", "type": "address" } ], "name": "getMiceOnSaleByAddress", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "address_", "type": "address" }, { "internalType": "uint256", "name": "start_", "type": "uint256" }, { "internalType": "uint256", "name": "end_", "type": "uint256" } ], "name": "getMiceOnSaleByAddressSegment", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "start_", "type": "uint256" }, { "internalType": "uint256", "name": "end_", "type": "uint256" } ], "name": "getMiceOnSaleSegment", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceCurrentlyOnSale", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceCurrentlyOnSaleIndex", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceForSaleToTokenId", "outputs": [ { "internalType": "address", "name": "sellerAddress", "type": "address" }, { "internalType": "uint256", "name": "miceId", "type": "uint256" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "address", "name": "privateSaleAddress", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceOnSaleByAddress", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceOnSaleByAddressIndex", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" }, { "internalType": "uint256", "name": "price_", "type": "uint256" }, { "internalType": "address", "name": "privateSaleAddress_", "type": "address" } ], "name": "putMiceUpForPrivateSale", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" }, { "internalType": "uint256", "name": "price_", "type": "uint256" } ], "name": "putMiceUpForSale", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" } ], "name": "removeMiceOnSale", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "name": "totalAmountOfEthTraded", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "totalAmountOfMiceSold", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" }, { "internalType": "uint256", "name": "price_", "type": "uint256" } ], "name": "updateMiceOnSale", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" }, { "internalType": "uint256", "name": "price_", "type": "uint256" }, { "internalType": "address", "name": "privateSaleAddress_", "type": "address" } ], "name": "updateMiceOnSaleToPrivate", "outputs": [], "stateMutability": "nonpayable", "type": "function"}]';
-            // return '[ { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "seller", "type": "address" }, { "indexed": true, "internalType": "address", "name": "buyer", "type": "address" } ], "name": "MiceBought", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "uint256", "name": "price", "type": "uint256" }, { "indexed": true, "internalType": "address", "name": "seller", "type": "address" }, { "indexed": false, "internalType": "address", "name": "privateSaleAddress", "type": "address" } ], "name": "MicePutUpForSale", "type": "event" }, { "anonymous": false, "inputs": [ { "indexed": true, "internalType": "uint256", "name": "tokenId", "type": "uint256" }, { "indexed": false, "internalType": "address", "name": "owner", "type": "address" } ], "name": "MiceRemovedFromSale", "type": "event" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" } ], "name": "buyMice", "outputs": [], "stateMutability": "payable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" }, { "internalType": "uint256", "name": "price_", "type": "uint256" }, { "internalType": "address", "name": "privateSaleAddress_", "type": "address" } ], "name": "putMiceUpForPrivateSale", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" }, { "internalType": "uint256", "name": "price_", "type": "uint256" } ], "name": "putMiceUpForSale", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "tokenId_", "type": "uint256" } ], "name": "removeMiceOnSale", "outputs": [], "stateMutability": "nonpayable", "type": "function" }, { "inputs": [], "stateMutability": "nonpayable", "type": "constructor" }, { "inputs": [], "name": "anonymiceAddress", "outputs": [ { "internalType": "address", "name": "", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getAllMiceOnSale", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [], "name": "getAmountOfMiceOnSale", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "address_", "type": "address" } ], "name": "getAmountOfMiceOnSaleByAddress", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "address_", "type": "address" } ], "name": "getMiceOnSaleByAddress", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "start_", "type": "uint256" }, { "internalType": "uint256", "name": "end_", "type": "uint256" } ], "name": "getMiceOnSaleSegment", "outputs": [ { "internalType": "uint256[]", "name": "", "type": "uint256[]" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceCurrentlyOnSale", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceCurrentlyOnSaleIndex", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceForSaleToTokenId", "outputs": [ { "internalType": "address", "name": "sellerAddress", "type": "address" }, { "internalType": "uint256", "name": "miceId", "type": "uint256" }, { "internalType": "uint256", "name": "price", "type": "uint256" }, { "internalType": "address", "name": "privateSaleAddress", "type": "address" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceOnSaleByAddress", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" }, { "inputs": [ { "internalType": "address", "name": "", "type": "address" }, { "internalType": "uint256", "name": "", "type": "uint256" } ], "name": "miceOnSaleByAddressIndex", "outputs": [ { "internalType": "uint256", "name": "", "type": "uint256" } ], "stateMutability": "view", "type": "function" } ]';
 };
 
 const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
@@ -33,6 +32,8 @@ const parseEther = (eth_) => { return ethers.utils.parseEther(eth_) }; // multip
 const getChainId = async() => { return await signer.getChainId() };
 
 var listedMice = new Map();
+
+var loading = false;
 
 // mice updater functions
 const updateAvailableMice = async() => {
@@ -82,7 +83,9 @@ const updateYourMarketMice = async() => {
             const _miceId = _miceInMarket[i];
             const _listedMice = listedMice.get(Number(_miceId));
             const _miceListing = await marketplace.miceForSaleToTokenId(_miceId);
-            const _priceText = _listedMice.priceText;
+            const _micePrice = _miceListing.price;
+            const _micePriceInETH = formatEther(_micePrice);
+            const _priceText = getPriceText(_micePriceInETH);
             const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
             const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
             $("#your-market-mice").append(_fakeJSX);
@@ -119,16 +122,8 @@ const updateMarketListings = async() => {
         const _micePrice = _miceListing.price;
         const _micePriceInETH = formatEther(_micePrice);
 
-        let _priceText = _micePriceInETH;
-        if (_micePriceInETH == 0) {
-            _priceText = "0";
-        }
-        else if (_micePriceInETH < 0.0001) {
-            _priceText = "< 0.0001";
-        }
-        else if (_micePriceInETH > 1000) {
-            _priceText = "> 1000";
-        }
+        let _priceText = getPriceText(_micePriceInETH);
+
         if (_micePriceInETH < floor) {
             floor = _micePriceInETH;
         }
@@ -162,6 +157,23 @@ const checkPrivateSaleAddress = async() => {
     $("#privateSaleLookup-address").text(_privateSaleAddress);
 };
 
+function getPriceText(_micePriceInETH) {
+    let _priceText;
+    if (_micePriceInETH == 0) {
+        _priceText = "0";
+    }
+    else if (_micePriceInETH < 0.0001) {
+        _priceText = "< 0.0001";
+    }
+    else if (_micePriceInETH > 1000) {
+        _priceText = "> 1000";
+    }
+    else {
+        _priceText = _micePriceInETH;
+    }
+    return _priceText;
+}
+
 // contract approval functions (unused, lol)
 const approveMiceToMarketplace = async() => {
     await anonymice.setApprovalForAll(marketplaceAddress, true);
@@ -182,9 +194,9 @@ const buyMice = async(tokenId_) => {
     const _price = _listing.price;
     await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
         $(`#mice-for-sale-${tokenId_}`).remove();
-        $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-        $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_)
+        $(`#update-listing #my-listed-mice-${tokenId_}`).remove();
+        $(`#remove-listing #my-listed-mice-${tokenId_}`).remove();
+        await waitForTransaction(tx_.hash)
     });
 };
 
@@ -194,7 +206,7 @@ const putMiceUpForSaleInternal = async() => {
     const _priceInWei = parseEther((_priceInETH).toString());
     await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {
         $(`#available-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_)
+        await waitForTransaction(tx_.hash)
     });
 };
 
@@ -207,7 +219,7 @@ const putMiceUpForSale = async() => {
             });
         });
     } else {
-        console.log(`mice already approved`);
+        // console.log(`mice already approved`);
         await putMiceUpForSaleInternal();
     };
 };
@@ -219,7 +231,7 @@ const putMiceUpForPrivateSaleInternal = async() => {
     const _toAddress = $("#privateSale-address").val();
     await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
         $(`#available-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_);
+        await waitForTransaction(tx_.hash);
     });
 };
 
@@ -232,7 +244,7 @@ const putMiceUpForPrivateSale = async() => {
             });
         });
     } else {
-        console.log(`mice already approved`);
+        // console.log(`mice already approved`);
         await putMiceUpForPrivateSaleInternal();
     };
 };
@@ -243,7 +255,7 @@ const removeMiceOnSale = async() => {
         $(`#mice-for-sale-${_tokenId}`).remove();
         $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
         $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_)
+        await waitForTransaction(tx_.hash)
     });
 };
 
@@ -255,7 +267,7 @@ const updateMiceOnSalePrice = async() => {
         $(`#mice-for-sale-${_tokenId}`).remove();
         $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
         $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_)
+        await waitForTransaction(tx_.hash)
     });
 };
 
@@ -268,7 +280,7 @@ const updateMiceOnSalePrivacy = async() => {
         $(`#mice-for-sale-${_tokenId}`).remove();
         $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
         $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-        await waitForTransaction(tx_)
+        await waitForTransaction(tx_.hash)
     });
 };
 
@@ -296,45 +308,77 @@ const updateStats = async() => {
 }
 
 const updateMarketplaceDetails = async() => {
-    const loadingDiv = `<div class="loading-div" id="refresh-notification">REFRESHING MARKETPLACE...</div><br>`;
+    loading = true;
+    let darkClass = "";
+    if (darkModeOn) {
+        darkClass = " dark";
+    }
+    const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE...</div><br>`;
     $("#pending-transactions").append(loadingDiv);
-    $("#pending-transactions").removeClass("hide-loading");
     await updateAvailableMice();
     await updateStats();
     await updateInfo();
     await updateMarketListings();
     await updateYourMarketMice();
+    await getSalesHistory();
     $("#privateSaleLookup-address").empty();
     $("#refresh-notification").remove();
-    $("#pending-transactions").addClass("hide-loading");
+    loading = false;
 };
 
+// Processing tx returns
 const waitForTransaction = async(tx_) => {
-    startLoading(tx_.hash);
-    provider.once(tx_.hash, async (transaction_) => {
-        await endLoading(tx_.hash);
-        // await updateMarketplaceDetails();
+    startLoading(tx_);
+    provider.once(tx_, async (transaction_) => {
+        await endLoading(tx_);
     });
 };
 
-var pendingTransactions = new Set();
+// Resuming UI display, refreshing market for pending txs across pages
+var pendingTransactions = localStorage.getItem("pendingTxs");
+
+if (!pendingTransactions) {
+    pendingTransactions = new Set();
+}
+else {
+    pendingTransactions = new Set(Array.from(JSON.parse(pendingTransactions)));
+    pendingTxArray = Array.from(pendingTransactions);
+    pendingTransactions = new Set();
+
+    for (let i =0; i < pendingTxArray.length; i++) {
+        waitForTransaction(pendingTxArray[i]);
+    }
+    localStorage.removeItem("pendingTxs");
+}
+
+function cachePendingTransactions(page) {
+    // console.log(pendingTransactions);
+    localStorage.setItem("pendingTxs", JSON.stringify(Array.from(pendingTransactions)));
+    // console.log("set pending");
+    window.location.href=page;
+}
 
 function startLoading(txHash) {
+    let darkClass = "";
+    if (darkModeOn) {
+        darkClass = " dark";
+    }
+
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
-    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div" id="loading-div-${txHash}">PROCESSING...<br>CLICK FOR ETHERSCAN</div></a><br>`;
+    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div${darkClass}" id="loading-div-${txHash}">PROCESSING...<br>CLICK FOR ETHERSCAN</div></a><br>`;
     $("#pending-transactions").append(loadingDiv);
-    $("#pending-transactions").removeClass("hide-loading");
+
     pendingTransactions.add(txHash);
 }
 
 async function endLoading(txHash) {
+    // console.log("ending load for ", txHash)
     $(`#loading-div-${txHash}`).html("");
-    $(`#loading-div-${txHash}`).append("TRANSACTION SENT.<br>FOLLOW ON ETHERSCAN.");
+    $(`#loading-div-${txHash}`).append(`TRANSACTION SENT.<br>FOLLOW ON ETHERSCAN.`);
     await sleep(1000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(txHash);
     if (pendingTransactions.size == 0) {
-        $("#pending-transactions").addClass("hide-loading");
         await updateMarketplaceDetails();
     }
 }
@@ -353,5 +397,8 @@ ethereum.on("accountsChanged", async (accounts_) => {
 });
 
 window.onload = async() => {
-    await updateMarketplaceDetails();
+    if (!loading) {
+        await updateMarketplaceDetails();
+    }
 };
+
