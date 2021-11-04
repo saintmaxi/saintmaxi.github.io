@@ -18,7 +18,7 @@ async function getSalesHistory() {
         buyer = event.args.buyer;
         seller = event.args.seller;
         tokenID = event.args.tokenId;
-        price = formatEther(event.args.price);
+        price = getPriceText(formatEther(event.args.price));
         let fakeJSX = `<tr><td><img src="${_baseImageURI}${tokenID}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><br>#${tokenID}</td><td>${price}<span class="listing-eth-logo">Ξ</span></td><td>${seller}</td><td>${buyer}</td></tr>`
         $("#mice-sales").append(fakeJSX);
     }
