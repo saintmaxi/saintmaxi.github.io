@@ -126,7 +126,7 @@ hr.dark {
     border: outset 1em var(--main-dark-border-color);
 }
 
-#click-info-header {
+#click-info-header.dark {
     color: white;
 }
 
