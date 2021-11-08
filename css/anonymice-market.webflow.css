@@ -331,6 +331,16 @@ select:focus {
   outline: none;
 }
 
+#update-listing .button {
+  text-align: center;
+  width: 70%;
+}
+
+#create-listing .button {
+  text-align: center;
+  width: 70%;
+}
+
 #click-info {
   background-color: var(--main-bg-color);
   z-index: 9999;

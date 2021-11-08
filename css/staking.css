@@ -30,6 +30,11 @@
     height: 100%;
 }
 
+.button {
+  text-align: center;
+  width: 35%;
+}
+
 #staked-mice-images, #available-mice-images {
     display: -webkit-box;
     display: -webkit-flex;
