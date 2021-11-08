@@ -1,0 +1,60 @@
+#mice-tracker {
+    text-align: center;
+}
+
+.stake-stats {
+    width: 23%;
+}
+
+#pending-balance-container *{
+    text-align: center;
+}
+
+#pending-balance-text {
+    width: 55%;
+    height: 100%;
+}
+
+#your-pending-cheeth {
+    animation: blinker 1.2s linear infinite;
+  }
+  
+  @keyframes blinker {
+    50% {
+      opacity: 0;
+    }
+  }
+
+#claim-cheeth-button {
+    width: 35%;
+    height: 100%;
+}
+
+#staked-mice-images, #available-mice-images {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+}
+
+.mice-on-sale.active {
+    border: outset grey .5em;
+    background-color: #fcd17d;
+    cursor: pointer;
+  }

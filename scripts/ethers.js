@@ -41,7 +41,7 @@ const updateAvailableMice = async() => {
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
 
     $("#your-mice").empty();
-
+    $("#your-available-mice-count").text(`Your Available Mice (${_miceInWallet.length})`);
     let _darkClass = getDarkMode();
 
     for (let i = 0; i < _miceInWallet.length; i++) {
@@ -59,6 +59,8 @@ const updateYourMarketMice = async() => {
 
     $("#your-market-mice").empty();
     $("#your-update-mice").empty();
+    $("#remove-listing-mice-count").text(`Your Listed Mice (${_miceInMarket.length})`);
+    $("#update-listing-mice-count").text(`Your Listed Mice (${_miceInMarket.length})`);
 
     let _darkClass = getDarkMode();
 
@@ -111,6 +113,7 @@ const updateMarketListings = async() => {
         }
 
         const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
+        _miceOnSale.toAddress = _miceListing.privateSaleAddress;
         const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div><button class="button w-button${_darkClass}" onclick="stopProp(event);buyMice(${_miceId});">Buy Mice</button></div>`;
         _miceOnSale.price = Number(_micePriceInETH);
         _miceOnSale.priceText = _priceText;
@@ -175,13 +178,21 @@ const checkApprovalOfMice = async() => {
 const buyMice = async(tokenId_) => {
     try {
         const _listing = await marketplace.miceForSaleToTokenId(tokenId_);
-        const _price = _listing.price;
-        await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
-            $(`#mice-for-sale-${tokenId_}`).remove();
-            $(`#update-listing #my-listed-mice-${tokenId_}`).remove();
-            $(`#remove-listing #my-listed-mice-${tokenId_}`).remove();
-            await waitForTransaction(tx_.hash)
-        });
+        const buyerAddress = await getAddress();
+        const buyerListings = await marketplace.getMiceOnSaleByAddress(buyerAddress)
+        console.log(buyerListings.includes(tokenId_) )
+        if (await getAddress() == await anonymice.ownerOf(tokenId_)) {
+            displayErrorMessage("Error: You own this Mice");
+        }
+        else {
+            const _price = _listing.price;
+            await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
+                $(`#mice-for-sale-${tokenId_}`).remove();
+                $(`#update-listing #my-listed-mice-${tokenId_}`).remove();
+                $(`#remove-listing #my-listed-mice-${tokenId_}`).remove();
+                await waitForTransaction(tx_.hash)
+            });
+        }
     }
     catch (error) {
         errorMsg = error.error.message;
@@ -283,12 +294,25 @@ const updateMiceOnSalePrice = async() => {
         const _tokenId = $("#updatePrice-miceId").val();
         const _priceInETH = $("#updatePrice-price").val();
         const _priceInWei = parseEther((_priceInETH).toString());
-        await marketplace.updateMiceOnSale(_tokenId, _priceInWei).then( async(tx_) => {
-            $(`#mice-for-sale-${_tokenId}`).remove();
-            $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-            $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
-            await waitForTransaction(tx_.hash)
-        });
+        const _listing = listedMice.get(Number(_tokenId))
+        const _privacy = _listing.privacy;
+        if (_privacy == "Private") {
+            const _toAddress = _listing.toAddress;
+            await marketplace.updateMiceOnSaleToPrivate(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
+                $(`#mice-for-sale-${_tokenId}`).remove();
+                $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
+                $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+                await waitForTransaction(tx_.hash)
+            });
+        }
+        else {
+            await marketplace.updateMiceOnSale(_tokenId, _priceInWei).then( async(tx_) => {
+                $(`#mice-for-sale-${_tokenId}`).remove();
+                $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
+                $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+                await waitForTransaction(tx_.hash)
+            });
+        }
     }
     catch (error) {
         displayErrorMessage(error.error.message);
@@ -379,9 +403,8 @@ else {
     localStorage.removeItem("pendingTxs");
 }
 
-function cachePendingTransactions(page) {
+function cachePendingTransactions() {
     localStorage.setItem("pendingTxs", JSON.stringify(Array.from(pendingTransactions)));
-    window.location.href=page;
 }
 
 function startLoading(txHash) {
@@ -401,22 +424,14 @@ async function endLoading(txHash) {
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(txHash);
     if (pendingTransactions.size == 0) {
-        await updateMarketplaceDetails();
+         //if window.location.pathname is /staking refresh staking stuff, else if in {market ones} faq, else..
+         if (window.location.pathname == "/staking.html") {
+             console.log('do staking stuff')
+         }
+         else if (window.location.pathname != "/faq.html") {
+            await updateMarketplaceDetails();
+         }
     }
-}
-
-function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function displayErrorMessage(message) {
-    let darkClass = getDarkMode();
-
-    console.log(message);
-    let fakeJSX = `<div class="${darkClass}" id="error-popup"><p>${message}</p></div>`;
-    $("#directory").append(fakeJSX);
-    await sleep(2500);
-    $("#error-popup").remove();
 }
 
 setInterval( async() => {
@@ -430,7 +445,15 @@ ethereum.on("accountsChanged", async (accounts_) => {
 
 window.onload = async() => {
     if (!loading && pendingTransactions.size <1) {
-        await updateMarketplaceDetails();
+        if (window.location.pathname == "/staking.html") {
+            console.log('do staking stuff')
+        }
+        else if (window.location.pathname != "/faq.html") {
+           await updateMarketplaceDetails();
+        }
     }
 };
 
+window.onunload = async()=>{
+    cachePendingTransactions();
+}

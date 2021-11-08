@@ -40,6 +40,10 @@ input:focus {
   align-items: center;
 }
 
+#main-title {
+  color: var(--main-border-color);
+}
+
 #banner {
   border-bottom: solid 16px var(--main-border-color);
 }
@@ -64,7 +68,7 @@ input:focus {
   margin-left: -5px;
   margin-right: -3px;
   padding-top: 4px;
-  width: 19.6%;
+  width: 15.6%;
   height: 100%;
 }
 

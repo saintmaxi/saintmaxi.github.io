@@ -21,7 +21,9 @@ _populateFilters();
 var filters = new Map();
 
 function addFilter(type, trait) {
-    filters.set(type, trait);
+    if (trait != "") {
+        filters.set(type, trait);
+    }
     _filterTraits();
 }
 
@@ -84,7 +86,7 @@ function _populateFilters() {
     let keys = Array.from(categories.keys());
     for (let i = 0; i < keys.length; i++) {
         let key = keys[i];
-        $(`#${key}`).append(`<option value="" disabled selected>${key}</option>`);
+        $(`#${key}`).append(`<option value="" selected>${key}</option>`);
         categories.get(key).map(function(opt) {
             $(`#${key}`).append(`<option value="${opt}">${opt}</option>`);
         })
@@ -176,6 +178,7 @@ class Mice {
         this.price = null;
         this.priceText = null;
         this.privacy = null;
+        this.toAddress = null;
         this.fakeJSX = null;
         try {
             let _miceData = miceData[miceID];

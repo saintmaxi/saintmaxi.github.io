@@ -25,6 +25,10 @@ select.dark {
     border: solid .3em var(--main-dark-border-color);
   }
 
+#main-title.dark {
+    color: white;
+}
+
 .eth-logo.dark {
     fill: white;
 }
@@ -170,6 +174,12 @@ select.dark {
     border: outset var(--main-dark-border-color) .5em;
     cursor: pointer;
   }
+
+.mice-on-sale.dark.active {
+    background-color: #9494a5e1;
+    border: outset var(--main-dark-border-color) .5em;
+    cursor: pointer;
+}
 
 .info-image.dark {
     background-color: var(--secondary-dark-bg-color);
