@@ -176,15 +176,19 @@ const checkIfOwnsMice = async(tokenId_) => {
 
 // contract approval functions (unused, lol)
 const approveMiceToMarketplace = async() => {
-    await anonymice.setApprovalForAll(marketplaceAddress, true);
+    await anonymice.setApprovalForAll(marketplaceAddress, true).then ( async (tx_) => {
+        await waitForTransaction(tx_);
+    });
 };
 
 const checkApprovalOfMice = async() => {
     if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-        console.log(`mice not approved, requesting approval`);
-        await anonymice.setApprovalForAll(marketplaceAddress, true);
+        displayErrorMessage(`Error: Mice not approved. Requesting approval...`);
+        await anonymice.setApprovalForAll(marketplaceAddress, true).then( async (tx_) => {
+            await waitForTransaction(tx_);
+        });
     } else {
-        console.log(`mice already approved`);
+        displayErrorMessage(`Mice already approved`);
     }
 };
 
@@ -199,7 +203,7 @@ const buyMice = async(tokenId_) => {
             const _price = _listing.price;
             await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
                 $(`#mice-for-sale-${tokenId_}`).remove();
-                await waitForTransaction(tx_.hash)
+                await waitForTransaction(tx_)
             });
         }
     }
@@ -222,7 +226,7 @@ const putMiceUpForSaleInternal = async(_tokenId) => {
             $(`#available-mice-${_tokenId}`).remove();
             closeInfo("click-info");
             closeInfo("create-listing-prompt");
-            await waitForTransaction(tx_.hash)
+            await waitForTransaction(tx_)
         });
     }
     catch (error) {
@@ -235,7 +239,7 @@ const putMiceUpForSale = async(_tokenId) => {
         if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
             console.log(`mice not approved, requesting approval`);
             await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
-                provider.once(tx_.hash, async (transaction_) => {
+                provider.once(tx_, async (transaction_) => {
                     await putMiceUpForSaleInternal();
                 });
             });
@@ -258,7 +262,7 @@ const putMiceUpForPrivateSaleInternal = async(_tokenId) => {
             $(`#available-mice-${_tokenId}`).remove();
             closeInfo("click-info");
             closeInfo("create-listing-prompt");
-            await waitForTransaction(tx_.hash);
+            await waitForTransaction(tx_);
         });
     }
     catch (error) {
@@ -271,7 +275,7 @@ const putMiceUpForPrivateSale = async(_tokenId) => {
         if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
             console.log(`mice not approved, requesting approval`);
             await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
-                provider.once(tx_.hash, async (transaction_) => {
+                provider.once(tx_, async (transaction_) => {
                     await putMiceUpForPrivateSaleInternal();
                 });
             });
@@ -291,7 +295,7 @@ const removeMiceOnSale = async(_tokenId) => {
             $(`#my-listed-mice-${_tokenId}`).remove();
             $(`#mice-for-sale-${_tokenId}`).remove();
             closeInfo("click-info");
-            await waitForTransaction(tx_.hash)
+            await waitForTransaction(tx_)
         });
     }
     catch (error) {
@@ -312,7 +316,7 @@ const updateMiceOnSalePrice = async(_tokenId) => {
                 closeInfo("edit-prompt");
                 $(`#my-listed-mice-${_tokenId}`).remove();
                 $(`#mice-for-sale-${_tokenId}`).remove();
-                await waitForTransaction(tx_.hash)
+                await waitForTransaction(tx_)
             });
         }
         else {
@@ -321,7 +325,7 @@ const updateMiceOnSalePrice = async(_tokenId) => {
                 closeInfo("edit-prompt");
                 $(`#my-listed-mice-${_tokenId}`).remove();
                 $(`#mice-for-sale-${_tokenId}`).remove();
-                await waitForTransaction(tx_.hash)
+                await waitForTransaction(tx_)
             });
         }
     }
@@ -340,7 +344,7 @@ const updateMiceOnSalePrivacy = async(_tokenId) => {
             closeInfo("edit-prompt");
             $(`#my-listed-mice-${_tokenId}`).remove();
             $(`#mice-for-sale-${_tokenId}`).remove();
-            await waitForTransaction(tx_.hash)
+            await waitForTransaction(tx_)
         });
     }
     catch (error) {
@@ -391,9 +395,8 @@ const updateMarketplaceDetails = async() => {
 // Processing tx returns
 const waitForTransaction = async(tx_) => {
     startLoading(tx_);
-    provider.once(tx_, async (transaction_) => {
-        // console.log(transaction_);
-        await endLoading(tx_);
+    provider.once(tx_.hash, async (transaction_) => {
+        await endLoading(tx_, transaction_.status);
     });
 };
 
@@ -418,22 +421,24 @@ function cachePendingTransactions() {
     localStorage.setItem("pendingTxs", JSON.stringify(Array.from(pendingTransactions)));
 }
 
-function startLoading(txHash) {
+function startLoading(tx) {
     let darkClass = getDarkMode();
-
+    let txHash = tx.hash;
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
     const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div${darkClass}" id="loading-div-${txHash}">PROCESSING...<br>CLICK FOR ETHERSCAN</div></a><br>`;
     $("#pending-transactions").append(loadingDiv);
 
-    pendingTransactions.add(txHash);
+    pendingTransactions.add(tx);
 }
 
-async function endLoading(txHash) {
+async function endLoading(tx, txStatus) {
+    let txHash = tx.hash;
     $(`#loading-div-${txHash}`).html("");
-    $(`#loading-div-${txHash}`).append(`TRANSACTION SENT.<br>FOLLOW ON ETHERSCAN.`);
-    await sleep(1000);
+    let status = txStatus == 1 ? "Success" : "Error";
+    $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
+    await sleep(2000);
     $(`#etherscan-link-${txHash}`).remove();
-    pendingTransactions.delete(txHash);
+    pendingTransactions.delete(tx);
     if (pendingTransactions.size == 0) {
          //if window.location.pathname is /staking refresh staking stuff, else if in {market ones} faq, else..
          if (window.location.pathname == "/staking.html") {
