@@ -289,7 +289,7 @@ const removeMiceOnSale = async(_tokenId) => {
     try {
         await marketplace.removeMiceOnSale(_tokenId).then( async(tx_) => {
             $(`#my-listed-mice-${_tokenId}`).remove();
-            $(`#mice-for-sale-${tokenId_}`).remove();
+            $(`#mice-for-sale-${_tokenId}`).remove();
             closeInfo("click-info");
             await waitForTransaction(tx_.hash)
         });
@@ -311,7 +311,7 @@ const updateMiceOnSalePrice = async(_tokenId) => {
                 closeInfo("click-info");
                 closeInfo("edit-prompt");
                 $(`#my-listed-mice-${_tokenId}`).remove();
-                $(`#mice-for-sale-${tokenId_}`).remove();
+                $(`#mice-for-sale-${_tokenId}`).remove();
                 await waitForTransaction(tx_.hash)
             });
         }
@@ -320,7 +320,7 @@ const updateMiceOnSalePrice = async(_tokenId) => {
                 closeInfo("click-info");
                 closeInfo("edit-prompt");
                 $(`#my-listed-mice-${_tokenId}`).remove();
-                $(`#mice-for-sale-${tokenId_}`).remove();
+                $(`#mice-for-sale-${_tokenId}`).remove();
                 await waitForTransaction(tx_.hash)
             });
         }
@@ -339,7 +339,7 @@ const updateMiceOnSalePrivacy = async(_tokenId) => {
             closeInfo("click-info");
             closeInfo("edit-prompt");
             $(`#my-listed-mice-${_tokenId}`).remove();
-            $(`#mice-for-sale-${tokenId_}`).remove();
+            $(`#mice-for-sale-${_tokenId}`).remove();
             await waitForTransaction(tx_.hash)
         });
     }
