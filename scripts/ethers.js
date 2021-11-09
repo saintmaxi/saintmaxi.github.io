@@ -157,13 +157,19 @@ function getPriceText(_micePriceInETH) {
 }
 
 const checkIfOwnsMice = async(tokenId_) => {
+        let isOwner;
         const buyerAddress = await getAddress();
-        let buyerListings = await marketplace.getMiceOnSaleByAddress(buyerAddress);
-        buyerListings = buyerListings.map(function(x) {
-            return Number(x);
-        });
-
-        const isOwner = buyerListings.includes(tokenId_);
+        if (buyerAddress == (await anonymice.ownerOf(tokenId_))) {
+            isOwner = true;
+        }
+        else {
+            let buyerListings = await marketplace.getMiceOnSaleByAddress(buyerAddress);
+            buyerListings = buyerListings.map(function(x) {
+                return Number(x);
+            });
+    
+            isOwner = buyerListings.includes(tokenId_);
+        }
 
         return isOwner;
 }
