@@ -139,6 +139,8 @@ function stopProp(event) {
 
 async function showInfo(miceID) {
     closeInfo("click-info");
+    closeInfo("edit-prompt");
+    closeInfo("create-listing-prompt");
 
     let _miceId = Number(miceID);
     let _mice = miceObjectMap.get(_miceId);
