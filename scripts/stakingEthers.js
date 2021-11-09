@@ -73,6 +73,8 @@ const stakeMicesToCheeth = async()=>{
         return;
     };
     await cheeth.stakeByIds(_micesArray).then( async(tx_) => {
+        selectedForStaking = new Set();
+        $("#selected-for-staking").text("Selected: None");
         await waitForTransaction(tx_.hash);
     });
 };
@@ -94,12 +96,16 @@ const claimCheeth = async()=>{
 const unstakeByIds = async()=>{
     const _micesArray = Array.from(selectedForUnstaking);
     await cheeth.unstakeByIds(_micesArray).then( async(tx_) => {
+        selectedForUnstaking = new Set();
+        $("#selected-for-unstaking").text("Selected: None");
         await waitForTransaction(tx_.hash);
     });
 }
 
 const unstakeAll = async()=>{
     await cheeth.unstakeAll().then( async(tx_) => {
+        selectedForUnstaking = new Set();
+        $("#selected-for-unstaking").text("Selected: None");
         await waitForTransaction(tx_.hash);
     });
 }
