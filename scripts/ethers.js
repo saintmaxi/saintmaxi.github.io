@@ -195,12 +195,19 @@ const checkApprovalOfMice = async() => {
 // marketplace functions
 const buyMice = async(tokenId_) => {
     try {
+        const _listingInfo = listedMice.get(Number(tokenId_));
+        const buyerAddress = await getAddress();
         const isOwner = await checkIfOwnsMice(tokenId_);
         if (isOwner) {
             displayErrorMessage("Error: You own this Mice");
         }
+        else if (_listingInfo.privacy == "Private" && buyerAddress !== _listingInfo.toAddress) {
+            displayErrorMessage("Error: You are not the recipient");
+        }
         else {
+            const _listing = await marketplace.miceForSaleToTokenId(tokenId_);
             const _price = _listing.price;
+
             await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
                 $(`#mice-for-sale-${tokenId_}`).remove();
                 await waitForTransaction(tx_)
