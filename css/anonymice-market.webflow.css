@@ -341,9 +341,62 @@ select:focus {
   width: 70%;
 }
 
+#delist-button, #edit-button, #list-button {
+  text-align: center;
+  font-size: 1.3vw;
+  width: 30%;
+  height: 30%;
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%);
+  display: -webkit-box;
+  display: -moz-box; 
+  display: -ms-flexbox;
+  display: -webkit-flex; 
+  display: flex;
+  align-items:center;
+  justify-content:center;
+}
+
+#delist-button {
+  float: left;
+  margin-left: 3%;
+}
+
+#edit-button, #list-button {
+  float: right;
+  margin-right: 3%;
+}
+
+#edit-prompt, #create-listing-prompt {
+  z-index: 9999;
+  background-color: var(--main-bg-color);
+  z-index: 9998;
+  color:white;
+  position:fixed;
+  top:75px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  width: 55vw;
+  height: 85vh;
+  border: outset 1em var(--main-border-color);
+  padding: 5px;
+  color: var(--main-border-color);
+  text-align: center;
+}
+
+#current-info {
+  font-size: 1.4vw;
+  line-height: 3vw;
+}
+
+.updt-button {
+  width:100%;
+}
+
 #click-info {
   background-color: var(--main-bg-color);
-  z-index: 9999;
+  z-index: 9998;
   color:white;
   position:fixed;
   top:75px;
@@ -386,7 +439,20 @@ select:focus {
   cursor: pointer;
   font-size: 3vw;
   color: red;
+  z-index: 9998;
+}
+
+#edit-back, #list-back {
+  position: absolute;
+  min-height: 4vw;
+  position: fixed;
+  top: 2vw;
+  left: .4vw;
+  text-align: right;
+  cursor: pointer;
+  font-size: 5vw;
   z-index: 9999;
+  color: var(--main-border-color);
 }
 
 #img-container {
@@ -396,7 +462,7 @@ select:focus {
 
 .info-image {
   bottom: 0px;
-  height: 80%;
+  /* height: 80%; */
   position: absolute;
   left: 0; 
   right: 0; 
@@ -406,6 +472,8 @@ select:focus {
   border: solid var(--main-border-color) 1em;
   display: block;
   margin:auto;
+  width:14vw;
+  height: 14vw;
 }
 
 #traits {
@@ -622,6 +690,20 @@ select:focus {
     text-align: center;
   }
 
+#edit-prompt, #create-listing-prompt {
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: fixed;
+  top: 50%;;
+  width: 95vw;
+  height: 90vh;
+}
+
+#current-info {
+  font-size: 1.5vh;
+  line-height: initial
+}
+
   /*needs work*/
   #click-info {
     left: 50%;
@@ -641,9 +723,21 @@ select:focus {
   }
 
   .info-image {
-    border: solid var(--main-border-color) .5em;
-    height: 75%;
+    border: solid var(--main-border-color) .2em;
+    height:70%;
+    width: initial;
+
     margin-top: 3vh;
+  }
+
+  #delist-button, #edit-button, #list-button {
+    width: 25%;
+    font-size:1.2vh;
+  }
+
+.list-block {
+    margin-top: 2vh;
+    width: 100%;
   }
 
   #traits {
@@ -745,6 +839,24 @@ select:focus {
     padding-right:10px;
     margin-bottom: 10px;
   }
+
+#edit-prompt, #create-listing-prompt {
+  left: 50%;
+  transform: translate(-50%, 0);
+  position: fixed;
+  top: 50px;;
+  height: 95vh;
+}
+
+.updt-block, .list-block {
+  margin-top: 2vh;
+  width: 100%;
+}
+
+#current-info {
+  font-size: 2vw;
+}
+
   /*needs work*/
   #click-info {
     left: 50%;
@@ -794,6 +906,23 @@ select:focus {
   .stats-box {
     font-size: .7vw;
   }
+
+  #edit-prompt h3, #create-listing-prompt {
+    font-size: 2vw;
+  }
+
+
+.updt-block, .list-block {
+  text-align: center;
+  font-size: 1.5vw;
+  width: 100%;
+  height: 20%;
+}
+
+.updt-button {
+  width:50%;
+  height: 15%;
+}
   
   .stats-box h5{
     font-size: .9vw;

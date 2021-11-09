@@ -58,15 +58,12 @@ const updateYourMarketMice = async() => {
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
 
     $("#your-market-mice").empty();
-    $("#your-update-mice").empty();
-    $("#remove-listing-mice-count").text(`Your Listed Mice (${_miceInMarket.length})`);
-    $("#update-listing-mice-count").text(`Your Listed Mice (${_miceInMarket.length})`);
+    $("#your-listed-mice-count").text(`Your Listed Mice (${_miceInMarket.length})`);
 
     let _darkClass = getDarkMode();
 
     if (_miceInMarket.length == 0) {
         $("#your-market-mice").text('No mice listed.');
-        $("#your-update-mice").text('No mice listed.');
     }
     else {
         for (let i = 0; i < _miceInMarket.length; i++) {
@@ -79,7 +76,6 @@ const updateYourMarketMice = async() => {
             const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
             const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
             $("#your-market-mice").append(_fakeJSX);
-            $("#your-update-mice").append(_fakeJSX);
         };
     }
 };
@@ -160,6 +156,18 @@ function getPriceText(_micePriceInETH) {
     return _priceText;
 }
 
+const checkIfOwnsMice = async(tokenId_) => {
+        const buyerAddress = await getAddress();
+        let buyerListings = await marketplace.getMiceOnSaleByAddress(buyerAddress);
+        buyerListings = buyerListings.map(function(x) {
+            return Number(x);
+        });
+
+        const isOwner = buyerListings.includes(tokenId_);
+
+        return isOwner;
+}
+
 // contract approval functions (unused, lol)
 const approveMiceToMarketplace = async() => {
     await anonymice.setApprovalForAll(marketplaceAddress, true);
@@ -177,19 +185,14 @@ const checkApprovalOfMice = async() => {
 // marketplace functions
 const buyMice = async(tokenId_) => {
     try {
-        const _listing = await marketplace.miceForSaleToTokenId(tokenId_);
-        const buyerAddress = await getAddress();
-        const buyerListings = await marketplace.getMiceOnSaleByAddress(buyerAddress)
-        console.log(buyerListings.includes(tokenId_) )
-        if (await getAddress() == await anonymice.ownerOf(tokenId_)) {
+        const isOwner = await checkIfOwnsMice(tokenId_);
+        if (isOwner) {
             displayErrorMessage("Error: You own this Mice");
         }
         else {
             const _price = _listing.price;
             await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
                 $(`#mice-for-sale-${tokenId_}`).remove();
-                $(`#update-listing #my-listed-mice-${tokenId_}`).remove();
-                $(`#remove-listing #my-listed-mice-${tokenId_}`).remove();
                 await waitForTransaction(tx_.hash)
             });
         }
@@ -205,13 +208,14 @@ const buyMice = async(tokenId_) => {
     }
 };
 
-const putMiceUpForSaleInternal = async() => {
+const putMiceUpForSaleInternal = async(_tokenId) => {
     try {
-        const _tokenId = $("#publicSale-miceId").val();
         const _priceInETH = $("#publicSale-price").val();
         const _priceInWei = parseEther((_priceInETH).toString());
         await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {
             $(`#available-mice-${_tokenId}`).remove();
+            closeInfo("click-info");
+            closeInfo("create-listing-prompt");
             await waitForTransaction(tx_.hash)
         });
     }
@@ -220,7 +224,7 @@ const putMiceUpForSaleInternal = async() => {
     }
 };
 
-const putMiceUpForSale = async() => {
+const putMiceUpForSale = async(_tokenId) => {
     try {
         if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
             console.log(`mice not approved, requesting approval`);
@@ -231,7 +235,7 @@ const putMiceUpForSale = async() => {
             });
         } else {
             // console.log(`mice already approved`);
-            await putMiceUpForSaleInternal();
+            await putMiceUpForSaleInternal(_tokenId);
         };
     }
     catch (error) {
@@ -239,14 +243,15 @@ const putMiceUpForSale = async() => {
     }
 };
 
-const putMiceUpForPrivateSaleInternal = async() => {
+const putMiceUpForPrivateSaleInternal = async(_tokenId) => {
     try {
-        const _tokenId = $("#privateSale-miceId").val();
         const _priceInETH = $("#privateSale-price").val();
         const _priceInWei = parseEther((_priceInETH).toString());
         const _toAddress = $("#privateSale-address").val();
         await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
             $(`#available-mice-${_tokenId}`).remove();
+            closeInfo("click-info");
+            closeInfo("create-listing-prompt");
             await waitForTransaction(tx_.hash);
         });
     }
@@ -255,7 +260,7 @@ const putMiceUpForPrivateSaleInternal = async() => {
     }
 };
 
-const putMiceUpForPrivateSale = async() => {
+const putMiceUpForPrivateSale = async(_tokenId) => {
     try {
         if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
             console.log(`mice not approved, requesting approval`);
@@ -266,7 +271,7 @@ const putMiceUpForPrivateSale = async() => {
             });
         } else {
             // console.log(`mice already approved`);
-            await putMiceUpForPrivateSaleInternal();
+            await putMiceUpForPrivateSaleInternal(_tokenId);
         };
     }
     catch (error) {
@@ -274,13 +279,11 @@ const putMiceUpForPrivateSale = async() => {
     }
 };
 
-const removeMiceOnSale = async() => {
+const removeMiceOnSale = async(_tokenId) => {
     try {
-        const _tokenId = $("#removeMice-miceId").val();
         await marketplace.removeMiceOnSale(_tokenId).then( async(tx_) => {
-            $(`#mice-for-sale-${_tokenId}`).remove();
-            $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-            $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+            $(`#my-listed-mice-${_tokenId}`).remove();
+            closeInfo("click-info");
             await waitForTransaction(tx_.hash)
         });
     }
@@ -289,9 +292,8 @@ const removeMiceOnSale = async() => {
     }
 };
 
-const updateMiceOnSalePrice = async() => {
+const updateMiceOnSalePrice = async(_tokenId) => {
     try {
-        const _tokenId = $("#updatePrice-miceId").val();
         const _priceInETH = $("#updatePrice-price").val();
         const _priceInWei = parseEther((_priceInETH).toString());
         const _listing = listedMice.get(Number(_tokenId))
@@ -299,17 +301,17 @@ const updateMiceOnSalePrice = async() => {
         if (_privacy == "Private") {
             const _toAddress = _listing.toAddress;
             await marketplace.updateMiceOnSaleToPrivate(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
-                $(`#mice-for-sale-${_tokenId}`).remove();
-                $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-                $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+                closeInfo("click-info");
+                closeInfo("edit-prompt");
+                $(`#my-listed-mice-${_tokenId}`).remove();
                 await waitForTransaction(tx_.hash)
             });
         }
         else {
             await marketplace.updateMiceOnSale(_tokenId, _priceInWei).then( async(tx_) => {
-                $(`#mice-for-sale-${_tokenId}`).remove();
-                $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-                $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+                closeInfo("click-info");
+                closeInfo("edit-prompt");
+                $(`#my-listed-mice-${_tokenId}`).remove();
                 await waitForTransaction(tx_.hash)
             });
         }
@@ -319,16 +321,15 @@ const updateMiceOnSalePrice = async() => {
     }
 };
 
-const updateMiceOnSalePrivacy = async() => {
+const updateMiceOnSalePrivacy = async(_tokenId) => {
     try {
-        const _tokenId = $("#updatePrivacy-miceId").val();
         const _priceInETH = listedMice.get(Number(_tokenId)).price;
         const _priceInWei = parseEther((_priceInETH).toString());
         const _toAddress = $("#updatePrivacy-address").val();
         await marketplace.updateMiceOnSaleToPrivate(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
-            $(`#mice-for-sale-${_tokenId}`).remove();
-            $(`#update-listing #my-listed-mice-${_tokenId}`).remove();
-            $(`#remove-listing #my-listed-mice-${_tokenId}`).remove();
+            closeInfo("click-info");
+            closeInfo("edit-prompt");
+            $(`#my-listed-mice-${_tokenId}`).remove();
             await waitForTransaction(tx_.hash)
         });
     }

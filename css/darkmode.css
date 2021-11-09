@@ -130,6 +130,24 @@ hr.dark {
     border: outset 1em var(--main-dark-border-color);
 }
 
+#edit-prompt.dark, #create-listing-prompt.dark {
+    color: white;
+    background-color: var(--main-dark-bg-color);
+    border: outset 1em var(--main-dark-border-color);
+}
+
+#edit-back.dark, #list-back.dark  {
+    color: white;
+}
+
+#edit-prompt.dark input{
+    color: black;
+}
+
+#create-listing-prompt.dark input {
+    color: black;
+}
+
 #click-info-header.dark {
     color: white;
 }

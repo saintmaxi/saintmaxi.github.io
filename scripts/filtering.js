@@ -137,8 +137,8 @@ function stopProp(event) {
 
 /* POPUP MICE INFO FUNCTIONS */
 
-function showInfo(miceID) {
-    closeInfo();
+async function showInfo(miceID) {
+    closeInfo("click-info");
 
     let _miceId = Number(miceID);
     let _mice = miceObjectMap.get(_miceId);
@@ -154,20 +154,100 @@ function showInfo(miceID) {
 
     let _micePrice = _mice.price;
     let _hidden = "";
+    let delistButton = "";
+    let editButton = "";
+    let listButton = "";
     if (_micePrice == null) {
         _micePrice = "Not Listed"
         _hidden = "hidden";
+        listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>Create Listing</a>`;
+    }
+    else {
+        if ((await checkIfOwnsMice(_miceId)) == true) {
+            delistButton = `<a href="#" class="button w-button" id="delist-button" onclick=removeMiceOnSale(${miceID})>Delist</a>`;
+            editButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit Listing</a>`;
+        }
     }
     
-    $("body").append(`<div id='click-info' class='click-info'><span id="close" onclick='closeInfo();'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'></div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='traits'>${_infoFakeJSX}</div></div>`);
+    $("body").append(`<div id='click-info' class='click-info'><span id="close" onclick='closeInfo("click-info");'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'>${delistButton}${editButton}${listButton}</div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='traits'>${_infoFakeJSX}</div></div>`);
     if (darkModeOn) {
         $(".click-info").addClass("dark");
         $(".click-info *").addClass("dark");
     }
 }
 
-function closeInfo() {
-    $("#click-info").remove();
+async function openEditPrompt(miceID) {
+    const _listedMice = miceObjectMap.get(miceID);
+    const _currentPrice = _listedMice.price;
+    const _currentPrivacy = _listedMice.privacy;
+    const _currentToAddress = _currentPrivacy === "Public" ? "N/A" : _listedMice.toAddress;
+    const _darkClass = getDarkMode();
+
+    const currentInfoJSX = `<br><div id='current-info'>Current Price:<br><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div>Current Privacy:<br>${_currentPrivacy}<br>Current Private Sale Address:<br>${_currentToAddress}</div>`;
+
+    const updateJSX = `<div class="w-row ${_darkClass}">
+                        <div class="updt-block w-col w-col-6 ${_darkClass}">
+                            <div>
+                                <h3>Update Price</h3>
+                                <div>
+                                <form><input type="number" id="updatePrice-price" name="updatePrice-price"
+                                    placeholder="Price in ETH" value=""></form>
+                                </div><br>
+                                <a href="#" class="updt-button button w-button ${_darkClass}" onclick=updateMiceOnSalePrice(${miceID})>Update Price</a>
+                            </div>
+                        </div>
+                        <div class="updt-block w-col w-col-6 ${_darkClass}">
+                            <div>
+                                <h3>Update to Private</h3>
+                                <div>
+                                <form><input type="text" id="updatePrivacy-address" name="updatePrivacy-address"
+                                    placeholder="Recipient Address" value=""></form>
+                                </div><br>
+                                <a href="#" class="updt-button button w-button ${_darkClass}" onclick=updateMiceOnSalePrivacy(${miceID})>Update Privacy</a>
+                            </div>
+                        </div>
+                    </div>`;
+
+    $("body").append(`<div id='edit-prompt' class='click-info ${_darkClass}'><span id="edit-back" class="${_darkClass}" onclick='closeInfo("edit-prompt");'>❮</span><h3 class='heading-3 ${_darkClass}'>Editing Listing: Anonymice #${miceID}</h3>${currentInfoJSX}<div>${updateJSX}</div></div>`);
+}
+
+async function openListPrompt(miceID) {
+    const _darkClass = getDarkMode();
+
+    const createListingJSX = `<br><div class="w-row ${_darkClass}">
+                                <div class="list-block ${_darkClass}">
+                                    <div>
+                                        <h3>Public Sale</h3>
+                                        <div>
+                                            <form><input type="number" id="publicSale-price" name="publicSale-price"
+                                                placeholder="Price in ETH" value=""></form>
+                                        </div><br>
+                                        <a href="#" class="button w-button ${_darkClass}" onclick=putMiceUpForSale(${miceID})>Create Public Listing</a>
+                                    </div>
+                                </div>
+                                <br>
+                                <div class="list-block ${_darkClass}">
+                                    <div>
+                                        <h3>Private Sale</h3>
+                                        <div>
+                                        <form><input type="number" id="privateSale-price" name="privateSale-price"
+                                            placeholder="Price in ETH" value=""></form>
+                                        </div><br>
+                                        <div>Enter Recipient Address</div>
+                                        <div>
+                                            <form><input type="text" id="privateSale-address" name="privateSale-address" placeholder="Input Address"
+                                                value=""></form>
+                                        </div><br>
+                                        <a href="#" class="button w-button ${_darkClass}" onclick=putMiceUpForPrivateSale(${miceID})>Create Private Listing</a>
+                                    </div>
+                                </div>
+                            </div>`;
+
+    $("body").append(`<div id='create-listing-prompt' class='click-info ${_darkClass}'><span id="list-back" class="${_darkClass}" onclick='closeInfo("create-listing-prompt");'>❮</span><h3 class='heading-3 ${_darkClass}'>Creating Listing: Anonymice #${miceID}</h3><div>${createListingJSX}</div></div>`);
+}
+
+function closeInfo(elementID) {
+    $(`#${elementID}`).remove();
 }
 
 //can lose try catch logic when no longer on testnet (accomodation cause we list burned mice on testnet)
