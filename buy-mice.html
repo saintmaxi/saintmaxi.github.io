@@ -76,6 +76,7 @@
         </div>
       </div>
     </div>
+  </div>
     <br>
     <HR>
     <div class="body-section wf-section">
@@ -127,15 +128,15 @@
               <option value="Private">Private</option>
             </select>
             <select id="og" name="og" onchange="removeFilter('original'); addFilter('original', this.value)">
-              <option value="" selected>OG</option>
-              <option value="Yes">Yes</option>
-              <option value="No">No</option>
+              <option value="" selected>OG Status</option>
+              <option value="Yes">OG</option>
+              <option value="No">Not OG</option>
             </select>
             <!-- <a href="#og-question"> -->
-            <a href="faq"><svg id="og-tooltip" fill="#333333"
-              xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="20px"
-              viewBox="0 0 416.979 416.979" style="enable-background:new 0 0 416.979 416.979;" xml:space="preserve">
-              <path d="M356.004,61.156c-81.37-81.47-213.377-81.551-294.848-0.182c-81.47,81.371-81.552,213.379-0.181,294.85
+            <a href="faq"><svg id="og-tooltip" fill="#333333" xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" viewBox="0 0 416.979 416.979"
+                style="enable-background:new 0 0 416.979 416.979;" xml:space="preserve">
+                <path d="M356.004,61.156c-81.37-81.47-213.377-81.551-294.848-0.182c-81.47,81.371-81.552,213.379-0.181,294.85
               c81.369,81.47,213.378,81.551,294.849,0.181C437.293,274.636,437.375,142.626,356.004,61.156z M208.554,334.794
               c-11.028,0-19.968-8.939-19.968-19.968s8.939-19.969,19.968-19.969c11.028,0,19.968,8.939,19.968,19.969
               C228.521,325.854,219.582,334.794,208.554,334.794z M241.018,214.566c-11.406,6.668-12.381,14.871-12.43,38.508
@@ -144,7 +145,7 @@
               c26.026-15.214,29.306-25.208,26.254-38.322c-3.586-15.404-17.653-19.396-28.63-18.141c-3.686,0.423-22.069,3.456-22.069,21.642
               c0,11.213-9.092,20.306-20.307,20.306c-11.215,0-20.306-9.093-20.306-20.306c0-32.574,23.87-58.065,58.048-61.989
               c35.2-4.038,65.125,16.226,72.816,49.282C297.824,181.361,256.555,205.485,241.018,214.566z" />
-            </svg>
+              </svg>
             </a>
             <!-- </a> -->
           </div>
@@ -155,7 +156,7 @@
         <br>
         <div id="filter-results-count-container">
           <div style="display: inline-block;" id="filter-results-count"># Mice Found</div>
-          <svg id="jump-icon" onclick="jumpToLocation('#check-private-sale')" width="15px" fill="#333333"
+          <svg id="jump-icon" onclick="jumpToLocation('#footer')" width="15px" fill="#333333"
             style="display: inline-block;" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
             viewBox="0 0 32 32">
             <path d="M32,16.016l-5.672-5.664c0,0-3.18,3.18-6.312,6.312V0h-8.023v16.664l-6.32-6.32L0,16.016L16,32
@@ -172,6 +173,7 @@
         </div>
       </div>
     </div>
+
     <div class="footer wf-section" id="footer">
       <div class="w-container">
         <div><strong>Disclaimer: This is a royalty-free marketplace was created for Anonymice only. Use at your own
@@ -184,9 +186,8 @@
         <br>
       </div>
     </div>
-    <div id="pending-transactions">
+    <div id="pending-transactions"></div>
     <div onclick="jumpToLocation('#header')" id="jump-to-directory">Jump to Directory</div>
-    </div>
     <!-- <a href="" class='hide-loading' id="etherscan-link" target="_blank" rel="noopener noreferrer">
     <div id="loading-div"></div>
   </a> -->
