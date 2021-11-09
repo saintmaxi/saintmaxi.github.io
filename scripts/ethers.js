@@ -383,6 +383,8 @@ const updateStats = async() => {
 }
 
 const updateMarketplaceDetails = async() => {
+    if (!(await getAddress())) return;
+
     loading = true;
     let darkClass = getDarkMode();
 
