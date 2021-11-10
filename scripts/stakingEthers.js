@@ -63,25 +63,33 @@ const approveMicesToCheeth = async()=>{
 };
 
 const stakeMicesToCheeth = async()=>{
-    const _micesArray = Array.from(selectedForStaking);
-    const _stakedAnonymices = await cheeth.getTokensStaked((await getAddress()));
-
-    if (!(await anonymice.isApprovedForAll((await getAddress()), cheethAddress))) {
-        displayErrorMessage(`Error: Approve your Mice first!`);
-        return;
-    };
-    if (_stakedAnonymices.length >= 10) {
-        displayErrorMessage(`Error: Limit 10 staked Mice per address.`);
-        return;
-    };
-    await cheeth.stakeByIds(_micesArray).then( async(tx_) => {
-        for (let i = 0; i < _micesArray.length; i++) {
-            $(`#available-mice-${_micesArray[i]}`).remove();
-        }
-        selectedForStaking = new Set();
-        $("#selected-for-staking").text("Selected: None");
-        await waitForTransaction(tx_);
-    });
+    if (selectedForStaking.size == 0) {
+        displayErrorMessage("Error: Select at least 1 mice to stake")
+    }
+    else if ((await getAnonymicesEnum()) == 0) {
+        displayErrorMessage("Error: No available mice to stake")
+    }
+    else {
+        const _micesArray = Array.from(selectedForStaking);
+        const _stakedAnonymices = await cheeth.getTokensStaked((await getAddress()));
+    
+        if (!(await anonymice.isApprovedForAll((await getAddress()), cheethAddress))) {
+            displayErrorMessage(`Error: Approve your Mice first!`);
+            return;
+        };
+        if (_stakedAnonymices.length >= 10) {
+            displayErrorMessage(`Error: Limit 10 staked Mice per address.`);
+            return;
+        };
+        await cheeth.stakeByIds(_micesArray).then( async(tx_) => {
+            for (let i = 0; i < _micesArray.length; i++) {
+                $(`#available-mice-${_micesArray[i]}`).remove();
+            }
+            selectedForStaking = new Set();
+            $("#selected-for-staking").text("Selected: None");
+            await waitForTransaction(tx_);
+        });
+    }
 };
 
 const getCheethBalance = async()=>{
@@ -101,25 +109,39 @@ const claimCheeth = async()=>{
 };
 
 const unstakeByIds = async()=>{
-    const _micesArray = Array.from(selectedForUnstaking);
-    await cheeth.unstakeByIds(_micesArray).then( async(tx_) => {
-        for (let i = 0; i < _micesArray.length; i++) {
-            $(`#staked-mice-${_micesArray[i]}`).remove();
-        }
-        selectedForUnstaking = new Set();
-        $("#selected-for-unstaking").text("Selected: None");
-        await waitForTransaction(tx_);
-    });
+    const numStaked = await getAnonymicesStakedEnum();
+    if (numStaked == 0) {
+        displayErrorMessage("Error: No Mice Staked")
+    }
+    else if (selectedForUnstaking.size == 0) {
+        displayErrorMessage("Error: Select Mice to Unstake")
+    }
+    else {
+        const _micesArray = Array.from(selectedForUnstaking);
+        await cheeth.unstakeByIds(_micesArray).then( async(tx_) => {
+            for (let i = 0; i < _micesArray.length; i++) {
+                $(`#staked-mice-${_micesArray[i]}`).remove();
+            }
+            selectedForUnstaking = new Set();
+            $("#selected-for-unstaking").text("Selected: None");
+            await waitForTransaction(tx_);
+        }); 
+    }
 }
 
 const unstakeAll = async()=>{
-    await cheeth.unstakeAll().then( async(tx_) => {
-        $("#staked-mice-images").empty();
-        $("#staked-mice-images").append("<br>");
-        selectedForUnstaking = new Set();
-        $("#selected-for-unstaking").text("Selected: None");
-        await waitForTransaction(tx_);
-    });
+    if ((await getAnonymicesStakedEnum()) == 0) {
+        displayErrorMessage("Error: No Mice Staked")
+    }
+    else {
+        await cheeth.unstakeAll().then( async(tx_) => {
+            $("#staked-mice-images").empty();
+            $("#staked-mice-images").append("<br>");
+            selectedForUnstaking = new Set();
+            $("#selected-for-unstaking").text("Selected: None");
+            await waitForTransaction(tx_);
+        });
+    }
 }
 
 const getMiceTrackerInfo = async()=>{
@@ -331,11 +353,11 @@ async function selectForStaking(miceID) {
 async function selectForUnstaking(miceID) {
     if (!selectedForUnstaking.has(miceID)) {
         selectedForUnstaking.add(miceID);
-        $(`#available-mice-${miceID}`).addClass("active");
+        $(`#staked-mice-${miceID}`).addClass("active");
     }
     else {
         selectedForUnstaking.delete(miceID);
-        $(`#available-mice-${miceID}`).removeClass("active");
+        $(`#staked-mice-${miceID}`).removeClass("active");
     }
     if (selectedForUnstaking.size == 0) {
         $("#selected-for-unstaking").text("Selected: None");
