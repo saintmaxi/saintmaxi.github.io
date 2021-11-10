@@ -233,11 +233,11 @@ const getMiceImages = async()=>{
                                     <div class="parent-images ${_darkClass}">
                                         <div>
                                             <img src="${_baseImageURI}${_breedingEvent.parentId1}.png">
-                                            <p>${_breedingEvent.parentId1}</p>
+                                            <p>#${_breedingEvent.parentId1}</p>
                                         </div>
                                         <div>
                                             <img src="${_baseImageURI}${_breedingEvent.parentId2}.png">
-                                            <p>${_breedingEvent.parentId2}</p>
+                                            <p>#${_breedingEvent.parentId2}</p>
                                         </div>
                                     </div>
                                     <div id="locked-parents-${_breedingEvent.breedingEventId}">
@@ -304,11 +304,11 @@ const getMiceImages = async()=>{
                                         <div class="parent-images ${_darkClass}">
                                             <div>
                                                 <img src="${_baseImageURI}${_parentId1}.png">
-                                                <p>${_parentId1}</p>
+                                                <p>#${_parentId1}</p>
                                             </div>
                                             <div>
                                                 <img src="${_baseImageURI}${_parentId2}.png">
-                                                <p>${_parentId2}</p>
+                                                <p>#${_parentId2}</p>
                                             </div>
                                         </div>
                                    </div>`;
@@ -358,11 +358,11 @@ const updateIncubatorInfo = async()=> {//add isrevealed logic
                                     <div class="parent-images ${_darkClass}">
                                         <div>
                                             <img src="${_baseImageURI}${_parentId1}.png">
-                                            <p>${_parentId1}</p>
+                                            <p>#${_parentId1}</p>
                                         </div>
                                         <div>
                                             <img src="${_baseImageURI}${_parentId2}.png">
-                                            <p>${_parentId2}</p>
+                                            <p>#${_parentId2}</p>
                                         </div>
                                     </div>`;
 
