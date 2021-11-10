@@ -11,7 +11,7 @@
     <link href="css/webflow.css" rel="stylesheet" type="text/css">
     <link href="css/anonymice-market.webflow.css" rel="stylesheet" type="text/css">
     <link href="css/darkmode.css" rel="stylesheet" type="text/css">
-    <link href="css/staking.css" rel="stylesheet" type="text/css">
+    <link href="css/breeding.css" rel="stylesheet" type="text/css">
     <script src="https://ajax.googleapis.com/ajax/libs/webfont/1.6.26/webfont.js" type="text/javascript"></script>
     <script
         type="text/javascript">WebFont.load({ google: { families: ["Exo:100,100italic,200,200italic,300,300italic,400,400italic,500,500italic,600,600italic,700,700italic,800,800italic,900,900italic"] } });</script>
@@ -56,48 +56,34 @@
         <a href="faq"><button class="button" onclick=cachePendingTransactions()>FAQ</button></a>
       </div>
     <div class="body-section wf-section">
-        <h2 class="heading-2">Anonymice Stake-o-Matron</h1>
-            <h4 class="heading-4">Stake mice for 1 $CHEETH per day<br>(limit 10)</h4>
-            <div class="w-container">
-                <div class="w-row" id="collection-stats">
-                    <div class="w-col-3 stats-box">
-                        <h5>3550</h5>
-                        <p>Mice Supply</p>
-                    </div>
-                    <div class="w-col-3 stats-box">
-                        <h5 id="count-mice-staked">####</h5>
-                        <p>Staked</p>
-                    </div>
-                    <div class="w-col-3 stats-box">
-                        <h5 id="pct-mice-staked">#### % </h5>
-                        <p>Pct Staked</p>
-                    </div>
-                </div>
-            </div>
+        <h2 class="heading-2">Anonymice Breeding</h1>
+        <h4 class="heading-4">Breed 2 adults for a baby mouse</h4>
+        <h4 class="heading-4">Parents are time-locked in the breeding contract.<br>
+                                You can pay $CHEETH to speed them up.<br>
+                                When blocks left is 0, you can unlock them.
+        </h4>
     </div>
-    </div>
-    </div>
-    <div class="body-section wf-section" id="approval-section">
+    <div class="body-section wf-section hidden" id="approval-section">
         <div class="main-content w-container">
             <div class="body-div">
-                <h4 class="heading-4">Approve Your Mice to Stake-o-Matron</h4>
-                <a href="#" id="approveButton" class="button w-button" onclick=approveMicesToCheeth()>Approve
-                    Anonymice</a>
+                <h4 class="heading-4">Approve Your Mice for Breeding</h4>
+                <a href="#" id="approveBreeding" class="button w-button" onclick=approveBreeding()>Approve Breeding</a>
             </div>
-        </div>
-    </div>
-    <div class="body-section wf-section">
-        <div class="main-content w-container" id="pending-balance-container">
-            <h2 class="heading-2">Your Pending $Cheeth</h2>
             <div class="body-div">
-
-                <h3 class="heading-3" id="your-pending-cheeth">############# <img src="./images/chees.png" width=32></h3>
-                <a href="#" class="button w-button" id="claim-cheeth-button" onclick=claimCheeth()>Claim $CHEETH</a>
-
+                <h4 class="heading-4">Approve $Cheeth Spending for Breeding</h4>
+                <a href="#" id="approveCheethAllowance" class="button w-button" onclick=approveCheethAllowance()>Approve Cheeth Spending</a>
             </div>
         </div>
     </div>
     <div class="body-section wf-section">
+        <div class="main-content w-container" id="cheeth-balance-container">
+            <h2 class="heading-2">Your $Cheeth Balance</h2>
+            <div class="body-div">
+                <h3 class="heading-3" id="your-cheeth">############# <img src="./images/chees.png" width=32></h3>
+            </div>
+        </div>
+    </div>
+    <div class="body-section wf-section" id="main-breeding-container">
         <div class="main-content w-container">
             <div class="body-div">
                 <h2 class="heading-2" id="your-anonymices">Your Available Mice (#)</h2>
@@ -105,39 +91,33 @@
             </div>
             <br>
             <div class="body-div">
-                <h3 class="heading-3">Stake Mice</h3>
-                <h4 class="heading-4" id="selected-for-staking">Selected: None</h4>
+                <h3 class="heading-3">Breed Mice (50 $CHEETH)</h3>
+                <h4 class="heading-4" id="selected-for-breeding">Selected: None</h4>
                 <br>
-                <a href="#" class="button w-button" onclick=stakeMicesToCheeth()>Stake Mice</a>
+                <a href="#" class="button w-button" onclick=breedMice()>Breed Mice</a>
             </div>
             <br>
             <div class="body-div">
-                <h2 class="heading-2" id="your-staked-anonymices">Your Staked Mice (#)</h2>
-                <div id="staked-mice-images"><br>Your staked mice will appear here.</div>
+                <h2 class="heading-2" id="your-breeding-anonymices">Your Breeding Pairs (#)</h2>
+                <div id="breeding-mice-images"><br>Your breeding pairs will appear here.</div>
             </div>
             <br>
             <div class="body-div">
-                <h3 class="heading-3">Unstake Mice</h3>
-                <h4 class="heading-4" id="selected-for-unstaking">Selected: None</h4>
+                <h2 class="heading-2" id="your-baby-mice">Your Baby Mice (#)</h2>
+                <div id="baby-mice-images"><br>Your baby mice will appear here.</div>
                 <br>
-                <a href="#" class="button w-button" onclick=unstakeByIds()>Unstake Mice</a>
             </div>
             <br>
-            <div class="body-div">
-                <h4 class="heading-3">Unstake all your mice</h4>
-                <br>
-                <a href="#" class="button w-button" onclick=unstakeAll()>Unstake All Mice</a>
-            </div>
         </div>
     </div>
     <div class="footer wf-section" id="footer">
         <div class="w-container">
-            <div>Disclaimer: This page is intended to make staking for $CHEETH easier. Use at your
-                own risk. We are not responsible for any losses if there are any incurred.<br><br>Anonymice Contract: <a
-                    href="https://etherscan.io/address/0xbad6186e92002e312078b5a1dafd5ddf63d3f731">0xbad6186E92002E312078b5a1dAfd5ddf63d3f731</a><br>Cheeth
-                Contract: <a
-                    href="https://etherscan.io/address/0x5f7ba84c7984aa5ef329b66e313498f0aed6d23a">0x5f7BA84c7984Aa5ef329B66E313498F0aEd6d23A</a><br><br>Made
-                by <a href="https://twitter.com/0xinuarashi">0xInuarashi</a>, <a href="https://twitter.com/saintmaxiv">saintmaxi</a></div>
+            <div>Disclaimer: This page is intended to make breeding Anonymice easier. Use at your
+                own risk. We are not responsible for any losses if there are any incurred.<br><br>Anonymice Contract:<br> <a
+                    href="https://etherscan.io/address/0xbad6186e92002e312078b5a1dafd5ddf63d3f731">0xbad6186E92002E312078b5a1dAfd5ddf63d3f731</a><br>
+                    Breeding Contract:<br><a
+                    href="https://etherscan.io/address/0x15cc16bfe6fac624247490aa29b6d632be549f00">0x15Cc16BfE6fAC624247490AA29B6D632Be549F00</a><br><br>Made
+                by <a href="https://twitter.com/0xinuarashi">0xInuarashi</a></div>
         </div>
     </div>
     <div id="pending-transactions">
@@ -152,8 +132,7 @@
     <script src="./scripts/darkmode.js" type="text/javascript"></script>
     <script src="./scripts/utils.js" type="text/javascript"></script>
     <script src="./scripts/filtering.js" type="text/javascript"></script>
-    <!-- <script src="./scripts/ethers.js"></script> -->
-    <script src="./scripts/stakingEthers.js"></script>
+    <script src="./scripts/breedingEthers.js"></script>
     <script src="./scripts/salesHistory.js" type="text/javascript"></script>
 </body>
 

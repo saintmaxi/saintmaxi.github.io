@@ -148,6 +148,16 @@ hr.dark {
     color: black;
 }
 
+.parent-images.dark img {
+    border: solid white .3em;
+    background-color: var(--secondary-dark-bg-color);
+}
+
+.baby-img.dark svg{
+    border: solid white .3em;
+    background-color: var(--secondary-dark-bg-color);
+}
+
 #click-info-header.dark {
     color: white;
 }

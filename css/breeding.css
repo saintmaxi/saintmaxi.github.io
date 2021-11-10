@@ -1,0 +1,75 @@
+
+
+#breeding-mice-images, #available-mice-images, #baby-mice-images, .parent-images {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-orient: horizontal;
+    -webkit-box-direction: normal;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    -webkit-flex-wrap: wrap;
+    -ms-flex-wrap: wrap;
+    flex-wrap: wrap;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    -ms-flex-align: center;
+    align-items: center;
+    text-align: center;
+    width: 100%;
+}
+
+
+.parent-container, .baby-container {
+    border: outset var(--main-border-color) .5em;
+    padding: 5px;
+    margin:10px;
+    width: 31%;
+    height: 100%;
+}
+
+.parent-container input, .baby-container input{
+    width:100%;
+}
+
+
+.mice-on-sale.active {
+    border: outset grey .5em;
+    background-color: #fcd17d;
+    cursor: pointer;
+  }
+
+.parent-images img {
+    background-color: white;
+    border: solid var(--main-border-color) .3em;
+    margin-bottom:5px;
+}
+
+.baby-img svg{
+    background-color: white;
+    border: solid var(--main-border-color) .3em;
+    padding: 5px;
+}
+
+.parent-images div {
+    width:40%;
+    margin:5px;
+}
+
+
+/* mobile */
+@media screen and (max-width: 600px){
+    .parent-container, .baby-container {
+        border: outset var(--main-border-color) .5em;
+        padding: 5px;
+        margin:10px;
+        width: 100%;
+        height: 100%;
+    }
+}
