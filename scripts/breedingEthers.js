@@ -319,7 +319,7 @@ const getMiceImages = async()=>{
     }
 };
 
-const updateIncubatorInfo = async()=> {//add isrevealed logic
+const updateIncubatorInfo = async()=> {
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
 
     let _darkClass = getDarkMode();
@@ -396,6 +396,7 @@ const updateLockedParentsInfo = async()=> {
 };
 
 const updateInfo = async()=>{
+    if ((await getChainId()) === 1) {
         let darkClass = getDarkMode();
 
         const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING<br>BREEDING INTERFACE...</div><br>`;
@@ -406,11 +407,26 @@ const updateInfo = async()=>{
         await fixHeight();
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (${await getAnonymicesEnum()})`);
 
-        // $("#your-staked-anonymices").text(`YOUR STAKED MICE (${await getAnonymicesStakedEnum()})`);
         await getCheethBalance();
         $("#wallet").text(await getAddress());
         $("#error-popup").remove();
         $("#refresh-notification").remove();
+    }
+    else {
+        $("#wallet").text(`Wrong Chain!`);
+        $("#available-mice-images").empty();
+        $("#breeding-mice-images").empty();
+        $("#baby-mice-images").empty();
+        $("#available-mice-images").text("Error: Switch to mainnet");
+        $("#breeding-mice-images").text("Error: Switch to mainnet");
+        $("#baby-mice-images").text("Error: Switch to mainnet");
+
+        $("#your-breeding-anonymices").text(`YOUR BREEDING PAIRS (0)`);
+        $("#your-anonymices").text(`YOUR AVAILABLE MICE (0)`);
+        $("#your-baby-mice").text(`YOUR AVAILABLE MICE (0)`);
+        $("#your-cheeth").text(`0.0 $CHEETH`);
+        displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
+    }
 };
 
 const fixHeight = async() => {
@@ -448,62 +464,27 @@ const fixHeight = async() => {
     }
 };
 
-/*
-const updateStakingInfo = async()=>{
-    if ((await getChainId()) === 1) {
-        let darkClass = getDarkMode();
-
-        const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING<br>STAKE-O-MATRON...</div><br>`;
-        $("#pending-transactions").append(loadingDiv);
-
-        await updateApprovedStatus();
-        await getMiceTrackerInfo();
-        await getMiceImages();
-        $("#your-staked-anonymices").text(`YOUR STAKED MICE (${await getAnonymicesStakedEnum()})`);
-        $("#your-anonymices").text(`YOUR AVAILABLE MICE (${await getAnonymicesEnum()})`);
-        $("#your-cheeth").text(`${await getCheethBalance()} $CHEETH`);
-        $("#your-pending-cheeth").text(`${await getPendingCheethBalance()}`);
-        $("#wallet").text(await getAddress());
-        $("#error-popup").remove();
-    $("#refresh-notification").remove();
-
-    } else {
-        $("#wallet").text(`Wrong Chain!`);
-        $("#available-mice-images").empty();
-        $("#staked-mice-images").empty();
-        $("#available-mice-images").text("Error: Switch to mainnet");
-        $("#staked-mice-images").text("Error: Switch to mainnet");
-        $("#your-staked-anonymices").text(`YOUR STAKED MICE (0)`);
-        $("#your-anonymices").text(`YOUR AVAILABLE MICE (0)`);
-        $("#your-cheeth").text(`0.0 $CHEETH`);
-        $("#your-pending-cheeth").text(`0.0 $CHEETH`);
+const updateCurrentChain = async() => {
+    if ((await getChainId()) !== 1) {
         displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
     }
-};
-*/
-
-
-// const updateCurrentChain = async() => {
-//     if ((await getChainId()) !== 1) {
-//         displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
-//     }
-//     else {
-//         $("#error-popup").remove();
-//     }
-// }
+    else {
+        $("#error-popup").remove();
+    }
+}
 
 provider.on("network", async(newNetwork, oldNetwork) => {
-        if (oldNetwork) {
-            // await updateCurrentChain();
-            await updateInfo();
-        }
-    });
+    if (oldNetwork) {
+        $("#refresh-notification").remove();
+        await updateCurrentChain();
+        await updateInfo();
+    }
+});
 
 setInterval(async()=>{
     if (pendingTransactions.size == 0) {
         await updateApprovedStatus();
         await getCheethBalance();
-        // await updateCurrentChain();
         await updateIncubatorInfo();
         await updateLockedParentsInfo();
         await fixHeight();

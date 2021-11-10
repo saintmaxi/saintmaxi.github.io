@@ -234,7 +234,9 @@ const updateCurrentChain = async() => {
 
 provider.on("network", async(newNetwork, oldNetwork) => {
         if (oldNetwork) {
+            $("#refresh-notification").remove();
             await updateCurrentChain();
+            await updateStakingInfo();
         }
     });
 
