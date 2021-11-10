@@ -75,6 +75,9 @@ const stakeMicesToCheeth = async()=>{
         return;
     };
     await cheeth.stakeByIds(_micesArray).then( async(tx_) => {
+        for (let i = 0; i < _micesArray.length; i++) {
+            $(`#available-mice-${_micesArray[i]}`).remove();
+        }
         selectedForStaking = new Set();
         $("#selected-for-staking").text("Selected: None");
         await waitForTransaction(tx_);
@@ -99,6 +102,9 @@ const claimCheeth = async()=>{
 const unstakeByIds = async()=>{
     const _micesArray = Array.from(selectedForUnstaking);
     await cheeth.unstakeByIds(_micesArray).then( async(tx_) => {
+        for (let i = 0; i < _micesArray.length; i++) {
+            $(`#staked-mice-${_micesArray[i]}`).remove();
+        }
         selectedForUnstaking = new Set();
         $("#selected-for-unstaking").text("Selected: None");
         await waitForTransaction(tx_);
@@ -107,6 +113,8 @@ const unstakeByIds = async()=>{
 
 const unstakeAll = async()=>{
     await cheeth.unstakeAll().then( async(tx_) => {
+        $("#staked-mice-images").empty();
+        $("#staked-mice-images").append("<br>");
         selectedForUnstaking = new Set();
         $("#selected-for-unstaking").text("Selected: None");
         await waitForTransaction(tx_);
@@ -153,7 +161,7 @@ const getMiceImages = async()=>{
             if (!miceObjectMap.get(_miceId)) {
                 new Mice(_miceId);
             }
-            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div></div>`;
+            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="staked-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div></div>`;
             $("#staked-mice-images").append(_fakeJSX);
         };
     }
