@@ -54,7 +54,7 @@ const updateApprovedStatus = async()=>{
 
 const approveMicesToCheeth = async()=>{
     if ((await anonymice.isApprovedForAll((await getAddress()), cheethAddress))) {
-        displayErrorMessage(`Error: Mice already been approved!`);
+        displayErrorMessage(`Error: Mice already approved!`);
         return;
     };
     await anonymice.setApprovalForAll(cheethAddress, true).then( async(tx_) => {
@@ -86,7 +86,8 @@ const getCheethBalance = async()=>{
 };
 
 const getPendingCheethBalance = async()=>{
-    return (formatEther(await cheeth.getAllRewards((await getAddress()))));
+    const pendingCheeth = (formatEther(await cheeth.getAllRewards((await getAddress()))));
+    $("#your-pending-cheeth").text(`${pendingCheeth}`);
 };
 
 const claimCheeth = async()=>{
@@ -171,7 +172,7 @@ const updateStakingInfo = async()=>{
         $("#your-staked-anonymices").text(`YOUR STAKED MICE (${await getAnonymicesStakedEnum()})`);
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (${await getAnonymicesEnum()})`);
         $("#your-cheeth").text(`${await getCheethBalance()} $CHEETH`);
-        $("#your-pending-cheeth").text(`${await getPendingCheethBalance()}`);
+        await getPendingCheethBalance();
         $("#wallet").text(await getAddress());
         $("#error-popup").remove();
     $("#refresh-notification").remove();
@@ -208,7 +209,7 @@ provider.on("network", async(newNetwork, oldNetwork) => {
 setInterval(async()=>{
     await updateApprovedStatus();
     await getMiceTrackerInfo();
-
+    await getPendingCheethBalance();
     $("#wallet").text(await getAddress());
 
 }, 5000)
