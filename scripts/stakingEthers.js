@@ -91,6 +91,7 @@ const getCheethBalance = async()=>{
 const getPendingCheethBalance = async()=>{
     const pendingCheeth = (formatEther(await cheeth.getAllRewards((await getAddress()))));
     $("#your-pending-cheeth").text(`${pendingCheeth}`);
+    $("#your-pending-cheeth").append( "<img src='./images/chees.png' width=32>");
 };
 
 const claimCheeth = async()=>{
@@ -194,7 +195,8 @@ const updateStakingInfo = async()=>{
         $("#your-staked-anonymices").text(`YOUR STAKED MICE (0)`);
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (0)`);
         $("#your-cheeth").text(`0.0 $CHEETH`);
-        $("#your-pending-cheeth").text(`0.0 $CHEETH`);
+        $("#your-pending-cheeth").text(`0.0`);
+        $("#your-pending-cheeth").append(`<img src='./images/chees.png' width=32>`);
         displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
     }
 };
