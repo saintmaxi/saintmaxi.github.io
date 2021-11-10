@@ -108,14 +108,6 @@ const getAnonymicesEnum = async()=>{
     return  _ownedMices.length;
 };
 
-/*
-const updateApprovedStatus = async()=>{
-    if ((await anonymice.isApprovedForAll((await getAddress()), cheethAddress))) {
-        // $("#approveButton").text(`Anonymice Approved!`);
-        $("#approval-section").remove();
-    };
-};
-*/
 const getCheethBalance = async()=>{
     $("#your-cheeth").text(Number(formatEther(await cheeth.balanceOf((await getAddress())))).toFixed(2));
     $("#your-cheeth").append(" <img src='./images/chees.png' width=32>");
