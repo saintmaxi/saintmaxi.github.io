@@ -4,25 +4,41 @@ async function getSalesHistory() {
     let eventFilter = marketplace.filters.MiceBought();
     let events = await marketplace.queryFilter(eventFilter);
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
+    const baseEtherscanLink = "https://rinkeby.etherscan.io/tx/";
 
-    let _darkClass;
-    if (darkModeOn) {
-        _darkClass = " dark";
-    }
-    else {
-        _darkClass = "";
-    }
+    let _darkClass = getDarkMode();
 
     for (let i = events.length-1; i >= 0; i--) {
         const event = events[i];
-        buyer = event.args.buyer;
-        seller = event.args.seller;
-        tokenID = event.args.tokenId;
-        _mice = new Mice(tokenID)
+        const txId = event.transactionHash;
+        const blockTimestamp = (await provider.getBlock(event.blockNumber)).timestamp * 1000;
+        const timeDelta = moment(blockTimestamp).fromNow();
 
-        price = getPriceText(formatEther(event.args.price));
-        let fakeJSX = `<tr class="sale-row${_darkClass}" onclick="showInfo(${Number(tokenID)})"><td><img src="${_baseImageURI}${tokenID}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><br>#${tokenID}</td><td>${price}<span class="listing-eth-logo">Ξ</span></td><td>${seller}</td><td>${buyer}</td></tr>`
+
+        const buyer = await getDisplayableAddress(event.args.buyer);
+        const seller = await getDisplayableAddress(event.args.seller);
+        const tokenID = event.args.tokenId;
+        const _mice = new Mice(tokenID)
+
+        const price = getPriceText(formatEther(event.args.price));
+        const fakeJSX = `<tr class="sale-row ${_darkClass}">
+                        <td class="sold-mice-img-container ${_darkClass}"  onclick="showInfo(${Number(tokenID)})"><img src="${_baseImageURI}${tokenID}.png" loading="lazy" alt="" class="sold-mice-img ${_darkClass}"><br>#${tokenID}</td>
+                        <td>${price}<span class="listing-eth-logo">Ξ</span></td>
+                        <td>${seller}</td>
+                        <td>${buyer}</td>
+                        <td><a href="${baseEtherscanLink}${txId}" id="${txId}" target="_blank" rel="noopener noreferrer">${timeDelta} <p style="display:inline;font-size: 1.5vw">⬈</p></a></td>
+                       </tr>`
         $("#mice-sales").append(fakeJSX);
     }
 
+}
+
+async function getDisplayableAddress(address) {
+    let ensAddress = await provider.lookupAddress(address)
+    if (ensAddress) {
+        return ensAddress
+    }
+    else {
+        return address.substring(0, 8);
+    }
 }

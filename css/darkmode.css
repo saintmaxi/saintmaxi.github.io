@@ -192,7 +192,7 @@ select.dark {
     border: outset var(--main-dark-border-color) .5em;
 }
 
-.mice-image.dark {
+.mice-image.dark, .sold-mice-img.dark {
     background-color: var(--secondary-dark-bg-color);
     border: solid white .3em;
 }
@@ -245,9 +245,14 @@ select.dark {
     background-color: var(--main-dark-bg-color);
 }
 
-.sale-row.dark:hover {
+.sold-mice-img-container.dark:hover {
     background-color: rgb(184, 184, 184);
 }
+
+.sale-row.dark a, .sale-row.dark p{
+    text-decoration: none;
+    color: rgb(0, 217, 255);
+  }
 
 /* mobile */
 @media screen and (max-width: 600px){

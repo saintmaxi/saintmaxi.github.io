@@ -160,10 +160,15 @@ hr {
   align-items: center;
 }
 
-.mice-image {
+.mice-image, .sold-mice-img {
   background-color: white;
   border: solid var(--main-border-color) .3em;
   margin:10px;
+}
+
+.sold-mice-img {
+  margin-bottom: 15px;
+  width: 40%;
 }
 
 .eth-logo {
@@ -547,7 +552,8 @@ select:focus {
   width:90%;
   margin-left: auto;
   margin-right: auto;
-  font-size: .9vw;
+  font-size: 1.5vw;
+  text-align: center;
 }
 
 #mice-sales-container table {
@@ -560,6 +566,12 @@ select:focus {
   padding:.5vw;
   margin: .5vw;
   text-align: center;
+}
+
+.sale-row a, .sale-row p {
+  text-decoration: none;
+  color: #2542a3;
+
 }
 
 #error-popup {
@@ -586,7 +598,7 @@ select:focus {
   transform: translate(-50%, -50%);
 }
 
-.sale-row:hover{
+.sold-mice-img-container:hover{
   background-color: #fcd17d;
   cursor: pointer;
 }
@@ -785,6 +797,11 @@ select:focus {
     width: 75vw;
     height: 15vh;
   }
+
+  .sold-mice-img {
+    margin-bottom: 0px;
+    width: 25%;
+  }
 }
 
 /*iPad*/
@@ -930,5 +947,10 @@ select:focus {
 
   #click-info-header {
     font-size: 2vw;
+  }
+
+  .sold-mice-img {
+    margin-bottom: 30px;
+    width: 80%;
   }
 }
