@@ -390,12 +390,20 @@ const updateMarketplaceDetails = async() => {
 
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE...</div><br>`;
     $("#pending-transactions").append(loadingDiv);
-    await updateAvailableMice();
-    await getSalesHistory();
+    if (window.location.pathname == "/create-listing.html") {
+        await updateAvailableMice();
+    }
+    if (window.location.pathname == "/index.html" || window.location.pathname == "/") {
+        await getSalesHistory();
+    }
     await updateStats();
     await updateInfo();
-    await updateMarketListings();
-    await updateYourMarketMice();
+    if (window.location.pathname == "/buy-mice.html") {
+        await updateMarketListings();
+    }
+    if (window.location.pathname == "/edit-listing.html") {
+        await updateYourMarketMice();
+    }
     $("#privateSaleLookup-address").empty();
     $("#refresh-notification").remove();
     loading = false;
