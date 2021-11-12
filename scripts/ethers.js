@@ -402,6 +402,7 @@ const updateMarketplaceDetails = async() => {
         await updateMarketListings();
     }
     if (window.location.pathname == "/edit-listing") {
+        await updateMarketListings();
         await updateYourMarketMice();
     }
     $("#privateSaleLookup-address").empty();
