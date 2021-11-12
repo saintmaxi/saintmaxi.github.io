@@ -17,12 +17,14 @@ async function getSalesHistory() {
 
         const buyer = await getDisplayableAddress(event.args.buyer);
         const seller = await getDisplayableAddress(event.args.seller);
-        const tokenID = event.args.tokenId;
-        const _mice = new Mice(tokenID)
+        const tokenID = Number(event.args.tokenId);
+        if (!listedMice.get(tokenID)) {
+            const _mice = new Mice(tokenID)
+        }
 
         const price = getPriceText(formatEther(event.args.price));
         const fakeJSX = `<tr class="sale-row ${_darkClass}">
-                        <td class="sold-mice-img-container ${_darkClass}"  onclick="showInfo(${Number(tokenID)})"><img src="${_baseImageURI}${tokenID}.png" loading="lazy" alt="" class="sold-mice-img ${_darkClass}"><br>#${tokenID}</td>
+                        <td class="sold-mice-img-container ${_darkClass}"  onclick="showInfo(${tokenID})"><img src="${_baseImageURI}${tokenID}.png" loading="lazy" alt="" class="sold-mice-img ${_darkClass}"><br>#${tokenID}</td>
                         <td>${price}<span class="listing-eth-logo">Ξ</span></td>
                         <td>${seller}</td>
                         <td>${buyer}</td>

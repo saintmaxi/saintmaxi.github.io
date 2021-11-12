@@ -68,7 +68,6 @@ const updateYourMarketMice = async() => {
     else {
         for (let i = 0; i < _miceInMarket.length; i++) {
             const _miceId = _miceInMarket[i];
-            const _listedMice = listedMice.get(Number(_miceId));
             const _miceListing = await marketplace.miceForSaleToTokenId(_miceId);
             const _micePrice = _miceListing.price;
             const _micePriceInETH = formatEther(_micePrice);
@@ -396,6 +395,8 @@ const updateMarketplaceDetails = async() => {
         await updateAvailableMice();
     }
     if (window.location.pathname == "/index" || window.location.pathname == "/") {
+        await updateMarketListings();
+        await updateYourMarketMice();
         await getSalesHistory();
     }
     if (window.location.pathname == "/buy-mice") {
