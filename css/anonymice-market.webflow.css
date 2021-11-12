@@ -601,6 +601,15 @@ select:focus {
 .sold-mice-img-container:hover{
   background-color: #fcd17d;
   cursor: pointer;
+  /* width: 50%; */
+}
+
+#dark-twitter, #light-twitter {
+  text-align: center;
+}
+
+#dark-twitter {
+  display: none;
 }
 
 /* mobile */

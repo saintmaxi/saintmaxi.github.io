@@ -1,7 +1,9 @@
 :root.dark {
     --main-dark-bg-color: #0A0A0B;
-    --secondary-dark-bg-color: #232830;
-    --main-dark-border-color: grey;
+    /* --secondary-dark-bg-color: #232830;
+     */
+     --secondary-dark-bg-color: #292F33;
+    --main-dark-border-color: #464545;
   }
 
 .dark {
@@ -127,7 +129,7 @@ hr.dark {
 
 #click-info.dark {
     background-color: var(--main-dark-bg-color);
-    border: outset 1em var(--main-dark-border-color);
+    border: outset 1em #756e6e;
 }
 
 #edit-prompt.dark, #create-listing-prompt.dark {
@@ -253,6 +255,14 @@ select.dark {
     text-decoration: none;
     color: rgb(0, 217, 255);
   }
+
+#dark-twitter.dark {
+    display: block;
+}
+
+#light-twitter.dark {
+    display: none;
+}
 
 /* mobile */
 @media screen and (max-width: 600px){
