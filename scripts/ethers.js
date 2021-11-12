@@ -390,18 +390,18 @@ const updateMarketplaceDetails = async() => {
 
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE...</div><br>`;
     $("#pending-transactions").append(loadingDiv);
-    if (window.location.pathname == "/create-listing.html") {
-        await updateAvailableMice();
-    }
-    if (window.location.pathname == "/index.html" || window.location.pathname == "/") {
-        await getSalesHistory();
-    }
     await updateStats();
     await updateInfo();
-    if (window.location.pathname == "/buy-mice.html") {
+    if (window.location.pathname == "/create-listing") {
+        await updateAvailableMice();
+    }
+    if (window.location.pathname == "/index" || window.location.pathname == "/") {
+        await getSalesHistory();
+    }
+    if (window.location.pathname == "/buy-mice") {
         await updateMarketListings();
     }
-    if (window.location.pathname == "/edit-listing.html") {
+    if (window.location.pathname == "/edit-listing") {
         await updateYourMarketMice();
     }
     $("#privateSaleLookup-address").empty();
@@ -457,11 +457,7 @@ async function endLoading(tx, txStatus) {
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);
     if (pendingTransactions.size == 0) {
-         //if window.location.pathname is /staking refresh staking stuff, else if in {market ones} faq, else..
-         if (window.location.pathname == "/staking.html") {
-             console.log('do staking stuff')
-         }
-         else if (window.location.pathname != "/faq.html") {
+         if (window.location.pathname != "/faq") {
             await updateMarketplaceDetails();
          }
     }
@@ -478,12 +474,9 @@ ethereum.on("accountsChanged", async (accounts_) => {
 
 window.onload = async() => {
     if (!loading && pendingTransactions.size <1) {
-        if (window.location.pathname == "/staking.html") {
-            console.log('do staking stuff')
-        }
-        else if (window.location.pathname != "/faq.html") {
-           await updateMarketplaceDetails();
-        }
+        if (window.location.pathname != "/faq") {
+            await updateMarketplaceDetails();
+         }
     }
 };
 

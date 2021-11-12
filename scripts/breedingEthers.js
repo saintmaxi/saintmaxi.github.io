@@ -387,7 +387,7 @@ const updateLockedParentsInfo = async()=> {
     }
 };
 
-const updateInfo = async()=>{
+const updateBreedingInfo = async()=>{
     if ((await getChainId()) === 1) {
         let darkClass = getDarkMode();
 
@@ -469,7 +469,7 @@ provider.on("network", async(newNetwork, oldNetwork) => {
     if (oldNetwork) {
         $("#refresh-notification").remove();
         await updateCurrentChain();
-        await updateInfo();
+        await updateBreedingInfo();
     }
 });
 
@@ -486,12 +486,12 @@ setInterval(async()=>{
 }, 5000)
 
 ethereum.on("accountsChanged", async(accounts_)=>{
-    await updateInfo()
+    await updateBreedingInfo()
 });
 
 window.onload = async()=>{
     if (pendingTransactions.size <1) {
-        await updateInfo();
+        await updateBreedingInfo();
     }
 };
 
@@ -543,17 +543,7 @@ async function endLoading(tx, txStatus) {
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);
     if (pendingTransactions.size == 0) {
-         //if window.location.pathname is /staking refresh staking stuff, else if in {market ones} faq, else..
-         if (window.location.pathname == "/staking.html") {
-            //  console.log('do staking stuff')
-            await updateStakingInfo();
-         }
-         else if (window.location.pathname == "/breeding.html") {
-             await updateInfo();
-         }
-         else if (window.location.pathname != "/faq.html") {
-            await updateMarketplaceDetails();
-         }
+         await updateBreedingInfo();
     }
 }
 

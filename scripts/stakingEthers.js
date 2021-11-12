@@ -308,15 +308,7 @@ async function endLoading(tx, txStatus) {
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);
     if (pendingTransactions.size == 0) {
-         //if window.location.pathname is /staking refresh staking stuff, else if in {market ones} faq, else..
-         if (window.location.pathname == "/staking.html") {
-            //  console.log('do staking stuff')
-            await updateStakingInfo();
-
-         }
-         else if (window.location.pathname != "/faq.html") {
-            await updateMarketplaceDetails();
-         }
+        await updateStakingInfo();
     }
 }
 
