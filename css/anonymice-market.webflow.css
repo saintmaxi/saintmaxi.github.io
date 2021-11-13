@@ -54,6 +54,7 @@ input:focus {
 }
 
 #directory {
+  font-size: 1.3vw;
   display: inline-block;
   background-color: var(--main-border-color);
   height: 80px;
@@ -63,6 +64,8 @@ input:focus {
 }
 
 #directory button {
+  font-family: 'Pixel Font';
+
   vertical-align: top;
   color: white;
   margin-left: -5px;
@@ -100,7 +103,7 @@ hr {
 }
 
 .stats-box {
-  font-size: 1vw;
+  font-size: 1.5vw;
   display: inline-block;
   height: 30%;
   background-color: var(--main-bg-color);
@@ -116,7 +119,7 @@ hr {
 }
 
 .stats-box h5{
-  font-size: 1.3vw;
+  font-size: 2vw;
 }
 
 .stats-box img {
@@ -168,21 +171,21 @@ hr {
 
 .sold-mice-img {
   margin-bottom: 15px;
-  width: 40%;
+  width: 80%;
 }
 
 .eth-logo {
   font-family: 'Arial';
   font-style: normal;
   font-weight: bolder;
-  font-size: 1.7em;
+  font-size: 1.3em;
 }
 
 .listing-eth-logo {
   font-family: 'Arial';
   font-style: normal;
   font-weight: bolder;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 
@@ -190,7 +193,7 @@ hr {
   font-family: 'Arial';
   font-style: normal;
   font-weight: bolder;
-  font-size: 1.3em;
+  font-size: 1em;
 }
 
 .button:hover{
@@ -226,12 +229,17 @@ hr {
   background-color: var(--main-bg-color);
 }
 
+#filter, #filter-results-count, #reset-filter-div {
+  font-size: 1.3vw;
+}
+
 #jump-icon {
   cursor: pointer;
 }
 
 .mice-on-sale {
-  min-width: 22%;;
+  min-width: 22%;
+  font-size: 1.3vw;
   display: -webkit-box;
   display: -webkit-flex;
   display: -ms-flexbox;
@@ -290,6 +298,8 @@ hr {
 }
 
 #wallet {
+  font-size: 1.3vw;
+  text-align: center;
   background-color: white;
   border: .3em solid var(--main-border-color);
   color: black;
@@ -348,7 +358,7 @@ select:focus {
 
 #delist-button, #edit-button, #list-button {
   text-align: center;
-  font-size: 1.3vw;
+  font-size: 1.8vw;
   width: 30%;
   height: 30%;
   position: relative;
@@ -391,8 +401,12 @@ select:focus {
 }
 
 #current-info {
-  font-size: 1.4vw;
+  font-size: 2vw;
   line-height: 3vw;
+}
+
+.updt-block input, .updt-block .button{
+  font-size: 2vw;;
 }
 
 .updt-button {
@@ -436,10 +450,11 @@ select:focus {
 
 #close {
   position: absolute;
-  min-height: 4vw;
+  padding: 1vw;
   position: fixed;
-  top: 2vw;
-  right: .4vw;
+  top: 0;
+  right: 0;
+  background-color: var(--main-border-color);
   text-align: right;
   cursor: pointer;
   font-size: 3vw;
@@ -487,7 +502,7 @@ select:focus {
 } 
 
 .trait-box {
-  font-size: 1vw;
+  font-size: 1.2vw;
   display: inline-block;
   position: relative;
   height: 33%;
@@ -515,8 +530,12 @@ select:focus {
   height: 65%;
   width: 100%;
   position: absolute;               
-   top: 50%;
+   top: 45%;
    text-align: center;
+}
+
+#trait-box-space-big-screen {
+  display: none;
 }
 
 .question {
@@ -548,11 +567,16 @@ select:focus {
   text-decoration: none;
 }
 
+tr td:first-child {
+  width: 15%;
+  white-space: nowrap;
+}
+
 #mice-sales-container {
-  width:90%;
+  width:70%;
   margin-left: auto;
   margin-right: auto;
-  font-size: 1.5vw;
+  font-size: 1.7vw;
   text-align: center;
 }
 
@@ -586,7 +610,7 @@ select:focus {
   height: 35vh;
   border: outset 1em var(--main-border-color);
   padding: 5px;
-  font-size: 2.5vw;
+  font-size: 2.7vw;
 }
 
 #error-popup p {
@@ -629,7 +653,11 @@ select:focus {
 
   #wallet {
     width:90%;
-    font-size:2.45vw;
+    font-size:3.25vw;
+  }
+
+  .mice-on-sale, #filter, #reset-filter-div, #filter-results-count {
+    font-size: 4vw;
   }
 
   #toolbar {
@@ -698,6 +726,8 @@ select:focus {
     margin-bottom: 10px;
   }
 
+
+  
   #reset-filter-div {
     text-align: center;
   }
@@ -778,6 +808,15 @@ select:focus {
 
   .trait-box-value {
     height: 60%;
+    top: 50%;
+  }
+
+  #trait-box-space {
+    display: none;
+  }
+
+  #trait-box-space-big-screen {
+    display: none;
   }
 
   #click-info-spacer {
@@ -809,7 +848,7 @@ select:focus {
 
   .sold-mice-img {
     margin-bottom: 0px;
-    width: 25%;
+    width: 80%;
   }
 }
 
@@ -922,6 +961,14 @@ select:focus {
     padding-bottom: 1.5vh;
   }
 
+  #trait-box-space-big-screen {
+    display: none;
+  }
+
+  #trait-box-space {
+    display: none;
+  }
+
   #close {
     font-size: 4.5vw;
   }
@@ -929,6 +976,14 @@ select:focus {
 
 /*Weird huge screens*/
 @media screen and (min-width: 1700px){
+  #directory {
+    font-size: 1.1vw;
+  }
+
+  #directory button {
+    height: 10%;
+  }
+
   .stats-box {
     font-size: .7vw;
   }
@@ -961,5 +1016,13 @@ select:focus {
   .sold-mice-img {
     margin-bottom: 30px;
     width: 80%;
+  }
+
+  #trait-box-value {
+    line-height: 2vw;
+  }
+
+  #trait-box-space-big-screen {
+    display: block;
   }
 }

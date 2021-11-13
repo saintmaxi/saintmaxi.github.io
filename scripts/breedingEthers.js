@@ -120,7 +120,7 @@ const blocksLeftCalc = async(currentBlock, targetBlock) => {
 
 const breedMice = async()=> {
     if (selectedForBreeding.size != 2) {
-         displayErrorMessage("Error: 2 mice required to breed!")
+         displayErrorMessage("Error: 2 Mice required to breed!")
     }
     else {
         const _micesArray = Array.from(selectedForBreeding);
@@ -140,7 +140,7 @@ const speedUpChildReveal = async(childId) => {
     const cheethAmt = $(`#speed-up-amt-reveal-${childId}`).val();
     const cheethBalance = Number(formatEther(await cheeth.balanceOf((await getAddress()))));
     if (cheethAmt > cheethBalance) {
-        displayErrorMessage("ERROR: INSUFFICIENT $CHEETH")
+        displayErrorMessage("Error: Insufficient $CHEETH!")
     }
     else {
         await breeding.speedUpChildReveal(childId, parseEther(cheethAmt)).then( async(tx_) => {
@@ -153,7 +153,7 @@ const speedUpParentRelease = async(breedingEventId) => {
     const cheethAmt = $(`#speed-up-amt-release-${breedingEventId}`).val();
     const cheethBalance = Number(formatEther(await cheeth.balanceOf((await getAddress()))));
     if (cheethAmt > cheethBalance) {
-        displayErrorMessage("ERROR: INSUFFICIENT $CHEETH")
+        displayErrorMessage("Error: Insufficient $CHEETH!")
     }
     else {
         await breeding.speedUpParentRelease(breedingEventId, parseEther(cheethAmt)).then( async(tx_) => {
@@ -417,7 +417,7 @@ const updateBreedingInfo = async()=>{
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (0)`);
         $("#your-baby-mice").text(`YOUR AVAILABLE MICE (0)`);
         $("#your-cheeth").text(`0.0 $CHEETH`);
-        displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
+        displayErrorMessage("Errow: Switch to Mainnet", false);
     }
 };
 
@@ -458,7 +458,7 @@ const fixHeight = async() => {
 
 const updateCurrentChain = async() => {
     if ((await getChainId()) !== 1) {
-        displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
+        displayErrorMessage("Error: Switch to Mainnet", false);
     }
     else {
         $("#error-popup").remove();
@@ -558,7 +558,7 @@ var selectedForBreeding = new Set();
 async function selectForBreeding(miceID) {
     if (!selectedForBreeding.has(miceID)) {
         if (selectedForBreeding.size >= 2) {
-            displayErrorMessage(`Error: Pick 2 mice to breed.`);
+            displayErrorMessage(`Error: Pick 2 Mice to breed!`);
         }
         else {
             selectedForBreeding.add(miceID);
@@ -577,22 +577,3 @@ async function selectForBreeding(miceID) {
         $("#selected-for-breeding").text(selectedString);
     }
 }
-
-// async function selectForUnstaking(miceID) {
-//     if (!selectedForUnstaking.has(miceID)) {
-//         selectedForUnstaking.add(miceID);
-//         $(`#available-mice-${miceID}`).addClass("active");
-//     }
-//     else {
-//         selectedForUnstaking.delete(miceID);
-//         $(`#available-mice-${miceID}`).removeClass("active");
-//     }
-//     if (selectedForUnstaking.size == 0) {
-//         $("#selected-for-unstaking").text("Selected: None");
-//     }
-//     else {
-//         let selectedString = `Selected: ${Array.from(selectedForUnstaking).sort().join(',')}`
-//         $("#selected-for-unstaking").text(selectedString);
-//     }
-// }
-

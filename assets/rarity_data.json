@@ -1,0 +1,79 @@
+{
+    "Original": {
+        "Yes": "38.45%",
+        "No:": "61.55%"
+    },
+    "Hat": {
+        "Astronaut": "1.58%",
+        "Bane": "4.08%",
+        "Soldier": "4.45%",
+        "Cheese": "5.80%",
+        "Motorcycle Helmet": "6.08%",
+        "Elvis": "6.42%",
+        "Halo": "8.65%",
+        "Construction Hat": "9.18%",
+        "Karate Kid": "11.21%",
+        "No Hat": "42.54%"
+    },
+    "Whiskers": {
+        "Handlebar": "4.45%",
+        "No Whiskers": "9.07%",
+        "Big Whiskers": "9.52%",
+        "Tiny Whiskers": "30.23%",
+        "Whiskers": "46.73%"
+    },
+    "Neck": {
+        "Gold Chain": "4.70%",
+        "Fancy": "8.79%",
+        "Black Necklace": "10.76%",
+        "Red Necklace": "10.87%",
+        "Plain": "64.87%"
+    },
+    "Earrings": {
+        "Jim Dangles": "1.55%",
+        "Bar": "2.82%",
+        "Flower": "3.27%",
+        "Stud": "3.86%",
+        "None": "88.51%"
+    },
+    "Mouth": {
+        "Straight": "13.92%",
+        "Small Frown": "13.97%",
+        "Frown": "14.00%",
+        "Big Smile": "14.34%",
+        "Small Smile": "14.39%",
+        "Big Frown": "14.48%",
+        "Smile": "14.90%"
+    },
+    "Eyes": {
+        "VR Goggles": "1.83%",
+        "3D Glasses": "3.04%",
+        "Crazy": "4.68%",
+        "Closed": "4.82%",
+        "Sunglasses": "7.94%",
+        "Bandit Mask": "9.55%",
+        "Crosseyed": "15.94%",
+        "Looking Left": "17.24%",
+        "Looking Up": "17.46%",
+        "Looking Right": "17.49%"
+    },
+    "Nose": {
+        "Dark": "18.99%",
+        "Tiny": "19.35%",
+        "Normal": "20.11%",
+        "No Nose": "20.59%",
+        "Big": "20.96%"
+    },
+    "Character": {
+        "gL1tCh3d": "0.85%",
+        "Irradiated": "2.51%",
+        "Alvin": "7.61%",
+        "Matthias": "9.10%",
+        "Simon": "11.46%",
+        "Templeton": "11.46%",
+        "Reepicheep": "12.87%",
+        "Jerry": "13.61%",
+        "Stuart": "15.21%",
+        "Common": "15.32%"
+    }
+}

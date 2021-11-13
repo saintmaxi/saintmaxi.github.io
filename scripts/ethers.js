@@ -187,7 +187,7 @@ const checkApprovalOfMice = async() => {
             await waitForTransaction(tx_);
         });
     } else {
-        displayErrorMessage(`Mice already approved`);
+        displayErrorMessage(`Mice already approved!`);
     }
 };
 
@@ -198,10 +198,10 @@ const buyMice = async(tokenId_) => {
         const buyerAddress = await getAddress();
         const isOwner = await checkIfOwnsMice(tokenId_);
         if (isOwner) {
-            displayErrorMessage("Error: You own this Mice");
+            displayErrorMessage("Error: You own this Mice!");
         }
         else if (_listingInfo.privacy == "Private" && buyerAddress !== _listingInfo.toAddress) {
-            displayErrorMessage("Error: You are not the recipient");
+            displayErrorMessage("Error: You are not the recipient!");
         }
         else {
             const _listing = await marketplace.miceForSaleToTokenId(tokenId_);
@@ -216,7 +216,7 @@ const buyMice = async(tokenId_) => {
     catch (error) {
         errorMsg = error.error.message;
         if (errorMsg.includes("insufficient funds")) {
-            displayErrorMessage("Error: Insufficient Funds");
+            displayErrorMessage("Error: Insufficient Funds!");
         }
         else {
             displayErrorMessage(errorMsg);
@@ -473,6 +473,23 @@ ethereum.on("accountsChanged", async (accounts_) => {
     await updateMarketplaceDetails();
 
 });
+
+const watchForBuy  = async () => {
+    filter = marketplace.filters.MiceBought(null, null, null);
+    marketplace.on(filter, async (id, price, seller, buyer, event) => {
+        if (pendingTransactions.size == 0) {
+            await endLoading((await event.getTransaction()))
+        }
+    
+    });
+}
+
+const watching = async () => {
+    await watchForBuy();
+}
+
+watching()
+
 
 window.onload = async() => {
     if (!loading && pendingTransactions.size <1) {

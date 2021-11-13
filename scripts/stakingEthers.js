@@ -64,10 +64,10 @@ const approveMicesToCheeth = async()=>{
 
 const stakeMicesToCheeth = async()=>{
     if (selectedForStaking.size == 0) {
-        displayErrorMessage("Error: Select at least 1 mice to stake")
+        displayErrorMessage("Error: Select at least 1 mice to stake!")
     }
     else if ((await getAnonymicesEnum()) == 0) {
-        displayErrorMessage("Error: No available mice to stake")
+        displayErrorMessage("Error: No available mice to stake!")
     }
     else {
         const _micesArray = Array.from(selectedForStaking);
@@ -78,7 +78,7 @@ const stakeMicesToCheeth = async()=>{
             return;
         };
         if (_stakedAnonymices.length >= 10) {
-            displayErrorMessage(`Error: Limit 10 staked Mice per address.`);
+            displayErrorMessage(`Error: Limit 10 staked Mice per address!`);
             return;
         };
         await cheeth.stakeByIds(_micesArray).then( async(tx_) => {
@@ -111,10 +111,10 @@ const claimCheeth = async()=>{
 const unstakeByIds = async()=>{
     const numStaked = await getAnonymicesStakedEnum();
     if (numStaked == 0) {
-        displayErrorMessage("Error: No Mice Staked")
+        displayErrorMessage("Error: No Mice staked!")
     }
     else if (selectedForUnstaking.size == 0) {
-        displayErrorMessage("Error: Select Mice to Unstake")
+        displayErrorMessage("Error: Select Mice to unstake!")
     }
     else {
         const _micesArray = Array.from(selectedForUnstaking);
@@ -131,7 +131,7 @@ const unstakeByIds = async()=>{
 
 const unstakeAll = async()=>{
     if ((await getAnonymicesStakedEnum()) == 0) {
-        displayErrorMessage("Error: No Mice Staked")
+        displayErrorMessage("Error: No Mice staked!")
     }
     else {
         await cheeth.unstakeAll().then( async(tx_) => {
@@ -225,7 +225,7 @@ const updateStakingInfo = async()=>{
 
 const updateCurrentChain = async() => {
     if ((await getChainId()) !== 1) {
-        displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
+        displayErrorMessage("Error: Switch to Mainnet!", false);
     }
     else {
         $("#error-popup").remove();
@@ -324,7 +324,7 @@ var selectedForUnstaking = new Set();
 async function selectForStaking(miceID) {
     if (!selectedForStaking.has(miceID)) {
         if (selectedForStaking.size + stakedMiceCount >= 10) {
-            displayErrorMessage(`Error: Limit 10 staked Mice per address.`);
+            displayErrorMessage(`Error: Limit 10 staked Mice per address!`);
         }
         else {
             selectedForStaking.add(miceID);

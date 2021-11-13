@@ -1,6 +1,6 @@
 
 async function getSalesHistory() {
-
+    $(".sale-row").remove();
     let eventFilter = marketplace.filters.MiceBought();
     let events = await marketplace.queryFilter(eventFilter);
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";

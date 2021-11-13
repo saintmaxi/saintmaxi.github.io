@@ -5,6 +5,12 @@ $.getJSON('../assets/mice_data.json', function(json) {
     miceData = json;
 });
 
+var rarityData;
+
+$.getJSON('../assets/rarity_data.json', function(json) {
+    rarityData = json;
+});
+
 var miceObjectMap = new Map();
 
 function jumpToLocation(elementID) {
@@ -75,14 +81,14 @@ function _unfilterTraits(type, trait) {
 
 function _populateFilters() {
     const categories = new Map();
-    categories.set("hat",  ["Astronaut", "Bane", "Soldier", "Cheese", "Motorcycle Helmet", "Elvis", "Halo", "Construction Hat", "Karate Kid", "No Hat"]);
-    categories.set("whiskers", ["Handlebar", "No Whiskers", "Big Whiskers", "Tiny Whiskers", "Whiskers"]);
-    categories.set("neck", ["Gold Chain", "Fancy", "Black Necklace", "Red Necklace", "Plain"])
-    categories.set("earrings", ["Jim Dangles", "Bar", "Flower", "Stud", "None"])
-    categories.set("eyes", ["VR Goggles", "3D Glasses", "Crazy", "Closed", "Sunglasses", "Bandit Mask", "Crosseyed", "Looking Left", "Looking Up", "Looking Right"])
-    categories.set("mouth", ["Straight", "Small Frown", "Frown", "Big Smile", "Small Smile", "Big Frown", "Smile"])
-    categories.set("nose", ["Dark", "Tiny", "Normal", "No Nose", "Big"])
-    categories.set("character", ["gL1tCh3D", "Irradiated", "Alvin", "Matthias", "Simon", "Templeton", "Reepicheep", "Jerry", "Stuart", "Common"])
+    categories.set("Hat",  ["Astronaut", "Bane", "Soldier", "Cheese", "Motorcycle Helmet", "Elvis", "Halo", "Construction Hat", "Karate Kid", "No Hat"]);
+    categories.set("Whiskers", ["Handlebar", "No Whiskers", "Big Whiskers", "Tiny Whiskers", "Whiskers"]);
+    categories.set("Neck", ["Gold Chain", "Fancy", "Black Necklace", "Red Necklace", "Plain"])
+    categories.set("Earrings", ["Jim Dangles", "Bar", "Flower", "Stud", "None"])
+    categories.set("Eyes", ["VR Goggles", "3D Glasses", "Crazy", "Closed", "Sunglasses", "Bandit Mask", "Crosseyed", "Looking Left", "Looking Up", "Looking Right"])
+    categories.set("Mouth", ["Straight", "Small Frown", "Frown", "Big Smile", "Small Smile", "Big Frown", "Smile"])
+    categories.set("Nose", ["Dark", "Tiny", "Normal", "No Nose", "Big"])
+    categories.set("Character", ["gL1tCh3D", "Irradiated", "Alvin", "Matthias", "Simon", "Templeton", "Reepicheep", "Jerry", "Stuart", "Common"])
     let keys = Array.from(categories.keys());
     for (let i = 0; i < keys.length; i++) {
         let key = keys[i];
@@ -151,7 +157,8 @@ async function showInfo(miceID) {
     for (let i = 0; i < _propertiesToDisplay.length; i++) {
         _property = _propertiesToDisplay[i];
         _value = _mice[_property];
-        _infoFakeJSX += `<div class='trait-box'><p class='trait-box-header'>${_property}:</p><p class="trait-box-value">${_value}</p></div>`;
+        _rarity = _mice[`${_property}Rarity`];
+        _infoFakeJSX += `<div class='trait-box'><p class='trait-box-header'>${_property}:</p><p class="trait-box-value">${_value} <br id='trait-box-space-big-screen'><br id='trait-box-space'>(${_rarity})</p></div>`;
     }
 
     let _micePrice = _mice.price;
@@ -187,7 +194,7 @@ async function openEditPrompt(miceID) {
     const _currentToAddress = _currentPrivacy === "Public" ? "N/A" : _listedMice.toAddress;
     const _darkClass = getDarkMode();
 
-    const currentInfoJSX = `<br><div id='current-info'>Current Price:<br><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div>Current Privacy:<br>${_currentPrivacy}<br>Current Private Sale Address:<br>${_currentToAddress}</div>`;
+    const currentInfoJSX = `<br><div id='current-info'><h3>Current Price:</h3><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div><h3>Current Privacy:</h3>${_currentPrivacy}<br><h3>Current Private Sale Address:</h3>${_currentToAddress}</div>`;
 
     const updateJSX = `<div class="w-row ${_darkClass}">
                         <div class="updt-block w-col w-col-6 ${_darkClass}">
@@ -259,6 +266,7 @@ class Mice {
     constructor(miceID) {
         this.miceID = Number(miceID);
         this.original = this.miceID < 2000 ? "Yes" : "No";
+        this.originalRarity = rarityData["Original"][this.original];
         this.price = null;
         this.priceText = null;
         this.privacy = null;
@@ -268,22 +276,22 @@ class Mice {
             let _miceData = miceData[miceID];
             this.elementID = `mice-for-sale-${miceID}`;
             this.totalRarity = _miceData["rarity.score"];
-            this.characterRarity = _miceData["character.rarity"];
-            this.character = _miceData["character.value"]
-            this.earringsRarity = _miceData["earrings.rarity"];
+            this.character = _miceData["character.value"];
+            this.characterRarity = rarityData["Character"][this.character];
             this.earrings = _miceData["earrings.value"];
-            this.eyesRarity = _miceData["eyes.rarity"];
+            this.earringsRarity = rarityData["Earrings"][this.earrings];
             this.eyes = _miceData["eyes.value"];
-            this.hatRarity = _miceData["hat.rarity"];
+            this.eyesRarity = rarityData["Eyes"][this.eyes];
             this.hat = _miceData["hat.value"];
-            this.mouthRarity = _miceData["mouth.rarity"];
+            this.hatRarity = rarityData["Hat"][this.hat];
             this.mouth = _miceData["mouth.value"];
-            this.neckRarity = _miceData["neck.rarity"];
+            this.mouthRarity = rarityData["Mouth"][this.mouth];
             this.neck = _miceData["neck.value"];
-            this.noseRarity = _miceData["nose.rarity"];
+            this.neckRarity = rarityData["Neck"][this.neck];
             this.nose= _miceData["nose.value"];
-            this.whiskersRarity = _miceData["whiskersr.rarity"];
+            this.noseRarity = rarityData["Nose"][this.nose];
             this.whiskers = _miceData["whiskers.value"];
+            this.whiskersRarity = rarityData["Whiskers"][this.whiskers];
         }
         catch {}
         miceObjectMap.set(this.miceID, this);
