@@ -393,6 +393,7 @@ const updateMarketplaceDetails = async() => {
     await updateInfo();
     if (window.location.pathname == "/create-listing") {
         await updateAvailableMice();
+        await updateMarketListings();
     }
     if (window.location.pathname == "/index" || window.location.pathname == "/") {
         await updateMarketListings();
@@ -453,7 +454,7 @@ function startLoading(tx) {
 async function endLoading(tx, txStatus) {
     let txHash = tx.hash;
     $(`#loading-div-${txHash}`).html("");
-    let status = txStatus == 1 ? "Success" : "Error";
+    let status = txStatus == 1 ? "SUCCESS" : "ERROR";
     $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
     await sleep(2000);
     $(`#etherscan-link-${txHash}`).remove();
