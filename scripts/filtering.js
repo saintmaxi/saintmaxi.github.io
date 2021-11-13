@@ -196,7 +196,7 @@ async function openEditPrompt(miceID) {
 
     const currentInfoJSX = `<br><div id='current-info'><h3>Current Price:</h3><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div><h3>Current Privacy:</h3>${_currentPrivacy}<br><h3>Current Private Sale Address:</h3>${_currentToAddress}</div>`;
 
-    const updateJSX = `<div class="w-row ${_darkClass}">
+    const updateJSX = `<div class="w-row ${_darkClass}" id='updt-content'>
                         <div class="updt-block w-col w-col-6 ${_darkClass}">
                             <div>
                                 <h3>Update Price</h3>
@@ -219,7 +219,7 @@ async function openEditPrompt(miceID) {
                         </div>
                     </div>`;
 
-    $("body").append(`<div id='edit-prompt' class='click-info ${_darkClass}'><span id="edit-back" class="${_darkClass}" onclick='closeInfo("edit-prompt");'>❮</span><h3 class='heading-3 ${_darkClass}'>Editing Listing: Anonymice #${miceID}</h3><div id='edit-prompt-content'>${currentInfoJSX}<div>${updateJSX}</div></div></div>`);
+    $("body").append(`<div id='edit-prompt' class='click-info ${_darkClass}'><span id="edit-back" class="${_darkClass}" onclick='closeInfo("edit-prompt");'>❮</span><h3 class='heading-3 ${_darkClass}'>Editing Listing: Anonymice #${miceID}</h3><div id='edit-prompt-content'>${currentInfoJSX}<br>${updateJSX}</div></div>`);
 }
 
 async function openListPrompt(miceID) {

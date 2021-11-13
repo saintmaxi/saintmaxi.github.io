@@ -755,13 +755,18 @@ tr td:first-child {
 }
 
 #edit-prompt-content {
-  height: 80%;
+  height: 90%;
   overflow-y: scroll;
 }
 
 #current-info {
   font-size: 1.5vh;
-  line-height: initial
+  line-height: initial;
+  height:50%;
+}
+
+#updt-content {
+  height: 50%;
 }
 
   /*needs work*/
