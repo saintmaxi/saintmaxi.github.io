@@ -742,6 +742,11 @@ tr td:first-child {
     width: 95%;
     font-size: 1.4vh;
   }
+
+  th {
+    font-weight: bolder;
+    font-size: 2vh;
+  }
   
   tr td:first-child {
     width: 23%;
@@ -901,7 +906,7 @@ tr td:first-child {
 
   .sold-mice-img {
     margin-bottom: 0px;
-    width: 80%;
+    width: 75%;
   }
 }
 
