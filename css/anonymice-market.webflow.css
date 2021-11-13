@@ -752,6 +752,7 @@ tr td:first-child {
   top: 50%;;
   width: 95vw;
   height: 90vh;
+  overflow-y: scroll;
 }
 
 #current-info {
