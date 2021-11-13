@@ -219,7 +219,7 @@ async function openEditPrompt(miceID) {
                         </div>
                     </div>`;
 
-    $("body").append(`<div id='edit-prompt' class='click-info ${_darkClass}'><span id="edit-back" class="${_darkClass}" onclick='closeInfo("edit-prompt");'>❮</span><h3 class='heading-3 ${_darkClass}'>Editing Listing: Anonymice #${miceID}</h3>${currentInfoJSX}<div>${updateJSX}</div></div>`);
+    $("body").append(`<div id='edit-prompt' class='click-info ${_darkClass}'><span id="edit-back" class="${_darkClass}" onclick='closeInfo("edit-prompt");'>❮</span><h3 class='heading-3 ${_darkClass}'>Editing Listing: Anonymice #${miceID}</h3><div id='edit-prompt-content'>${currentInfoJSX}<div>${updateJSX}</div></div></div>`);
 }
 
 async function openListPrompt(miceID) {
