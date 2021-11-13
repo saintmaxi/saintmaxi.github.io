@@ -219,7 +219,7 @@ const updateStakingInfo = async()=>{
         $("#your-cheeth").text(`0.0 $CHEETH`);
         $("#your-pending-cheeth").text(`0.0`);
         $("#your-pending-cheeth").append(`<img src='./images/chees.png' width=32>`);
-        displayErrorMessage("ERROR: SWITCH TO MAINNET", false);
+        displayErrorMessage("Error: Switch to Mainnet", false);
     }
 };
 

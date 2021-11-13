@@ -417,7 +417,7 @@ const updateBreedingInfo = async()=>{
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (0)`);
         $("#your-baby-mice").text(`YOUR AVAILABLE MICE (0)`);
         $("#your-cheeth").text(`0.0 $CHEETH`);
-        displayErrorMessage("Errow: Switch to Mainnet", false);
+        displayErrorMessage("Error: Switch to Mainnet", false);
     }
 };
 
