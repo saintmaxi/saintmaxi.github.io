@@ -28,6 +28,7 @@
 #claim-cheeth-button {
     width: 35%;
     height: 100%;
+    font-size: 1.3vw;
 }
 
 .body-section .button {
@@ -35,7 +36,12 @@
   width: 35%;
 }
 
+#main-staking-content {
+  font-size: 1.3vw;
+}
+
 #staked-mice-images, #available-mice-images {
+  font-size: 1.3vw;
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -64,3 +70,24 @@
     background-color: #fcd17d;
     cursor: pointer;
   }
+
+
+/* mobile */
+@media screen and (max-width: 600px){
+  #staked-mice-images, #available-mice-images {
+    font-size: 4vw;
+  }
+
+  #claim-cheeth-button {
+    width: 85%;
+    font-size: 4vw;
+  }
+
+  .body-section .button {
+    width: 85%;
+  }
+
+  #main-staking-content {
+    font-size: 4vw;
+  }
+}

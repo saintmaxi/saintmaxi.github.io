@@ -32,12 +32,22 @@
     margin:10px;
     width: 31%;
     height: 100%;
+    font-size: 1.3vw;
 }
 
 .parent-container input, .baby-container input{
     width:100%;
 }
 
+#breed-button{
+    font-size: 1.3vw;
+    width: 30%;
+    text-align: center;
+}
+
+#available-mice-images {
+    font-size: 1.3vw;
+}
 
 .mice-on-sale.active {
     border: outset grey .5em;
@@ -71,5 +81,16 @@
         margin:10px;
         width: 100%;
         height: 100%;
+        font-size: 4vw;;
+    }
+
+    #available-mice-images {
+        font-size: 4vw;
+    }
+
+    #breed-button{
+        font-size: 4vw;
+        width: 85%;
+        text-align: center;
     }
 }
