@@ -764,7 +764,8 @@ tr td:first-child {
   font-size: 3vh;
   line-height: initial;
   height:40%;
-  margin-bottom: 10px;
+  margin-bottom: 4vh;
+  margin-top: -4vh;
 }
 
 #updt-content .button, #updt-content input {
