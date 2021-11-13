@@ -760,6 +760,15 @@ tr td:first-child {
   height: 90%;
 }
 
+#create-listing-prompt .button, #create-listing-prompt input {
+  width: 100%;
+  font-size: 3vh;
+}
+
+.list-block {
+  font-size: 3vh;
+}
+
 #current-info {
   font-size: 3vh;
   line-height: initial;
@@ -776,7 +785,6 @@ tr td:first-child {
 #current-info h3, #updt-content h3 {
   font-size: 3vh;
   line-height: 3.5vh;
-  color:red;
 }
 
 #updt-content {
