@@ -760,9 +760,17 @@ tr td:first-child {
 }
 
 #current-info {
-  font-size: 1.5vh;
+  font-size: 3vh;
   line-height: initial;
   height:50%;
+}
+
+#updt-content .button, #updt-content input {
+  font-size: 3vh;
+}
+
+#current-info h3, #updt-content h3 {
+  font-size: 3vh;
 }
 
 #updt-content {
