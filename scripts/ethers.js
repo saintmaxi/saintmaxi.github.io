@@ -177,17 +177,18 @@ const checkIfOwnsMice = async(tokenId_) => {
 const approveMiceToMarketplace = async() => {
     await anonymice.setApprovalForAll(marketplaceAddress, true).then ( async (tx_) => {
         await waitForTransaction(tx_);
+        $("#market-approval-section").addClass("hidden");
     });
 };
 
 const checkApprovalOfMice = async() => {
     if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-        displayErrorMessage(`Error: Mice not approved. Requesting approval...`);
-        await anonymice.setApprovalForAll(marketplaceAddress, true).then( async (tx_) => {
-            await waitForTransaction(tx_);
-        });
+        displayErrorMessage(`Error: You must set approval for marketplace.`);
+        $("#market-approval-section").removeClass("hidden");
+        return false;
     } else {
-        displayErrorMessage(`Mice already approved!`);
+        $("#market-approval-section").addClass("hidden");
+        return true;
     }
 };
 
@@ -243,7 +244,9 @@ const putMiceUpForSaleInternal = async(_tokenId) => {
 const putMiceUpForSale = async(_tokenId) => {
     try {
         if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-            console.log(`mice not approved, requesting approval`);
+            // console.log(`mice not approved, requesting approval`);
+            displayErrorMessage(`Error: You must set approval for marketplace. Requesting...`);
+            await sleep(2000)
             await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
                 provider.once(tx_, async (transaction_) => {
                     await putMiceUpForSaleInternal();
@@ -496,6 +499,7 @@ window.onload = async() => {
     if (!loading && pendingTransactions.size <1) {
         if (window.location.pathname != "/faq") {
             await updateMarketplaceDetails();
+            await checkApprovalOfMice();
          }
     }
 };

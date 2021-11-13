@@ -237,6 +237,10 @@ hr {
   cursor: pointer;
 }
 
+#market-approval-section {
+  font-size: 1.3vw;
+}
+
 .mice-on-sale {
   min-width: 22%;
   font-size: 1.3vw;
@@ -384,9 +388,8 @@ select:focus {
 }
 
 #edit-prompt, #create-listing-prompt {
-  z-index: 9999;
   background-color: var(--main-bg-color);
-  z-index: 9998;
+  z-index: 9997;
   color:white;
   position:fixed;
   top:75px;
@@ -419,7 +422,7 @@ select:focus {
 
 #click-info {
   background-color: var(--main-bg-color);
-  z-index: 9998;
+  z-index: 9995;
   color:white;
   position:fixed;
   top:75px;
@@ -463,7 +466,7 @@ select:focus {
   cursor: pointer;
   font-size: 3vw;
   color: red;
-  z-index: 9998;
+  z-index: 9996;
 }
 
 #edit-back, #list-back {
@@ -475,7 +478,7 @@ select:focus {
   text-align: right;
   cursor: pointer;
   font-size: 5vw;
-  z-index: 9999;
+  z-index: 9998;
   color: var(--main-border-color);
 }
 
@@ -670,6 +673,10 @@ tr td:first-child {
 
   .mice-on-sale, #filter, #reset-filter-div, #filter-results-count {
     font-size: 4vw;
+  }
+
+  #market-approval-section {
+    font-size: 4vw;;
   }
 
   #toolbar {
@@ -902,6 +909,7 @@ tr td:first-child {
   #error-popup {
     width: 75vw;
     height: 15vh;
+    font-size: 4vw;
   }
 
   .sold-mice-img {
