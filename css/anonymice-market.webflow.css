@@ -229,8 +229,20 @@ hr {
   background-color: var(--main-bg-color);
 }
 
-#filter, #filter-results-count, #reset-filter-div {
+#filter, #filter-results-count, #reset-filter-div, #check-private-sale {
   font-size: 1.3vw;
+}
+
+#check-private-sale {
+  text-align: center;
+}
+
+#check-private-sale input, #check-private-sale .button {
+  width: 30%;
+}
+
+#private-sale-lookup-form {
+  width: 100%;
 }
 
 #jump-icon {
@@ -671,10 +683,18 @@ tr td:first-child {
     font-size:3.25vw;
   }
 
-  .mice-on-sale, #filter, #reset-filter-div, #filter-results-count {
+  .mice-on-sale, #filter, #reset-filter-div, #filter-results-count, #check-private-sale {
     font-size: 4vw;
   }
 
+  #check-private-sale input, #check-private-sale .button {
+    width: 60%;
+  }
+
+  #privateSaleLookup-address {
+    font-size: 3.5vw;
+  }
+  
   #market-approval-section {
     font-size: 4vw;;
   }
