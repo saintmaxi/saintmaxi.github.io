@@ -752,11 +752,11 @@ tr td:first-child {
   }
 
   .stats-box {
-    font-size: 3vw;
+    font-size: 4vw;
   }
   
   .stats-box h5{
-    font-size: 4vw;
+    font-size: 4.5vw;
   }
 
   .stats-box img {
@@ -1074,32 +1074,72 @@ tr td:first-child {
   }
 
   #directory button {
-    height: 10%;
+    height: 125%;
   }
 
-  .stats-box {
-    font-size: .7vw;
+  #filter, #filter-results-count, #check-private-sale {
+    font-size: 1vw;
   }
 
-  #edit-prompt h3, #create-listing-prompt {
-    font-size: 2vw;
+  .mice-on-sale {
+    font-size: .8vw;
+  }
+
+  #reset-filter-div {
+    font-size: .85vw;
+  }
+
+  #edit-prompt h3, #create-listing-prompt h3{
+    font-size: 2.5vh;
   }
 
 
 .updt-block, .list-block {
   text-align: center;
-  font-size: 1.5vw;
+  font-size: 2vh;
   width: 100%;
-  height: 20%;
+  height: 25%;
+}
+
+.updt-block .button, .list-block .button, .updt-block input, .list-block input  {
+  text-align: center;
+  font-size: 3vh;
+  width: 50%;
+  height: 25%;
+  padding: 1vh;
+  margin-top: .2vh;
+}
+
+.updt-block input, .list-block input {
+  padding:.2vh;
+}
+
+.updt-block {
+  /* margin-top: .2vh; */
+  margin-bottom: 1vh;
+}
+
+#current-info {
+  margin-top: 2vh;
+  /* margin-bottom: .4vh; */
+}
+
+.list-block {
+  margin-top: 4vh;
+  margin-bottom: 2vh;
 }
 
 .updt-button {
+  font-size: 1vw;
   width:50%;
-  height: 15%;
+  height: 20%;
 }
   
   .stats-box h5{
-    font-size: .9vw;
+    font-size: 1.1vw;
+  }
+  .stats-box {
+    font-size: 1vw;
   }
 
   #click-info-header {

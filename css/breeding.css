@@ -35,6 +35,10 @@
     font-size: 1.3vw;
 }
 
+.parent-images p{
+    font-family: "Pixel Font";
+}
+
 .parent-container input, .baby-container input{
     width:100%;
 }
@@ -94,3 +98,23 @@
         text-align: center;
     }
 }
+
+@media screen and (min-width: 1700px){ 
+
+    .button, #breed-button, input{
+      font-size: 1vw;
+      width: 100%;
+    }
+
+    .parent-container, .baby-container {
+        width: 45%;
+        height: 45%;
+        line-height: 2vh;
+        font-size: 1vw;
+
+    }
+
+    .parent-images p{
+        font-size: .8vw;
+    }
+  }

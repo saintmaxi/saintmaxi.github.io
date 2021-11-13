@@ -91,3 +91,10 @@
     font-size: 4vw;
   }
 }
+
+@media screen and (min-width: 1700px){ 
+
+  .button, #claim-cheeth-button{
+    font-size: 1vw;
+  }
+}
