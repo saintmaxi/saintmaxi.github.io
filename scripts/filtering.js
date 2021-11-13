@@ -244,9 +244,8 @@ async function openListPrompt(miceID) {
                                         <form><input type="number" id="privateSale-price" name="privateSale-price"
                                             placeholder="Price in ETH" value=""></form>
                                         </div><br>
-                                        <div>Enter Recipient Address</div>
                                         <div>
-                                            <form><input type="text" id="privateSale-address" name="privateSale-address" placeholder="Input Address"
+                                            <form><input type="text" id="privateSale-address" name="privateSale-address" placeholder="Recipient Address"
                                                 value=""></form>
                                         </div><br>
                                         <a href="#" class="button w-button ${_darkClass}" onclick=putMiceUpForPrivateSale(${miceID})>Create Private Listing</a>

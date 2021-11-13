@@ -405,12 +405,16 @@ select:focus {
   line-height: 3vw;
 }
 
-.updt-block input, .updt-block .button{
-  font-size: 2vw;;
+.updt-block input, .updt-block .button, .list-block input, .list-block .button{
+  font-size: 2vw;
 }
 
 .updt-button {
   width:100%;
+}
+
+.list-block .button {
+  width: 50%;
 }
 
 #click-info {
