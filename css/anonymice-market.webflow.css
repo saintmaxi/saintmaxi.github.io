@@ -526,6 +526,10 @@ select:focus {
   background-color: var(--main-border-color);
 }
 
+.trait-box-header:first-letter {
+  text-transform: capitalize;
+}
+
 .trait-box-value {
   height: 65%;
   width: 100%;
