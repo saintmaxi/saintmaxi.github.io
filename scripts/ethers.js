@@ -363,7 +363,14 @@ const updateMiceOnSalePrivacy = async(_tokenId) => {
 
 // update info
 const updateInfo = async() => {
-    $("#wallet").text((await getAddress()));
+    let userAddress = await getAddress();
+    let ensAddress = await provider.lookupAddress(userAddress)
+    if (ensAddress) {
+        $("#wallet").text(ensAddress);
+    }
+    else {
+        $("#wallet").text(userAddress);
+    }
 
     // if ((await getChainId()) === 1) {
 

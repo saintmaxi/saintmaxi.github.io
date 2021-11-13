@@ -390,6 +390,7 @@ const updateLockedParentsInfo = async()=> {
 const updateBreedingInfo = async()=>{
     if ((await getChainId()) === 1) {
         let darkClass = getDarkMode();
+        await updateInfo();
 
         const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING<br>BREEDING INTERFACE...</div><br>`;
         $("#pending-transactions").append(loadingDiv);
@@ -400,7 +401,6 @@ const updateBreedingInfo = async()=>{
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (${await getAnonymicesEnum()})`);
 
         await getCheethBalance();
-        $("#wallet").text(await getAddress());
         $("#error-popup").remove();
         $("#refresh-notification").remove();
     }
@@ -465,6 +465,17 @@ const updateCurrentChain = async() => {
     }
 }
 
+const updateInfo = async() => {
+    let userAddress = await getAddress();
+    let ensAddress = await provider.lookupAddress(userAddress)
+    if (ensAddress) {
+        $("#wallet").text(ensAddress);
+    }
+    else {
+        $("#wallet").text(userAddress);
+    }
+};
+
 provider.on("network", async(newNetwork, oldNetwork) => {
     if (oldNetwork) {
         $("#refresh-notification").remove();
@@ -480,8 +491,7 @@ setInterval(async()=>{
         await updateIncubatorInfo();
         await updateLockedParentsInfo();
         await fixHeight();
-
-        $("#wallet").text(await getAddress());
+        await updateInfo();
     }
 }, 5000)
 

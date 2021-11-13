@@ -193,7 +193,7 @@ const getMiceImages = async()=>{
 const updateStakingInfo = async()=>{
     if ((await getChainId()) === 1) {
         let darkClass = getDarkMode();
-
+        await updateInfo();
         const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING<br>STAKE-O-MATRON...</div><br>`;
         $("#pending-transactions").append(loadingDiv);
 
@@ -204,7 +204,6 @@ const updateStakingInfo = async()=>{
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (${await getAnonymicesEnum()})`);
         $("#your-cheeth").text(`${await getCheethBalance()} $CHEETH`);
         await getPendingCheethBalance();
-        $("#wallet").text(await getAddress());
         $("#error-popup").remove();
     $("#refresh-notification").remove();
 
@@ -240,11 +239,22 @@ provider.on("network", async(newNetwork, oldNetwork) => {
         }
     });
 
+const updateInfo = async() => {
+    let userAddress = await getAddress();
+    let ensAddress = await provider.lookupAddress(userAddress)
+    if (ensAddress) {
+        $("#wallet").text(ensAddress);
+    }
+    else {
+        $("#wallet").text(userAddress);
+    }
+};
+
 setInterval(async()=>{
     await updateApprovedStatus();
     await getMiceTrackerInfo();
     await getPendingCheethBalance();
-    $("#wallet").text(await getAddress());
+    await updateInfo();
 
 }, 5000)
 
