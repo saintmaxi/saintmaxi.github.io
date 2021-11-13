@@ -752,11 +752,12 @@ tr td:first-child {
   top: 50%;;
   width: 95vw;
   height: 85vh;
+  overflow-y: scroll;
+
 }
 
 #edit-prompt-content {
   height: 90%;
-  overflow-y: scroll;
 }
 
 #current-info {
@@ -767,6 +768,7 @@ tr td:first-child {
 
 #updt-content .button, #updt-content input {
   font-size: 3vh;
+  width: 100%;
 }
 
 #current-info h3, #updt-content h3 {
