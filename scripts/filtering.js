@@ -170,7 +170,7 @@ async function showInfo(miceID) {
         _micePrice = "Not Listed"
         _hidden = "hidden";
         if ((await checkIfOwnsMice(_miceId)) == true) {
-            listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>Create Listing</a>`;
+            listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>List Mice</a>`;
         }
     }
     else {

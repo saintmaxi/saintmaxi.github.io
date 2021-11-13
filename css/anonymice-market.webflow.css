@@ -770,7 +770,7 @@ tr td:first-child {
   }
 
   #click-info-header {
-    font-size: 6.3vw;
+    font-size: 6vw;
   }
 
   #img-container {
@@ -778,15 +778,15 @@ tr td:first-child {
   }
 
   .info-image {
-    border: solid var(--main-border-color) .2em;
-    height:50%;
+    border: solid var(--main-border-color) .7em;
+    height:60%;
     width: initial;
 
     margin-top: 3vh;
   }
 
   #delist-button, #edit-button, #list-button {
-    width: 25%;
+    width: 22%;
     font-size:2vh;
   }
 
@@ -803,7 +803,7 @@ tr td:first-child {
   .trait-box {
     width: 95%;
     font-size: 2.3vh;
-    height: 15%;
+    height: 25%;
   }
 
   .trait-box-header {
@@ -960,12 +960,13 @@ tr td:first-child {
 
   #traits {
     height: 80%;
+    overflow-y: scroll;
   }
 
   .trait-box {
     height: 20%;;
     width: 95%;
-    font-size: 1.5vw;
+    font-size: 2vw;
   }
 
   .trait-box-header {
