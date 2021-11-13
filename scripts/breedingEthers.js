@@ -392,7 +392,7 @@ const updateBreedingInfo = async()=>{
         let darkClass = getDarkMode();
         await updateInfo();
 
-        const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING<br>BREEDING INTERFACE...</div><br>`;
+        const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING<br>BREEDING INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
         $("#pending-transactions").append(loadingDiv);
 
         await updateApprovedStatus();
@@ -538,7 +538,7 @@ function startLoading(tx) {
     let darkClass = getDarkMode();
     let txHash = tx.hash;
     const etherscanLink = `https://rinkeby.etherscan.io/tx/${txHash}`;
-    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div${darkClass}" id="loading-div-${txHash}">PROCESSING...<br>CLICK FOR ETHERSCAN</div></a><br>`;
+    const loadingDiv = `<a href="${etherscanLink}" class="etherscan-link" id="etherscan-link-${txHash}" target="_blank" rel="noopener noreferrer"><div class="loading-div${darkClass}" id="loading-div-${txHash}">PROCESSING<span class="one">.</span><span class="two">.</span><span class="three">.</span>​<br>CLICK FOR ETHERSCAN</div></a><br>`;
     $("#pending-transactions").append(loadingDiv);
 
     pendingTransactions.add(tx);
