@@ -763,7 +763,8 @@ tr td:first-child {
 #current-info {
   font-size: 3vh;
   line-height: initial;
-  height:50%;
+  height:40%;
+  margin-bottom: 10px;
 }
 
 #updt-content .button, #updt-content input {
