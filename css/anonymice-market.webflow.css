@@ -774,12 +774,12 @@ tr td:first-child {
   }
 
   #img-container {
-    height: 20%;
+    height: 40%;
   }
 
   .info-image {
     border: solid var(--main-border-color) .2em;
-    height:70%;
+    height:50%;
     width: initial;
 
     margin-top: 3vh;
@@ -787,7 +787,7 @@ tr td:first-child {
 
   #delist-button, #edit-button, #list-button {
     width: 25%;
-    font-size:1.2vh;
+    font-size:2vh;
   }
 
 .list-block {
@@ -796,13 +796,13 @@ tr td:first-child {
   }
 
   #traits {
-    height: 70%;
+    height: 50%;
   overflow-y: scroll;
   }
 
   .trait-box {
     width: 95%;
-    font-size: 1.5vh;
+    font-size: 2.3vh;
     height: 15%;
   }
 
