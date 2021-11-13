@@ -630,6 +630,10 @@ tr td:first-child {
   transform: translate(-50%, -50%);
 }
 
+.sold-mice-img-container {
+  text-align: center;
+}
+
 .sold-mice-img-container:hover{
   background-color: #fcd17d;
   cursor: pointer;
@@ -734,8 +738,16 @@ tr td:first-child {
     margin-bottom: 10px;
   }
 
-
+  #mice-sales-container {
+    width: 95%;
+    font-size: 1.4vh;
+  }
   
+  tr td:first-child {
+    width: 23%;
+    white-space: nowrap;
+  }
+
   #reset-filter-div {
     text-align: center;
   }
