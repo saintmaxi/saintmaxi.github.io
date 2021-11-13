@@ -916,11 +916,17 @@ tr td:first-child {
   position: fixed;
   top: 50px;;
   height: 95vh;
+  overflow-y: scroll;
 }
 
 .updt-block, .list-block {
   margin-top: 2vh;
   width: 100%;
+  font-size: 3vh;
+}
+
+.updt-block h3 {
+  font-size: 2.5vh;
 }
 
 #current-info {
