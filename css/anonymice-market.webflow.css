@@ -533,7 +533,7 @@ select:focus {
   color: var(--main-border-color);
   margin: 4px;
   border-radius: .2em;
-  border: solid .2em var(--main-border-color);
+  /* border: solid .2em var(--main-border-color); */
   width: 30%;
   text-align: center;
 }
@@ -557,8 +557,13 @@ select:focus {
   height: 65%;
   width: 100%;
   position: absolute;               
-   top: 45%;
+   top: 35%;
    text-align: center;
+  border: solid .2em var(--main-border-color);
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  flex-direction: column;
 }
 
 #trait-box-space-big-screen {
@@ -949,7 +954,7 @@ tr td:first-child {
 
   .trait-box-value {
     height: 60%;
-    top: 50%;
+    top: 40%;
   }
 
   #trait-box-space {
@@ -1200,6 +1205,16 @@ tr td:first-child {
 
   #click-info-header {
     font-size: 2vw;
+  }
+
+  .trait-box-header {
+    height: 25%;
+  }
+  
+  .trait-box-value {
+    height: 75%;
+    top: 25%;
+
   }
 
   .sold-mice-img {

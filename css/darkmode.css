@@ -217,13 +217,17 @@ select.dark {
 }
 
 .trait-box.dark {
-    border: solid .2em white;
     background-color: var(--main-dark-border-color);
 }
 
 .trait-box-header.dark {
     color: black;
     background-color: white;
+}
+
+.trait-box-value.dark {
+    border: solid .2em white;
+
 }
 
 .question.dark {
