@@ -229,8 +229,16 @@ hr {
   background-color: var(--main-bg-color);
 }
 
-#filter, #filter-results-count, #reset-filter-div, #check-private-sale {
+#filter, #filter-results-count, #reset-filter-button, #check-private-sale {
   font-size: 1.3vw;
+}
+
+#reset-filter-div {
+  text-align: center;
+}
+
+#reset-filter-button {
+  width: 100%;
 }
 
 #check-private-sale {
@@ -254,7 +262,7 @@ hr {
 }
 
 .mice-on-sale {
-  min-width: 22%;
+  width: 15%;
   font-size: 1.3vw;
   display: -webkit-box;
   display: -webkit-flex;
@@ -276,13 +284,13 @@ hr {
   -webkit-align-items: center;
   -ms-flex-align: center;
   align-items: center;
-  border: outset var(--main-border-color) .5em;
+  /* border: outset var(--main-border-color) .5em; */
   padding: 5px;
-  background-color: var(--main-bg-color);
+  /* background-color: var(--main-bg-color);  */
 }
 
 .mice-on-sale:hover {
-  border: outset grey .5em;
+  /* border: outset grey .5em; */
   background-color: #fcd17d;
   cursor: pointer;
 }
@@ -372,7 +380,7 @@ select:focus {
   width: 70%;
 }
 
-#delist-button, #edit-button, #list-button {
+#delist-button, #edit-button, #list-button, #buy-button {
   text-align: center;
   font-size: 1.8vw;
   width: 30%;
@@ -394,7 +402,7 @@ select:focus {
   margin-left: 3%;
 }
 
-#edit-button, #list-button {
+#edit-button, #list-button, #buy-button {
   float: right;
   margin-right: 3%;
 }
@@ -731,8 +739,12 @@ tr td:first-child {
     font-size:3.25vw;
   }
 
-  .mice-on-sale, #filter, #reset-filter-div, #filter-results-count, #check-private-sale {
+  .mice-on-sale, #filter, #reset-filter-button, #filter-results-count, #check-private-sale {
     font-size: 4vw;
+  }
+
+  .mice-on-sale {
+    width: 30%;
   }
 
   #check-private-sale input, #check-private-sale .button {
@@ -828,11 +840,11 @@ tr td:first-child {
     white-space: nowrap;
   }
 
-  #reset-filter-div {
+  #reset-filter-button {
     text-align: center;
   }
 
-  #reset-filter-div button {
+  #reset-filter-button {
     width:100%;
     margin-top: 10px;
   }
@@ -913,7 +925,7 @@ tr td:first-child {
     margin-top: 3vh;
   }
 
-  #delist-button, #edit-button, #list-button {
+  #delist-button, #edit-button, #list-button, #buy-button {
     width: 22%;
     font-size:2vh;
   }
@@ -1133,7 +1145,7 @@ tr td:first-child {
     font-size: .8vw;
   }
 
-  #reset-filter-div {
+  #reset-filter-button {
     font-size: .85vw;
   }
 

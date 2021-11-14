@@ -37,31 +37,31 @@ var loading = false;
 
 // mice updater functions
 const updateAvailableMice = async() => {
-    const _miceInWallet = await anonymice.walletOfOwner( (await getAddress()) );
+    let _miceInWallet = await anonymice.walletOfOwner( (await getAddress()) );
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
 
     $("#your-mice").empty();
     $("#your-available-mice-count").text(`Your Available Mice (${_miceInWallet.length})`);
     let _darkClass = getDarkMode();
-
+    _miceInWallet = [..._miceInWallet].sort(function(a, b){return a - b});
     for (let i = 0; i < _miceInWallet.length; i++) {
         const _miceId = _miceInWallet[i];
         new Mice(_miceId);
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div></div>`;
         $("#your-mice").append(_fakeJSX);
     };
 };
 
 // mice updater functions
 const updateYourMarketMice = async() => {
-    const _miceInMarket = await marketplace.getMiceOnSaleByAddress( (await getAddress()) );
+    let _miceInMarket = await marketplace.getMiceOnSaleByAddress( (await getAddress()) );
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
 
     $("#your-market-mice").empty();
     $("#your-listed-mice-count").text(`Your Listed Mice (${_miceInMarket.length})`);
 
     let _darkClass = getDarkMode();
-
+    _miceInMarket = [..._miceInMarket].sort();
     if (_miceInMarket.length == 0) {
         $("#your-market-mice").text('No mice listed.');
     }
@@ -73,7 +73,7 @@ const updateYourMarketMice = async() => {
             const _micePriceInETH = formatEther(_micePrice);
             const _priceText = getPriceText(_micePriceInETH);
             const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
-            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
+            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
             $("#your-market-mice").append(_fakeJSX);
         };
     }
@@ -109,7 +109,7 @@ const updateMarketListings = async() => {
 
         const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
         _miceOnSale.toAddress = _miceListing.privateSaleAddress;
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div><button class="button w-button${_darkClass}" onclick="stopProp(event);buyMice(${_miceId});">Buy Mice</button></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
         _miceOnSale.price = Number(_micePriceInETH);
         _miceOnSale.priceText = _priceText;
         _miceOnSale.privacy = _listingPrivacy;
@@ -210,6 +210,7 @@ const buyMice = async(tokenId_) => {
 
             await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
                 $(`#mice-for-sale-${tokenId_}`).remove();
+                closeInfo("click-info");
                 await waitForTransaction(tx_)
             });
         }

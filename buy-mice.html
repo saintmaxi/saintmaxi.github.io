@@ -105,7 +105,7 @@
           <h2 class="heading-2" id="buy-mice">Mice Currently For Sale</h2>
         </div>
         <div class="w-row">
-          <div class="w-col w-col-10" id="filter">
+          <div class="w-col" id="filter">
             <select id="Earrings" name="earrings"
               onchange="removeFilter('earrings'); addFilter('earrings', this.value)"></select>
             <select id="Whiskers" name="whiskers"
@@ -119,8 +119,8 @@
             <select id="Mouth" name="mouth" onchange="removeFilter('mouth'); addFilter('mouth', this.value)"></select>
             <select id="sortBy" name="sortBy" onchange=sortBy(this.value)>
               <option value="" disabled>Sort By</option>
-              <option value="PriceHighToLow" selected>Price: High to Low</option>
-              <option value="PriceLowToHigh">Price: Low to High</option>
+              <option value="PriceHighToLow">Price: High to Low</option>
+              <option value="PriceLowToHigh" selected>Price: Low to High</option>
               <option value="RarityHighToLow">Rarity: High to Low</option>
               <option value="RarityLowToHigh">Rarity: Low to High</option>
               <option value="IdHighToLow">Mice ID: High to Low</option>
@@ -153,10 +153,12 @@
             </a>
             <!-- </a> -->
           </div>
-          <div class="w-col w-col-2" id="reset-filter-div">
-            <button class="button w-button" type=button onclick=resetFilters()>Reset Filters</button>
-          </div>
         </div>
+          <div id="reset-filter-div"><br>
+        <button class="button w-button" id="reset-filter-button" type=button onclick=resetFilters()>Reset Filters</button>
+
+        </div>
+
         <br>
         <div id="filter-results-count-container">
           <div style="display: inline-block;" id="filter-results-count"># Mice Found</div>

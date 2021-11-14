@@ -193,7 +193,7 @@ const getMiceImages = async()=>{
             if (!miceObjectMap.get(_miceId)) {
                 new Mice(_miceId);
             }
-            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=selectForBreeding(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="64" alt="" class="mice-image${_darkClass}"><div>Anonymice #${_miceId}</div></div>`;
+            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=selectForBreeding(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div></div>`;
             $("#available-mice-images").append(_fakeJSX);
         };
     }
