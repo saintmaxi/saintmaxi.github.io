@@ -54,7 +54,7 @@
 }
 
 .mice-on-sale.active {
-    border: outset grey .5em;
+    /* border: outset grey .5em; */
     background-color: #fcd17d;
     cursor: pointer;
   }

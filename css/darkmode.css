@@ -199,13 +199,13 @@ select.dark {
 
 .mice-on-sale.dark:hover {
     background-color: #9494a5e1;
-    border: outset var(--main-dark-border-color) .5em;
+    /* border: outset var(--main-dark-border-color) .5em; */
     cursor: pointer;
   }
 
 .mice-on-sale.dark.active {
     background-color: #9494a5e1;
-    border: outset var(--main-dark-border-color) .5em;
+    /* border: outset var(--main-dark-border-color) .5em; */
     cursor: pointer;
 }
 
