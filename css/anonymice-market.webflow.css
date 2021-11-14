@@ -128,7 +128,7 @@ hr {
   margin-bottom: 10px;
 }
 
-.floor {
+.floor, #os-floor {
   display: inline-block;
 }
 
