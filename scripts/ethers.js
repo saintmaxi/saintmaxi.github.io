@@ -388,10 +388,10 @@ const updateStats = async() => {
     $.getJSON('https://api.opensea.io/api/v1/collection/anonymice/stats', function(osData) {
         $("#os-floor").text(`${osData["stats"]["floor_price"]}`);
         osSales = osData["stats"]["total_sales"];
-        osVolume = (osData["stats"]["total_volume"]).toFixed(2);
+        osVolume = (osData["stats"]["total_volume"]).toFixed(0);
     });
     await marketplace.totalAmountOfEthTraded().then(async(vol) => {
-        let totalVolume = Number(osVolume) + Number(Number(formatEther(vol.toString())).toFixed(2));
+        let totalVolume = Number(osVolume) + Number(Number(formatEther(vol.toString())).toFixed(0));
         $("#volume").text(totalVolume);
     });
     await marketplace.totalAmountOfMiceSold().then(async(miceSold) => {
