@@ -252,9 +252,17 @@ hr {
 #market-approval-section {
   font-size: 1.3vw;
 }
+#mice-for-sale-container {
+  width: 95%;
+  margin-left: auto;
+  margin-right: auto;
+  font-size: 1.7vw;
+  text-align: center;
+}
 
 .mice-on-sale {
-  min-width: 22%;
+  min-width: 16%;
+  max-width: 16%;
   font-size: 1.3vw;
   display: -webkit-box;
   display: -webkit-flex;
