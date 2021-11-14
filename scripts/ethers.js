@@ -421,6 +421,7 @@ const updateMarketplaceDetails = async() => {
     }
     if (window.location.pathname == "/buy-mice") {
         await updateMarketListings();
+        sortBy("PriceLowToHigh");
     }
     if (window.location.pathname == "/edit-listing") {
         await updateMarketListings();
