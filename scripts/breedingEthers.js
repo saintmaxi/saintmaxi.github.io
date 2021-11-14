@@ -416,7 +416,8 @@ const updateBreedingInfo = async()=>{
         $("#your-breeding-anonymices").text(`YOUR BREEDING PAIRS (0)`);
         $("#your-anonymices").text(`YOUR AVAILABLE MICE (0)`);
         $("#your-baby-mice").text(`YOUR AVAILABLE MICE (0)`);
-        $("#your-cheeth").text(`0.0 $CHEETH`);
+        $("#your-cheeth").text(`0.0`);
+        $("#your-cheeth").append("<img src='./images/chees.png' width=32>");
         displayErrorMessage("Error: Switch to Mainnet", false);
     }
 };
