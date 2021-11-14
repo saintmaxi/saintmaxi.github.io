@@ -503,6 +503,8 @@ watching()
 
 
 window.onload = async() => {
+    await updateInfo();
+
     if (!loading && pendingTransactions.size <1) {
         if (window.location.pathname != "/faq") {
             await updateMarketplaceDetails();

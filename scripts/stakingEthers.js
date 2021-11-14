@@ -264,6 +264,8 @@ ethereum.on("accountsChanged", async(accounts_)=>{
 });
 
 window.onload = async()=>{
+    await updateInfo();
+
     if (pendingTransactions.size <1) {
         await updateStakingInfo();
         // await getMiceImages();
