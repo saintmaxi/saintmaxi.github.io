@@ -189,10 +189,10 @@ select.dark {
     background-color: var(--main-dark-bg-color);
 }
 
-.mice-on-sale.dark {
+/* .mice-on-sale.dark {
     background-color: var(--main-dark-bg-color);
     border: outset var(--main-dark-border-color) .5em;
-}
+} */
 
 .mice-image.dark, .sold-mice-img.dark {
     background-color: var(--secondary-dark-bg-color);
@@ -201,7 +201,7 @@ select.dark {
 
 .mice-on-sale.dark:hover {
     background-color: #9494a5e1;
-    border: outset var(--main-dark-border-color) .5em;
+    /* border: outset var(--main-dark-border-color) .5em; */
     cursor: pointer;
   }
 
