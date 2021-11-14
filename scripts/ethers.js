@@ -499,7 +499,8 @@ const watchForBuy  = async () => {
     filter = marketplace.filters.MiceBought(null, null, null);
     marketplace.on(filter, async (id, price, seller, buyer, event) => {
         if (pendingTransactions.size == 0) {
-            await endLoading((await event.getTransaction()))
+            let sale = await getSaleHistoryItem(event);
+            $("#title-row").after(sale);
         }
     
     });
