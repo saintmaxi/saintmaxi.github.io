@@ -44,10 +44,6 @@ input:focus {
   color: var(--main-border-color);
 }
 
-#banner {
-  border-bottom: solid 16px var(--main-border-color);
-}
-
 .button {
   background-color: #4A69CE;
   border: .3em solid var(--main-border-color);
@@ -57,10 +53,9 @@ input:focus {
   font-size: 1.3vw;
   display: inline-block;
   background-color: var(--main-border-color);
-  height: 80px;
+  height:40%;
   width: 100%;
   text-align: center;
-  border-bottom: solid 1em var(--main-border-color);
 }
 
 #directory button {
@@ -73,6 +68,7 @@ input:focus {
   padding-top: 4px;
   width: 13.6%;
   height: 100%;
+  /* background-color: var(--main-border-color); */
 }
 
 #jump-to-directory {
