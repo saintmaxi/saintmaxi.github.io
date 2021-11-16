@@ -164,8 +164,8 @@ function getPriceText(_micePriceInETH) {
     if (_micePriceInETH == 0) {
         _priceText = "0";
     }
-    else if (_micePriceInETH < 0.0001) {
-        _priceText = "< 0.0001";
+    else if (_micePriceInETH < 0.001) {
+        _priceText = "< 0.001";
     }
     else if (_micePriceInETH > 1000) {
         _priceText = "> 1000";

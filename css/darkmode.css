@@ -1,7 +1,5 @@
 :root.dark {
     --main-dark-bg-color: #181719;
-    /* --secondary-dark-bg-color: #232830;
-     */
      --secondary-dark-bg-color: #26242B;
     --main-dark-border-color: #464545;
   }
@@ -152,16 +150,6 @@ div#wallet-div.body-div.dark {
     color: black;
 }
 
-/* .parent-images.dark img {
-    border: none;
-    background-color: var(--secondary-dark-bg-color);
-} */
-/* 
-.baby-img.dark svg{
-    border: solid white .3vw;
-    background-color: var(--secondary-dark-bg-color);
-} */
-
 #click-info-header.dark {
     color: white;
 }
@@ -203,13 +191,11 @@ select.dark {
 
 .mice-on-sale.dark:hover {
     background-color: #9494a5e1;
-    /* border: outset var(--main-dark-border-color) .5em; */
     cursor: pointer;
   }
 
 .mice-on-sale.dark.active {
     background-color: #9494a5e1;
-    /* border: outset var(--main-dark-border-color) .5em; */
     cursor: pointer;
 }
 
