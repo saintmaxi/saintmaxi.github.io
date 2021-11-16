@@ -72,7 +72,7 @@ const updateYourMarketMice = async() => {
             const _micePrice = _miceListing.price;
             const _micePriceInETH = formatEther(_micePrice);
             const _priceText = getPriceText(_micePriceInETH);
-            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"  style="border:none;background-color:transparent;"><div>#${_miceId}</div><div class="listed-mice-price">${_priceText}<span class="listing-eth-logo">Ξ</span></div></div>`;
+            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"  style="border:none;background-color:transparent;"><div>#${_miceId}</div><div class="listed-mice-price ${_darkClass}">${_priceText}<span class="listing-eth-logo">Ξ</span></div></div>`;
             $("#your-market-mice").append(_fakeJSX);
         };
     }
@@ -110,7 +110,7 @@ const updateMarketListings = async() => {
 
         const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
         _miceOnSale.toAddress = _miceListing.privateSaleAddress;
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div><div class="listed-mice-price">${_priceText}<span class="listing-eth-logo">Ξ</span></div></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div><div class="listed-mice-price ${_darkClass}">${_priceText}<span class="listing-eth-logo">Ξ</span></div></div>`;
         _miceOnSale.price = Number(_micePriceInETH);
         _miceOnSale.priceText = _priceText;
         _miceOnSale.privacy = _listingPrivacy;
