@@ -143,8 +143,8 @@ const updateMarketListings = async() => {
     if (floor == 0) {
         floor = "0";
     }
-    else if (floor < 0.0001) {
-        floor = "< 0.0001";
+    else if (floor < 0.001) {
+        floor = "< 0.001";
     }
     else if (floor == 9999999999999) {
         floor = "-";
