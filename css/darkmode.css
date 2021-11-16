@@ -253,6 +253,10 @@ select.dark {
     background-color: rgb(184, 184, 184);
 }
 
+th.dark {
+    background-color: var(--secondary-dark-bg-color);
+  }
+
 .sale-row.dark a, .sale-row.dark p{
     text-decoration: none;
     color: #a27fee;
