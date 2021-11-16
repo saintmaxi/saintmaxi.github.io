@@ -43,38 +43,38 @@ function resetFilters() {
     filters = new Map();
     $("select").each(function() { this.selectedIndex = 0 });
     $(".hidden").removeClass("hidden");
-    $("#filter-results-count").text(`${listedMice.size} Mice Found`);
-    let _listedMiceArray = Array.from(listedMice.values());
+    $("#filter-results-count").text(`${publicListingsCount} Mice Found`);
+    let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
     for (let i = 0; i < _listedMiceArray.length; i++) {
         let mouse = _listedMiceArray[i];
-        mouse.fakeJSX = $(`#${mouse.elementID}`).get(0).outerHTML;
+        mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
     }
 }
 
 function _filterTraits() {
     let keys = Array.from(filters.keys());
-    let _listedMiceArray = Array.from(listedMice.values());
+    let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
     for (let i = 0; i < keys.length; i++) {
         let type = keys[i];
         for (let i = 0; i < _listedMiceArray.length; i++) {
             let mouse = _listedMiceArray[i];
             if (mouse[type] != filters.get(type)) {
                 $(`#${mouse.elementID}`).addClass("hidden");
-                mouse.fakeJSX = $(`#${mouse.elementID}`).get(0).outerHTML;
+                mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
             } 
         }
     }
-    let displayed = listedMice.size - $(".mice-on-sale.hidden").length;
+    let displayed = publicListingsCount - $(".mice-on-sale.hidden").length;
     $("#filter-results-count").text(`${displayed} Mice Found`);
 }
 
 function _unfilterTraits(type, trait) {
-    let _listedMiceArray = Array.from(listedMice.values());
+    let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
     for (let i = 0; i < _listedMiceArray.length; i++) {
         let mouse = _listedMiceArray[i];
         if (mouse[type] != trait) {
             $(`#${mouse.elementID}`).removeClass("hidden");
-            mouse.fakeJSX = $(`#${mouse.elementID}`).get(0).outerHTML;
+            mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
         } 
     }
 }
@@ -104,7 +104,7 @@ function _populateFilters() {
 function sortBy(type) {
     $("#mice-on-sale-block").empty();
     let _listedMiceArray = Array.from(listedMice.values());
-    let _currentListings = _listedMiceArray;
+    let _currentListings = _listedMiceArray.filter(listing => listing.privacy == "Public");
     if (type == "PriceHighToLow") {
         _currentListings.sort((a, b) => (a.price < b.price) ? 1 : -1)
     }

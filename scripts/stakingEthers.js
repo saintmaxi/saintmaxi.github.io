@@ -168,7 +168,7 @@ const getMiceImages = async()=>{
             if (!miceObjectMap.get(_miceId)) {
                 new Mice(_miceId);
             }
-            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=selectForStaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div></div>`;
+            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=selectForStaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
             $("#available-mice-images").append(_fakeJSX);
         };
     }
@@ -184,7 +184,7 @@ const getMiceImages = async()=>{
             if (!miceObjectMap.get(_miceId)) {
                 new Mice(_miceId);
             }
-            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="staked-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div></div>`;
+            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="staked-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
             $("#staked-mice-images").append(_fakeJSX);
         };
     }
@@ -194,7 +194,7 @@ const updateStakingInfo = async()=>{
     if ((await getChainId()) === 1) {
         let darkClass = getDarkMode();
         await updateInfo();
-        const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING<br>STAKE-O-MATRON<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
+        const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING STAKE-O-MATRON<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
         $("#pending-transactions").append(loadingDiv);
 
         await updateApprovedStatus();

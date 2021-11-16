@@ -47,7 +47,7 @@ const updateAvailableMice = async() => {
     for (let i = 0; i < _miceInWallet.length; i++) {
         const _miceId = _miceInWallet[i];
         new Mice(_miceId);
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
         $("#your-mice").append(_fakeJSX);
     };
 };
@@ -72,25 +72,30 @@ const updateYourMarketMice = async() => {
             const _micePrice = _miceListing.price;
             const _micePriceInETH = formatEther(_micePrice);
             const _priceText = getPriceText(_micePriceInETH);
-            const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
-            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
+            const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="my-listed-mice-${_miceId}" onclick=showInfo(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"  style="border:none;background-color:transparent;"><div>#${_miceId}</div><div class="listed-mice-price">${_priceText}<span class="listing-eth-logo">Ξ</span></div></div>`;
             $("#your-market-mice").append(_fakeJSX);
         };
     }
 };
 
+var publicListingsCount = 0;
+var privateListingsCount = 0;
+
 // marketplace updater functions
 const updateMarketListings = async() => {
+    publicListingsCount = 0;
+    privateListingsCount = 0;
+
     console.log(`updating market listings`);
     const _currentMiceOnSale = await marketplace.getAllMiceOnSale();
 
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
 
     $("#mice-on-sale-block").empty();
+    $("#mice-on-sale-block-prvt").empty();
 
     let _darkClass = getDarkMode();
 
-    $("#filter-results-count").text(`${_currentMiceOnSale.length} Mice Found`);
 
     let floor = 9999999999999;
     listedMice = new Map();
@@ -103,21 +108,37 @@ const updateMarketListings = async() => {
 
         let _priceText = getPriceText(_micePriceInETH);
 
-        if (_micePriceInETH < floor) {
-            floor = _micePriceInETH;
-        }
-
         const _listingPrivacy = _miceListing.privateSaleAddress === "0x0000000000000000000000000000000000000000" ? "Public" : "Private";
         _miceOnSale.toAddress = _miceListing.privateSaleAddress;
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}"><div>#${_miceId}</div><div>${_priceText}<span class="listing-eth-logo">Ξ</span></div><div>${_listingPrivacy}</div></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${_miceId}" onclick=showInfo(${_miceId}) ><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div><div class="listed-mice-price">${_priceText}<span class="listing-eth-logo">Ξ</span></div></div>`;
         _miceOnSale.price = Number(_micePriceInETH);
         _miceOnSale.priceText = _priceText;
         _miceOnSale.privacy = _listingPrivacy;
         _miceOnSale.fakeJSX = _fakeJSX;
         listedMice.set(Number(_miceId), _miceOnSale);
-        $("#mice-on-sale-block").append(_fakeJSX); 
+        if (_listingPrivacy == "Public") {
+            $("#mice-on-sale-block").append(_fakeJSX); 
+            publicListingsCount+=1;
+            if (_micePriceInETH < floor) {
+                floor = _micePriceInETH;
+            }
+        }
+        else if (_miceListing.privateSaleAddress == (await getAddress())) {
+            $("#mice-on-sale-block-prvt").append(_fakeJSX); 
+            privateListingsCount += 1;
+        }
         floor = Number(Number(floor).toFixed(4));
     };
+
+    if (privateListingsCount > 0) {
+        $("#your-prvt-sales").removeClass("hidden");
+    }
+    else {
+        $("#your-prvt-sales").addClass("hidden");
+    }
+
+    $("#filter-results-count").text(`${publicListingsCount} Mice Found`);
+
 
     if (floor == 0) {
         floor = "0";

@@ -1,8 +1,8 @@
 :root.dark {
-    --main-dark-bg-color: #0A0A0B;
+    --main-dark-bg-color: #181719;
     /* --secondary-dark-bg-color: #232830;
      */
-     --secondary-dark-bg-color: #292F33;
+     --secondary-dark-bg-color: #26242B;
     --main-dark-border-color: #464545;
   }
 
@@ -11,20 +11,20 @@
 }
 
 body.dark {
-    background-color: var(--secondary-dark-bg-color);
+    background-color: var(--main-dark-bg-color);
 }
 
 input.dark {
     color: black;
-    border: solid var(--main-dark-border-color) .3em
+    border: solid var(--main-dark-border-color) .3vw;
 }
 
 input.dark:focus {
-    outline: white solid .25em;;
+    outline: white solid .1em;;
   }
 
 select.dark {
-    border: solid .3em var(--main-dark-border-color);
+    border: solid .3vw var(--main-dark-border-color);
   }
 
 #main-title.dark {
@@ -50,14 +50,20 @@ select.dark {
 #directory.dark {
     /* border-bottom: solid 1em var(--main-dark-border-color); */
     /* background-color: var(--main-dark-border-color); */
-    background-color: black;
+    background-color: var(--secondary-dark-bg-color);
 
 }
 
+.listed-mice-price.dark {
+    background-color: rgba(136, 90, 245, 0.637);
+}
+
 #jump-to-directory.dark {
-    background-color: var(--main-dark-border-color);
-    border-left: solid .3em black;
-    border-top: solid .3em black;
+    background-color: var(--secondary-dark-bg-color);
+    border-left: solid .3vw var(--main-dark-border-color);
+    border-top: solid .3vw var(--main-dark-border-color);
+    border-radius: .2em;
+    color:white;
 }
 
 #jump-to-directory.dark:hover {
@@ -65,12 +71,13 @@ select.dark {
   }
 
 #directory.dark button {
-    border: solid .3em #0A0A0B;
-    background-color: var(--main-dark-border-color);
+    border: solid .3vw var(--main-dark-bg-color);
+    background-color: rgba(136, 90, 245, 0.637);
+    
 }
 
 #directory.dark button:hover {
-    background-color: rgb(184, 184, 184);
+    background-color: rgba(190, 168, 241, 0.637);
 }
 
 .body-div.dark {
@@ -78,32 +85,25 @@ select.dark {
 }
 
 .body-section.dark {
-    background-color: var(--secondary-dark-bg-color);
+    background-color: var(--main-dark-bg-color);
 }
 
 .section.dark {
-    background-color: var(--main-dark-bg-color);
+    background-color: var(--secondary-dark-bg-color);
 }
 
 .footer.dark {
-    border-top: solid 16px var(--main-dark-border-color);
-    background-color: var(--main-dark-bg-color);
+    border-top: solid .3vw var(--main-dark-border-color);
+    background-color: var(--secondary-dark-bg-color);
 }
 
 div#wallet-div.body-div.dark {
-    background-color: var(--main-dark-bg-color);
-}
-
-hr.dark {
-    background-color: var(--main-dark-border-color);
-    border: 0 var(--main-dark-border-color);
-    margin:0;
-    padding: 8px;
+    background-color: var(--secondary-dark-bg-color);
 }
 
 #wallet.dark {
     background-color: var(--main-dark-border-color);
-    border: .3em solid white;
+    border: .3vw solid white;
     color: white;
 }
 
@@ -111,8 +111,12 @@ hr.dark {
     background-color:rgb(184, 184, 184);
 }
 
+#approveButton {
+    font-size: 1.3vw;
+}
+
 .stats-box.dark {
-    background-color: var(--main-dark-bg-color);
+    background-color: var(--secondary-dark-bg-color);
     border-color: var(--main-dark-border-color);
     border-style: outset;
 }
@@ -126,14 +130,14 @@ hr.dark {
 }
 
 #click-info.dark {
-    background-color: var(--main-dark-bg-color);
-    border: outset 1em #756e6e;
+    background-color: var(--secondary-dark-bg-color);
+    border: outset 1vw var(--main-dark-border-color);
 }
 
 #edit-prompt.dark, #create-listing-prompt.dark {
     color: white;
     background-color: var(--main-dark-bg-color);
-    border: outset 1em var(--main-dark-border-color);
+    border: outset 1vw var(--main-dark-border-color);
 }
 
 #edit-back.dark, #list-back.dark  {
@@ -148,15 +152,15 @@ hr.dark {
     color: black;
 }
 
-.parent-images.dark img {
-    border: solid white .3em;
+/* .parent-images.dark img {
+    border: none;
     background-color: var(--secondary-dark-bg-color);
-}
-
+} */
+/* 
 .baby-img.dark svg{
-    border: solid white .3em;
+    border: solid white .3vw;
     background-color: var(--secondary-dark-bg-color);
-}
+} */
 
 #click-info-header.dark {
     color: white;
@@ -164,7 +168,7 @@ hr.dark {
 
 .button.dark {
     background-color: var(--main-dark-border-color);
-    border: .3em solid white;
+    border: .3vw solid white;
 }
   
 .button.dark:hover{
@@ -173,18 +177,18 @@ hr.dark {
 
 select.dark {
     background-color: var(--main-dark-bg-color);
-    border: solid .3em white;
+    border: solid .3vw white;
     color: white;
 }
 
 .main-content.dark {
     padding: 15px;
-    border: outset var(--main-dark-border-color) 1em;
-    background-color: var(--main-dark-bg-color);
+    border: outset var(--main-dark-border-color) .3vw;
+    background-color: var(--secondary-dark-bg-color);
 }
 
 .main-content.dark .body-div.dark {
-    background-color: var(--main-dark-bg-color);
+    background-color: var(--main-secondary-bg-color);
 }
 
 /* .mice-on-sale.dark {
@@ -194,7 +198,7 @@ select.dark {
 
 .mice-image.dark, .sold-mice-img.dark {
     background-color: var(--secondary-dark-bg-color);
-    border: solid white .3em;
+    border: solid white .3vw;
 }
 
 .mice-on-sale.dark:hover {
@@ -211,7 +215,7 @@ select.dark {
 
 .info-image.dark {
     background-color: var(--secondary-dark-bg-color);
-    border: solid darkgray 1em;
+    border: solid darkgray 1vw;
     display: block;
     margin:auto;
 }
@@ -226,12 +230,8 @@ select.dark {
 }
 
 .trait-box-value.dark {
-    border: solid .2em white;
+    border: solid .3vw white;
 
-}
-
-.question.dark {
-    color: var(--main-dark-border-color);
 }
 
 .loading-div.dark {

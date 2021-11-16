@@ -10,6 +10,7 @@
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/anonymice-market.webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/faq.css" rel="stylesheet" type="text/css">
   <link href="css/darkmode.css" rel="stylesheet" type="text/css">
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
   <script
@@ -22,7 +23,7 @@
   <div class="section wf-section" id="header">
     <div class="w-container">
       <h1 class="heading" id="main-title">Anonymice Marketplace</h1>
-      <h4 class="heading-4">0% Royalties, 100% On-Chain</h4>
+      <p class="heading-4">0% Royalties, 100% On-Chain</p>
       <div id="toolbar">
         <svg id="darkmodetoggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
           onclick=addDark() class="text-gray-800 dark:text-white w-5 mr-2">
@@ -51,24 +52,31 @@
     <a href="breeding"><button class="button" onclick=cachePendingTransactions()>Breed</button></a>
     <a href="faq"><button class="button" onclick=cachePendingTransactions()>FAQ</button></a>
   </div>
-  <div class="body-section wf-section" id="faq">
-    <div class="w-container main-content">
+  <div class="body-section wf-section">
+    <div id="faq">
       <h2 class="heading-2">FAQ</h2>
-      <h4 class="question">> What is Anonymice?</h4>
+      <br>
+      <p class="question">> What is Anonymice?</p>
+      <br>
       <p class="answer">Anonymice is a collection of 3550 100% on-chain generative NFTs. All Mice data is stored
         entirely on the Ethereum blockchain. Whereas other projects relying on IPFS and
         APIs are susceptible to disappearing, Mice will persist into eternity.
       </p>
-      <h4 class="question">> Why should I use this marketplace over OpenSea?</h4>
-      <p class="answer">Anonymice Marketplace is completely <span
-          style="color:white;font-weight: bolder;">royalty-free</span>. The only fees users pay are to cover gas for
+      <br>
+      <p class="question">> Why should I use this marketplace over OpenSea?</p>
+      <br>
+      <p class="answer">Anonymice Marketplace is completely <span id="emphasize">royalty-free</span>. The only fees users pay are to cover gas for
         their transactions.</p>
-      <h4 class="question">> How many Mice are available to own?</h4>
+      <br>
+      <p class="question">> How many Mice are available to own?</p>
+      <br>
       <p class="answer">While OpenSea lists 10k items in the collection, only 3550 are available to own due to the
         unique burn-to-mint mechanic employed by the project.
         The rest, while still visible, are stored in an inaccessible burn address and effectively unavailable.
       </p>
-      <h4 class="question">> What can I do with my Mice?</h4>
+      <br>
+      <p class="question">> What can I do with my Mice?</p>
+      <br>
       <p class="answer">Currently, all adult Mice can be staked to earn one $CHEETH per day. $CHEETH is a utility token
         used within the Mice ecosystem.
         Owners can also stake two Mice in a separate breeding contract to create a baby Mice with traits linked to its
@@ -76,18 +84,24 @@
         to private Discord channels, including #mice-alpha for high-quality NFT information. Additional utility is
         constantly being added for Mice.
       </p>
-      <h4 class="question">> How is the holder count calculated?</h4>
+      <br>
+      <p class="question">> How is the holder count calculated?</p>
+      <br>
       <p class="answer">Because the CHEETH and breeding contracts take possession of all staked mice, these addresses
         are linked to thousands of mice. Typically, over 90% of all mice are staked at any given time,
         resulting in a misleadlingly low owner count on OpenSea. Thus, we use a custom script to calculate the true
         number of owners, which can be found here:
         <a href="https://gist.github.com/saintmaxi/75dac0ea88a9181ab4f467b5e40c61c0">Holder Calculation</a>.
       </p>
-      <h4 class="question" id="og-question"> What is an "OG" Anonymice?</h4>
+      <br>
+      <p class="question" id="og-question"> What is an "OG" Anonymice?</p>
+      <br>
       <p class="answer">An OG Anonymice is any Mice with an ID less than 2000. These Mice were the only ones mintable
         with ETH; the rest were minted with $CHEETH earned by staking Mice.
         OG Mice offer a slight advantage in breeding babies with rare traits.</p>
-      <h4 class="question" id="og-question"> Where can I find more resources?</h4>
+      <br>
+      <p class="question" id="og-question"> Where can I find more resources?</p>
+      <br>
       <p class="answer">A community member set up a <a href="https://anonymice.org/resources">website</a> with various
         Mice resources.
         <br>Our <a href="http://discord.gg/BAyzSyRsWF">Discord</a> is also a great place to ask questions.

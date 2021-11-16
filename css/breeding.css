@@ -35,8 +35,8 @@
     font-size: 1.3vw;
 }
 
-.parent-images p{
-    font-family: "Pixel Font";
+#approval-section {
+    font-size:1.3vw;
 }
 
 .parent-container input, .baby-container input{
@@ -55,19 +55,19 @@
 
 .mice-on-sale.active {
     /* border: outset grey .5em; */
-    background-color: #fcd17d;
+    background-color: #9dafec;
     cursor: pointer;
   }
 
 .parent-images img {
-    background-color: white;
-    border: solid var(--main-border-color) .3em;
+    border: none;
+    background-color: transparent;
     margin-bottom:5px;
 }
 
 .baby-img svg{
-    background-color: white;
-    border: solid var(--main-border-color) .3em;
+    border:none;
+    background-color: transparent;
     padding: 5px;
 }
 

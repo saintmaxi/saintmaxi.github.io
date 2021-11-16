@@ -1,0 +1,38 @@
+h2 {
+    font-size: 3vw;
+}
+
+#faq {
+    margin: auto;
+    width: 80%;
+}
+
+.question {
+    color: black;
+    font-size: 4.2vh;
+    line-height: 4.2vh;
+  }
+
+.question.dark {
+    color: rgb(204, 204, 204);
+}
+
+.answer {
+    font-size: 3vh;
+    line-height: 3vh;
+}
+
+#emphasize {
+    color: white;
+}
+
+#emphasize.dark {
+    color: rgb(136, 90, 245);
+}
+
+@media screen and (max-width: 600px){
+    h2 {
+        font-size: 4vh;
+    }
+}
+
