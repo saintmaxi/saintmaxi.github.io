@@ -215,7 +215,7 @@ select.dark {
 
 .info-image.dark {
     background-color: var(--secondary-dark-bg-color);
-    border: solid darkgray 1vw;
+    border: solid white .3vw;
     display: block;
     margin:auto;
 }
@@ -277,6 +277,6 @@ th.dark {
 /* mobile */
 @media screen and (max-width: 600px){
     #jump-to-directory.dark {
-        border-left: none;
+        border: solid .3vw var(--main-dark-border-color);
     }
 }

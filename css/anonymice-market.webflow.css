@@ -650,7 +650,6 @@ tr td:first-child {
 
 th {
   top: -5px;
-  z-index: 2;
   position: sticky;
   background-color: var(--main-bg-color);
 }
@@ -845,7 +844,7 @@ th {
     text-align: center;
     width: 100%;
     font-size: 3vw;
-    border-left: none;
+    border: solid .3vw var(--main-border-color);
   }
 
   #footer {
