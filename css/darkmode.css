@@ -255,7 +255,11 @@ select.dark {
 
 .sale-row.dark a, .sale-row.dark p{
     text-decoration: none;
-    color: rgb(0, 217, 255);
+    color: #a27fee;
+  }
+
+  .footer.dark a {
+    color: #a27fee;
   }
 
 #dark-twitter.dark {

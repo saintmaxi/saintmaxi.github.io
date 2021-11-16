@@ -654,6 +654,10 @@ tr td:first-child {
 
 }
 
+.footer a {
+  color: #2542a3;
+}
+
 #error-popup {
   background-color: var(--main-bg-color);
   z-index: 9999;
