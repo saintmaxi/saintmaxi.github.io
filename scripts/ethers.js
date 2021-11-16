@@ -143,8 +143,8 @@ const updateMarketListings = async() => {
     if (floor == 0) {
         floor = "0";
     }
-    else if (floor < 0.001) {
-        floor = "< 0.001";
+    else if (floor < 0.01) {
+        floor = "< 0.01";
     }
     else if (floor == 9999999999999) {
         floor = "-";
@@ -164,8 +164,8 @@ function getPriceText(_micePriceInETH) {
     if (_micePriceInETH == 0) {
         _priceText = "0";
     }
-    else if (_micePriceInETH < 0.001) {
-        _priceText = "< 0.001";
+    else if (_micePriceInETH < 0.01) {
+        _priceText = "< 0.01";
     }
     else if (_micePriceInETH > 1000) {
         _priceText = "> 1000";

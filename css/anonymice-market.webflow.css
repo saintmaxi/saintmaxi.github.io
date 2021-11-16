@@ -542,6 +542,10 @@ select:focus {
   height: 14vw;
 }
 
+#mobile-buttons {
+  display: none;
+}
+
 #traits {
   height: 40%;
   text-align: center;
@@ -963,7 +967,7 @@ th {
 
   .info-image {
     border: solid var(--main-border-color) .7em;
-    height:60%;
+    height:70%;
     width: initial;
 
     margin-top: 3vh;
@@ -979,19 +983,46 @@ th {
     width: 100%;
   }
 
+#img-container .button {
+  display: none;
+}
+
+#mobile-buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 10%;
+  text-align: center;
+}
+
+#mobile-buttons .button {
+  width: 95%;
+  height: 85%;
+  text-align: center;
+  font-size: 2.2vh;
+  position: initial;
+  margin: 5px;
+  margin-left: initial;
+  margin-right: initial;
+  transform: initial;
+  top: initial;
+  float: initial;
+}
+
   #traits {
-    height: 50%;
+    height: 40%;
   overflow-y: scroll;
   }
 
   .trait-box {
     width: 95%;
-    font-size: 2.3vh;
+    font-size: 2.2vh;
     height: 25%;
   }
 
   .trait-box-header {
-    padding-bottom: 2vh;
+    padding-top: .5vh;
     height: 40%;
   }
 
@@ -1015,7 +1046,7 @@ th {
   #spacer-content {
   bottom: 20%; 
 
-    font-size: 5vw;
+    font-size: 2.3vh;
   }
 
   #close {

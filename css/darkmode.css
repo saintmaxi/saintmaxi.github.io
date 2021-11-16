@@ -155,7 +155,7 @@ div#wallet-div.body-div.dark {
 }
 
 .button.dark {
-    background-color: var(--main-dark-border-color);
+    background-color: rgba(136, 90, 245, 0.637);
     border: .3vw solid white;
 }
   
@@ -264,5 +264,9 @@ th.dark {
 @media screen and (max-width: 600px){
     #jump-to-directory.dark {
         border: solid .3vw var(--main-dark-border-color);
+    }
+
+    .info-image.dark {
+        border: solid white .7em;
     }
 }
