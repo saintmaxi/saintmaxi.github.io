@@ -186,6 +186,10 @@ async function showInfo(miceID) {
         }
     }
     else {
+        if (_micePrice == null) {
+            _micePrice = "Not Listed"
+            _hidden = "hidden";
+        }
         buyButton = `<a href="#" class="button w-button" id="buy-button" onclick='closeInfo("click-info");connect()')>Connect Wallet to Buy</a>`;
     }
    
