@@ -436,7 +436,7 @@ const updateMarketplaceDetails = async() => {
         await updateAvailableMice();
         await updateMarketListings();
     }
-    if (window.location.pathname == "/index" || window.location.pathname == "/") {
+    if (window.location.pathname == "/activity") {
         await updateMarketListings();
         await updateYourMarketMice();
         await getSalesHistory();

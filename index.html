@@ -10,6 +10,7 @@
   <link href="css/normalize.css" rel="stylesheet" type="text/css">
   <link href="css/webflow.css" rel="stylesheet" type="text/css">
   <link href="css/anonymice-market.webflow.css" rel="stylesheet" type="text/css">
+  <link href="css/history.css" rel="stylesheet" type="text/css">
   <link href="css/darkmode.css" rel="stylesheet" type="text/css">
   <!-- [if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js" type="text/javascript"></script><![endif] -->
   <script
@@ -22,7 +23,7 @@
   <div class="section wf-section" id="header">
     <div class="w-container">
       <h1 class="heading" id="main-title">Anonymice Marketplace</h1>
-      <h4 class="heading-4">0% Royalties, 100% On-Chain</h4>
+      <!-- <h4 class="heading-4">0% Royalties, 100% On-Chain</h4> -->
       <div id="toolbar">
         <svg id="darkmodetoggle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor"
           onclick=addDark() class="text-gray-800 dark:text-white w-5 mr-2">
@@ -40,10 +41,11 @@
       <div class="body-div" id="wallet-div"><a href="#" id="wallet" class="button w-button"
           onclick=connect()><strong>Connect Wallet</strong></a></div><br>
     </div>
-    <img id='banner' width="100%" src="./images/banner.png">
+    <!-- <img id='banner' width="100%" src="./images/banner.png"> -->
   </div>
   <div id="directory">
-    <a href="index"><button class="button" onclick=cachePendingTransactions()>Activity</button></a>
+    <a href="index"><button class="button" onclick=cachePendingTransactions()>Home</button></a>
+    <a href="activity"><button class="button" onclick=cachePendingTransactions()>Activity</button></a>
     <a href="buy-mice"><button class="button" onclick=cachePendingTransactions()>Buy</button></a>
     <a href="create-listing"><button class="button" onclick=cachePendingTransactions()>Sell</button></a>
     <a href="edit-listing"><button class="button" onclick=cachePendingTransactions()>My Listings</button></a>
@@ -51,7 +53,136 @@
     <a href="breeding"><button class="button" onclick=cachePendingTransactions()>Breed</button></a>
     <a href="faq"><button class="button" onclick=cachePendingTransactions()>FAQ</button></a>
   </div>
-  <div class="body-section wf-section">
+  <br>
+  <br>
+  <!-- <img id='banner' width="100%" src="./images/banner.png"> -->
+  <div id="content">
+    <div id='first-block'>
+      <svg xmlns="http://www.w3.org/2000/svg" id="legend-mice" width="100%" height="100%"
+      xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1">
+      <image x="1" y="1" width="24" height="24" image-rendering="pixelated" preserveAspectRatio="xMidYMid"
+        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAAElBMVEUAAAAEBwc/NTWulnXXxqz/9NJwLPh3AAAAAXRSTlMAQObYZgAAAHpJREFUeF6tjtENwzAIRO0NoGIB02zgZAAnMECj3v6rNHGN1QF6P6enA470B2W+jamD4PLsrx4c9fJcv2B1oyTrgGNjlucY24tZq23siANxrQkAih43GEWrqSv/wk4BAM4AdX9jJstyzjHZVQuloLsn9CicpqR/OZNuH90xFDwIL4cgAAAAAElFTkSuQmCC" />
+      <style>
+        #legend-mice {
+          shape-rendering: crispedges;
+          image-rendering: -webkit-crisp-edges;
+          image-rendering: -moz-crisp-edges;
+          image-rendering: crisp-edges;
+          image-rendering: pixelated;
+          -ms-interpolation-mode: nearest-neighbor;
+        }
+      </style>
+    </svg>
+    <div id="intro"><p>> Hi, Mouse Dev here! Anonymice are generative NFTs stored entirely on the Ethereum blockchain.
+        They were mintable for free only from the contract.
+          No website. No IPFS. No API. No secondary royalties. Just code.
+         10000 were minted.
+         6450 were burned.
+         Only 3550 remain.
+      <br>Read on to learn more about the Anonymice project.
+    </p>
+    <p>
+      > Use this site for all your Anonymice needs. Buy and sell mice with NO ROYALTIES, stake for $CHEETH, and breed, all under one roof.
+    </p>
+    </div>
+    </div>
+    <br>
+    <br>
+    <div id="second-block">
+      <h1>Types of Anonymice</h1>
+      <div id="mice-types">
+        <div class='mouse-type'>
+          <h3 class="mice-type-label">Adult</h3>
+          <svg class="mouse-type-img" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 24 24"> <rect class='c00' x='9' y='20'/><rect class='c00' x='10' y='20'/><rect class='c00' x='10' y='21'/><rect class='c00' x='11' y='21'/><rect class='c00' x='12' y='21'/><rect class='c00' x='19' y='8'/><rect class='c00' x='19' y='9'/><rect class='c00' x='19' y='10'/><rect class='c00' x='19' y='11'/><rect class='c00' x='19' y='12'/><rect class='c00' x='19' y='13'/><rect class='c00' x='19' y='14'/><rect class='c00' x='19' y='15'/><rect class='c00' x='19' y='16'/><rect class='c00' x='19' y='17'/><rect class='c00' x='19' y='18'/><rect class='c00' x='18' y='19'/><rect class='c00' x='18' y='20'/><rect class='c00' x='17' y='21'/><rect class='c00' x='16' y='21'/><rect class='c00' x='15' y='21'/><rect class='c00' x='14' y='21'/><rect class='c00' x='13' y='21'/><rect class='c00' x='9' y='19'/><rect class='c00' x='8' y='19'/><rect class='c00' x='7' y='19'/><rect class='c00' x='6' y='19'/><rect class='c00' x='6' y='18'/><rect class='c00' x='5' y='17'/><rect class='c00' x='5' y='16'/><rect class='c00' x='5' y='15'/><rect class='c00' x='5' y='14'/><rect class='c00' x='5' y='13'/><rect class='c00' x='5' y='12'/><rect class='c00' x='5' y='11'/><rect class='c00' x='5' y='10'/><rect class='c00' x='6' y='10'/><rect class='c00' x='6' y='11'/><rect class='c00' x='6' y='12'/><rect class='c00' x='18' y='16'/><rect class='c00' x='17' y='17'/><rect class='c00' x='16' y='18'/><rect class='c00' x='15' y='18'/><rect class='c00' x='14' y='18'/><rect class='c00' x='13' y='18'/><rect class='c00' x='12' y='18'/><rect class='c00' x='11' y='18'/><rect class='c00' x='10' y='17'/><rect class='c00' x='10' y='16'/><rect class='c00' x='9' y='16'/><rect class='c00' x='8' y='15'/><rect class='c00' x='8' y='14'/><rect class='c00' x='7' y='13'/><rect class='c00' x='6' y='13'/><rect class='c00' x='6' y='7'/><rect class='c00' x='6' y='8'/><rect class='c00' x='6' y='9'/><rect class='c00' x='7' y='6'/><rect class='c00' x='7' y='7'/><rect class='c00' x='8' y='5'/><rect class='c00' x='9' y='5'/><rect class='c00' x='10' y='5'/><rect class='c00' x='11' y='5'/><rect class='c00' x='12' y='5'/><rect class='c00' x='13' y='5'/><rect class='c00' x='14' y='5'/><rect class='c00' x='15' y='5'/><rect class='c00' x='16' y='5'/><rect class='c00' x='16' y='6'/><rect class='c00' x='17' y='6'/><rect class='c22' x='11' y='20'/><rect class='c22' x='12' y='20'/><rect class='c22' x='13' y='20'/><rect class='c23' x='14' y='20'/><rect class='c23' x='15' y='20'/><rect class='c23' x='16' y='20'/><rect class='c23' x='17' y='20'/><rect class='c24' x='6' y='15'/><rect class='c24' x='6' y='16'/><rect class='c24' x='6' y='17'/><rect class='c24' x='7' y='16'/><rect class='c24' x='7' y='17'/><rect class='c24' x='7' y='18'/><rect class='c24' x='8' y='17'/><rect class='c25' x='6' y='14'/><rect class='c25' x='7' y='14'/><rect class='c25' x='7' y='15'/><rect class='c25' x='8' y='16'/><rect class='c25' x='9' y='17'/><rect class='c25' x='8' y='18'/><rect class='c26' x='9' y='18'/><rect class='c26' x='10' y='18'/><rect class='c26' x='10' y='19'/><rect class='c26' x='11' y='19'/><rect class='c26' x='12' y='19'/><rect class='c26' x='13' y='19'/><rect class='c26' x='18' y='17'/><rect class='c27' x='14' y='19'/><rect class='c27' x='15' y='19'/><rect class='c27' x='16' y='19'/><rect class='c27' x='17' y='19'/><rect class='c27' x='17' y='18'/><rect class='c38' x='18' y='18'/><rect class='c38' x='17' y='7'/><rect class='c38' x='17' y='8'/><rect class='c38' x='18' y='8'/><rect class='c37' x='16' y='7'/><rect class='c37' x='16' y='8'/><rect class='c37' x='17' y='9'/><rect class='c37' x='18' y='9'/><rect class='c28' x='7' y='8'/><rect class='c28' x='7' y='9'/><rect class='c28' x='7' y='10'/><rect class='c28' x='7' y='11'/><rect class='c28' x='7' y='12'/><rect class='c28' x='8' y='13'/><rect class='c28' x='9' y='14'/><rect class='c28' x='9' y='15'/><rect class='c29' x='8' y='6'/><rect class='c29' x='8' y='7'/><rect class='c29' x='8' y='8'/><rect class='c29' x='8' y='9'/><rect class='c29' x='8' y='10'/><rect class='c29' x='8' y='11'/><rect class='c29' x='8' y='12'/><rect class='c29' x='16' y='17'/><rect class='c29' x='15' y='17'/><rect class='c29' x='14' y='17'/><rect class='c29' x='13' y='17'/><rect class='c29' x='12' y='17'/><rect class='c29' x='11' y='17'/><rect class='c29' x='15' y='16'/><rect class='c29' x='14' y='16'/><rect class='c29' x='13' y='16'/><rect class='c29' x='12' y='16'/><rect class='c29' x='11' y='16'/><rect class='c29' x='11' y='15'/><rect class='c29' x='11' y='14'/><rect class='c29' x='10' y='14'/><rect class='c29' x='10' y='15'/><rect class='c29' x='10' y='13'/><rect class='c29' x='10' y='12'/><rect class='c29' x='10' y='11'/><rect class='c29' x='9' y='11'/><rect class='c29' x='9' y='12'/><rect class='c29' x='9' y='13'/><rect class='c30' x='9' y='10'/><rect class='c30' x='9' y='9'/><rect class='c30' x='9' y='8'/><rect class='c30' x='9' y='7'/><rect class='c30' x='9' y='6'/><rect class='c30' x='10' y='6'/><rect class='c30' x='11' y='11'/><rect class='c30' x='11' y='12'/><rect class='c30' x='11' y='13'/><rect class='c30' x='12' y='14'/><rect class='c30' x='12' y='15'/><rect class='c31' x='11' y='6'/><rect class='c31' x='12' y='6'/><rect class='c31' x='13' y='6'/><rect class='c31' x='10' y='7'/><rect class='c31' x='10' y='8'/><rect class='c31' x='10' y='9'/><rect class='c31' x='10' y='10'/><rect class='c31' x='11' y='10'/><rect class='c31' x='12' y='11'/><rect class='c31' x='12' y='12'/><rect class='c31' x='12' y='13'/><rect class='c31' x='13' y='14'/><rect class='c31' x='14' y='14'/><rect class='c31' x='14' y='15'/><rect class='c31' x='13' y='15'/><rect class='c31' x='15' y='15'/><rect class='c31' x='16' y='15'/><rect class='c31' x='16' y='16'/><rect class='c31' x='17' y='16'/><rect class='c32' x='18' y='15'/><rect class='c32' x='17' y='15'/><rect class='c32' x='17' y='14'/><rect class='c32' x='16' y='14'/><rect class='c32' x='15' y='14'/><rect class='c32' x='15' y='13'/><rect class='c32' x='14' y='13'/><rect class='c32' x='13' y='13'/><rect class='c32' x='13' y='12'/><rect class='c32' x='13' y='11'/><rect class='c32' x='13' y='10'/><rect class='c32' x='12' y='10'/><rect class='c32' x='12' y='9'/><rect class='c32' x='11' y='9'/><rect class='c32' x='11' y='8'/><rect class='c32' x='11' y='7'/><rect class='c32' x='13' y='7'/><rect class='c32' x='13' y='8'/><rect class='c32' x='13' y='9'/><rect class='c32' x='12' y='7'/><rect class='c32' x='12' y='8'/><rect class='c33' x='15' y='6'/><rect class='c33' x='14' y='6'/><rect class='c36' x='16' y='9'/><rect class='c36' x='16' y='10'/><rect class='c36' x='17' y='10'/><rect class='c36' x='17' y='11'/><rect class='c36' x='17' y='12'/><rect class='c37' x='18' y='11'/><rect class='c37' x='18' y='12'/><rect class='c37' x='18' y='10'/><rect class='c36' x='18' y='13'/><rect class='c35' x='18' y='14'/><rect class='c33' x='15' y='7'/><rect class='c33' x='14' y='8'/><rect class='c33' x='14' y='9'/><rect class='c33' x='14' y='10'/><rect class='c33' x='14' y='11'/><rect class='c33' x='14' y='12'/><rect class='c33' x='14' y='7'/><rect class='c33' x='15' y='8'/><rect class='c33' x='15' y='9'/><rect class='c33' x='15' y='10'/><rect class='c33' x='15' y='11'/><rect class='c33' x='15' y='12'/><rect class='c33' x='16' y='11'/><rect class='c33' x='16' y='12'/><rect class='c33' x='16' y='13'/><rect class='c33' x='17' y='13'/><rect class='c00' x='19' y='19'/><rect class='c00' x='8' y='20'/><rect class='c00' x='18' y='7'/><rect class='c00' x='8' y='21'/><rect class='c00' x='8' y='22'/><rect class='c00' x='8' y='23'/><rect class='c00' x='7' y='20'/><rect class='c00' x='4' y='11'/><rect class='c00' x='3' y='10'/><rect class='c00' x='2' y='9'/><rect class='c00' x='2' y='8'/><rect class='c00' x='3' y='7'/><rect class='c00' x='3' y='6'/><rect class='c00' x='4' y='5'/><rect class='c00' x='5' y='5'/><rect class='c00' x='6' y='5'/><rect class='c00' x='18' y='5'/><rect class='c00' x='19' y='5'/><rect class='c00' x='20' y='5'/><rect class='c00' x='21' y='6'/><rect class='c00' x='22' y='7'/><rect class='c00' x='22' y='8'/><rect class='c00' x='21' y='9'/><rect class='c00' x='20' y='10'/><rect class='c00' x='12' y='22'/><rect class='c00' x='12' y='23'/><rect class='c01' x='9' y='21'/><rect class='c01' x='9' y='22'/><rect class='c01' x='9' y='23'/><rect class='c01' x='20' y='9'/><rect class='c01' x='21' y='7'/><rect class='c01' x='21' y='8'/><rect class='c01' x='20' y='6'/><rect class='c01' x='19' y='6'/><rect class='c01' x='18' y='6'/><rect class='c01' x='6' y='6'/><rect class='c01' x='5' y='6'/><rect class='c01' x='4' y='6'/><rect class='c01' x='3' y='8'/><rect class='c01' x='3' y='9'/><rect class='c01' x='4' y='10'/><rect class='c03' x='4' y='7'/><rect class='c03' x='4' y='8'/><rect class='c03' x='4' y='9'/><rect class='c03' x='20' y='7'/><rect class='c03' x='20' y='8'/><rect class='c04' x='5' y='7'/><rect class='c04' x='5' y='8'/><rect class='c04' x='5' y='9'/><rect class='c04' x='19' y='7'/><rect class='c02' x='11' y='22'/><rect class='c02' x='11' y='23'/><rect class='c02' x='10' y='23'/><rect class='c02' x='10' y='22'/><style>rect{width:1px;height:1px;} #mouse-svg{shape-rendering: crispedges;} .c00{fill:#000000}.c01{fill:#B1ADAC}.c02{fill:#D7D7D7}.c03{fill:#FFA6A6}.c04{fill:#FFD4D5}.c05{fill:#B9AD95}.c06{fill:#E2D6BE}.c07{fill:#7F625A}.c08{fill:#A58F82}.c09{fill:#4B1E0B}.c10{fill:#6D2C10}.c11{fill:#D8D8D8}.c12{fill:#F5F5F5}.c13{fill:#433D4B}.c14{fill:#8D949C}.c15{fill:#05FF00}.c16{fill:#01C700}.c17{fill:#0B8F08}.c18{fill:#421C13}.c19{fill:#6B392A}.c20{fill:#A35E40}.c21{fill:#DCBD91}.c22{fill:#777777}.c23{fill:#848484}.c24{fill:#ABABAB}.c25{fill:#BABABA}.c26{fill:#C7C7C7}.c27{fill:#EAEAEA}.c28{fill:#0C76AA}.c29{fill:#0E97DB}.c30{fill:#10A4EC}.c31{fill:#13B0FF}.c32{fill:#2EB9FE}.c33{fill:#54CCFF}.c34{fill:#50C0F2}.c35{fill:#54CCFF}.c36{fill:#72DAFF}.c37{fill:#B6EAFF}.c38{fill:#FFFFFF}.c39{fill:#954546}.c40{fill:#0B87F7}.c41{fill:#FF2626}.c42{fill:#180F02}.c43{fill:#2B2319}.c44{fill:#FBDD4B}.c45{fill:#F5B923}.c46{fill:#CC8A18}.c47{fill:#3C2203}.c48{fill:#53320B}.c49{fill:#7B501D}.c50{fill:#FFE646}.c51{fill:#FFD627}.c52{fill:#F5B700}.c53{fill:#242424}.c54{fill:#4A4A4A}.c55{fill:#676767}.c56{fill:#F08306}.c57{fill:#FCA30E}.c58{fill:#FEBC0E}.c59{fill:#FBEC1C}.c60{fill:#14242F}.c61{fill:#B06837}.c62{fill:#8F4B0E}.c63{fill:#D88227}.c64{fill:#B06837}</style></svg>
+          <p>The first collection of Anonymice. 10000 were initially available, but the unique burn-to-mint mechanic lead to
+            the burning of all but 3550. The rest exist at an inaccessible burn address, effectively removed from supply. All adults produce 1 $CHEETH per day
+            when staked, a utility token used in the mice ecosystem. $CHEETH uses have included minting and breeding, with more coming in future Anonymice collections.
+          </p><br>
+          <a href="https://etherscan.io/address/0xbad6186e92002e312078b5a1dafd5ddf63d3f731" class="contract-link">Link to Contract</a>
+        </div>
+        <div class='mouse-type'>
+          <h3 class="mice-type-label">Baby/Incubator</h3>
+          <svg class="mouse-type-img" xmlns="http://www.w3.org/2000/svg"
+            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1">
+            <image x="0" y="0" width="24" height="24" image-rendering="pixelated" preserveAspectRatio="xMidYMid"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAAKlBMVEUAAAAHCQlboNeOcm2RlLeUcWK+mYnQrp7X7Pva3+3p7Pby08X6zM396eHVJQHsAAAAAXRSTlMAQObYZgAAAKFJREFUeF6tzaEOwjAQBuA2e4H+oc2y8AJIkiZgMJOTFcU0WNAznAAMz4DiLTBzE/OYKhTvwjhub8CZ/77c5U79oTS+gGGU/Zj6lXlwoDwi1oxtezHKBUFVAq4CIzR13OU6MKJ1af+Way64jnoz/YkdnQRKJ09+AtKVFhkMvZ4f6TkMP6zgic6yBwvvN4LCNgAES23vN+5ZAIoJatZyCB6MDwMcH6ZZm1ufAAAAAElFTkSuQmCC" />
+            <style>
+              #legend-mice {
+                shape-rendering: crispedges;
+                image-rendering: -webkit-crisp-edges;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: crisp-edges;
+                image-rendering: pixelated;
+                -ms-interpolation-mode: nearest-neighbor;
+              }
+            </style>
+          </svg>
+          <p>A collection of 3550 babies mintable by breeding two adults. 
+            It costs 50 $CHEETH to breed, and after 7 days the new baby can be revealed. 
+            Baby mice owners get the same special Discord access as adults, including the #mice-alpha channel.
+             Lucky breeders will reveal 1 of 9 legendary babies, each with 
+            a special 1-of-1 design like the Robomouse pictured above. Future utility including parents and babies
+            has been hinted at.</p><br>
+            <a href="https://etherscan.io/address/0x15cc16bfe6fac624247490aa29b6d632be549f00" class="contract-link">Link to Contract</a>
+        </div>
+      </div>
+    </div>
+    <div id="third-block">
+      <h1>Dev Team</h1>
+      <div id="mice-types">
+        <div class='mouse-dev'>
+          <h3 class="mice-type-label">Mouse Dev</h3>
+          <svg xmlns="http://www.w3.org/2000/svg" class="mouse-dev-img" 
+            xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 24 24" version="1.1">
+            <image x="0" y="0" width="24" height="24" image-rendering="pixelated" preserveAspectRatio="xMidYMid"
+              xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYBAMAAAASWSDLAAAAElBMVEUAAAAEBwc/NTWulnXXxqz/9NJwLPh3AAAAAXRSTlMAQObYZgAAAHpJREFUeF6tjtENwzAIRO0NoGIB02zgZAAnMECj3v6rNHGN1QF6P6enA470B2W+jamD4PLsrx4c9fJcv2B1oyTrgGNjlucY24tZq23siANxrQkAih43GEWrqSv/wk4BAM4AdX9jJstyzjHZVQuloLsn9CicpqR/OZNuH90xFDwIL4cgAAAAAElFTkSuQmCC" />
+            <style>
+              #legend-mice {
+                shape-rendering: crispedges;
+                image-rendering: -webkit-crisp-edges;
+                image-rendering: -moz-crisp-edges;
+                image-rendering: crisp-edges;
+                image-rendering: pixelated;
+                -ms-interpolation-mode: nearest-neighbor;
+              }
+            </style>
+          </svg>
+          <!-- <p>The first collection of Anonymice. 10000 were initially available, but the unique burn-to-mint mechanic lead to
+            the burning of all but 3550. The rest exist at an inaccessible burn address, effectively removed from supply. All adults produce 1 $CHEETH per day
+            when staked, a utility token used in the mice ecosystem. $CHEETH uses have included minting and breeding, with more coming in future Anonymice collections.
+          </p><br> -->
+          <p style="text-align: center;">Core Team</p>
+          <a href="https://twitter.com/AnonymiceNFT" class="contract-link">Twitter</a>
+        </div>
+        <div class='mouse-dev'>
+          <h3 class="mice-type-label">0xInuarashi</h3>
+          <svg class="mouse-dev-img" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMinYMin meet" viewBox="0 0 24 24"> <rect class='c50' x='7' y='3'/><rect class='c50' x='8' y='3'/><rect class='c50' x='8' y='2'/><rect class='c51' x='9' y='2'/><rect class='c51' x='9' y='4'/><rect class='c50' x='11' y='4'/><rect class='c50' x='12' y='4'/><rect class='c50' x='13' y='4'/><rect class='c50' x='14' y='4'/><rect class='c50' x='17' y='3'/><rect class='c50' x='11' y='2'/><rect class='c50' x='12' y='2'/><rect class='c50' x='13' y='2'/><rect class='c50' x='14' y='2'/><rect class='c51' x='15' y='2'/><rect class='c51' x='16' y='2'/><rect class='c52' x='16' y='4'/><rect class='c51' x='15' y='4'/><rect class='c51' x='8' y='4'/><rect class='c50' x='10' y='4'/><rect class='c50' x='10' y='2'/><rect class='c00' x='10' y='16'/><rect class='c00' x='9' y='15'/><rect class='c00' x='9' y='17'/><rect class='c00' x='15' y='16'/><rect class='c00' x='16' y='15'/><rect class='c00' x='16' y='17'/><rect class='c39' x='5' y='11'/><rect class='c18' x='5' y='10'/><rect class='c18' x='6' y='11'/><rect class='c18' x='5' y='12'/><rect class='c18' x='4' y='11'/><rect class='c38' x='19' y='12'/><rect class='c41' x='16' y='12'/><rect class='c41' x='17' y='12'/><rect class='c41' x='18' y='12'/><rect class='c41' x='15' y='12'/><rect class='c38' x='14' y='12'/><rect class='c38' x='13' y='12'/><rect class='c38' x='12' y='12'/><rect class='c40' x='10' y='12'/><rect class='c40' x='11' y='12'/><rect class='c38' x='7' y='10'/><rect class='c38' x='8' y='10'/><rect class='c38' x='9' y='10'/><rect class='c38' x='10' y='10'/><rect class='c38' x='11' y='10'/><rect class='c38' x='12' y='10'/><rect class='c38' x='13' y='10'/><rect class='c38' x='14' y='10'/><rect class='c38' x='15' y='10'/><rect class='c38' x='16' y='10'/><rect class='c38' x='17' y='10'/><rect class='c38' x='18' y='10'/><rect class='c38' x='19' y='10'/><rect class='c40' x='8' y='11'/><rect class='c40' x='8' y='12'/><rect class='c40' x='9' y='12'/><rect class='c40' x='9' y='11'/><rect class='c40' x='10' y='11'/><rect class='c40' x='11' y='11'/><rect class='c41' x='15' y='11'/><rect class='c41' x='16' y='11'/><rect class='c41' x='17' y='11'/><rect class='c41' x='18' y='11'/><rect class='c38' x='7' y='11'/><rect class='c38' x='7' y='12'/><rect class='c38' x='7' y='13'/><rect class='c38' x='8' y='13'/><rect class='c38' x='9' y='13'/><rect class='c38' x='10' y='13'/><rect class='c38' x='11' y='13'/><rect class='c38' x='12' y='11'/><rect class='c38' x='13' y='11'/><rect class='c38' x='14' y='11'/><rect class='c38' x='15' y='13'/><rect class='c38' x='16' y='13'/><rect class='c38' x='17' y='13'/><rect class='c38' x='18' y='13'/><rect class='c38' x='19' y='13'/><rect class='c38' x='19' y='11'/><rect class='c38' x='12' y='13'/><rect class='c38' x='14' y='13'/><rect class='c39' x='14' y='19'/><rect class='c39' x='15' y='18'/><rect class='c38' x='14' y='18'/><rect class='c39' x='13' y='19'/><rect class='c39' x='12' y='18'/><rect class='c38' x='13' y='18'/><rect class='c03' x='14' y='15'/><rect class='c00' x='8' y='21'/><rect class='c00' x='8' y='22'/><rect class='c00' x='8' y='23'/><rect class='c00' x='7' y='20'/><rect class='c00' x='7' y='19'/><rect class='c00' x='7' y='18'/><rect class='c00' x='7' y='17'/><rect class='c00' x='7' y='16'/><rect class='c00' x='7' y='15'/><rect class='c00' x='7' y='14'/><rect class='c00' x='6' y='12'/><rect class='c00' x='3' y='10'/><rect class='c00' x='2' y='9'/><rect class='c00' x='2' y='8'/><rect class='c00' x='3' y='7'/><rect class='c00' x='3' y='6'/><rect class='c00' x='4' y='5'/><rect class='c00' x='5' y='5'/><rect class='c00' x='6' y='5'/><rect class='c00' x='7' y='6'/><rect class='c00' x='8' y='7'/><rect class='c00' x='9' y='6'/><rect class='c00' x='10' y='6'/><rect class='c00' x='11' y='6'/><rect class='c00' x='12' y='6'/><rect class='c00' x='13' y='6'/><rect class='c00' x='14' y='6'/><rect class='c00' x='15' y='6'/><rect class='c00' x='16' y='7'/><rect class='c00' x='17' y='6'/><rect class='c00' x='18' y='5'/><rect class='c00' x='19' y='5'/><rect class='c00' x='20' y='5'/><rect class='c00' x='21' y='6'/><rect class='c00' x='22' y='7'/><rect class='c00' x='22' y='8'/><rect class='c00' x='21' y='9'/><rect class='c00' x='20' y='10'/><rect class='c00' x='17' y='14'/><rect class='c00' x='17' y='15'/><rect class='c00' x='17' y='16'/><rect class='c00' x='17' y='17'/><rect class='c00' x='17' y='18'/><rect class='c00' x='17' y='19'/><rect class='c00' x='16' y='20'/><rect class='c00' x='15' y='21'/><rect class='c00' x='14' y='21'/><rect class='c00' x='13' y='21'/><rect class='c00' x='12' y='21'/><rect class='c00' x='12' y='22'/><rect class='c00' x='12' y='23'/><rect class='c01' x='9' y='21'/><rect class='c01' x='9' y='22'/><rect class='c01' x='9' y='23'/><rect class='c01' x='8' y='20'/><rect class='c01' x='8' y='19'/><rect class='c01' x='8' y='18'/><rect class='c01' x='8' y='17'/><rect class='c01' x='8' y='16'/><rect class='c01' x='8' y='15'/><rect class='c01' x='8' y='14'/><rect class='c01' x='8' y='9'/><rect class='c01' x='8' y='8'/><rect class='c01' x='9' y='8'/><rect class='c01' x='9' y='7'/><rect class='c01' x='10' y='7'/><rect class='c01' x='11' y='7'/><rect class='c01' x='12' y='7'/><rect class='c01' x='13' y='7'/><rect class='c01' x='14' y='7'/><rect class='c01' x='15' y='7'/><rect class='c01' x='17' y='7'/><rect class='c01' x='17' y='8'/><rect class='c01' x='17' y='9'/><rect class='c01' x='20' y='9'/><rect class='c01' x='21' y='7'/><rect class='c01' x='21' y='8'/><rect class='c01' x='20' y='6'/><rect class='c01' x='19' y='6'/><rect class='c01' x='18' y='6'/><rect class='c01' x='6' y='6'/><rect class='c01' x='5' y='6'/><rect class='c01' x='4' y='6'/><rect class='c01' x='3' y='8'/><rect class='c01' x='3' y='9'/><rect class='c01' x='4' y='10'/><rect class='c03' x='4' y='7'/><rect class='c03' x='4' y='8'/><rect class='c03' x='4' y='9'/><rect class='c03' x='6' y='10'/><rect class='c03' x='20' y='7'/><rect class='c03' x='20' y='8'/><rect class='c03' x='19' y='9'/><rect class='c03' x='18' y='9'/><rect class='c04' x='5' y='7'/><rect class='c04' x='6' y='7'/><rect class='c04' x='7' y='7'/><rect class='c04' x='7' y='8'/><rect class='c04' x='7' y='9'/><rect class='c04' x='5' y='8'/><rect class='c04' x='6' y='8'/><rect class='c04' x='6' y='9'/><rect class='c04' x='5' y='9'/><rect class='c04' x='18' y='7'/><rect class='c04' x='19' y='7'/><rect class='c04' x='19' y='8'/><rect class='c04' x='18' y='8'/><rect class='c02' x='10' y='8'/><rect class='c02' x='11' y='8'/><rect class='c02' x='12' y='8'/><rect class='c02' x='13' y='8'/><rect class='c02' x='14' y='8'/><rect class='c02' x='15' y='8'/><rect class='c02' x='16' y='8'/><rect class='c02' x='16' y='9'/><rect class='c02' x='16' y='14'/><rect class='c02' x='16' y='16'/><rect class='c02' x='16' y='18'/><rect class='c02' x='16' y='19'/><rect class='c02' x='15' y='19'/><rect class='c02' x='15' y='17'/><rect class='c02' x='15' y='15'/><rect class='c02' x='15' y='14'/><rect class='c02' x='15' y='9'/><rect class='c02' x='14' y='9'/><rect class='c02' x='14' y='14'/><rect class='c02' x='14' y='16'/><rect class='c02' x='14' y='17'/><rect class='c02' x='13' y='17'/><rect class='c02' x='13' y='16'/><rect class='c02' x='13' y='15'/><rect class='c02' x='13' y='14'/><rect class='c02' x='13' y='13'/><rect class='c02' x='13' y='9'/><rect class='c02' x='12' y='9'/><rect class='c02' x='12' y='14'/><rect class='c02' x='12' y='15'/><rect class='c02' x='12' y='16'/><rect class='c02' x='12' y='17'/><rect class='c02' x='12' y='19'/><rect class='c02' x='11' y='19'/><rect class='c02' x='11' y='18'/><rect class='c02' x='11' y='17'/><rect class='c02' x='11' y='16'/><rect class='c02' x='11' y='15'/><rect class='c02' x='11' y='14'/><rect class='c02' x='11' y='9'/><rect class='c02' x='10' y='9'/><rect class='c02' x='10' y='14'/><rect class='c02' x='10' y='15'/><rect class='c02' x='10' y='17'/><rect class='c02' x='10' y='18'/><rect class='c02' x='10' y='19'/><rect class='c02' x='9' y='19'/><rect class='c02' x='9' y='18'/><rect class='c02' x='9' y='16'/><rect class='c02' x='9' y='14'/><rect class='c02' x='9' y='9'/><rect class='c02' x='9' y='20'/><rect class='c02' x='10' y='20'/><rect class='c02' x='11' y='20'/><rect class='c02' x='12' y='20'/><rect class='c02' x='13' y='20'/><rect class='c02' x='14' y='20'/><rect class='c02' x='15' y='20'/><rect class='c02' x='10' y='21'/><rect class='c02' x='11' y='21'/><rect class='c02' x='11' y='22'/><rect class='c02' x='11' y='23'/><rect class='c02' x='10' y='23'/><rect class='c02' x='10' y='22'/><style>rect{width:1px;height:1px;} #mouse-svg{shape-rendering: crispedges;} .c00{fill:#000000}.c01{fill:#B1ADAC}.c02{fill:#D7D7D7}.c03{fill:#FFA6A6}.c04{fill:#FFD4D5}.c05{fill:#B9AD95}.c06{fill:#E2D6BE}.c07{fill:#7F625A}.c08{fill:#A58F82}.c09{fill:#4B1E0B}.c10{fill:#6D2C10}.c11{fill:#D8D8D8}.c12{fill:#F5F5F5}.c13{fill:#433D4B}.c14{fill:#8D949C}.c15{fill:#05FF00}.c16{fill:#01C700}.c17{fill:#0B8F08}.c18{fill:#421C13}.c19{fill:#6B392A}.c20{fill:#A35E40}.c21{fill:#DCBD91}.c22{fill:#777777}.c23{fill:#848484}.c24{fill:#ABABAB}.c25{fill:#BABABA}.c26{fill:#C7C7C7}.c27{fill:#EAEAEA}.c28{fill:#0C76AA}.c29{fill:#0E97DB}.c30{fill:#10A4EC}.c31{fill:#13B0FF}.c32{fill:#2EB9FE}.c33{fill:#54CCFF}.c34{fill:#50C0F2}.c35{fill:#54CCFF}.c36{fill:#72DAFF}.c37{fill:#B6EAFF}.c38{fill:#FFFFFF}.c39{fill:#954546}.c40{fill:#0B87F7}.c41{fill:#FF2626}.c42{fill:#180F02}.c43{fill:#2B2319}.c44{fill:#FBDD4B}.c45{fill:#F5B923}.c46{fill:#CC8A18}.c47{fill:#3C2203}.c48{fill:#53320B}.c49{fill:#7B501D}.c50{fill:#FFE646}.c51{fill:#FFD627}.c52{fill:#F5B700}.c53{fill:#242424}.c54{fill:#4A4A4A}.c55{fill:#676767}.c56{fill:#F08306}.c57{fill:#FCA30E}.c58{fill:#FEBC0E}.c59{fill:#FBEC1C}.c60{fill:#14242F}.c61{fill:#B06837}.c62{fill:#8F4B0E}.c63{fill:#D88227}.c64{fill:#B06837}</style></svg>
+          <!-- <p>A collection of 3550 babies mintable by breeding two adults. 
+            It costs 50 $CHEETH to breed, and after 7 days the new baby can be revealed. 
+            Baby mice owners get the same special Discord access as adults, including the #mice-alpha channel.
+             Lucky breeders will reveal 1 of 9 legendary babies, each with 
+            a special 1-of-1 design like the Robomouse pictured above. Future utility including parents and babies
+            has been hinted at.</p><br> -->
+            <p style="text-align: center;">Core Team</p>
+            <a href="https://twitter.com/0xInuarashi" class="contract-link">Twitter</a>
+        </div>
+        <div class='mouse-dev'>
+          <h3 class="mice-type-label">Community</h3>
+          <img src="./images/mystery.png" class="mouse-dev-img">
+          <!-- <p>A collection of 3550 babies mintable by breeding two adults. 
+            It costs 50 $CHEETH to breed, and after 7 days the new baby can be revealed. 
+            Baby mice owners get the same special Discord access as adults, including the #mice-alpha channel.
+             Lucky breeders will reveal 1 of 9 legendary babies, each with 
+            a special 1-of-1 design like the Robomouse pictured above. Future utility including parents and babies
+            has been hinted at.</p><br> -->
+            <p>Community devs have contributed heavily to the project, including this marketplace.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  
+  <!-- <div class="body-section wf-section">
     <div class="w-container">
       <div class="w-row" id="collection-stats">
         <div class="w-col-3 stats-box">
@@ -80,8 +211,8 @@
         </div>
       </div>
     </div>
-  </div>
-    <div class="body-section wf-section">
+  </div> -->
+    <!-- <div class="body-section wf-section">
     <div class="main-content" id="mice-sales-container">
       <h1 class="heading-1">Sales History</h1>
       <div id="table-div">
@@ -98,7 +229,7 @@
       <div class="sale-row"><h1><span class="one">.</span><span class="two">.</span><span class="three">.</span></h1></div>
 
     </div>
-  </div>
+  </div> -->
 
   <div class="footer wf-section" id="footer">
     <div class="w-container">
