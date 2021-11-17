@@ -450,7 +450,9 @@ const updateMarketplaceDetails = async() => {
     }
     if (window.location.pathname == "/activity") {
         await updateMarketListings();
-        await updateYourMarketMice();
+        if (connected) {
+            await updateYourMarketMice();
+        }
         await getSalesHistory();
     }
     if (window.location.pathname == "/buy-mice") {
