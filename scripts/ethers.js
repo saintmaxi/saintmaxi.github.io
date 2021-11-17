@@ -19,10 +19,15 @@ const marketplaceAbi = () => {
 const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
 const signer = provider.getSigner();
 
-const anonymice = new ethers.Contract(anonymiceAddress, anonymiceAbi(), signer);
-const marketplace = new ethers.Contract(marketplaceAddress, marketplaceAbi(), signer);
+var anonymice = new ethers.Contract(anonymiceAddress, anonymiceAbi(), provider);
+var marketplace = new ethers.Contract(marketplaceAddress, marketplaceAbi(), provider);
 
-const connect = async() => { await provider.send("eth_requestAccounts", []) };
+const connect = async() => { 
+    await provider.send("eth_requestAccounts", []);
+    connected = true;
+    anonymice = new ethers.Contract(anonymiceAddress, anonymiceAbi(), signer);
+    marketplace = new ethers.Contract(marketplaceAddress, marketplaceAbi(), signer);
+};
 
 const getAddress = async() => { return await signer.getAddress() };
 
@@ -123,12 +128,18 @@ const updateMarketListings = async() => {
                 floor = _micePriceInETH;
             }
         }
-        else if (_miceListing.privateSaleAddress == (await getAddress())) {
-            $("#mice-on-sale-block-prvt").append(_fakeJSX); 
-            privateListingsCount += 1;
+        else {
+            if (connected) {
+                if (_miceListing.privateSaleAddress == (await getAddress())) {
+                    $("#mice-on-sale-block-prvt").append(_fakeJSX); 
+                    privateListingsCount += 1;
+                }
+            }
         }
         floor = Number(Number(floor).toFixed(4));
     };
+
+    sortBy("PriceLowToHigh");
 
     if (privateListingsCount > 0) {
         $("#your-prvt-sales").removeClass("hidden");
@@ -204,7 +215,7 @@ const approveMiceToMarketplace = async() => {
 
 const checkApprovalOfMice = async() => {
     if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-        displayErrorMessage(`Error: You must set approval for marketplace.`);
+        // displayErrorMessage(`Error: You must set approval for marketplace.`);
         $("#market-approval-section").removeClass("hidden");
         return false;
     } else {
@@ -423,7 +434,6 @@ const updateStats = async() => {
 }
 
 const updateMarketplaceDetails = async() => {
-    if (!(await getAddress())) return;
 
     loading = true;
     let darkClass = getDarkMode();
@@ -431,7 +441,9 @@ const updateMarketplaceDetails = async() => {
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
     $("#pending-transactions").append(loadingDiv);
     await updateStats();
-    await updateInfo();
+    if (connected) {
+        await updateInfo();
+    }
     if (window.location.pathname == "/create-listing") {
         await updateAvailableMice();
         await updateMarketListings();
@@ -443,7 +455,6 @@ const updateMarketplaceDetails = async() => {
     }
     if (window.location.pathname == "/buy-mice") {
         await updateMarketListings();
-        sortBy("PriceLowToHigh");
     }
     if (window.location.pathname == "/edit-listing") {
         await updateMarketListings();
@@ -509,7 +520,12 @@ async function endLoading(tx, txStatus) {
 }
 
 setInterval( async() => {
-    await updateInfo();
+    try {
+        await updateInfo();
+    }
+    catch {
+        console.log("Not connected")
+    }
 }, 5000)
 
 ethereum.on("accountsChanged", async (accounts_) => { 
@@ -534,9 +550,18 @@ const watching = async () => {
 
 watching()
 
+var connected = false;
 
 window.onload = async() => {
-    await updateInfo();
+    try {
+        await updateInfo();
+        connected = true;
+        anonymice = new ethers.Contract(anonymiceAddress, anonymiceAbi(), signer);
+        marketplace = new ethers.Contract(marketplaceAddress, marketplaceAbi(), signer);
+    }
+    catch {
+        console.log("Not connected")
+    }
 
     if (!loading && pendingTransactions.size <1) {
         if (window.location.pathname != "/faq") {

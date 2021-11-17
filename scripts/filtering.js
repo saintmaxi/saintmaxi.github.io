@@ -167,22 +167,28 @@ async function showInfo(miceID) {
     let editButton = "";
     let listButton = "";
     let buyButton = "";
-    if (_micePrice == null) {
-        _micePrice = "Not Listed"
-        _hidden = "hidden";
-        if ((await checkIfOwnsMice(_miceId)) == true) {
-            listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>List Mice</a>`;
+    if (connected) {
+        if (_micePrice == null) {
+            _micePrice = "Not Listed"
+            _hidden = "hidden";
+            if ((await checkIfOwnsMice(_miceId)) == true) {
+                listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>List Mice</a>`;
+            }
+        }
+        else {
+            if ((await checkIfOwnsMice(_miceId)) == true) {
+                delistButton = `<a href="#" class="button w-button" id="delist-button" onclick=removeMiceOnSale(${miceID})>Delist</a>`;
+                editButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit Listing</a>`;
+            }
+            else {
+                buyButton = `<a href="#" class="button w-button" id="buy-button" onclick=buyMice(${_miceId})>Buy</a>`;
+            }
         }
     }
     else {
-        if ((await checkIfOwnsMice(_miceId)) == true) {
-            delistButton = `<a href="#" class="button w-button" id="delist-button" onclick=removeMiceOnSale(${miceID})>Delist</a>`;
-            editButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit Listing</a>`;
-        }
-        else {
-            buyButton = `<a href="#" class="button w-button" id="buy-button" onclick=buyMice(${_miceId})>Buy</a>`;
-        }
+        buyButton = `<a href="#" class="button w-button" id="buy-button" onclick='closeInfo("click-info");connect()')>Connect Wallet to Buy</a>`;
     }
+   
     
     $("body").append(`<div id='click-info' class='click-info'><span id="close" onclick='closeInfo("click-info");'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'>${delistButton}${editButton}${listButton}${buyButton}</div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='mobile-buttons'>${delistButton}${editButton}${listButton}${buyButton}</div><div id='traits'>${_infoFakeJSX}</div></div>`);
     if (darkModeOn) {
