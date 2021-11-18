@@ -671,7 +671,7 @@ tr td:first-child {
 #table-div {
   overflow:hidden;
   overflow-y: scroll;
-  height: 90vh;
+  max-height: 90vh;
 }
 
 th {
