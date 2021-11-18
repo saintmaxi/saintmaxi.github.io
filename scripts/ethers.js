@@ -448,17 +448,17 @@ const updateMarketplaceDetails = async() => {
         await updateAvailableMice();
         await updateMarketListings();
     }
-    if (window.location.pathname == "/activity") {
+    else if (window.location.pathname == "/activity") {
         await updateMarketListings();
         if (connected) {
             await updateYourMarketMice();
         }
         await getSalesHistory();
     }
-    if (window.location.pathname == "/buy-mice") {
+    else if (window.location.pathname == "/buy-mice") {
         await updateMarketListings();
     }
-    if (window.location.pathname == "/edit-listing") {
+    else if (window.location.pathname == "/edit-listing") {
         await updateMarketListings();
         await updateYourMarketMice();
     }
@@ -566,7 +566,7 @@ window.onload = async() => {
     }
 
     if (!loading && pendingTransactions.size <1) {
-        if (window.location.pathname != "/faq") {
+        if (window.location.pathname != "/faq" && window.location.pathname && "/index" && window.location.pathname !="/") {
             await updateMarketplaceDetails();
             await checkApprovalOfMice();
          }
