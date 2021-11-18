@@ -3,6 +3,11 @@
   --main-border-color: #333333;
 }
 
+body {
+  background-color: #F7F7EF;
+
+}
+
 input {
   text-align: center;
   border: solid var(--main-border-color) .3vw;
