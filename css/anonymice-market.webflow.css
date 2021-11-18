@@ -381,7 +381,7 @@ body {
   height:5vh;
 }
 
-.hidden {
+.hidden, .prvt-hidden {
   display:none !important;
 }
 

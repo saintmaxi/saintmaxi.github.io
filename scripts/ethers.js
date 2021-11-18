@@ -142,10 +142,10 @@ const updateMarketListings = async() => {
     sortBy("PriceLowToHigh");
 
     if (privateListingsCount > 0) {
-        $("#your-prvt-sales").removeClass("hidden");
+        $("#your-prvt-sales").removeClass("prvt-hidden");
     }
     else {
-        $("#your-prvt-sales").addClass("hidden");
+        $("#your-prvt-sales").addClass("prvt-hidden");
     }
 
     $("#filter-results-count").text(`${publicListingsCount} Mice Found`);
