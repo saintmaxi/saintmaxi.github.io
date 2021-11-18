@@ -169,7 +169,8 @@ body.dark {
     }
 
     .mouse-type, .mouse-dev, .utility {
-        width: 65%;
+        width: 85%;
+        margin: 5%;
         text-align: center;
         padding: 1vh;
     }
