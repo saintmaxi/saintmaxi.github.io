@@ -75,6 +75,17 @@
     margin:5px;
 }
 
+.breed-instructions {
+    font-size: 2vw;
+    line-height: 2.1vw;
+    text-align: center;
+}
+
+#selected-for-breeding {
+    font-size: 1.8vw;
+    line-height: 1.9vw;
+    text-align: center;
+}
 
 /* mobile */
 @media screen and (max-width: 600px){
@@ -96,6 +107,15 @@
         width: 85%;
         text-align: center;
     }
+
+    .breed-instructions {
+        font-size: 4vw;
+        line-height: 4.1vw;
+    }
+    
+    #selected-for-breeding {
+        font-size: 4vw;
+    }
 }
 
 @media screen and (min-width: 1700px){ 
@@ -115,5 +135,15 @@
 
     .parent-images p{
         font-size: .8vw;
+    }
+
+    .breed-instructions {
+        font-size: 2vw;
+        line-height: 2.1vw;
+    }
+    
+    #selected-for-breeding {
+        font-size: 1.7vw;
+        line-height: 1.8vw;
     }
   }

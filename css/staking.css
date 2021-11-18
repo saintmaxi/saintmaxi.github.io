@@ -71,6 +71,12 @@
     cursor: pointer;
   }
 
+  #stake-instructions {
+    font-size: 2vw;
+    line-height: 2.1vw;
+    text-align: center;
+  }
+
 
 /* mobile */
 @media screen and (max-width: 600px){
@@ -90,11 +96,21 @@
   #main-staking-content {
     font-size: 4vw;
   }
+
+  #stake-instructions {
+    font-size: 4vw;
+    line-height: 4.1vw;
+  }
 }
 
 @media screen and (min-width: 1700px){ 
 
   .button, #claim-cheeth-button{
     font-size: 1vw;
+  }
+
+  #stake-instructions {
+    font-size: 1.7vw;
+    line-height: 1.8vw;
   }
 }
