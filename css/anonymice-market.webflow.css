@@ -81,7 +81,7 @@ input:focus {
   border-left: solid .3vw var(--main-border-color);
   border-top: solid .3vw var(--main-border-color);
   border-radius: .2em;
-
+  z-index: 9999;
   color: black;
   padding: 5px;
   right: 0px;
@@ -1383,5 +1383,10 @@ th {
     height: 25%;
     padding: 1vh;
     margin-top: .2vh;
+  }
+
+  .info-image {
+    height:10vw;
+    width: 10vw;
   }
 }
