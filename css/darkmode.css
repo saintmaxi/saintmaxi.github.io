@@ -263,10 +263,23 @@ th.dark {
 /* mobile */
 @media screen and (max-width: 600px){
     #jump-to-directory.dark {
-        border: solid .3vw var(--main-dark-border-color);
+        border: solid .5vh var(--main-dark-border-color);
     }
 
     .info-image.dark {
         border: solid white .7em;
     }
+
+    #wallet.dark {
+        border: solid .5vh white;
+    
+      }
+
+      .button.dark {
+        border: solid .5vh white;
+      }
+
+      input.dark {
+        border: solid .5vh var(--main-dark-border-color);
+      }
 }

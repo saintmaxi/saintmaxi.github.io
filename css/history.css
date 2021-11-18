@@ -151,6 +151,8 @@ body.dark {
     #first-block {
         width: 98%;
         padding: 5px;
+    border: solid .5vh var(--main-border-color);
+
     }
 
     #legend-mice {
@@ -166,9 +168,13 @@ body.dark {
 
     .mouse-type-img, .mouse-dev-img, .utility-img {
         width: 55%;
+    border: solid .5vh var(--main-border-color);
+
     }
 
     .mouse-type, .mouse-dev, .utility {
+    border: solid .5vh var(--main-border-color);
+
         width: 85%;
         margin: 5%;
         text-align: center;

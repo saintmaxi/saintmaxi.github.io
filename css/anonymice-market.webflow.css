@@ -811,6 +811,10 @@ th {
 /* mobile */
 @media screen and (max-width: 600px){
 
+  .main-content {
+    border: solid var(--main-border-color) .5vh;
+  }
+
   .hide-on-mobile {
     display: none;
   }
@@ -908,11 +912,22 @@ th {
     text-align: center;
     width: 100%;
     font-size: 3vw;
-    border: solid .3vw var(--main-border-color);
+    border: solid .5vh var(--main-border-color);
   }
 
   #footer {
     font-size: 3.4vw;
+  border-top: solid .5vh var(--main-border-color);
+
+  }
+
+  .button, input {
+    border: solid .5vh var(--main-border-color);
+
+  }
+
+  #wallet {
+    border: solid .5vh var(--main-border-color);
   }
 
   .heading-4 {
@@ -920,6 +935,8 @@ th {
   }
 
   .stats-box {
+  border: solid .5vh var(--main-border-color);
+
     font-size: 4vw;
   }
   
