@@ -250,8 +250,13 @@ body {
   font-size: 1.3vw;
 }
 
+#filter {
+  text-align: center;
+}
+
 #filter select {
-  min-width: 30%;
+  min-width: 31%;
+  text-align: center;
 }
 
 #Nose, #Eyes, #Mouth, #og {
