@@ -241,8 +241,20 @@ body {
   background-color: var(--main-bg-color);
 }
 
-#filter, #filter-results-count, #reset-filter-button, #check-private-sale {
+#filter, #sortBy, #filter-results-count, #reset-filter-button, #check-private-sale {
   font-size: 1.3vw;
+}
+
+#filter select {
+  min-width: 15%;
+}
+
+#Nose, #Eyes, #Mouth, #og {
+  width: 22%;
+}
+
+#sortBy {
+  float: right;
 }
 
 #reset-filter-div {
@@ -794,6 +806,10 @@ th {
 /* mobile */
 @media screen and (max-width: 600px){
 
+  .hide-on-mobile {
+    display: none;
+  }
+
   #header-banner {
     display: block;
   }
@@ -815,8 +831,17 @@ th {
     font-size:3.25vw;
   }
 
-  .mice-on-sale, #filter, #reset-filter-button, #filter-results-count, #check-private-sale {
+  .mice-on-sale, #filter, #reset-filter-button, #filter-results-count, #check-private-sale, #sortBy {
     font-size: 4vw;
+  }
+
+  #filter select {
+    min-width: initial;
+    width: initial;
+  }
+
+  #sortBy {
+    float: initial
   }
 
   .mice-on-sale {
@@ -1246,7 +1271,7 @@ th {
     height: 125%;
   }
 
-  #filter, #filter-results-count, #check-private-sale {
+  #filter, #sortBy, #filter-results-count, #check-private-sale {
     font-size: 1vw;
   }
 

@@ -81,22 +81,13 @@
             <select id="Nose" name="nose" onchange="removeFilter('nose'); addFilter('nose', this.value)"></select>
             <select id="Eyes" name="eyes" onchange="removeFilter('eyes'); addFilter('eyes', this.value)"></select>
             <select id="Mouth" name="mouth" onchange="removeFilter('mouth'); addFilter('mouth', this.value)"></select>
-            <select id="sortBy" name="sortBy" onchange=sortBy(this.value)>
-              <option value="" disabled>Sort By</option>
-              <option value="PriceHighToLow">Price: High to Low</option>
-              <option value="PriceLowToHigh" selected>Price: Low to High</option>
-              <option value="RarityHighToLow">Rarity: High to Low</option>
-              <option value="RarityLowToHigh">Rarity: Low to High</option>
-              <option value="IdHighToLow">Mice ID: High to Low</option>
-              <option value="IdLowToHigh">Mice ID: Low to High</option>
-            </select>
             <select id="og" name="og" onchange="removeFilter('original'); addFilter('original', this.value)">
               <option value="" selected>OG Status</option>
               <option value="Yes">OG</option>
               <option value="No">Not OG</option>
             </select>
             <!-- <a href="#og-question"> -->
-            <a href="faq"><svg id="og-tooltip" fill="#333333" xmlns="http://www.w3.org/2000/svg"
+            <a href="faq" target="_blank" rel="noopener noreferrer"><svg id="og-tooltip" fill="#333333" xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" width="20px" viewBox="0 0 416.979 416.979"
                 style="enable-background:new 0 0 416.979 416.979;" xml:space="preserve">
                 <path d="M356.004,61.156c-81.37-81.47-213.377-81.551-294.848-0.182c-81.47,81.371-81.552,213.379-0.181,294.85
@@ -127,7 +118,17 @@
             <path d="M32,16.016l-5.672-5.664c0,0-3.18,3.18-6.312,6.312V0h-8.023v16.664l-6.32-6.32L0,16.016L16,32
             L32,16.016z" />
           </svg>
+          <select id="sortBy" name="sortBy" onchange=sortBy(this.value)>
+            <option value="" disabled>Sort By</option>
+            <option value="PriceHighToLow">Price: High to Low</option>
+            <option value="PriceLowToHigh" selected>Price: Low to High</option>
+            <option value="RarityHighToLow">Rarity: High to Low</option>
+            <option value="RarityLowToHigh">Rarity: Low to High</option>
+            <option value="IdHighToLow">Mice ID: High to Low</option>
+            <option value="IdLowToHigh">Mice ID: Low to High</option>
+          </select>
         </div>
+        <br class="hide-on-mobile"><br class="hide-on-mobile">
         <div id="mice-on-sale-block" class="mice-on-sale-block">
           <!-- Here starts the mice on sale -->
           <div class="mice-on-sale">
