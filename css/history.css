@@ -122,7 +122,7 @@ body.dark {
     border-color: white;
 }
 
-.mice-type-label, #utility-type-label {
+.mice-type-label, .utility-type-label {
     font-size: 1.5vw;
 }
 
@@ -181,7 +181,11 @@ body.dark {
         padding: 1vh;
     }
 
-    .mice-type-label, #utility-type-label {
-        font-size: 2vh;
+    h1 {
+        font-size: 3.5vh
+    }
+
+    .mice-type-label, .utility-type-label {
+        font-size: 3vh;
     }
 }
