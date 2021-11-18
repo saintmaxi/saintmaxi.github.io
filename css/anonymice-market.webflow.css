@@ -787,8 +787,16 @@ th {
   /* animation-delay: 0.3s; */
 }
 
+#header-banner {
+  display: none;
+}
+
 /* mobile */
 @media screen and (max-width: 600px){
+
+  #header-banner {
+    display: block;
+  }
 
   h1 {
     font-size: 4.5vw;
