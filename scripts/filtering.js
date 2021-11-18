@@ -210,7 +210,7 @@ async function openEditPrompt(miceID) {
     const _currentToAddress = _currentPrivacy === "Public" ? "N/A" : _listedMice.toAddress;
     const _darkClass = getDarkMode();
 
-    const currentInfoJSX = `<br><div id='current-info'><h3>Current Price:</h3><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div><h3>Current Privacy:</h3>${_currentPrivacy}<br><h3>Private Sale Address:</h3>${_currentToAddress}</div>`;
+    const currentInfoJSX = `<br><div id='current-info'><h3>Current Price:</h3><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div><h3>Current Privacy:</h3>${_currentPrivacy}<br><h3>Private Sale Address:</h3><div style="overflow-x:scroll;max-width:100%;">${_currentToAddress}</div></div>`;
 
     const updateJSX = `<div class="w-row ${_darkClass}" id='updt-content'>
                         <div class="updt-block w-col w-col-6 ${_darkClass}">
