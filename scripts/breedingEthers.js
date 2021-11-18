@@ -50,6 +50,11 @@ const getChainId = async()=>{
     return await signer.getChainId()
 };
 
+const getBabiesBred = async()=> {
+    const babiesBred = await breeding.totalSupply();
+    $("#babies-bred").text(`${babiesBred}/3550`);
+}
+
 const approveBreeding = async()=>{
     const userAddress = await getAddress();
     const isApproved = await anonymice.isApprovedForAll(userAddress, breedingAddress);
@@ -391,6 +396,7 @@ const updateBreedingInfo = async()=>{
     if ((await getChainId()) === 1) {
         let darkClass = getDarkMode();
         await updateInfo();
+        await getBabiesBred();
 
         const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING BREEDING INTERFACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
         $("#pending-transactions").append(loadingDiv);
@@ -489,6 +495,7 @@ setInterval(async()=>{
     if (pendingTransactions.size == 0) {
         await updateApprovedStatus();
         await getCheethBalance();
+        await getBabiesBred();
         await updateIncubatorInfo();
         await updateLockedParentsInfo();
         await fixHeight();

@@ -78,7 +78,7 @@
     font-size: 4vw;
   }
 
-  #claim-cheeth-button {
+  #claim-cheeth-button, #approveButton {
     width: 85%;
     font-size: 4vw;
   }

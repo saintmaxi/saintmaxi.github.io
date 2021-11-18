@@ -53,7 +53,7 @@ body.dark {
     height: 100%;
 }
 
-#mice-types {
+#mice-types, #utility-types {
     display: -webkit-box;
     display: -webkit-flex;
     display: -ms-flexbox;
@@ -81,7 +81,7 @@ body.dark {
     width: 100%;
 }
 
-.mouse-type, .mouse-dev {
+.mouse-type, .mouse-dev, .utility {
     width: 35%;
     text-align: center;
     margin: 5%;
@@ -91,31 +91,38 @@ body.dark {
 }
 
 .mouse-dev {
-    width: 22%;
+    width: 20%;
+    margin: 2%;
 }
 
-.mouse-type.dark, .mouse-dev.dark {
+.utility {
+    margin: 2%;
+    width: 28%;
+}
+
+
+.mouse-type.dark, .mouse-dev.dark, .utility.dark {
     background-color: #26242B;
     border-color: #464545;
 }
 
-.mouse-type p, .mouse-dev p {
+.mouse-type p, .mouse-dev p, .utility p {
     text-align: left;
     padding: 1vw;
 }
 
-.mouse-type-img, .mouse-dev-img {
+.mouse-type-img, .mouse-dev-img, .utility-img {
     width: 65%;
     background-color:  #5e617c;
     border: solid var(--main-border-color) .3vw;
     border-radius: .2em;
 }
 
-.mouse-type-img.dark, .mouse-dev-img.dark {
+.mouse-type-img.dark, .mouse-dev-img.dark, .utility-img.dark {
     border-color: white;
 }
 
-.mice-type-label {
+.mice-type-label, #utility-type-label {
     font-size: 1.5vw;
 }
 
@@ -151,17 +158,17 @@ body.dark {
         padding-bottom: 4vh;
     }
 
-    .mouse-type-img, .mouse-dev-img {
+    .mouse-type-img, .mouse-dev-img, .utility-img {
         width: 55%;
     }
 
-    .mouse-type, .mouse-dev {
+    .mouse-type, .mouse-dev, .utility {
         width: 65%;
         text-align: center;
         padding: 1vh;
     }
 
-    .mice-type-label {
+    .mice-type-label, #utility-type-label {
         font-size: 2vh;
     }
 }
