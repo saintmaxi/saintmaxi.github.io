@@ -566,7 +566,7 @@ window.onload = async() => {
     }
 
     if (!loading && pendingTransactions.size <1) {
-        if (window.location.pathname != "/faq" && window.location.pathname && "/index" && window.location.pathname !="/") {
+        if (window.location.pathname != "/faq" && window.location.pathname != "/index" && window.location.pathname !="/") {
             await updateMarketplaceDetails();
             await checkApprovalOfMice();
          }
