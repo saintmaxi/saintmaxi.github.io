@@ -141,6 +141,10 @@ function stopProp(event) {
     event.stopPropagation();
 }
 
+function titleCase(string){
+    return string[0].toUpperCase() + string.slice(1).toLowerCase();
+}
+
 /* POPUP MICE INFO FUNCTIONS */
 
 async function showInfo(miceID) {
@@ -158,7 +162,7 @@ async function showInfo(miceID) {
         _property = _propertiesToDisplay[i];
         _value = _mice[_property];
         _rarity = _mice[`${_property}Rarity`];
-        _infoFakeJSX += `<div class='trait-box'><p class='trait-box-header'>${_property}:</p><p class="trait-box-value">${_value} <br id='trait-box-space-big-screen'><br id='trait-box-space'>(${_rarity})</p></div>`;
+        _infoFakeJSX += `<div class='trait-box'><p class='trait-box-header'>${titleCase(_property)}:</p><p class="trait-box-value">${_value} <br id='trait-box-space-big-screen'><br id='trait-box-space'>(${_rarity})</p></div>`;
     }
 
     let _micePrice = _mice.price;
