@@ -818,8 +818,16 @@ th {
   display: none;
 }
 
+#hide-on-desktop {
+  display: none;
+}
+
 /* mobile */
 @media screen and (max-width: 600px){
+
+  #hide-on-desktop {
+    display: block;
+  }
 
   .main-content {
     border: solid var(--main-border-color) .5vh;
