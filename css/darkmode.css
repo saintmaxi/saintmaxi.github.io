@@ -37,6 +37,10 @@ select.dark {
     fill: white;
   }
 
+#twitter.dark {
+    fill: white;
+}
+
 #og-tooltip.dark {
     fill: white;
 }
