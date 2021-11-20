@@ -86,7 +86,7 @@ const stakeMicesToCheeth = async()=>{
                 $(`#available-mice-${_micesArray[i]}`).remove();
             }
             selectedForStaking = new Set();
-            $("#selected-for-staking").text("Selected: None");
+            $("#selected-for-staking").text("None");
             await waitForTransaction(tx_);
         });
     }
@@ -123,7 +123,7 @@ const unstakeByIds = async()=>{
                 $(`#staked-mice-${_micesArray[i]}`).remove();
             }
             selectedForUnstaking = new Set();
-            $("#selected-for-unstaking").text("Selected: None");
+            $("#selected-for-unstaking").text("None");
             await waitForTransaction(tx_);
         }); 
     }
@@ -138,7 +138,7 @@ const unstakeAll = async()=>{
             $("#staked-mice-images").empty();
             $("#staked-mice-images").append("<br>");
             selectedForUnstaking = new Set();
-            $("#selected-for-unstaking").text("Selected: None");
+            $("#selected-for-unstaking").text("None");
             await waitForTransaction(tx_);
         });
     }
@@ -168,7 +168,11 @@ const getMiceImages = async()=>{
             if (!miceObjectMap.get(_miceId)) {
                 new Mice(_miceId);
             }
-            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${_miceId}" onclick=selectForStaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
+            let active = "";
+            if (selectedForStaking.has(Number(_miceId))) {
+                active = "active";
+            }
+            let _fakeJSX = `<div class="mice-on-sale${_darkClass} ${active}" id="available-mice-${_miceId}" onclick=selectForStaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
             $("#available-mice-images").append(_fakeJSX);
         };
     }
@@ -184,7 +188,12 @@ const getMiceImages = async()=>{
             if (!miceObjectMap.get(_miceId)) {
                 new Mice(_miceId);
             }
-            let _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="staked-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
+            let active= "";
+            console.log(selectedForUnstaking)
+            if (selectedForUnstaking.has(Number(_miceId))) {
+                active = "active";
+            }
+            let _fakeJSX = `<div class="mice-on-sale${_darkClass} ${active}" id="staked-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
             $("#staked-mice-images").append(_fakeJSX);
         };
     }
@@ -348,10 +357,10 @@ async function selectForStaking(miceID) {
         $(`#available-mice-${miceID}`).removeClass("active");
     }
     if (selectedForStaking.size == 0) {
-        $("#selected-for-staking").text("Selected: None");
+        $("#selected-for-staking").text("None");
     }
     else {
-        let selectedString = `Selected: ${Array.from(selectedForStaking).sort().join(',')}`
+        let selectedString = `${Array.from(selectedForStaking).sort().join(' ')}`;
         $("#selected-for-staking").text(selectedString);
     }
 }
@@ -366,10 +375,10 @@ async function selectForUnstaking(miceID) {
         $(`#staked-mice-${miceID}`).removeClass("active");
     }
     if (selectedForUnstaking.size == 0) {
-        $("#selected-for-unstaking").text("Selected: None");
+        $("#selected-for-unstaking").text("None");
     }
     else {
-        let selectedString = `Selected: ${Array.from(selectedForUnstaking).sort().join(',')}`
+        let selectedString = `${Array.from(selectedForUnstaking).sort().join(' ')}`;
         $("#selected-for-unstaking").text(selectedString);
     }
 }

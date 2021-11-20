@@ -593,7 +593,7 @@ async function selectForBreeding(miceID) {
         $("#selected-for-breeding").text("Selected: None");
     }
     else {
-        let selectedString = `Selected: ${Array.from(selectedForBreeding).sort().join(',')}`
+        let selectedString = `Selected: ${Array.from(selectedForBreeding).sort().join(' ')}`;
         $("#selected-for-breeding").text(selectedString);
     }
 }

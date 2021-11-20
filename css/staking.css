@@ -77,6 +77,12 @@
     text-align: center;
   }
 
+.selected {
+  font-size: 1.8vw;
+  line-height: 1.9vw;
+  max-width: 100%;
+  white-space: wrap;
+}
 
 /* mobile */
 @media screen and (max-width: 600px){
@@ -101,6 +107,11 @@
     font-size: 4vw;
     line-height: 4.1vw;
   }
+
+  .selected {
+    font-size: 4vw;
+  line-height: 4vw;
+  }  
 }
 
 @media screen and (min-width: 1700px){ 
@@ -113,4 +124,9 @@
     font-size: 1.7vw;
     line-height: 1.8vw;
   }
+
+  .selected {
+    font-size: 1.4vw;
+    line-height: 1.5vw;
+}
 }
