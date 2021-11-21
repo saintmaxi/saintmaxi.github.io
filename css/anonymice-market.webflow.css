@@ -1180,8 +1180,11 @@ th {
     width: 75vw;
     height: 15vh;
     font-size: 4vw;
-    line-height: 4.8vw;
   }
+
+#error-popup p {
+  line-height: 4.2vw;
+}
 
   .sold-mice-img {
     margin-bottom: 0px;
