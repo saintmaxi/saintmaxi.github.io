@@ -58,6 +58,11 @@ input:focus {
 
 }
 
+#wallet.disabled:hover {
+  cursor: initial;
+  background-color: white;
+}
+
 #directory {
   font-size: 1vw;
   display: inline-block;

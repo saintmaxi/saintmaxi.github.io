@@ -113,6 +113,10 @@ div#wallet-div.body-div.dark {
     background-color:rgb(184, 184, 184);
 }
 
+#wallet.dark.disabled:hover {
+  background-color: var(--main-dark-border-color);
+}
+
 #approveButton {
     font-size: 1.3vw;
 }

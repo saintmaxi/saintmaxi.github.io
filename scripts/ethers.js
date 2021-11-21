@@ -404,6 +404,7 @@ const updateInfo = async() => {
     else {
         $("#wallet").text(userAddress);
     }
+    $("#wallet").addClass("disabled");
 
     // if ((await getChainId()) === 1) {
 
