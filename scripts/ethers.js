@@ -535,7 +535,9 @@ setInterval( async() => {
 }, 5000)
 
 ethereum.on("accountsChanged", async (accounts_) => { 
+    $("#your-prvt-sales").addClass("prvt-hidden");
     await updateMarketplaceDetails();
+    resetFilters();
 
 });
 
