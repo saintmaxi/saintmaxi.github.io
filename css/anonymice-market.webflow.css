@@ -850,6 +850,15 @@ th {
   display: none;
 }
 
+#footer a {
+  width: 100%;
+  text-align: center;
+}
+#faq-button {
+  width: 50%;
+  margin: auto;
+}
+
 /* mobile */
 @media screen and (max-width: 600px){
 

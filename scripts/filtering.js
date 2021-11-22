@@ -211,7 +211,7 @@ function titleCase(string){
 
 /* POPUP MICE INFO FUNCTIONS */
 
-async function showInfo(miceID) {
+async function showInfo(miceID, ethEnabledBrowser=true) {
     closeInfo("click-info");
     closeInfo("edit-prompt");
     closeInfo("create-listing-prompt");
@@ -229,39 +229,47 @@ async function showInfo(miceID) {
         _infoFakeJSX += `<div class='trait-box'><p class='trait-box-header'>${titleCase(_property)}:</p><p class="trait-box-value">${_value} <br id='trait-box-space-big-screen'><br id='trait-box-space'>(${_rarity})</p></div>`;
     }
 
-    let _micePrice = _mice.price;
     let _hidden = "";
     let delistButton = "";
     let editButton = "";
     let listButton = "";
     let buyButton = "";
-    if (connected) {
-        if (_micePrice == null) {
-            _micePrice = "Not Listed"
-            _hidden = "hidden";
-            if ((await checkIfOwnsMice(_miceId)) == true) {
-                listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>List Mice</a>`;
+    let _micePrice = _mice.price;
+    if (ethEnabledBrowser) {
+        if (connected) {
+            if (_micePrice == null) {
+                _micePrice = "Not Listed"
+                _hidden = "hidden";
+                if ((await checkIfOwnsMice(_miceId)) == true) {
+                    listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>List Mice</a>`;
+                }
+            }
+            else {
+                if ((await checkIfOwnsMice(_miceId)) == true) {
+                    delistButton = `<a href="#" class="button w-button" id="delist-button" onclick=removeMiceOnSale(${miceID})>Delist</a>`;
+                    editButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit Listing</a>`;
+                }
+                else {
+                    buyButton = `<a href="#" class="button w-button" id="buy-button" onclick=buyMice(${_miceId})>Buy</a>`;
+                }
             }
         }
         else {
-            if ((await checkIfOwnsMice(_miceId)) == true) {
-                delistButton = `<a href="#" class="button w-button" id="delist-button" onclick=removeMiceOnSale(${miceID})>Delist</a>`;
-                editButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit Listing</a>`;
+            if (_micePrice == null) {
+                _micePrice = "Not Listed"
+                _hidden = "hidden";
             }
             else {
-                buyButton = `<a href="#" class="button w-button" id="buy-button" onclick=buyMice(${_miceId})>Buy</a>`;
+                buyButton = `<a href="#" class="button w-button" id="buy-button" onclick='closeInfo("click-info");connect()')>Connect Wallet to Buy</a>`;
             }
         }
     }
     else {
-        if (_micePrice == null) {
-            _micePrice = "Not Listed"
-            _hidden = "hidden";
-        }
-        else {
-            buyButton = `<a href="#" class="button w-button" id="buy-button" onclick='closeInfo("click-info");connect()')>Connect Wallet to Buy</a>`;
-        }
+        console.log('here')
+        _micePrice = "";
+        _hidden = "hidden";
     }
+   
    
     
     $("body").append(`<div id='click-info' class='click-info'><span id="close" onclick='closeInfo("click-info");'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'>${delistButton}${editButton}${listButton}${buyButton}</div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='mobile-buttons'>${delistButton}${editButton}${listButton}${buyButton}</div><div id='traits'>${_infoFakeJSX}</div></div>`);
