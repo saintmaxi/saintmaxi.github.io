@@ -285,7 +285,7 @@ async function openEditPrompt(miceID) {
                             <div>
                                 <h3>Update Price</h3>
                                 <div>
-                                <form><input type="number" id="updatePrice-price" name="updatePrice-price"
+                                <form><input class="${_darkClass}" type="number" id="updatePrice-price" name="updatePrice-price"
                                     placeholder="Price in ETH" value=""></form>
                                 </div><br>
                                 <a href="#" class="updt-button button w-button ${_darkClass}" onclick=updateMiceOnSalePrice(${miceID})>Update Price</a>
@@ -295,7 +295,7 @@ async function openEditPrompt(miceID) {
                             <div>
                                 <h3>Update to Private</h3>
                                 <div>
-                                <form><input type="text" id="updatePrivacy-address" name="updatePrivacy-address"
+                                <form><input class="${_darkClass}" type="text" id="updatePrivacy-address" name="updatePrivacy-address"
                                     placeholder="Recipient Address" value=""></form>
                                 </div><br>
                                 <a href="#" class="updt-button button w-button ${_darkClass}" onclick=updateMiceOnSalePrivacy(${miceID})>Update Privacy</a>
