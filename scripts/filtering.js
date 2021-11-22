@@ -159,6 +159,8 @@ function clearPriceFilter() {
     $("#minPrice").val("");
     $("#maxPrice").val("");
     $(".price-hidden").removeClass("price-hidden");
+    let displayed = publicListingsCount - $(".mice-on-sale.hidden").length - $(".mice-on-sale.price-hidden").length + $(".mice-on-sale.hidden.price-hidden").length;
+    $("#filter-results-count").text(`${displayed} Mice Found`);
 }
 
 /* SORTING FUNCTIONS */
