@@ -255,6 +255,27 @@ body {
   font-size: 1.3vw;
 }
 
+#price-filtering-container{
+  text-align: center;
+}
+
+#price-filtering-container, #filter-results-count-container {
+  width: 100%;
+  margin: auto;
+  font-size: 1.3vw;
+
+}
+
+#price-filtering-container input{
+  width: 30%;
+  text-align: center;
+  padding: 1.3vw;
+}
+
+#price-filtering-container button{
+  width: 15%;
+}
+
 #filter {
   text-align: center;
 }
@@ -405,7 +426,7 @@ body {
   height:5vh;
 }
 
-.hidden, .prvt-hidden {
+.hidden, .prvt-hidden, .price-hidden {
   display:none !important;
 }
 
@@ -869,9 +890,28 @@ th {
     font-size: 4vw;
   }
 
+  #price-filtering-container input{
+    font-size: 4vw;
+    padding: 4vw;
+    width: 48%;
+    margin-bottom:2%;
+    text-align: center;
+  }
+  
+  #price-filtering-container button{
+    font-size: 4vw;
+    width: 46%;
+    margin-left: 1%;
+    margin-right: 1%;
+  }
+
+  #filter {
+    text-align: left;
+  }
+
   #filter select {
-    min-width: initial;
-    width: initial;
+    min-width: 100%;
+    /* width: initial; */
   }
 
   #sortBy {
@@ -1333,6 +1373,17 @@ th {
 
   #filter, #sortBy, #filter-results-count, #check-private-sale {
     font-size: 1vw;
+  }
+
+  #price-filtering-container input{
+    font-size: 1vw;
+    /* width: 35%; */
+    text-align: center;
+  }
+  
+  #price-filtering-container button{
+    font-size: 1vw;
+    width: 15%;
   }
 
   .mice-on-sale {

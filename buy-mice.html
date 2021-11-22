@@ -114,6 +114,12 @@
         </div>
 
         <br>
+        <div id="price-filtering-container">
+          <input id="minPrice" type="number" min=0 placeholder="Min Price (Ξ)" value="">
+          <input type="number" id="maxPrice" min=0 placeholder="Max Price (Ξ)" value="">
+          <button class="button w-button" onclick=filterByPrice()>Filter</button>
+          <button class="button w-button" onclick=clearPriceFilter()>Clear</button>
+        </div><br>
         <div id="filter-results-count-container">
           <div style="display: inline-block;" id="filter-results-count"><span class="one">.</span><span class="two">.</span><span class="three">.</span> Mice Found</div>
           <svg id="jump-icon" onclick="jumpToLocation('#footer')" width="15px" fill="#333333"
@@ -132,7 +138,7 @@
             <option value="IdLowToHigh">Mice ID: Low to High</option>
           </select>
         </div>
-        <br class="hide-on-mobile"><br class="hide-on-mobile">
+        <br class="hide-on-mobile"> <br class="hide-on-mobile">
         <div id="mice-on-sale-block" class="mice-on-sale-block">
           <!-- Here starts the mice on sale -->
           <div class="mice-on-sale">

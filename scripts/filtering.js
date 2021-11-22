@@ -43,7 +43,8 @@ function resetFilters() {
     filters = new Map();
     $("select").each(function() { this.selectedIndex = 0 });
     $(".hidden").removeClass("hidden");
-    $("#filter-results-count").text(`${publicListingsCount} Mice Found`);
+    let displayed = publicListingsCount - $(".mice-on-sale.hidden").length - $(".mice-on-sale.price-hidden").length + $(".mice-on-sale.hidden.price-hidden").length;
+    $("#filter-results-count").text(`${displayed} Mice Found`);
     let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
     for (let i = 0; i < _listedMiceArray.length; i++) {
         let mouse = _listedMiceArray[i];
@@ -64,7 +65,7 @@ function _filterTraits() {
             } 
         }
     }
-    let displayed = publicListingsCount - $(".mice-on-sale.hidden").length;
+    let displayed = publicListingsCount - $(".mice-on-sale.hidden").length - $(".mice-on-sale.price-hidden").length + $(".mice-on-sale.hidden.price-hidden").length;
     $("#filter-results-count").text(`${displayed} Mice Found`);
 }
 
@@ -97,6 +98,67 @@ function _populateFilters() {
             $(`#${key}`).append(`<option value="${opt}">${opt}</option>`);
         })
     }
+}
+
+function filterByPrice() {
+    let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
+    let min = $('#minPrice').val();
+    let max = $('#maxPrice').val();
+    if (min && max) {
+        if (min > max || max < min) {
+            displayErrorMessage('Invalid price range');
+        }
+        else {
+            console.log(`${min} - ${max}`)
+            for (let i = 0; i < _listedMiceArray.length; i++) {
+                let mouse = _listedMiceArray[i];
+                if (mouse.price < min || mouse.price > max) {
+                    $(`#${mouse.elementID}`).addClass("price-hidden");
+                    mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
+                } 
+                else {
+                    $(`#${mouse.elementID}`).removeClass("price-hidden");
+                    mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
+                }
+            }
+        }
+    }
+    else if (min) {
+        console.log(`> ${min}`)
+        for (let i = 0; i < _listedMiceArray.length; i++) {
+            let mouse = _listedMiceArray[i];
+            if (mouse.price < min) {
+                $(`#${mouse.elementID}`).addClass("price-hidden");
+                mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
+            } 
+            else {
+                $(`#${mouse.elementID}`).removeClass("price-hidden");
+                mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
+            }
+        }
+    }
+    else if (max) {
+        console.log(`< ${max}`)
+        for (let i = 0; i < _listedMiceArray.length; i++) {
+            let mouse = _listedMiceArray[i];
+            if (mouse.price > max) {
+                $(`#${mouse.elementID}`).addClass("price-hidden");
+                mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
+            } 
+            else {
+                $(`#${mouse.elementID}`).removeClass("price-hidden");
+                mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
+            }
+        }
+    }
+    let displayed = publicListingsCount - $(".mice-on-sale.hidden").length - $(".mice-on-sale.price-hidden").length + $(".mice-on-sale.hidden.price-hidden").length;
+    $("#filter-results-count").text(`${displayed} Mice Found`);
+}
+
+function clearPriceFilter() {
+    $("#minPrice").val("");
+    $("#maxPrice").val("");
+    $(".price-hidden").removeClass("price-hidden");
 }
 
 /* SORTING FUNCTIONS */
