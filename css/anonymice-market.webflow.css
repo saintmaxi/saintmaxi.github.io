@@ -269,7 +269,7 @@ body {
 #price-filtering-container input{
   width: 30%;
   text-align: center;
-  padding: 1.3vw;
+  padding: .7vw;
 }
 
 #price-filtering-container button{
@@ -1377,6 +1377,7 @@ th {
 
   #price-filtering-container input{
     font-size: 1vw;
+    padding: .3vw;
     /* width: 35%; */
     text-align: center;
   }
