@@ -91,6 +91,8 @@ var privateListingsCount = 0;
 
 // marketplace updater functions
 const updateMarketListings = async() => {
+    resetFilters()
+    clearPriceFilter()
     publicListingsCount = 0;
     privateListingsCount = 0;
 

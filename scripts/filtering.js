@@ -102,8 +102,8 @@ function _populateFilters() {
 
 function filterByPrice() {
     let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
-    let min = $('#minPrice').val();
-    let max = $('#maxPrice').val();
+    let min = Number($('#minPrice').val());
+    let max = Number($('#maxPrice').val());
     if (min && max) {
         if (min > max || max < min) {
             displayErrorMessage('Invalid price range');
