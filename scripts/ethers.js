@@ -573,7 +573,7 @@ window.onload = async() => {
         console.log("Not connected")
     }
 
-    if (window.location.pathname == '/all-mice.html') {
+    if (window.location.pathname == '/all-mice') {
         await getAllMice()
     }
 
