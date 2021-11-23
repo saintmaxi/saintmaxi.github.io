@@ -855,6 +855,11 @@ th {
   color: white;
 }
 
+.contract-link {
+  color: #3154c7;
+  text-decoration: none;
+}
+
 /* mobile */
 @media screen and (max-width: 600px){
 

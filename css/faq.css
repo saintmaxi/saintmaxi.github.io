@@ -23,11 +23,7 @@ h2 {
 }
 
 #emphasize {
-    color: #4A69CE;
-}
-
-#emphasize.dark {
-    color: rgb(136, 90, 245);
+    text-decoration: underline;
 }
 
 @media screen and (max-width: 600px){

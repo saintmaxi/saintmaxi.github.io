@@ -126,15 +126,6 @@ body.dark {
     font-size: 1.5vw;
 }
 
-.contract-link {
-    color: #3154c7;
-    text-decoration: none;
-}
-
-.contract-link.dark {
-    color: #a27fee;
-}
-
 @media screen and (max-width: 600px){
     #content {
         width: 95%;
