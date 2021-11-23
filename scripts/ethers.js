@@ -17,6 +17,12 @@ const marketplaceAbi = () => {
 };
 
 if (window.location.pathname == "/all-mice") {
+    if (!rarityLoaded) {
+        $.getJSON('../assets/rarity_data.json', function(json) {
+            rarityData = json;
+            rarityLoaded = true;
+        });
+    }
     getAllMice();
 }
 
