@@ -17,8 +17,13 @@ const marketplaceAbi = () => {
 };
 
 if (window.location.pathname == "/all-mice") {
-    console.log(rarityLoaded);
-    getAllMice();
+    try {
+        getAllMice();
+    }
+    catch {
+        sleep(2000)
+        getAllMice()
+    }
 }
 
 if (window.ethereum == undefined && window.location.pathname != "/" && window.location.pathname != "/index" && window.location.pathname != "/faq" && window.location.pathname != "/all-mice") {
