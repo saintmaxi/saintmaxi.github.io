@@ -19,14 +19,11 @@ const marketplaceAbi = () => {
 if (window.ethereum == undefined && window.location.pathname != "/" && window.location.pathname != "/index" && window.location.pathname != "/faq" && window.location.pathname != "/all-mice") {
     displayErrorMessage('Please ensure you have MetaMask enabled to use Anonymice Marketplace.', false)
 }
+const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
+const signer = provider.getSigner();
 
-if (window.ethereum !== undefined) {
-    const provider = new ethers.providers.Web3Provider(window.ethereum, "any");
-    const signer = provider.getSigner();
-    
-    var anonymice = new ethers.Contract(anonymiceAddress, anonymiceAbi(), provider);
-    var marketplace = new ethers.Contract(marketplaceAddress, marketplaceAbi(), provider);
-}
+var anonymice = new ethers.Contract(anonymiceAddress, anonymiceAbi(), provider);
+var marketplace = new ethers.Contract(marketplaceAddress, marketplaceAbi(), provider);
 
 const connect = async() => { 
     await provider.send("eth_requestAccounts", []);
@@ -449,11 +446,7 @@ const updateMarketplaceDetails = async() => {
 
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
     $("#pending-transactions").append(loadingDiv);
-
-    if (window.ethereum !== undefined) {
-        await updateStats();        
-    }
-
+    await updateStats();
     if (connected) {
         await updateInfo();
     }
@@ -474,9 +467,6 @@ const updateMarketplaceDetails = async() => {
     else if (window.location.pathname == "/edit-listing") {
         await updateMarketListings();
         await updateYourMarketMice();
-    }
-    else if (window.location.pathname == "/all-mice") {
-        await getAllMice();
     }
     $("#privateSaleLookup-address").empty();
     $("#refresh-notification").remove();
@@ -546,34 +536,29 @@ setInterval( async() => {
     }
 }, 5000)
 
-if (window.ethereum !== undefined) {
-    ethereum.on("accountsChanged", async (accounts_) => { 
-        $("#your-prvt-sales").addClass("prvt-hidden");
-        await updateMarketplaceDetails();
-        resetFilters();
+ethereum.on("accountsChanged", async (accounts_) => { 
+    $("#your-prvt-sales").addClass("prvt-hidden");
+    await updateMarketplaceDetails();
+    resetFilters();
 
+});
+
+const watchForBuy  = async () => {
+    filter = marketplace.filters.MiceBought(null, null, null);
+    marketplace.on(filter, async (id, price, seller, buyer, event) => {
+        if (pendingTransactions.size == 0) {
+            let sale = await getSaleHistoryItem(event);
+            $("#title-row").after(sale);
+        }
+    
     });
 }
 
-if (window.location.pathname == "/activity") {
-    const watchForBuy  = async () => {
-        filter = marketplace.filters.MiceBought(null, null, null);
-        marketplace.on(filter, async (id, price, seller, buyer, event) => {
-            if (pendingTransactions.size == 0) {
-                let sale = await getSaleHistoryItem(event);
-                $("#title-row").after(sale);
-            }
-        
-        });
-    }
-    
-    const watching = async () => {
-        await watchForBuy();
-    }
-    
-    watching()
+const watching = async () => {
+    await watchForBuy();
 }
 
+watching()
 
 var connected = false;
 
@@ -586,6 +571,11 @@ window.onload = async() => {
     }
     catch {
         console.log("Not connected")
+    }
+
+    if (window.location.pathname == '/all-mice') {
+        window.alert('updating')
+        await getAllMice()
     }
 
     if (!loading && pendingTransactions.size <1) {
