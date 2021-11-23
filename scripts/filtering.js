@@ -265,7 +265,6 @@ async function showInfo(miceID, ethEnabledBrowser=true) {
         }
     }
     else {
-        console.log('here')
         _micePrice = "";
         _hidden = "hidden";
     }
