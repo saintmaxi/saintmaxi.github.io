@@ -45,7 +45,13 @@ function resetFilters() {
     $(".hidden").removeClass("hidden");
     let displayed = publicListingsCount - $(".mice-on-sale.hidden").length - $(".mice-on-sale.price-hidden").length + $(".mice-on-sale.hidden.price-hidden").length;
     $("#filter-results-count").text(`${displayed} Mice Found`);
-    let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
+    let _listedMiceArray
+    if (window.location.pathname == "/all-mice") {
+        _listedMiceArray = allMiceData;
+    }
+    else {
+        _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
+    }
     for (let i = 0; i < _listedMiceArray.length; i++) {
         let mouse = _listedMiceArray[i];
         mouse.fakeJSX = $(`#${mouse.elementID}`).get(0);
@@ -54,7 +60,13 @@ function resetFilters() {
 
 function _filterTraits() {
     let keys = Array.from(filters.keys());
-    let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
+    let _listedMiceArray
+    if (window.location.pathname == "/all-mice") {
+        _listedMiceArray = allMiceData;
+    }
+    else {
+        _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
+    }
     for (let i = 0; i < keys.length; i++) {
         let type = keys[i];
         for (let i = 0; i < _listedMiceArray.length; i++) {
@@ -70,7 +82,13 @@ function _filterTraits() {
 }
 
 function _unfilterTraits(type, trait) {
-    let _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
+    let _listedMiceArray
+    if (window.location.pathname == "/all-mice") {
+        _listedMiceArray = allMiceData;
+    }
+    else {
+        _listedMiceArray = Array.from(listedMice.values()).filter(listing => listing.privacy == "Public");;
+    }
     for (let i = 0; i < _listedMiceArray.length; i++) {
         let mouse = _listedMiceArray[i];
         if (mouse[type] != trait) {

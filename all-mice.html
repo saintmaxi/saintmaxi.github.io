@@ -60,6 +60,30 @@
   <br>
   <br>
   <h1 class="heading-1" style="text-align: center;">ALL GENESIS MICE</h1>
+  <p id="hide-filters" class="contract-link" onclick="hideFilters()">Hide Filters ↑</p>
+  <div class="w-row">
+    <div class="w-col" id="filter">
+      <select id="Earrings" name="earrings"
+        onchange="removeFilter('earrings'); addFilter('earrings', this.value)"></select>
+      <select id="Whiskers" name="whiskers"
+        onchange="removeFilter('whiskers'); addFilter('whiskers', this.value)"></select>
+      <select id="Neck" name="neck" onchange="removeFilter('neck'); addFilter('neck', this.value)"></select><br>
+      <select id="Character" name="character"
+        onchange="removeFilter('character'); addFilter('character', this.value)"></select>
+      <select id="Hat" name="hat" onchange="removeFilter('hat'); addFilter('hat', this.value)"></select>
+      <select id="Nose" name="nose" onchange="removeFilter('nose'); addFilter('nose', this.value)"></select><br>
+      <select id="Eyes" name="eyes" onchange="removeFilter('eyes'); addFilter('eyes', this.value)"></select>
+      <select id="Mouth" name="mouth" onchange="removeFilter('mouth'); addFilter('mouth', this.value)"></select>
+      <select id="og" name="og" onchange="removeFilter('original'); addFilter('original', this.value)">
+        <option value="" selected>OG Status</option>
+        <option value="Yes">OG</option>
+        <option value="No">Not OG</option>
+      </select>
+    </div>
+  </div>
+    <div id="reset-filter-div"><br>
+  <button class="button w-button" id="reset-filter-button" type=button onclick=resetFilters()>Reset Filters</button>
+    </div>
   <div id="content">
     <br><h2 class="heading-2"><span class="one">.</span><span class="two">.</span><span class="three">.</span></h2>
     <div id="spacer"></div>

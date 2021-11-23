@@ -11,3 +11,20 @@ async function displayErrorMessage(message, timed=true) {
 function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+function hideFilters() {
+    if ($("#filter").hasClass("hidden")) {
+        $("#price-filtering-container").removeClass("hidden");
+        $("#filter-results-count-container").removeClass("hidden");
+        $("#filter").removeClass("hidden");
+        $("#reset-filter-div").removeClass("hidden");
+        $("#hide-filters").text("Hide Filters ↑");
+    }
+    else {
+        $("#price-filtering-container").addClass("hidden");
+        $("#filter-results-count-container").addClass("hidden");
+        $("#filter").addClass("hidden");
+        $("#reset-filter-div").addClass("hidden");
+        $("#hide-filters").text("Show Filters ↓");
+    }
+}
