@@ -359,8 +359,6 @@ class Mice {
     constructor(miceID) {
         this.miceID = Number(miceID);
         this.original = this.miceID < 2000 ? "Yes" : "No";
-        console.log(miceID)
-        console.log(rarityData)
         this.originalRarity = rarityData["Original"][this.original];
         this.price = null;
         this.priceText = null;
