@@ -6,6 +6,14 @@ async function getAllMice()  {
     let _darkClass = getDarkMode();
     $('#content').empty();
 
+    if (!rarityLoaded) {
+        console.log('loading rarity...')
+        $.getJSON('../assets/rarity_data.json', function(json) {
+            rarityData = json;
+            rarityLoaded = true;
+            console.log(rarityData)
+        });
+    }
 
     for (let i = 0; i< unburned.length; i++ ) {
         id = unburned[i]
