@@ -17,7 +17,10 @@ const marketplaceAbi = () => {
 };
 
 if (window.location.pathname == "/all-mice") {
-    console.log(rarityLoaded);
+    while (!rarityLoaded) {
+        console.log("Waiting for rarity data to load...");
+        sleep(3000);
+    }
     getAllMice();
 }
 
