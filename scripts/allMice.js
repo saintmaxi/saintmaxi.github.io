@@ -10,7 +10,6 @@ async function getAllMice()  {
     for (let i = 0; i< unburned.length; i++ ) {
         id = unburned[i]
         new Mice(id);
-        console.log(id)
 
         const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="available-mice-${id}" onclick="showInfo(${id}, false)"><img src="./images/mystery.png" data-src="${_baseImageURI}${id}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${id}</div></div>`;
         $('#content').append(_fakeJSX)

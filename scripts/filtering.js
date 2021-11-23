@@ -357,22 +357,13 @@ class Mice {
     constructor(miceID) {
         this.miceID = Number(miceID);
         this.original = this.miceID < 2000 ? "Yes" : "No";
-        console.log(miceID)
-        console.log(rarityData)
-        if (typeof(rarityData) == 'undefined') {
-            $.getJSON('../assets/rarity_data.json', function(json) {
-                rarityData = json;
-                console.log('had to load again')
-            });
-        }
-        console.log(rarityData)
-        this.originalRarity = rarityData["Original"][this.original];
         this.price = null;
         this.priceText = null;
         this.privacy = null;
         this.toAddress = null;
         this.fakeJSX = null;
         try {
+            this.originalRarity = rarityData["Original"][this.original];
             let _miceData = miceData[miceID];
             this.elementID = `mice-for-sale-${miceID}`;
             this.totalRarity = _miceData["rarity.score"];
