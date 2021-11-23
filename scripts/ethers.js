@@ -18,13 +18,13 @@ const marketplaceAbi = () => {
 
 if (window.ethereum == undefined) {
     if (window.location.pathname != "/" && window.location.pathname != "/index" && window.location.pathname != "/faq" && window.location.pathname != "/all-mice") {
-        displayErrorMessage('Please use MetaMask to access this feature of Anonymice Marketplace.', false)
-        $("#error-popup p").append(`<br><a href="https://metamask.app.link/dapp/saintmaxi.github.io/" class="contract-link ${getDarkMode()}" target="_blank" rel="noopener noreferrer">MetaMask</a>`)
+        displayErrorMessage('Please use MetaMask to access this feature of Anonymice Marketplace.', false);
+        $("#error-popup p").append(`<br><a href="https://metamask.app.link/dapp/saintmaxi.github.io/" class="contract-link ${getDarkMode()}" target="_blank" rel="noopener noreferrer">MetaMask</a>`);
     }
 
     window.onload = async() => {
         if (window.location.pathname == '/all-mice') {
-            await getAllMice()
+            await getAllMice();
         }
     }
 }
