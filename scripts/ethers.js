@@ -477,6 +477,9 @@ const updateMarketplaceDetails = async() => {
         await updateMarketListings();
         await updateYourMarketMice();
     }
+    else if (window.location.pathname == '/all-mice') {
+        await getAllMice()
+    }
     $("#privateSaleLookup-address").empty();
     $("#refresh-notification").remove();
     loading = false;
@@ -580,11 +583,6 @@ window.onload = async() => {
     }
     catch {
         console.log("Not connected")
-    }
-
-    if (window.location.pathname == '/all-mice') {
-        window.alert('updating')
-        await getAllMice()
     }
 
     if (!loading && pendingTransactions.size <1) {
