@@ -529,6 +529,7 @@ select:focus {
   height: 85vh;
   border: outset 1vw var(--main-border-color);
   border-radius: .2em;
+  box-shadow: 0 0 5000px 5000px rgba(0,0,0,0.88);
 
   padding: 5px;
 }
@@ -749,6 +750,7 @@ th {
   left: 50%;
   transform: translate(-50%, -50%);
   width: 53vw;
+  height: 35vh;
   border: outset 1vw var(--main-border-color);
   border-radius: .2em;
   padding: 5px;
@@ -759,6 +761,10 @@ th {
 #error-popup p {
   width: 100%;
   line-height: 3vw;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .sold-mice-img-container {
