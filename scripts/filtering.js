@@ -6,11 +6,9 @@ $.getJSON('../assets/mice_data.json', function(json) {
 });
 
 var rarityData;
-var rarityLoaded = false;
 
 $.getJSON('../assets/rarity_data.json', function(json) {
     rarityData = json;
-    rarityLoaded = true;
 });
 
 var miceObjectMap = new Map();
@@ -360,6 +358,13 @@ class Mice {
         this.miceID = Number(miceID);
         this.original = this.miceID < 2000 ? "Yes" : "No";
         console.log(miceID)
+        console.log(rarityData)
+        if (typeof(rarityData) == 'undefined') {
+            $.getJSON('../assets/rarity_data.json', function(json) {
+                rarityData = json;
+                console.log('had to load again')
+            });
+        }
         console.log(rarityData)
         this.originalRarity = rarityData["Original"][this.original];
         this.price = null;
