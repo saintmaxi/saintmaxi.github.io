@@ -18,10 +18,8 @@ const marketplaceAbi = () => {
 
 if (window.location.pathname == "/all-mice") {
     if (!rarityLoaded) {
-        $.getJSON('../assets/rarity_data.json', function(json) {
-            rarityData = json;
-            rarityLoaded = true;
-        });
+        console.log("Waiting for rarity data to load...");
+        sleep(3000)
     }
     getAllMice();
 }
