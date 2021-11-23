@@ -12,8 +12,8 @@ const cheethAbi = ()=>{
 };
 
 if (window.ethereum == undefined) {
-    displayErrorMessage('Please use MetaMask to access this feature of Anonymice Marketplace.', false);
-    $("#error-popup p").append(`<br><a href="https://metamask.app.link/dapp/saintmaxi.github.io/" class="contract-link ${getDarkMode()}" target="_blank" rel="noopener noreferrer">MetaMask</a>`);
+    displayErrorMessage('Use a web3 enabled browser with MetaMask or the MetaMask mobile app to access this feature of Anonymice Marketplace.', false);
+    $("#error-popup p").append(`<br><a href="https://saintmaxi.github.io" class="contract-link ${getDarkMode()}" rel="noopener noreferrer">Home</a>|<a href="https://metamask.app.link/dapp/saintmaxi.github.io/" class="contract-link ${getDarkMode()}" target="_blank" rel="noopener noreferrer">MetaMask</a>`);
 }
 const provider = new ethers.providers.Web3Provider(window.ethereum,"any");
 const signer = provider.getSigner();
