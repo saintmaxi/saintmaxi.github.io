@@ -383,7 +383,11 @@ class Mice {
             this.whiskers = _miceData["whiskers.value"];
             this.whiskersRarity = rarityData["Whiskers"][this.whiskers];
         }
-        catch {}
+        catch {
+            if (window.location.pathname == "/all-mice") {
+                $("#content").append('<h3 class="heading-3">An asset failed to load. Please refresh the page.</h3>')
+            }
+        }
         miceObjectMap.set(this.miceID, this);
     }
   }
