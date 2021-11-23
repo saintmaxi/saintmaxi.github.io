@@ -574,6 +574,7 @@ window.onload = async() => {
     }
 
     if (window.location.pathname == '/all-mice') {
+        window.alert('updating')
         await getAllMice()
     }
 
