@@ -229,12 +229,13 @@ const approveMiceToMarketplace = async() => {
 };
 
 const checkApprovalOfMice = async() => {
-    if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
+    const userAddress = await getAddress();
+    if ( ! (await anonymice.isApprovedForAll(userAddress, marketplaceAddress)) ) {
         // displayErrorMessage(`Error: You must set approval for marketplace.`);
         $("#market-approval-section").removeClass("hidden");
         return false;
     } else {
-        $("#market-approval-section").addClass("hidden");
+        $("#market-approval-section").remove();
         return true;
     }
 };
@@ -460,6 +461,7 @@ const updateMarketplaceDetails = async() => {
         await updateInfo();
     }
     if (window.location.pathname == "/create-listing") {
+        checkApprovalOfMice();
         await updateAvailableMice();
         await updateMarketListings();
     }
@@ -589,7 +591,6 @@ window.onload = async() => {
     if (!loading && pendingTransactions.size <1) {
         if (window.location.pathname != "/faq" && window.location.pathname != "/index" && window.location.pathname !="/") {
             await updateMarketplaceDetails();
-            await checkApprovalOfMice();
          }
     }
 };
