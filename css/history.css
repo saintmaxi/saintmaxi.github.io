@@ -181,12 +181,8 @@ body.dark {
         padding: 1vh;
     }
 
-    h1 {
-        font-size: 3.5vh
-    }
-
     #content h1 {
-        font-size: initial;
+        font-size: 3.5vh
     }
 
     .mice-type-label, .utility-type-label {
