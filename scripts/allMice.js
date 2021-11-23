@@ -15,12 +15,6 @@ async function getAllMice()  {
     }
 }
 
-window.onload = async() => {
-    console.log('hey')
-    await getAllMice()
-
-}
-
 $(window).scroll(function() {
     $.each($('img'), function() {
         if ( $(this).attr('data-src') && $(this).offset().top < ($(window).scrollTop() + $(window).height() + 100) ) {
