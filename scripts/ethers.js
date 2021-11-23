@@ -455,7 +455,6 @@ const updateMarketplaceDetails = async() => {
 
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
     $("#pending-transactions").append(loadingDiv);
-    await updateStats();
     if (connected) {
         await updateInfo();
     }
@@ -464,6 +463,7 @@ const updateMarketplaceDetails = async() => {
         await updateMarketListings();
     }
     else if (window.location.pathname == "/activity") {
+        await updateStats();
         await updateMarketListings();
         if (connected) {
             await updateYourMarketMice();
