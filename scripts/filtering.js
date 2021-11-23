@@ -6,9 +6,11 @@ $.getJSON('../assets/mice_data.json', function(json) {
 });
 
 var rarityData;
+var rarityLoaded = false;
 
 $.getJSON('../assets/rarity_data.json', function(json) {
     rarityData = json;
+    rarityLoaded = true;
 });
 
 var miceObjectMap = new Map();
