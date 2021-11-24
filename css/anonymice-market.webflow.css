@@ -455,6 +455,19 @@ select:focus {
   width: 70%;
 }
 
+#history-button {
+  position: absolute;
+  z-index: 9996;
+  display: block;
+
+  font-size: 1.8vw;
+  padding: 1vw;
+  top: 2;
+  left: 2;
+  text-align: center;
+  cursor: pointer;
+}
+
 #delist-button, #edit-button, #list-button, #buy-button {
   text-align: center;
   font-size: 1.8vw;
@@ -482,7 +495,7 @@ select:focus {
   margin-right: 3%;
 }
 
-#edit-prompt, #create-listing-prompt {
+#edit-prompt, #create-listing-prompt, #history-modal {
   background-color: var(--main-bg-color);
   z-index: 9997;
   color:white;
@@ -498,6 +511,14 @@ select:focus {
   padding: 5px;
   color: var(--main-border-color);
   text-align: center;
+}
+
+#history-modal {
+  font-size: 2vw;
+}
+
+#history-items {
+  font-size: 1.3vw;
 }
 
 #current-info {
@@ -707,22 +728,30 @@ tr td:first-child {
   text-align: center;
 }
 
-#mice-sales-container table {
+#mice-sales-container table, #history-modal table {
   margin: auto;
   border-collapse: separate;
   border-spacing: 0 1em;
 }
 
-#table-div {
+#table-div, #history-items {
   overflow:hidden;
   overflow-y: scroll;
   max-height: 90vh;
+}
+
+#history-items {
+  max-height: 45vh;
 }
 
 th {
   top: -5px;
   position: sticky;
   background-color: var(--main-bg-color);
+}
+
+#history-items th {
+  top: 0px;
 }
 
 #mice-sales-container th, td {
@@ -874,6 +903,15 @@ th {
     display: block;
   }
 
+  #history-modal table {
+    border-spacing: .3em 1em;
+  }
+  
+  #history-items {
+    font-size: 3.6vw;
+    max-height: 35vh;
+  }
+
   .main-content {
     border: solid var(--main-border-color) .5vh;
   }
@@ -943,7 +981,7 @@ th {
     width: 60%;
   }
 
-  #privateSaleLookup-address {
+  #privateSaleLookup-address, #current-owner-address {
     font-size: 3.5vw;
   }
   
@@ -1073,7 +1111,7 @@ th {
     text-align: center;
   }
 
-#edit-prompt, #create-listing-prompt {
+#edit-prompt, #create-listing-prompt, #history-modal {
   left: 50%;
   transform: translate(-50%, -50%);
   position: fixed;
@@ -1145,9 +1183,10 @@ th {
     margin-top: 3vh;
   }
 
-  #delist-button, #edit-button, #list-button, #buy-button {
+  #delist-button, #edit-button, #list-button, #buy-button, #history-button {
     width: 22%;
     font-size:2vh;
+    padding: initial;
   }
 
 .list-block {
@@ -1160,10 +1199,11 @@ th {
 }
 
 #mobile-buttons {
+  margin: auto;
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
+  width: 95%;
   max-height: 10%;
   text-align: center;
 }
@@ -1306,7 +1346,7 @@ th {
     margin-bottom: 10px;
   }
 
-#edit-prompt, #create-listing-prompt {
+#edit-prompt, #create-listing-prompt, #history-modal {
   left: 50%;
   transform: translate(-50%, 0);
   position: fixed;
@@ -1420,7 +1460,7 @@ th {
     overflow-y: scroll;
   } */
 
-  #edit-prompt h3, #create-listing-prompt h3{
+  #edit-prompt h3, #create-listing-prompt h3, #history-modal h3 {
     font-size: 2.5vh;
   }
 
@@ -1489,6 +1529,14 @@ th {
   #trait-box-space-big-screen {
     display: block;
   }
+
+  #current-owner-address {
+    font-size: 3vh;
+  }
+
+  #history-items table {
+    font-size: 2.4vh;
+  }
 }
 
 @media (min-aspect-ratio: 19/10) {
@@ -1523,8 +1571,16 @@ th {
      top: 35%;
   }
 
-  #click-info {
+  #click-info, #edit-prompt, #create-listing-prompt, #history-modal {
     top: 2vh;
     height: 96vh;
+  }
+
+  #current-owner-address {
+    font-size: 3vh;
+  }
+
+  #history-items table {
+    font-size: 3vh;
   }
 }

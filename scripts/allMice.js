@@ -11,7 +11,7 @@ async function getAllMice()  {
         id = unburned[i]
         let mouse = new Mice(id);
         allMiceData.push(mouse);
-        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${id}" onclick="showInfo(${id}, false)"><img src="./images/mystery.png" data-src="${_baseImageURI}${id}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${id}</div></div>`;
+        const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${id}" onclick="showInfo(${id})"><img src="./images/mystery.png" data-src="${_baseImageURI}${id}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${id}</div></div>`;
         $('#content').append(_fakeJSX)
     }
 }

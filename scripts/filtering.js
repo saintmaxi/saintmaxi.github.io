@@ -229,7 +229,7 @@ function titleCase(string){
 
 /* POPUP MICE INFO FUNCTIONS */
 
-async function showInfo(miceID, ethEnabledBrowser=true) {
+async function showInfo(miceID) {
     closeInfo("click-info");
     closeInfo("edit-prompt");
     closeInfo("create-listing-prompt");
@@ -252,8 +252,10 @@ async function showInfo(miceID, ethEnabledBrowser=true) {
     let editButton = "";
     let listButton = "";
     let buyButton = "";
+    let historyButton = "";
+    let mobileEditButton = "";
     let _micePrice = _mice.price;
-    if (ethEnabledBrowser) {
+    if (window.ethereum !== undefined) {
         if (connected) {
             if (_micePrice == null) {
                 _micePrice = "Not Listed"
@@ -266,6 +268,7 @@ async function showInfo(miceID, ethEnabledBrowser=true) {
                 if ((await checkIfOwnsMice(_miceId)) == true) {
                     delistButton = `<a href="#" class="button w-button" id="delist-button" onclick=removeMiceOnSale(${miceID})>Delist</a>`;
                     editButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit Listing</a>`;
+                    mobileEditButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit</a>`;
                 }
                 else {
                     buyButton = `<a href="#" class="button w-button" id="buy-button" onclick=buyMice(${_miceId})>Buy</a>`;
@@ -281,6 +284,7 @@ async function showInfo(miceID, ethEnabledBrowser=true) {
                 buyButton = `<a href="#" class="button w-button" id="buy-button" onclick='closeInfo("click-info");connect()')>Connect Wallet to Buy</a>`;
             }
         }
+        historyButton = `<button class="button w-button" id="history-button" onclick=openHistory(${miceID})>History</button>`;
     }
     else {
         _micePrice = "";
@@ -289,7 +293,7 @@ async function showInfo(miceID, ethEnabledBrowser=true) {
    
    
     
-    $("body").append(`<div id='click-info' class='click-info'><span id="close" onclick='closeInfo("click-info");'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'>${delistButton}${editButton}${listButton}${buyButton}</div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='mobile-buttons'>${delistButton}${editButton}${listButton}${buyButton}</div><div id='traits'>${_infoFakeJSX}</div></div>`);
+    $("body").append(`<div id='click-info' class='click-info'><div class="hide-on-mobile">${historyButton}</div><span id="close" onclick='closeInfo("click-info");'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'>${delistButton}${editButton}${listButton}${buyButton}</div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='mobile-buttons'>${delistButton}${mobileEditButton}${listButton}${buyButton}${historyButton}</div><div id='traits'>${_infoFakeJSX}</div></div>`);
     if (darkModeOn) {
         $(".click-info").addClass("dark");
         $(".click-info *").addClass("dark");
@@ -303,7 +307,7 @@ async function openEditPrompt(miceID) {
     const _currentToAddress = _currentPrivacy === "Public" ? "N/A" : _listedMice.toAddress;
     const _darkClass = getDarkMode();
 
-    const currentInfoJSX = `<br><div id='current-info'><h3>Current Price:</h3><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div><h3>Current Privacy:</h3>${_currentPrivacy}<br><h3>Private Sale Address:</h3><div style="overflow-x:scroll;max-width:100%;">${_currentToAddress}</div></div>`;
+    const currentInfoJSX = `<br><div id='current-info'><h3>Current Price:</h3><div>${_currentPrice}<span class="click-info-eth-logo ${_darkClass}">Ξ</span></div><h3>Current Privacy:</h3>${_currentPrivacy}<br><h3>Private Sale Address:</h3><div id="privateSaleLookup-address" style="overflow-x:scroll;max-width:100%;">${_currentToAddress}</div></div>`;
 
     const updateJSX = `<div class="w-row ${_darkClass}" id='updt-content'>
                         <div class="updt-block w-col w-col-6 ${_darkClass}">
@@ -363,6 +367,30 @@ async function openListPrompt(miceID) {
                             </div>`;
 
     $("body").append(`<div id='create-listing-prompt' class='click-info ${_darkClass}'><span id="list-back" class="${_darkClass}" onclick='closeInfo("create-listing-prompt");'>❮</span><h3 class='heading-3 ${_darkClass}'>Creating Listing: Anonymice #${miceID}</h3><div>${createListingJSX}</div></div>`);
+}
+
+async function openHistory(miceID) {
+    const _darkClass = getDarkMode();
+
+
+    const currentOwner = await getCurrentOwner(miceID);
+
+
+    const tradingJSX = await getTokenSalesHistory(miceID);
+
+    const historyJSX = `<br><div class="w-row ${_darkClass}">
+                                <div class="list-block ${_darkClass}">
+                                        <h3>Current Owner</h3>
+                                        <br>
+                                        <div id="current-owner-address">${currentOwner}</div>
+                                </div>
+                                <br>
+                                <div class="list-block ${_darkClass}" id="history-items">
+                                    ${tradingJSX}
+                                </div>
+                            </div>`;
+
+    $("body").append(`<div id='history-modal' class='click-info ${_darkClass}'><span id="list-back" class="${_darkClass}" onclick='closeInfo("history-modal");'>❮</span><h3 class='heading-3 ${_darkClass}'>Trading History: Anonymice #${miceID}</h3><div>${historyJSX}</div></div>`);
 }
 
 function closeInfo(elementID) {
