@@ -14,6 +14,7 @@ async function getAllMice()  {
         const _fakeJSX = `<div class="mice-on-sale${_darkClass}" id="mice-for-sale-${id}" onclick="showInfo(${id})"><img src="./images/mystery.png" data-src="${_baseImageURI}${id}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${id}</div></div>`;
         $('#content').append(_fakeJSX)
     }
+    window.scrollBy(0,1);
 }
 
 $(window).scroll(function() {
