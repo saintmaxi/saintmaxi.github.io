@@ -375,14 +375,17 @@ async function openHistory(miceID) {
 
     const currentOwner = await getCurrentOwner(miceID);
 
-
     const tradingJSX = await getTokenSalesHistory(miceID);
 
     const historyJSX = `<br><div class="w-row ${_darkClass}">
                                 <div class="list-block ${_darkClass}">
                                         <h3>Current Owner</h3>
                                         <br>
-                                        <div id="current-owner-address">${currentOwner}</div>
+                                        <div id="current-owner-address">
+                                            <a class="contract-link ${_darkClass}" href="https://rinkeby.etherscan.io/address/${currentOwner}" target="_blank" rel="noopener noreferrer">
+                                            ${currentOwner}
+                                            </a>
+                                        </div>
                                 </div>
                                 <br>
                                 <div class="list-block ${_darkClass}" id="history-items">
