@@ -140,7 +140,7 @@ div#wallet-div.body-div.dark {
     border: outset 1vw var(--main-dark-border-color);
 }
 
-#edit-prompt.dark, #create-listing-prompt.dark {
+#edit-prompt.dark, #create-listing-prompt.dark, #history-modal.dark {
     color: white;
     background-color: var(--main-dark-bg-color);
     border: outset 1vw var(--main-dark-border-color);

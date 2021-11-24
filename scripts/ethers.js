@@ -481,6 +481,7 @@ const updateMarketplaceDetails = async() => {
         await updateYourMarketMice();
     }
     else if (window.location.pathname == '/all-mice') {
+        await updateMarketListings();
         await getAllMice()
     }
     $("#privateSaleLookup-address").empty();
