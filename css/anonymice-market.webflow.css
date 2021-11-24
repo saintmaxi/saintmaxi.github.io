@@ -888,6 +888,7 @@ th {
 
 .contract-link {
   color: #3154c7;
+  text-decoration: none;
 }
 
 #hide-filters {
