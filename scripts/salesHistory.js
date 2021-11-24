@@ -64,10 +64,10 @@ async function getTokenSalesHistory(id) {
     if (events.length > 0) {
         let historyJSX = `<table id="mice-sales">
         <tr id="title-row">
-            <th>Price</th>
-            <th>From</th>
-            <th>To</th>
-            <th>Time</th>
+            <th class="${getDarkMode()}">Price</th>
+            <th class="${getDarkMode()}">From</th>
+            <th class="${getDarkMode()}">To</th>
+            <th class="${getDarkMode()}">Time</th>
         </tr>`;
 
         for (let i = events.length - 1; i >= 0; i--) {
