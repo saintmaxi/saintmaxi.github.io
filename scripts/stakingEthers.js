@@ -272,6 +272,7 @@ setInterval(async()=>{
 }, 5000)
 
 ethereum.on("accountsChanged", async(accounts_)=>{
+    location.reload();
     await updateStakingInfo()
     await getMiceImages();
 });
