@@ -234,6 +234,16 @@ async function showInfo(miceID) {
     closeInfo("edit-prompt");
     closeInfo("create-listing-prompt");
 
+    if (window.history.replaceState) {
+        const baseURL = "https://saintmaxi.github.io";
+        if (window.location.pathname == "/buy-mice") {
+            window.history.replaceState('buy-mice', 'Anonymice Marketplace', `${baseURL}/buy-mice?${miceID}`);
+        }
+        else if (window.location.pathname == "/all-mice") {
+            window.history.replaceState('all-mice', 'Anonymice Marketplace', `${baseURL}/all-mice?${miceID}`);
+        }
+    }
+
     let _miceId = Number(miceID);
     let _mice = miceObjectMap.get(_miceId);
     let _propertiesToDisplay = ["original", "character", "earrings", "eyes", "hat", 
@@ -398,6 +408,15 @@ async function openHistory(miceID) {
 
 function closeInfo(elementID) {
     $(`#${elementID}`).remove();
+    if (elementID == "click-info") {
+        const baseURL = "https://saintmaxi.github.io";
+        if (window.location.pathname == "/buy-mice") {
+            window.history.replaceState('buy-mice', 'Anonymice Marketplace', `${baseURL}/buy-mice`);
+        }
+        else if (window.location.pathname == "/all-mice") {
+            window.history.replaceState('all-mice', 'Anonymice Marketplace', `${baseURL}/all-mice`);
+        }
+    }
 }
 
 //can lose try catch logic when no longer on testnet (accomodation cause we list burned mice on testnet)
