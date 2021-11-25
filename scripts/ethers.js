@@ -439,13 +439,13 @@ const updateStats = async() => {
     $.getJSON('https://raw.githubusercontent.com/saintmaxi/anonymice/main/holders_today.json', function(holderData) {
         $("#holder-count").text(`${holderData["Holders"]}`);
     });
-    let osSales;
-    let osVolume;
-    $.getJSON('https://api.opensea.io/api/v1/collection/anonymice/stats', function(osData) {
-        $("#os-floor").text(`${osData["stats"]["floor_price"]}`);
-        osSales = osData["stats"]["total_sales"];
-        osVolume = (osData["stats"]["total_volume"]).toFixed(0);
-    });
+    
+    let osData = await $.getJSON('https://api.opensea.io/api/v1/collection/anonymice/stats')
+    let osSales = osData["stats"]["total_sales"];
+    let osVolume = (osData["stats"]["total_volume"]).toFixed(0);
+
+    $("#os-floor").text(`${osData["stats"]["floor_price"]}`);
+
     await marketplace.totalAmountOfEthTraded().then(async(vol) => {
         let totalVolume = Number(osVolume) + Number(Number(formatEther(vol.toString())).toFixed(0));
         $("#volume").text(totalVolume);
