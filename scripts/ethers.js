@@ -106,6 +106,8 @@ const updateMarketListings = async() => {
     publicListingsCount = 0;
     privateListingsCount = 0;
 
+    const linkedid = getUrlVars()['id'];
+
     console.log(`updating market listings`);
     const _currentMiceOnSale = await marketplace.getAllMiceOnSale();
 
@@ -155,6 +157,10 @@ const updateMarketListings = async() => {
     };
 
     sortBy("PriceLowToHigh");
+
+    if (linkedid) {
+        showInfo(linkedid);
+    }
 
     if (privateListingsCount > 0) {
         $("#your-prvt-sales").removeClass("prvt-hidden");
@@ -454,7 +460,6 @@ const updateMarketplaceDetails = async() => {
 
     loading = true;
     let darkClass = getDarkMode();
-    const linkedid = getUrlVars()['id'];
 
     const loadingDiv = `<div class="loading-div${darkClass}" id="refresh-notification">REFRESHING MARKETPLACE<span class="one">.</span><span class="two">.</span><span class="three">.</span>​</div><br>`;
     $("#pending-transactions").append(loadingDiv);
@@ -476,9 +481,6 @@ const updateMarketplaceDetails = async() => {
     }
     else if (window.location.pathname == "/buy-mice") {
         await updateMarketListings();
-        if (linkedid) {
-            showInfo(linkedid);
-        }
     }
     else if (window.location.pathname == "/edit-listing") {
         await updateMarketListings();
@@ -487,9 +489,6 @@ const updateMarketplaceDetails = async() => {
     else if (window.location.pathname == '/all-mice') {
         await getAllMice();
         await updateMarketListings();
-        if (linkedid) {
-            showInfo(linkedid);
-        }
     }
     $("#privateSaleLookup-address").empty();
     $("#refresh-notification").remove();

@@ -6,6 +6,8 @@ async function getAllMice()  {
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
     let _darkClass = getDarkMode();
     $('#content').empty();
+    const linkedid = getUrlVars()['id'];
+
 
     for (let i = 0; i< unburned.length; i++ ) {
         id = unburned[i]
@@ -15,6 +17,11 @@ async function getAllMice()  {
         $('#content').append(_fakeJSX)
     }
     window.scrollBy(0,1);
+
+    if (linkedid) {
+        showInfo(linkedid);
+    }
+
 }
 
 $(window).scroll(function() {
