@@ -18,7 +18,7 @@ async function getAllMice()  {
     }
     window.scrollBy(0,1);
 
-    if (linkedid) {
+    if (linkedid && window.ethereum == undefined) {
         showInfo(linkedid);
     }
 
