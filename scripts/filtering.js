@@ -246,6 +246,12 @@ async function showInfo(miceID) {
 
     let _miceId = Number(miceID);
     let _mice = miceObjectMap.get(_miceId);
+
+    if (!_mice) {
+        displayErrorMessage("Error: Could not locate requested Mice.")
+        return;
+    }
+
     let _propertiesToDisplay = ["original", "character", "earrings", "eyes", "hat", 
                                 "mouth", "neck", "nose", "whiskers"];
     let _infoFakeJSX = "";
