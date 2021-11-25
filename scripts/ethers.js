@@ -158,7 +158,7 @@ const updateMarketListings = async() => {
 
     sortBy("PriceLowToHigh");
 
-    if (linkedid) {
+    if (linkedid && !($("#click-info").length)) {
         showInfo(linkedid);
     }
 
