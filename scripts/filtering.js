@@ -237,10 +237,10 @@ async function showInfo(miceID) {
     if (window.history.replaceState) {
         const baseURL = "https://saintmaxi.github.io";
         if (window.location.pathname == "/buy-mice") {
-            window.history.replaceState('buy-mice', 'Anonymice Marketplace', `${baseURL}/buy-mice?${miceID}`);
+            window.history.replaceState('buy-mice', 'Anonymice Marketplace', `${baseURL}/buy-mice?id=${miceID}`);
         }
         else if (window.location.pathname == "/all-mice") {
-            window.history.replaceState('all-mice', 'Anonymice Marketplace', `${baseURL}/all-mice?${miceID}`);
+            window.history.replaceState('all-mice', 'Anonymice Marketplace', `${baseURL}/all-mice?id=${miceID}`);
         }
     }
 
