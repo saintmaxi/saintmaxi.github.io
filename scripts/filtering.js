@@ -7,9 +7,12 @@ $.getJSON('../assets/mice_data.json', function(json) {
 
 var rarityData;
 
-$.getJSON('../assets/rarity_data.json', function(json) {
-    rarityData = json;
-});
+async function loadRarityData() {
+    rarityData = await $.getJSON('../assets/rarity_data.json')
+}
+// $.getJSON('../assets/rarity_data.json', function(json) {
+//     rarityData = json;
+// });
 
 var miceObjectMap = new Map();
 

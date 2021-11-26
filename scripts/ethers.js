@@ -585,6 +585,8 @@ watching()
 var connected = false;
 
 window.onload = async() => {
+    await loadRarityData();
+
     try {
         await updateInfo();
         connected = true;
