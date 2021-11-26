@@ -193,12 +193,6 @@ function sortBy(type) {
     else if (type == "PriceLowToHigh") {
         _currentListings.sort((a, b) => (a.price > b.price) ? 1 : -1)
     }
-    else if (type == "RarityHighToLow") {
-        _currentListings.sort((a, b) => (a.totalRarity < b.totalRarity) ? 1 : -1)
-    }
-    else if (type == "RarityLowToHigh") {
-        _currentListings.sort((a, b) => (a.totalRarity > b.totalRarity) ? 1 : -1)
-    }
     else if (type == "IdHighToLow") {
         _currentListings.sort((a, b) => (a.miceID < b.miceID) ? 1 : -1)
     }
