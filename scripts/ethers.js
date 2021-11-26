@@ -24,6 +24,7 @@ if (window.ethereum == undefined) {
 
     window.onload = async() => {
         if (window.location.pathname == '/all-mice') {
+            await loadRarityData();
             await getAllMice();
         }
     }
