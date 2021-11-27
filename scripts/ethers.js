@@ -478,7 +478,9 @@ const updateMarketplaceDetails = async() => {
         if (connected) {
             await updateYourMarketMice();
         }
+        await getRecentListings()
         await getSalesHistory();
+        await getHighestSales();
     }
     else if (window.location.pathname == "/buy-mice") {
         await updateMarketListings();
@@ -577,8 +579,20 @@ const watchForBuy  = async () => {
     });
 }
 
+const watchForList = async() => {
+    filter = marketplace.filters.MicePutUpForSale(null, null);
+    marketplace.on(filter, async (id, price, seller, addressee, event) => {
+        if (pendingTransactions.size == 0) {
+            let listing = await getSaleHistoryItem(event, false, true);
+            $("#listings-title-row").after(listing);
+        }
+    
+    });
+}
+
 const watching = async () => {
     await watchForBuy();
+    await watchForList();
 }
 
 watching()
