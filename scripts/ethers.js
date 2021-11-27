@@ -574,6 +574,7 @@ const watchForBuy  = async () => {
         if (pendingTransactions.size == 0) {
             let sale = await getSaleHistoryItem(event);
             $("#title-row").after(sale);
+            $("#mice-sales tr:eq(1)").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
         }
     
     });
@@ -585,8 +586,8 @@ const watchForList = async() => {
         if (pendingTransactions.size == 0) {
             let listing = await getSaleHistoryItem(event, false, true);
             $("#listings-title-row").after(listing);
+            $("#mice-listings tr:eq(1)").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
         }
-    
     });
 }
 

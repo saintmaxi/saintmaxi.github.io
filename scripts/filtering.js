@@ -230,6 +230,7 @@ async function showInfo(miceID) {
     closeInfo("click-info");
     closeInfo("edit-prompt");
     closeInfo("create-listing-prompt");
+    closeInfo("history-modal");
 
     if (window.history.replaceState) {
         const baseURL = "https://saintmaxi.github.io";
