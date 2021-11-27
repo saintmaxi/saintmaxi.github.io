@@ -528,6 +528,7 @@ select:focus {
 
 .updt-block input, .updt-block .button, .list-block input, .list-block .button{
   font-size: 2vw;
+  line-height: 2vw;
 }
 
 .updt-button {
