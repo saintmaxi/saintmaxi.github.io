@@ -513,6 +513,7 @@ ethereum.on("accountsChanged", async(accounts_)=>{
 });
 
 window.onload = async()=>{
+    await loadRarityData();
     await updateInfo();
 
     if (pendingTransactions.size <1) {
