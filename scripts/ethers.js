@@ -78,6 +78,15 @@ const parseEther = (eth_) => { return ethers.utils.parseEther(eth_) }; // multip
 
 const getChainId = async() => { return await signer.getChainId() };
 
+const updateCurrentChain = async() => {
+    if ((await getChainId()) !== correctChain) {
+        displayErrorMessage("Error: Wrong Network", false);
+    }
+    else {
+        $("#error-popup").remove();
+    }
+}
+
 var listedMice = new Map();
 
 var loading = false;
@@ -598,6 +607,14 @@ ethereum.on("accountsChanged", async (accounts_) => {
     location.reload();
     await updateMarketplaceDetails();
     resetFilters();
+});
+
+provider.on("network", async(newNetwork, oldNetwork) => {
+    if (oldNetwork) {
+        $("#refresh-notification").remove();
+        await updateCurrentChain();
+        await updateMarketplaceDetails();
+    }
 });
 
 const watchForBuy  = async () => {
