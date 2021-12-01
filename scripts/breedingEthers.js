@@ -517,13 +517,9 @@ const updateCurrentChain = async() => {
 
 const updateInfo = async() => {
     let userAddress = await getAddress();
-    let ensAddress = await provider.lookupAddress(userAddress)
-    if (ensAddress) {
-        $("#wallet").text(ensAddress);
-    }
-    else {
-        $("#wallet").text(userAddress);
-    }
+    const headerAddress = await getDisplayableAddress(userAddress);
+    $("#wallet").text("CONNECTED:" + headerAddress);
+    $("#wallet").addClass("disabled");
 };
 
 provider.on("network", async(newNetwork, oldNetwork) => {
