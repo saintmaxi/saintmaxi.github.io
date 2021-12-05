@@ -290,7 +290,7 @@ async function showInfo(miceID) {
                     mobileEditButton = `<a href="#" class="button w-button" id="edit-button" onclick=openEditPrompt(${miceID})>Edit</a>`;
                 }
                 else {
-                    buyButton = `<a href="#" class="button w-button" id="buy-button" onclick=buyMice(${_miceId})>Buy</a>`;
+                    buyButton = `<a href="#" class="button w-button" id="buy-button" onclick=buyMice(${_miceId})>Buy for ${_micePrice}Ξ</a>`;
                 }
             }
         }
