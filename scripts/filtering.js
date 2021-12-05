@@ -33,17 +33,23 @@ function addFilter(type, trait) {
     if (trait != "") {
         filters.set(type, trait);
     }
+    console.log(`#${type}`)
+    if (trait) {
+        $(`#${type}`).addClass('selected-option');
+    }
     _filterTraits();
 }
 
 function removeFilter(type) {
     _unfilterTraits(type, filters.get(type));
     filters.delete(type);
+    $(`#${type}`).removeClass('selected-option');
     _filterTraits();
 }
 
 function resetFilters() {
     filters = new Map();
+    $(`#filter select`).removeClass('selected-option');
     $("select").each(function() { this.selectedIndex = 0 });
     $(".hidden").removeClass("hidden");
     let displayed = publicListingsCount - $(".mice-on-sale.hidden").length - $(".mice-on-sale.price-hidden").length + $(".mice-on-sale.hidden.price-hidden").length;
@@ -103,18 +109,18 @@ function _unfilterTraits(type, trait) {
 
 function _populateFilters() {
     const categories = new Map();
-    categories.set("Hat",  ["Astronaut", "Bane", "Soldier", "Cheese", "Motorcycle Helmet", "Elvis", "Halo", "Construction Hat", "Karate Kid", "No Hat"]);
-    categories.set("Whiskers", ["Handlebar", "No Whiskers", "Big Whiskers", "Tiny Whiskers", "Whiskers"]);
-    categories.set("Neck", ["Gold Chain", "Fancy", "Black Necklace", "Red Necklace", "Plain"])
-    categories.set("Earrings", ["Jim Dangles", "Bar", "Flower", "Stud", "None"])
-    categories.set("Eyes", ["VR Goggles", "3D Glasses", "Crazy", "Closed", "Sunglasses", "Bandit Mask", "Crosseyed", "Looking Left", "Looking Up", "Looking Right"])
-    categories.set("Mouth", ["Straight", "Small Frown", "Frown", "Big Smile", "Small Smile", "Big Frown", "Smile"])
-    categories.set("Nose", ["Dark", "Tiny", "Normal", "No Nose", "Big"])
-    categories.set("Character", ["gL1tCh3D", "Irradiated", "Alvin", "Matthias", "Simon", "Templeton", "Reepicheep", "Jerry", "Stuart", "Common"])
+    categories.set("hat",  ["Astronaut", "Bane", "Soldier", "Cheese", "Motorcycle Helmet", "Elvis", "Halo", "Construction Hat", "Karate Kid", "No Hat"]);
+    categories.set("whiskers", ["Handlebar", "No Whiskers", "Big Whiskers", "Tiny Whiskers", "Whiskers"]);
+    categories.set("neck", ["Gold Chain", "Fancy", "Black Necklace", "Red Necklace", "Plain"])
+    categories.set("earrings", ["Jim Dangles", "Bar", "Flower", "Stud", "None"])
+    categories.set("eyes", ["VR Goggles", "3D Glasses", "Crazy", "Closed", "Sunglasses", "Bandit Mask", "Crosseyed", "Looking Left", "Looking Up", "Looking Right"])
+    categories.set("mouth", ["Straight", "Small Frown", "Frown", "Big Smile", "Small Smile", "Big Frown", "Smile"])
+    categories.set("nose", ["Dark", "Tiny", "Normal", "No Nose", "Big"])
+    categories.set("character", ["gL1tCh3D", "Irradiated", "Alvin", "Matthias", "Simon", "Templeton", "Reepicheep", "Jerry", "Stuart", "Common"])
     let keys = Array.from(categories.keys());
     for (let i = 0; i < keys.length; i++) {
         let key = keys[i];
-        $(`#${key}`).append(`<option value="" selected>${key}</option>`);
+        $(`#${key}`).append(`<option value="" selected>${capitalizeFirstLetter(key)}</option>`);
         categories.get(key).map(function(opt) {
             $(`#${key}`).append(`<option value="${opt}">${opt}</option>`);
         })
@@ -424,6 +430,10 @@ function closeInfo(elementID) {
             window.history.replaceState('all-mice', 'Anonymice Marketplace', `${baseURL}/all-mice`);
         }
     }
+}
+
+function capitalizeFirstLetter(string) {
+  return string.charAt(0).toUpperCase() + string.slice(1);
 }
 
 //can lose try catch logic when no longer on testnet (accomodation cause we list burned mice on testnet)

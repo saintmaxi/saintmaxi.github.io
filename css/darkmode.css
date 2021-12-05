@@ -45,6 +45,11 @@ select.dark {
     fill: white;
 }
 
+.selected-option.dark {
+    background-color: rgba(154, 118, 238, 0.637);
+    color: white;
+  }
+
 #jump-icon.dark {
     fill: white;
 }

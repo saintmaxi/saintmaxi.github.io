@@ -292,12 +292,17 @@ body {
   text-align: center;
 }
 
+.selected-option {
+  background-color: #6984dd;
+  color: white;
+}
+
 #filter select {
   min-width: 31%;
   text-align: center;
 }
 
-#Nose, #Eyes, #Mouth, #og {
+#nose, #eyes, #mouth, #og {
   width: 22%;
 }
 
