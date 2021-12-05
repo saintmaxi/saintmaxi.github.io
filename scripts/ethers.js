@@ -19,6 +19,8 @@
 
 // const metamaskDeeplink = "";
 
+// const baseURL = "";
+
 // const correctChain = 1;
 
 /*********************************************************************************/
@@ -36,6 +38,8 @@ const marketplaceAbi = () => {
 };
 
 const etherscanBase = `https://rinkeby.etherscan.io/tx/`;
+
+const baseURL = "https://saintmaxi.github.io";
 
 const metamaskDeeplink = "https://metamask.app.link/dapp/saintmaxi.github.io/";
 
@@ -269,7 +273,8 @@ const checkIfOwnsMice = async(tokenId_) => {
 const approveMiceToMarketplace = async() => {
     await anonymice.setApprovalForAll(marketplaceAddress, true).then ( async (tx_) => {
         await waitForTransaction(tx_);
-        $("#market-approval-section").addClass("hidden");
+        closeInfo("click-info");
+        $('#block-screen').remove();
     });
 };
 
@@ -304,6 +309,7 @@ const buyMice = async(tokenId_) => {
             await marketplace.buyMice(tokenId_, {value: _price}).then( async(tx_) => {
                 $(`#mice-for-sale-${tokenId_}`).remove();
                 closeInfo("click-info");
+                $('#block-screen').remove();
                 await waitForTransaction(tx_)
             });
         }
@@ -326,6 +332,7 @@ const putMiceUpForSaleInternal = async(_tokenId) => {
         await marketplace.putMiceUpForSale(_tokenId, _priceInWei).then( async(tx_) => {
             $(`#available-mice-${_tokenId}`).remove();
             closeInfo("click-info");
+            $('#block-screen').remove();
             closeInfo("create-listing-prompt");
             await waitForTransaction(tx_)
         });
@@ -364,6 +371,7 @@ const putMiceUpForPrivateSaleInternal = async(_tokenId) => {
         await marketplace.putMiceUpForPrivateSale(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
             $(`#available-mice-${_tokenId}`).remove();
             closeInfo("click-info");
+            $('#block-screen').remove();
             closeInfo("create-listing-prompt");
             await waitForTransaction(tx_);
         });
@@ -398,6 +406,7 @@ const removeMiceOnSale = async(_tokenId) => {
             $(`#my-listed-mice-${_tokenId}`).remove();
             $(`#mice-for-sale-${_tokenId}`).remove();
             closeInfo("click-info");
+            $('#block-screen').remove();
             await waitForTransaction(tx_)
         });
     }
@@ -416,6 +425,7 @@ const updateMiceOnSalePrice = async(_tokenId) => {
             const _toAddress = _listing.toAddress;
             await marketplace.updateMiceOnSaleToPrivate(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
                 closeInfo("click-info");
+                $('#block-screen').remove();
                 closeInfo("edit-prompt");
                 $(`#my-listed-mice-${_tokenId}`).remove();
                 $(`#mice-for-sale-${_tokenId}`).remove();
@@ -425,6 +435,7 @@ const updateMiceOnSalePrice = async(_tokenId) => {
         else {
             await marketplace.updateMiceOnSale(_tokenId, _priceInWei).then( async(tx_) => {
                 closeInfo("click-info");
+                $('#block-screen').remove();
                 closeInfo("edit-prompt");
                 $(`#my-listed-mice-${_tokenId}`).remove();
                 $(`#mice-for-sale-${_tokenId}`).remove();
@@ -444,6 +455,7 @@ const updateMiceOnSalePrivacy = async(_tokenId) => {
         const _toAddress = $("#updatePrivacy-address").val();
         await marketplace.updateMiceOnSaleToPrivate(_tokenId, _priceInWei, _toAddress).then( async(tx_) => {
             closeInfo("click-info");
+            $('#block-screen').remove();
             closeInfo("edit-prompt");
             $(`#my-listed-mice-${_tokenId}`).remove();
             $(`#mice-for-sale-${_tokenId}`).remove();
@@ -578,8 +590,15 @@ async function endLoading(tx, txStatus) {
     let txHash = tx.hash;
     $(`#loading-div-${txHash}`).html("");
     let status = txStatus == 1 ? "SUCCESS" : "ERROR";
+    $(`#loading-div-${txHash}`).addClass("blinking");
+    if (txStatus == 1) {
+        $(`#loading-div-${txHash}`).addClass("success");
+    }
+    else if (txStatus == 0) {
+        $(`#loading-div-${txHash}`).addClass("failure");
+    }
     $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
-    await sleep(2000);
+    await sleep(7000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);
     if (pendingTransactions.size == 0) {
