@@ -512,6 +512,7 @@ const updateCurrentChain = async() => {
     }
     else {
         $("#error-popup").remove();
+        $("#block-screen-error").remove();
     }
 }
 
