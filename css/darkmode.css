@@ -167,8 +167,8 @@ div#wallet-div.body-div.dark {
     border: .3vw solid white;
 }
   
-.button.dark:hover{
-    background-color:rgb(184, 184, 184);
+.button.dark:hover, .current-page.dark {
+    background-color:rgb(184, 184, 184) !important;
 }
 
 select.dark {

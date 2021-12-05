@@ -224,7 +224,7 @@ input:focus {
   font-size: 1em;
 }
 
-.button:hover{
+.button:hover, .current-page{
   background-color:#849df0;
 }
 
@@ -483,8 +483,9 @@ select:focus {
 #delist-button, #edit-button, #list-button, #buy-button {
   text-align: center;
   font-size: 1.8vw;
+  line-height: 1.9vw;
   width: 30%;
-  height: 30%;
+  height: 37%;
   position: relative;
   top: 50%;
   transform: translateY(-50%);
