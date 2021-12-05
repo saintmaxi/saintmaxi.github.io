@@ -233,7 +233,6 @@ async function showInfo(miceID) {
     closeInfo("history-modal");
 
     if (window.history.replaceState) {
-        const baseURL = "https://saintmaxi.github.io";
         if (window.location.pathname == "/buy-mice") {
             window.history.replaceState('buy-mice', 'Anonymice Marketplace', `${baseURL}/buy-mice?id=${miceID}`);
         }
@@ -276,7 +275,7 @@ async function showInfo(miceID) {
                 _hidden = "hidden";
                 if ((await checkIfOwnsMice(_miceId)) == true) {
                     if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-                    listButton = `<a href="#" class="button w-button" style="background-color:grey;cursor:default" id="list-button">Approve Marketplace to List!</a>`;
+                    listButton = `<a href="#" class="button w-button" onclick="approveMiceToMarketplace()" id="list-button">Approve Marketplace to List!</a>`;
                     }
                     else {
                         listButton = `<a href="#" class="button w-button" id="list-button" onclick=openListPrompt(${miceID})>List Mice</a>`;
@@ -418,7 +417,6 @@ async function openHistory(miceID) {
 function closeInfo(elementID) {
     $(`#${elementID}`).remove();
     if (elementID == "click-info") {
-        const baseURL = "https://saintmaxi.github.io";
         if (window.location.pathname == "/buy-mice") {
             window.history.replaceState('buy-mice', 'Anonymice Marketplace', `${baseURL}/buy-mice`);
         }

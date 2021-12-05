@@ -365,7 +365,7 @@ async function endLoading(tx, txStatus) {
         $(`#loading-div-${txHash}`).addClass("failure");
     }
     $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
-    await sleep(5000);
+    await sleep(7000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);
     if (pendingTransactions.size == 0) {
