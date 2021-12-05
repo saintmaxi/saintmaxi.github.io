@@ -5,7 +5,19 @@
 
 body {
   background-color: #F7F7EF;
+}
 
+#block-screen, #block-screen-error {
+  z-index: 9990;
+  width: 100vw;
+  height: 1000vh;
+  opacity: 0;
+  position: absolute;
+  top:0;
+}
+
+#block-screen-error {
+  z-index: 9998;
 }
 
 input {
@@ -91,7 +103,7 @@ input:focus {
   border-left: solid .3vw var(--main-border-color);
   border-top: solid .3vw var(--main-border-color);
   border-radius: .2em;
-  z-index: 9999;
+  z-index: 9989;
   color: black;
   padding: 5px;
   right: 0px;

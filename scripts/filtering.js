@@ -311,7 +311,7 @@ async function showInfo(miceID) {
     }
    
    
-    
+    $("body").append(`<div id="block-screen" onclick="closeInfo('click-info');closeInfo('edit-prompt');closeInfo('create-listing-prompt');closeInfo('history-modal');$('#block-screen').remove();"></div>`);
     $("body").append(`<div id='click-info' class='click-info'><div class="hide-on-mobile">${historyButton}</div><span id="close" onclick='closeInfo("click-info");'>x</span><div id="img-container"><h2 class='heading-2' id='click-info-header'>Anonymice #${_miceId}</h2><img src='https://raw.githubusercontent.com/jozanza/anonymice-images/main/${miceID}.png' class='info-image'>${delistButton}${editButton}${listButton}${buyButton}</div><div id="click-info-spacer"><div id="spacer-content">${_micePrice}<span class="click-info-eth-logo ${_hidden}">Ξ</span></div></div><div id='mobile-buttons'>${delistButton}${mobileEditButton}${listButton}${buyButton}${historyButton}</div><div id='traits'>${_infoFakeJSX}</div></div>`);
     if (darkModeOn) {
         $(".click-info").addClass("dark");
