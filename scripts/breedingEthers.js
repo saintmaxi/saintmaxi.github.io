@@ -600,8 +600,15 @@ async function endLoading(tx, txStatus) {
     let txHash = tx.hash;
     $(`#loading-div-${txHash}`).html("");
     let status = txStatus == 1 ? "SUCCESS" : "ERROR";
+    $(`#loading-div-${txHash}`).addClass("blinking");
+    if (txStatus == 1) {
+        $(`#loading-div-${txHash}`).addClass("success");
+    }
+    else if (txStatus == 0) {
+        $(`#loading-div-${txHash}`).addClass("failure");
+    }
     $(`#loading-div-${txHash}`).append(`TRANSACTION ${status}.<br>VIEW ON ETHERSCAN.`);
-    await sleep(2000);
+    await sleep(5000);
     $(`#etherscan-link-${txHash}`).remove();
     pendingTransactions.delete(tx);
     if (pendingTransactions.size == 0) {

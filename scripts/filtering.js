@@ -333,7 +333,7 @@ async function openEditPrompt(miceID) {
                             <div>
                                 <h3>Update Price</h3>
                                 <div>
-                                <form><input class="${_darkClass}" type="number" id="updatePrice-price" name="updatePrice-price"
+                                <form><input class="${_darkClass}" min=0 type="number" id="updatePrice-price" name="updatePrice-price"
                                     placeholder="Price in ETH" value=""></form>
                                 </div><br>
                                 <a href="#" class="updt-button button w-button ${_darkClass}" onclick=updateMiceOnSalePrice(${miceID})>Update Price</a>
@@ -362,7 +362,7 @@ async function openListPrompt(miceID) {
                                     <div>
                                         <h3>Public Sale</h3>
                                         <div>
-                                            <form><input type="number" id="publicSale-price" name="publicSale-price"
+                                            <form><input type="number" min=0 id="publicSale-price" name="publicSale-price"
                                                 placeholder="Price in ETH" value=""></form>
                                         </div><br>
                                         <a href="#" class="button w-button ${_darkClass}" onclick=putMiceUpForSale(${miceID})>Create Public Listing</a>
@@ -373,7 +373,7 @@ async function openListPrompt(miceID) {
                                     <div>
                                         <h3>Private Sale</h3>
                                         <div>
-                                        <form><input type="number" id="privateSale-price" name="privateSale-price"
+                                        <form><input type="number" min=0 id="privateSale-price" name="privateSale-price"
                                             placeholder="Price in ETH" value=""></form>
                                         </div><br>
                                         <div>

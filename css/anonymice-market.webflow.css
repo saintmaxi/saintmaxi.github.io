@@ -340,7 +340,6 @@ body {
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
-  margin-top: 20px;
   margin-right: 5px;
   margin-left: 5px;
   -webkit-box-orient: vertical;
@@ -723,6 +722,24 @@ select:focus {
   color: white;
   padding: 20px;
   text-align: center;
+}
+
+@keyframes blinker {
+  50% {
+    opacity: 0;
+  }
+}
+
+.blinking {
+  animation: blinker 1.6s linear infinite;
+}
+
+.success {
+  background-color: green;
+}
+
+.failure {
+  background-color: red;
 }
 
 .etherscan-link {

@@ -187,6 +187,16 @@ select.dark {
     background-color: var(--main-secondary-bg-color);
 }
 
+.success.dark {
+    background-color: green !important;
+    color: white !important;
+}
+  
+.failure.dark {
+background-color: red !important;
+color: white !important;
+}
+
 /* .mice-on-sale.dark {
     background-color: var(--main-dark-bg-color);
     border: outset var(--main-dark-border-color) .5em;
