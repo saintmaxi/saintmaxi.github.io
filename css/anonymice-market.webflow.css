@@ -224,8 +224,12 @@ input:focus {
   font-size: 1em;
 }
 
-.button:hover, .current-page{
+.button:hover {
   background-color:#849df0;
+}
+
+.current-page {
+  background-color:#b4c3f5;
 }
 
 .heading-2 {

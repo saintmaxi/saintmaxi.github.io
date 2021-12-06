@@ -121,6 +121,7 @@ const stakeMicesToCheeth = async()=>{
             }
             selectedForStaking = new Set();
             $("#selected-for-staking").text("None");
+            $("#your-anonymices").html(`Your Available Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)`);
             await waitForTransaction(tx_);
         });
     }
@@ -158,6 +159,7 @@ const unstakeByIds = async()=>{
             }
             selectedForUnstaking = new Set();
             $("#selected-for-unstaking").text("None");
+            $("#your-staked-anonymices").html(`Your Staked Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)`);
             await waitForTransaction(tx_);
         }); 
     }
@@ -173,6 +175,7 @@ const unstakeAll = async()=>{
             $("#staked-mice-images").append("<br>");
             selectedForUnstaking = new Set();
             $("#selected-for-unstaking").text("None");
+            $("#your-staked-anonymices").html(`Your Staked Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)`);
             await waitForTransaction(tx_);
         });
     }

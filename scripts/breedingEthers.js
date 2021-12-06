@@ -179,6 +179,7 @@ const breedMice = async()=> {
             $(`#available-mice-${_parentId2}`).remove();
             selectedForBreeding = new Set();
             $("#selected-for-breeding").text("Selected: None");
+            $("#your-anonymices").html(`YOUR AVAILABLE MICE (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)`);
             await waitForTransaction(tx_);
         })
     }

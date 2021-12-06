@@ -336,6 +336,7 @@ const putMiceUpForSaleInternal = async(_tokenId) => {
             closeInfo("click-info");
             $('#block-screen').remove();
             closeInfo("create-listing-prompt");
+            $("#your-available-mice-count").html(`Your Available Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)`);
             await waitForTransaction(tx_)
         });
     }
@@ -375,6 +376,7 @@ const putMiceUpForPrivateSaleInternal = async(_tokenId) => {
             closeInfo("click-info");
             $('#block-screen').remove();
             closeInfo("create-listing-prompt");
+            $("#your-available-mice-count").html(`Your Available Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)`);
             await waitForTransaction(tx_);
         });
     }
@@ -409,6 +411,7 @@ const removeMiceOnSale = async(_tokenId) => {
             $(`#mice-for-sale-${_tokenId}`).remove();
             closeInfo("click-info");
             $('#block-screen').remove();
+            $("#your-listed-mice-count").html(`Your Listed Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)`);
             await waitForTransaction(tx_)
         });
     }
