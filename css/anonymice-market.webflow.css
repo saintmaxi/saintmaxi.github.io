@@ -297,6 +297,21 @@ body {
   color: white;
 }
 
+#activity-sections button {
+  padding: 20px;
+  width: 32%;
+  color: white
+}
+
+.selected-activity {
+  background-color: rgb(184, 184, 184);
+  color: white
+}
+
+.hidden-activity {
+  display:none;
+}
+
 #filter select {
   min-width: 31%;
   text-align: center;
@@ -935,6 +950,13 @@ th {
 
 /* mobile */
 @media screen and (max-width: 600px){
+
+  #activity-sections button {
+    font-size: 4vw;
+    width: 100%;
+    padding: 5px;
+    margin: 2px
+  }
 
   #hide-on-desktop {
     display: block;

@@ -48,6 +48,11 @@ select.dark {
 .selected-option.dark {
     background-color: rgba(154, 118, 238, 0.637);
     color: white;
+}
+
+.selected-activity.dark {
+    background-color: rgb(184, 184, 184) !important;
+    color: white
   }
 
 #jump-icon.dark {
