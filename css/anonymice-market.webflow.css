@@ -1542,7 +1542,7 @@ th {
   font-size: 3vh;
   width: 50%;
   height: 23%;
-  padding: 1vh;
+  padding: .75vh;
   margin-top: .1vh;
 }
 
@@ -1604,7 +1604,7 @@ th {
   }
 }
 
-@media (min-aspect-ratio: 184/100) {
+@media (min-aspect-ratio: 181/100) {
   .updt-block {
     text-align: center;
     font-size: 2vh;
