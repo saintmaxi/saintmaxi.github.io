@@ -1488,7 +1488,7 @@ th {
 }
 
 /*Weird huge screens*/
-@media screen and (min-width: 1700px){
+@media screen and (min-width: 1840px){
   #directory {
     font-size: 1.1vw;
   }
@@ -1541,9 +1541,9 @@ th {
   text-align: center;
   font-size: 3vh;
   width: 50%;
-  height: 25%;
+  height: 23%;
   padding: 1vh;
-  margin-top: .2vh;
+  margin-top: .1vh;
 }
 
 .updt-block input, .list-block input {
@@ -1556,7 +1556,7 @@ th {
 }
 
 #current-info {
-  margin-top: 2vh;
+  /* margin-top: 2vh; */
   /* margin-bottom: .4vh; */
 }
 
@@ -1604,7 +1604,7 @@ th {
   }
 }
 
-@media (min-aspect-ratio: 19/10) {
+@media (min-aspect-ratio: 184/100) {
   .updt-block {
     text-align: center;
     font-size: 2vh;
