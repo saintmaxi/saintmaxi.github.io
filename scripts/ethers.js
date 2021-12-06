@@ -51,7 +51,7 @@ const correctChain = 4;
 if (window.ethereum == undefined) {
     if (window.location.pathname != "/" && window.location.pathname != "/index" && window.location.pathname != "/faq" && window.location.pathname != "/all-mice") {
         displayErrorMessage('Use a web3 enabled browser with MetaMask or the MetaMask mobile app to access this feature of Anonymice Marketplace.', false);
-        $("#error-popup p").append(`<br><a href="/" class="contract-link ${getDarkMode()}" rel="noopener noreferrer">Home</a>|<a href="${metamaskDeeplink}" class="contract-link ${getDarkMode()}" target="_blank" rel="noopener noreferrer">MetaMask</a>`);
+        $("#error-popup p").append(`<br><a href="/" class="contract-link ${getDarkMode()}" rel="noopener noreferrer">Home</a>|<a href="${metamaskDeeplink}" class="contract-link ${getDarkMode()}" target="_blank" rel="noopener noreferrer">Open in MetaMask⬈</a>`);
     }
 
     window.onload = async() => {
