@@ -148,6 +148,8 @@ const updateMarketListings = async() => {
     clearPriceFilter()
     publicListingsCount = 0;
     privateListingsCount = 0;
+    $("#filter-results-count").html(`<span class="one">.</span><span class="two">.</span><span class="three">.</span> Mice Found`);
+
 
     const linkedid = getUrlVars()['id'];
 

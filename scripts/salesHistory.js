@@ -52,7 +52,6 @@ async function getDisplayableAddress(address) {
 
 async function getSaleHistoryItem(event, individual=false, recentlyListed=false) {
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
-    const baseEtherscanLinkTx = "https://rinkeby.etherscan.io/tx/";
     const baseEtherscanLinkAddress = "https://etherscan.io/address/";
 
     let _darkClass = getDarkMode();
@@ -88,7 +87,7 @@ async function getSaleHistoryItem(event, individual=false, recentlyListed=false)
                     <td>${price}<span class="listing-eth-logo">Ξ</span></td>
                     <td><a href="${baseEtherscanLinkAddress}${event.args.seller}" target="_blank" rel="noopener noreferrer">${seller}<p style="display:inline;font-size: 1.5vw">⬈</p></a></td>
                     ${buyerCol}
-                    <td><a href="${baseEtherscanLinkTx}${txId}" id="${txId}" target="_blank" rel="noopener noreferrer">${timeDelta} <p style="display:inline;font-size: 1.5vw">⬈</p></a></td>
+                    <td><a href="${etherscanBase}${txId}" id="${txId}" target="_blank" rel="noopener noreferrer">${timeDelta} <p style="display:inline;font-size: 1.5vw">⬈</p></a></td>
                     </tr>`
 
     return fakeJSX;
@@ -116,7 +115,7 @@ async function getTokenSalesHistory(id) {
         return historyJSX;
     }
     else {
-        return "<div>No trading history.</div>"
+        return "<div style='height: 50px;'>No trading history.</div>"
     }
 
 }
