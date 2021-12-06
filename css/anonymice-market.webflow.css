@@ -300,7 +300,7 @@ body {
 #activity-sections button {
   padding: 20px;
   width: 32%;
-  color: white
+  color: white;
 }
 
 .selected-activity {
@@ -1245,7 +1245,13 @@ th {
   #delist-button, #edit-button, #list-button, #buy-button, #history-button {
     width: 22%;
     font-size:2vh;
-    padding: initial;
+  }
+
+  #delist-button, #edit-button, #list-button, #buy-button {
+    width: 22%;
+    font-size:2vh;
+    padding-top: 10.2px;
+    padding-bottom: 10.2px;
   }
 
 .list-block {
