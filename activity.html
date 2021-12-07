@@ -95,27 +95,11 @@
   <div class="body-section wf-section">
     <div class="main-content" id="mice-sales-container">
       <div id="activity-sections">
-        <button id="recent-listings-button" class="button selected-activity" onclick="$('#recent-listings').removeClass('hidden-activity');$('#top-sales-button').removeClass('selected-activity');$('#recent-sales-button').removeClass('selected-activity');$('#recent-listings-button').addClass('selected-activity');$('#recent-sales').addClass('hidden-activity');$('#top-sales').addClass('hidden-activity');">Recent Listings</button>
-        <button id="recent-sales-button" class="button" onclick="$('#recent-sales').removeClass('hidden-activity');$('#top-sales-button').removeClass('selected-activity');$('#recent-listings-button').removeClass('selected-activity');$('#recent-sales-button').addClass('selected-activity');$('#recent-listings').addClass('hidden-activity');$('#top-sales').addClass('hidden-activity');">Recent Sales</button>
+        <button id="recent-sales-button" class="button selected-activity" onclick="$('#recent-sales').removeClass('hidden-activity');$('#top-sales-button').removeClass('selected-activity');$('#recent-listings-button').removeClass('selected-activity');$('#recent-sales-button').addClass('selected-activity');$('#recent-listings').addClass('hidden-activity');$('#top-sales').addClass('hidden-activity');">Recent Sales</button>
+        <button id="recent-listings-button" class="button" onclick="$('#recent-listings').removeClass('hidden-activity');$('#top-sales-button').removeClass('selected-activity');$('#recent-sales-button').removeClass('selected-activity');$('#recent-listings-button').addClass('selected-activity');$('#recent-sales').addClass('hidden-activity');$('#top-sales').addClass('hidden-activity');">Recent Listings</button>
         <button id="top-sales-button" class="button" onclick="$('#top-sales').removeClass('hidden-activity');$('#recent-sales-button').removeClass('selected-activity');$('#recent-listings-button').removeClass('selected-activity');$('#top-sales-button').addClass('selected-activity');$('#recent-sales').addClass('hidden-activity');$('#recent-listings').addClass('hidden-activity');">Top Sales</button>
       </div>
-      <div id="recent-listings">
-        <div id="table-div">
-          <table id="mice-listings">
-            <tr id="listings-title-row">
-              <th>Item</th>
-              <th>Price</th>
-              <th>From</th>
-              <th>Time</th>
-            </tr>
-          </table>
-        </div>
-        <div id="listings-loading">
-          <h1><span class="one">.</span><span class="two">.</span><span class="three">.</span></h1>
-        </div>
-        <div class="sale-row"></div>
-      </div>
-      <div class="hidden-activity" id="recent-sales">
+      <div id="recent-sales">
         <div id="table-div">
           <table id="mice-sales">
             <tr id="title-row">
@@ -132,6 +116,22 @@
         </div>
           <div class="sale-row">
         </div>
+      </div>
+      <div class="hidden-activity" id="recent-listings">
+        <div id="table-div">
+          <table id="mice-listings">
+            <tr id="listings-title-row">
+              <th>Item</th>
+              <th>Price</th>
+              <th>From</th>
+              <th>Time</th>
+            </tr>
+          </table>
+        </div>
+        <div id="listings-loading">
+          <h1><span class="one">.</span><span class="two">.</span><span class="three">.</span></h1>
+        </div>
+        <div class="sale-row"></div>
       </div>
       <div class="hidden-activity" id="top-sales">
         <div id="table-div">
