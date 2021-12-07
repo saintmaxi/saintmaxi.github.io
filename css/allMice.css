@@ -66,8 +66,8 @@
     }
 
     #traits {
-        height: 45%;
-        margin-bottom: 5%;
+        height: 40%;
+        overflow-y: scroll;
     }
 }
 
