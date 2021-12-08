@@ -98,10 +98,10 @@ const approveMicesToCheeth = async()=>{
 
 const stakeMicesToCheeth = async()=>{
     if (selectedForStaking.size == 0) {
-        displayErrorMessage("Error: Select at least 1 mice to stake!")
+        displayErrorMessage("Error: Select at least 1 Mice to stake!")
     }
     else if ((await getAnonymicesEnum()) == 0) {
-        displayErrorMessage("Error: No available mice to stake!")
+        displayErrorMessage("Error: No available Mice to stake!")
     }
     else {
         const _micesArray = Array.from(selectedForStaking);
