@@ -10,7 +10,6 @@ body {
 #block-screen, #block-screen-error {
   z-index: 9990;
   width: 100vw;
-  height: 1000vh;
   opacity: 0;
   position: absolute;
   top:0;
