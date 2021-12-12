@@ -403,7 +403,7 @@ async function selectForStaking(miceID) {
         $("#selected-for-staking").text("None");
     }
     else {
-        let selectedString = `${Array.from(selectedForStaking).sort().join(' ')}`;
+        let selectedString = `${Array.from(selectedForStaking).sort((a, b) => a - b).join(' ')}`;
         $("#selected-for-staking").text(selectedString);
     }
 }
@@ -421,7 +421,7 @@ async function selectForUnstaking(miceID) {
         $("#selected-for-unstaking").text("None");
     }
     else {
-        let selectedString = `${Array.from(selectedForUnstaking).sort().join(' ')}`;
+        let selectedString = `${Array.from(selectedForUnstaking).sort((a, b) => a - b).join(' ')}`;
         $("#selected-for-unstaking").text(selectedString);
     }
 }
