@@ -226,7 +226,6 @@ const getMiceImages = async()=>{
                 new Mice(_miceId);
             }
             let active= "";
-            console.log(selectedForUnstaking)
             if (selectedForUnstaking.has(Number(_miceId))) {
                 active = "active";
             }

@@ -33,7 +33,6 @@ function addFilter(type, trait) {
     if (trait != "") {
         filters.set(type, trait);
     }
-    console.log(`#${type}`)
     if (trait) {
         $(`#${type}`).addClass('selected-option');
     }
@@ -136,7 +135,6 @@ function filterByPrice() {
             displayErrorMessage('Invalid price range');
         }
         else {
-            console.log(`${min} - ${max}`)
             for (let i = 0; i < _listedMiceArray.length; i++) {
                 let mouse = _listedMiceArray[i];
                 if (mouse.price < min || mouse.price > max) {
@@ -151,7 +149,6 @@ function filterByPrice() {
         }
     }
     else if (min) {
-        console.log(`> ${min}`)
         for (let i = 0; i < _listedMiceArray.length; i++) {
             let mouse = _listedMiceArray[i];
             if (mouse.price < min) {
@@ -165,7 +162,6 @@ function filterByPrice() {
         }
     }
     else if (max) {
-        console.log(`< ${max}`)
         for (let i = 0; i < _listedMiceArray.length; i++) {
             let mouse = _listedMiceArray[i];
             if (mouse.price > max) {
