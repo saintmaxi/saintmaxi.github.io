@@ -234,7 +234,7 @@ const getMiceImages = async()=>{
 
     const _unstakedMice = (await anonymice.walletOfOwner((await getAddress())));
     if (_unstakedMice.length == 0) {
-        $("#available-mice-images").append("<br>No mice available...");
+        $("#available-mice-images").append("<br><p class='selected'>No mice available...</p>");
     }
     else {
         for (let i = 0; i < _unstakedMice.length; i++) {

@@ -82,8 +82,11 @@ const getAnonymicesStakedEnum = async()=>{
 const updateApprovedStatus = async()=>{
     if ((await anonymice.isApprovedForAll((await getAddress()), cheethAddress))) {
         // $("#approveButton").text(`Anonymice Approved!`);
-        $("#approval-section").remove();
-    };
+        $("#approval-section").addClass('hidden');
+    }
+    else {
+        $("#approval-section").removeClass('hidden');
+    }
 };
 
 const approveMicesToCheeth = async()=>{
@@ -135,12 +138,11 @@ const getPendingCheethBalance = async()=>{
     const pendingCheeth = (formatEther(await cheeth.getAllRewards((await getAddress()))));
     $("#your-pending-cheeth").text(`${pendingCheeth}`);
     $("#your-pending-cheeth").append( "<img src='./images/chees.png' width=32>");
+    $("#unstake-all-pending-cheeth").html(`<img src="./images/chees.png" width=32 height=32> to Claim: ${Number(pendingCheeth).toFixed(3)}`);
 };
 
-const claimCheeth = async()=>{
-    await cheeth.claimAll().then( async(tx_) => {
-        await waitForTransaction(tx_);
-    });
+const getCheethEarnedByID = async(id) => {
+    return Number(formatEther(await cheeth.getRewardsByTokenId(id))).toFixed(3);
 };
 
 const unstakeByIds = async()=>{
@@ -197,7 +199,7 @@ const getMiceImages = async()=>{
 
     const _unstakedMice = (await anonymice.walletOfOwner((await getAddress())));
     if (_unstakedMice.length == 0) {
-        $("#available-mice-images").append("<br>No mice available...");
+        $("#available-mice-images").append("<br><p class='selected'>No mice available...</p>");
     }
     else {
         for (let i = 0; i < _unstakedMice.length; i++) {
@@ -217,7 +219,7 @@ const getMiceImages = async()=>{
     const _stakedMice = (await cheeth.getTokensStaked((await getAddress())));
     stakedMiceCount = _stakedMice.length;
     if (_stakedMice.length == 0) {
-        $("#staked-mice-images").append("<br>No mice staking...");
+        $("#staked-mice-images").append("<br><p class='selected'>No mice staking...</p>");
     }
     else {
         for (let b = 0; b < _stakedMice.length; b++) {
@@ -225,11 +227,12 @@ const getMiceImages = async()=>{
             if (!miceObjectMap.get(_miceId)) {
                 new Mice(_miceId);
             }
+            let cheethEarned = await getCheethEarnedByID(_miceId);
             let active= "";
             if (selectedForUnstaking.has(Number(_miceId))) {
                 active = "active";
             }
-            let _fakeJSX = `<div class="mice-on-sale${_darkClass} ${active}" id="staked-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div></div>`;
+            let _fakeJSX = `<div class="mice-on-sale${_darkClass} ${active}" id="staked-mice-${_miceId}" onclick=selectForUnstaking(${_miceId})><img src="${_baseImageURI}${_miceId}.png" loading="lazy" width="100%" alt="" class="mice-image${_darkClass}" style="border:none;background-color:transparent;"><div>#${_miceId}</div><div>${cheethEarned} <img src="./images/chees.png" width=24 height=24></div></div>`;
             $("#staked-mice-images").append(_fakeJSX);
         };
     }
@@ -418,9 +421,16 @@ async function selectForUnstaking(miceID) {
     }
     if (selectedForUnstaking.size == 0) {
         $("#selected-for-unstaking").text("None");
+        $("#cheeth-to-earn").html(`<img src="./images/chees.png" width=32 height=32> to Claim: 0`);
     }
     else {
-        let selectedString = `${Array.from(selectedForUnstaking).sort((a, b) => a - b).join(' ')}`;
+        let selectedForUnstakingArray = Array.from(selectedForUnstaking).sort((a, b) => a - b);
+        let cheethToClaim = 0;
+        for (let i = 0; i < selectedForUnstakingArray.length; i++) {
+            cheethToClaim += Number(await getCheethEarnedByID(selectedForUnstakingArray[i]));
+        }
+        $("#cheeth-to-earn").html(`<img src="./images/chees.png" width=32 height=32> to Claim: ${cheethToClaim}`);
+        let selectedString = `${selectedForUnstakingArray.join(' ')}`;
         $("#selected-for-unstaking").text(selectedString);
     }
 }

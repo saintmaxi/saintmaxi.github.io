@@ -68,7 +68,6 @@
       </div>
     <div class="body-section wf-section">
         <h2 class="heading-2">Anonymice Stake-o-Matron</h1>
-            <p id="stake-instructions">Stake Genesis Mice for 1 $CHEETH per day<br>(Limit 10 per address)</p>
             <div class="w-container">
                 <div class="w-row" id="collection-stats">
                     <div class="w-col-3 stats-box">
@@ -88,7 +87,7 @@
     </div>
     </div>
     </div>
-    <div class="body-section wf-section" id="approval-section">
+    <div class="body-section wf-section hidden" id="approval-section">
         <div class="main-content w-container">
             <div class="body-div">
                 <h3 class="heading-3">Approve Your Mice to Stake-o-Matron</h3>
@@ -103,8 +102,6 @@
             <div class="body-div">
 
                 <h3 class="heading-3" id="your-pending-cheeth"><span class="one">.</span><span class="two">.</span><span class="three">.</span>  <img src="./images/chees.png" width=32 height=32></h3>
-                <a href="#" class="button w-button" id="claim-cheeth-button" onclick=claimCheeth()>Claim $CHEETH</a>
-
             </div>
         </div>
     </div>
@@ -112,6 +109,7 @@
         <div class="main-content w-container" id="main-staking-content">
             <div class="body-div">
                 <h2 class="heading-2" id="your-anonymices">Your Available Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)</h2>
+                <p class="selected" style="text-align: center;">Stake Genesis Mice for 1 $CHEETH per day<br>(Limit 10 per address)</p><br>
                 <div id="available-mice-images"><br>
                     <div class="mice-on-sale">
                         <img src="./images/mystery.png" loading="lazy" width="100%" alt="" class="mice-image loading-mice" style="border:none;background-color:transparent;">
@@ -144,6 +142,8 @@
             <br>
             <div class="body-div">
                 <h2 class="heading-2" id="your-staked-anonymices">Your Staked Mice (<span class="one">.</span><span class="two">.</span><span class="three">.</span>)</h2>
+                <p class='selected' style="text-align: center;">Unstake Mice to claim the $CHEETH they have earned.</p>
+                <p class='selected' style="text-align: center;">Unstaking all mice will claim all pending $CHEETH.</p>
                 <div id="staked-mice-images"><br>
                     <div class="mice-on-sale">
                         <img src="./images/mystery.png" loading="lazy" width="100%" alt="" class="mice-image loading-mice" style="border:none;background-color:transparent;">
@@ -170,12 +170,14 @@
                 <h3 class="heading-3">Unstake Mice</h3>
                 <p class="selected">Selected:</p>
                 <p class="selected" id="selected-for-unstaking">None</p>
+                <p class="selected" id="cheeth-to-earn"><img src="./images/chees.png" width=32 height=32> to Claim: 0</p>
                 <br>
                 <a href="#" class="button w-button" onclick=unstakeByIds()>Unstake Mice</a>
             </div>
             <br>
             <div class="body-div">
                 <h3 class="heading-3">Unstake all your mice</h3>
+                <p class="selected" id="unstake-all-pending-cheeth"><img src="./images/chees.png" width=32 height=32> to Claim: 0</p>
                 <br>
                 <a href="#" class="button w-button" onclick=unstakeAll()>Unstake All Mice</a>
             </div>
