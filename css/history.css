@@ -28,23 +28,29 @@ body.dark {
   border-radius: .2em;
     padding:10px;
     flex-wrap: wrap;
-    width: 90%;
+    width: 80%;
     margin: auto;
     text-align: left;
 }
 
 #first-block.dark {
     background-color: #26242B;
-    background-image: linear-gradient(to right, #464545 ,  #26242B);
 }
 
 #legend-mice {
-    width: 20%;
-    padding-bottom: 4vw;
+    width: 25%;
+    border: solid var(--main-border-color) .3vw;
+    background-color:  #5e617c;
+    border-radius: .2em;
+    margin-right:5%;
+}
+
+#legend-mice.dark {
+    border-color: white;
 }
 
 #intro {
-    width: 75%;
+    width: 70%;
 }
 
 .chevron {
@@ -147,12 +153,13 @@ body.dark {
     }
 
     #legend-mice {
-        width: 30%;
-        padding-bottom: 7vh;
+        margin-top: 4vh;
+        width: 50%;
+        border-width: .5vh;
     }
     
     #intro {
-        width: 70%;
+        width: 85%;
         padding-top: 4vh;
         padding-bottom: 4vh;
     }
