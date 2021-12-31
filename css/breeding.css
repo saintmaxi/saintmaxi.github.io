@@ -49,6 +49,10 @@
     text-align: center;
 }
 
+.breed-button {
+    width: 98% !important;
+}
+
 #available-mice-images {
     font-size: 1.3vw;
 }
@@ -122,19 +126,21 @@
 
     .button, #breed-button, input{
       font-size: 1vw;
+      line-height: 1.1vw;
       width: 40%;
     }
 
     .parent-container, .baby-container {
         width: 45%;
         height: 45%;
-        line-height: 2vh;
+        line-height: 1.1vw;
         font-size: 1vw;
 
     }
 
     .parent-images p{
         font-size: .8vw;
+        line-height: .9vw;
     }
 
     .breed-instructions {

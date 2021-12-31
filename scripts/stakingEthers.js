@@ -142,7 +142,7 @@ const getPendingCheethBalance = async()=>{
 };
 
 const getCheethEarnedByID = async(id) => {
-    return Number(formatEther(await cheeth.getRewardsByTokenId(id))).toFixed(3);
+    return Number(formatEther(await cheeth.getRewardsByTokenId(id))).toFixed(2);
 };
 
 const unstakeByIds = async()=>{

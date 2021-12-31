@@ -259,14 +259,14 @@ const getMiceImages = async()=>{
 
         let releaseForm;
         if (cheethCalcParents == 0) {
-            releaseForm = `<br><br><a href="#" class="updt-button button w-button ${_darkClass}" onclick=pullParents(${_breedingEvent.breedingEventId})>Unlock Parents</a>`
+            releaseForm = `<br><br><a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=pullParents(${_breedingEvent.breedingEventId})>Unlock Parents</a>`
         }
         else {
             releaseForm = `<div>
                                 <form><input type="number" id="speed-up-amt-release-${_breedingEvent.breedingEventId}" name="speed-up-amt-release-${_breedingEvent.breedingEventId}"
                                     placeholder="🧀 QUANTITY" value=""></form>
                             </div><br>
-                            <a href="#" class="updt-button button w-button ${_darkClass}" onclick=speedUpParentRelease(${_breedingEvent.breedingEventId})>Speed Up Release</a>
+                            <a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=speedUpParentRelease(${_breedingEvent.breedingEventId})>Speed Up Release</a>
     `
         }
 
@@ -309,14 +309,14 @@ const getMiceImages = async()=>{
 
             let revealForm;
             if (cheethCalcBaby == 0) {
-                revealForm = `<br><a href="#" class="updt-button button w-button ${_darkClass}" onclick=revealBaby(${childId})>Reveal Baby</a>`;
+                revealForm = `<br><a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=revealBaby(${childId})>Reveal Baby</a>`;
             }
             else {
                 revealForm = `<div>
                                 <form><input type="number" id="speed-up-amt-reveal-${childId}" name="speed-up-amt-reveal-${childId}"
                                     placeholder="🧀 QUANTITY" value=""></form>
                              </div><br>
-                            <a href="#" class="updt-button button w-button ${_darkClass}" onclick=speedUpChildReveal(${childId})>Speed Up Reveal</a>`
+                            <a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=speedUpChildReveal(${childId})>Speed Up Reveal</a>`
             }
 
             let _fakeJSXBaby = `<div class="baby-container ${_darkClass}" id="baby-${childId}">
@@ -384,7 +384,7 @@ const updateIncubatorInfo = async()=> {
                             </div>`;
             if (blocksLeft == 0) {
                 $(`#speed-up-reveal-block-${childId}`).empty();
-                $(`#speed-up-reveal-block-${childId}`).append(`<br><a href="#" class="updt-button button w-button ${_darkClass}" onclick=revealBaby(${childId})>Reveal Baby</a>`);
+                $(`#speed-up-reveal-block-${childId}`).append(`<br><a href="#" class=" breed-button button w-button ${_darkClass}" onclick=revealBaby(${childId})>Reveal Baby</a>`);
     
             }
             $(`#child-info-${childId}`).empty();
@@ -428,7 +428,7 @@ const updateLockedParentsInfo = async()=> {
                         $CHEETH to Reveal: ${cheethCalc}`;
         if (blocksLeft == 0) {
             $(`#speed-up-release-block-${_breedingEvent.breedingEventId}`).empty();
-            $(`#speed-up-release-block-${_breedingEvent.breedingEventId}`).append(`<br><br><a href="#" class="updt-button button w-button ${_darkClass}" onclick=pullParents(${_breedingEvent.breedingEventId})>Unlock Parents</a>`);
+            $(`#speed-up-release-block-${_breedingEvent.breedingEventId}`).append(`<br><br><a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=pullParents(${_breedingEvent.breedingEventId})>Unlock Parents</a>`);
 
         }
         $(`#locked-parents-${_breedingEvent.breedingEventId}`).empty();
