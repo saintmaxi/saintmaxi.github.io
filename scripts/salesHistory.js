@@ -5,11 +5,15 @@ async function getSalesHistory() {
     let events = await marketplace.queryFilter(eventFilter);
     events = events.slice(-25);
 
-    for (let i = events.length-1; i >= 0; i--) {
-        let sale = await getSaleHistoryItem(events[i]);
-        $("#mice-sales").append(sale);
+    if (events.length > 0) {
+        for (let i = events.length-1; i >= 0; i--) {
+            let sale = await getSaleHistoryItem(events[i]);
+            $("#mice-sales").append(sale);
+        }
     }
-
+    else {
+        $("#recent-sales").append("<div id='no-sales' style='height: 50px;'>No sales yet.</div>");
+    }
 }
 
 async function getHighestSales() {
@@ -19,11 +23,15 @@ async function getHighestSales() {
 
     events = events.sort((a, b) => (Number(a.args.price) < Number(b.args.price)) ? 1 : -1).slice(0, 15);
 
-    for (let i = 0; i < events.length; i++) {
-        let sale = await getSaleHistoryItem(events[i]);
-        $("#mice-top-sales").append(sale);
+    if (events.length > 0) {
+        for (let i = 0; i < events.length; i++) {
+            let sale = await getSaleHistoryItem(events[i]);
+            $("#mice-top-sales").append(sale);
+        }
     }
-
+    else {
+        $("#top-sales").append("<div id='no-top-sales' style='height: 50px;'>No sales yet.</div>");
+    }
 }
 
 async function getRecentListings() {
@@ -34,9 +42,14 @@ async function getRecentListings() {
     $("#listings-loading").remove();
     events = events.slice(-25);
 
-    for (let i = events.length-1; i >= 0; i--) {
-        let sale = await getSaleHistoryItem(events[i], false, true);
-        $("#mice-listings").append(sale);
+    if (events.length > 0) {
+        for (let i = events.length-1; i >= 0; i--) {
+            let sale = await getSaleHistoryItem(events[i], false, true);
+            $("#mice-listings").append(sale);
+        }
+    }
+    else {
+        $("#recent-listings").append("<div id='no-listings' style='height: 50px;'>No listings yet.</div>");
     }
 }
 
