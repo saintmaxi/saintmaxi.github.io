@@ -153,7 +153,6 @@ const updateMarketListings = async() => {
 
     const linkedid = getUrlVars()['id'];
 
-    console.log(`updating market listings`);
     const _currentMiceOnSale = await marketplace.getAllMiceOnSale();
 
     const _baseImageURI = "https://raw.githubusercontent.com/jozanza/anonymice-images/main/";
@@ -348,7 +347,6 @@ const putMiceUpForSaleInternal = async(_tokenId) => {
 const putMiceUpForSale = async(_tokenId) => {
     try {
         if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-            // console.log(`mice not approved, requesting approval`);
             displayErrorMessage(`Error: You must set approval for marketplace. Requesting...`);
             await sleep(2000)
             await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
@@ -357,7 +355,6 @@ const putMiceUpForSale = async(_tokenId) => {
                 });
             });
         } else {
-            // console.log(`mice already approved`);
             await putMiceUpForSaleInternal(_tokenId);
         };
     }
@@ -388,14 +385,12 @@ const putMiceUpForPrivateSaleInternal = async(_tokenId) => {
 const putMiceUpForPrivateSale = async(_tokenId) => {
     try {
         if ( ! (await anonymice.isApprovedForAll( (await getAddress()), marketplaceAddress)) ) {
-            console.log(`mice not approved, requesting approval`);
             await anonymice.setApprovalForAll(marketplaceAddress, true).then( async(tx_) => {
                 provider.once(tx_, async (transaction_) => {
                     await putMiceUpForPrivateSaleInternal();
                 });
             });
         } else {
-            // console.log(`mice already approved`);
             await putMiceUpForPrivateSaleInternal(_tokenId);
         };
     }
@@ -640,8 +635,11 @@ provider.on("network", async(newNetwork, oldNetwork) => {
 const watchForBuy  = async () => {
     filter = marketplace.filters.MiceBought(null, null, null);
     marketplace.on(filter, async (id, price, seller, buyer, event) => {
-        if (pendingTransactions.size == 0) {
+        if (!loading && pendingTransactions.size == 0) {
             let sale = await getSaleHistoryItem(event);
+            if ($("#no-sales").length) {
+                $("#no-sales").remove();
+            }
             $("#title-row").after(sale);
             $("#mice-sales tr:eq(1)").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
         }
@@ -652,8 +650,11 @@ const watchForBuy  = async () => {
 const watchForList = async() => {
     filter = marketplace.filters.MicePutUpForSale(null, null);
     marketplace.on(filter, async (id, price, seller, addressee, event) => {
-        if (pendingTransactions.size == 0) {
+        if (!loading && pendingTransactions.size == 0) {
             let listing = await getSaleHistoryItem(event, false, true);
+            if ($("#no-listings").length) {
+                $("#no-listings").remove();
+            }
             $("#listings-title-row").after(listing);
             $("#mice-listings tr:eq(1)").fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500).fadeOut(500).fadeIn(500);
         }
