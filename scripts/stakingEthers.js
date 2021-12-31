@@ -199,7 +199,7 @@ const getMiceImages = async()=>{
 
     const _unstakedMice = (await anonymice.walletOfOwner((await getAddress())));
     if (_unstakedMice.length == 0) {
-        $("#available-mice-images").append("<br><p class='selected'>No mice available...</p>");
+        $("#available-mice-images").append("<br><p class='selected'>No Mice available...</p>");
     }
     else {
         for (let i = 0; i < _unstakedMice.length; i++) {
@@ -219,7 +219,7 @@ const getMiceImages = async()=>{
     const _stakedMice = (await cheeth.getTokensStaked((await getAddress())));
     stakedMiceCount = _stakedMice.length;
     if (_stakedMice.length == 0) {
-        $("#staked-mice-images").append("<br><p class='selected'>No mice staking...</p>");
+        $("#staked-mice-images").append("<p class='selected'><br>No Mice staking...</p>");
     }
     else {
         for (let b = 0; b < _stakedMice.length; b++) {

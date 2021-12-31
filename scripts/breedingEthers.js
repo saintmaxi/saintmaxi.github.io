@@ -234,7 +234,7 @@ const getMiceImages = async()=>{
 
     const _unstakedMice = (await anonymice.walletOfOwner((await getAddress())));
     if (_unstakedMice.length == 0) {
-        $("#available-mice-images").append("<br><p class='selected'>No mice available...</p>");
+        $("#available-mice-images").append("<p class='selected'><br>No Mice available...</p>");
     }
     else {
         for (let i = 0; i < _unstakedMice.length; i++) {
@@ -250,112 +250,122 @@ const getMiceImages = async()=>{
     const _numBreedingEvents = await breeding.getBreedingEventsLengthByAddress((await getAddress()));
     $("#your-breeding-anonymices").text(`Your Breeding Pairs (${_numBreedingEvents})`);
 
-    for (let i = 0; i<_numBreedingEvents; i++) {
-        let _breedingEvent = await breeding._addressToBreedingEvents((await getAddress()), i);
-
-        let blocksLeftParents = await blocksLeftCalc((await provider.getBlockNumber()), _breedingEvent.releaseBlock);
-        let cheethCalcParents = Math.ceil((blocksLeftParents * 0.0005) * 100) / 100;
-        let timeCalcParents = `${Math.floor(blocksLeftParents * 12 / 60 / 60)} hours`;
-
-        let releaseForm;
-        if (cheethCalcParents == 0) {
-            releaseForm = `<br><br><a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=pullParents(${_breedingEvent.breedingEventId})>Unlock Parents</a>`
-        }
-        else {
-            releaseForm = `<div>
-                                <form><input type="number" id="speed-up-amt-release-${_breedingEvent.breedingEventId}" name="speed-up-amt-release-${_breedingEvent.breedingEventId}"
-                                    placeholder="🧀 QUANTITY" value=""></form>
-                            </div><br>
-                            <a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=speedUpParentRelease(${_breedingEvent.breedingEventId})>Speed Up Release</a>
-    `
-        }
-
-        let _fakeJSXParents = `<div class="parent-container ${_darkClass}" id="parent-block-${_breedingEvent.breedingEventId}">
-                                    <div class="parent-images ${_darkClass}">
-                                        <div>
-                                            <img src="${_baseImageURI}${_breedingEvent.parentId1}.png">
-                                            <p>#${_breedingEvent.parentId1}</p>
-                                        </div>
-                                        <div>
-                                            <img src="${_baseImageURI}${_breedingEvent.parentId2}.png">
-                                            <p>#${_breedingEvent.parentId2}</p>
-                                        </div>
-                                    </div>
-                                    <div id="locked-parents-${_breedingEvent.breedingEventId}">
-                                        <h4>#${_breedingEvent.breedingEventId}</h4>
-                                        Blocks Left: ${blocksLeftParents}<br>
-                                        Time Left: ${timeCalcParents}<br>
-                                        $CHEETH to Unlock: ${cheethCalcParents}
-                                    </div>
-                                    <div id="speed-up-release-block-${_breedingEvent.breedingEventId}">
-                                        ${releaseForm}
-                                    </div>
-                                </div>`
-        $(`#breeding-mice-images`).append(_fakeJSXParents);
+    if (_numBreedingEvents == 0) {
+        $("#breeding-mice-images").append("<p class='selected'><br>No Mice breeding...</p>");
     }
-
+    else {
+        for (let i = 0; i<_numBreedingEvents; i++) {
+            let _breedingEvent = await breeding._addressToBreedingEvents((await getAddress()), i);
+    
+            let blocksLeftParents = await blocksLeftCalc((await provider.getBlockNumber()), _breedingEvent.releaseBlock);
+            let cheethCalcParents = Math.ceil((blocksLeftParents * 0.0005) * 100) / 100;
+            let timeCalcParents = `${Math.floor(blocksLeftParents * 12 / 60 / 60)} hours`;
+    
+            let releaseForm;
+            if (cheethCalcParents == 0) {
+                releaseForm = `<br><br><a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=pullParents(${_breedingEvent.breedingEventId})>Unlock Parents</a>`
+            }
+            else {
+                releaseForm = `<div>
+                                    <form><input type="number" id="speed-up-amt-release-${_breedingEvent.breedingEventId}" name="speed-up-amt-release-${_breedingEvent.breedingEventId}"
+                                        placeholder="🧀 QUANTITY" value=""></form>
+                                </div><br>
+                                <a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=speedUpParentRelease(${_breedingEvent.breedingEventId})>Speed Up Release</a>
+        `
+            }
+    
+            let _fakeJSXParents = `<div class="parent-container ${_darkClass}" id="parent-block-${_breedingEvent.breedingEventId}">
+                                        <div class="parent-images ${_darkClass}">
+                                            <div>
+                                                <img src="${_baseImageURI}${_breedingEvent.parentId1}.png">
+                                                <p>#${_breedingEvent.parentId1}</p>
+                                            </div>
+                                            <div>
+                                                <img src="${_baseImageURI}${_breedingEvent.parentId2}.png">
+                                                <p>#${_breedingEvent.parentId2}</p>
+                                            </div>
+                                        </div>
+                                        <div id="locked-parents-${_breedingEvent.breedingEventId}">
+                                            <h4>#${_breedingEvent.breedingEventId}</h4>
+                                            Blocks Left: ${blocksLeftParents}<br>
+                                            Time Left: ${timeCalcParents}<br>
+                                            $CHEETH to Unlock: ${cheethCalcParents}
+                                        </div>
+                                        <div id="speed-up-release-block-${_breedingEvent.breedingEventId}">
+                                            ${releaseForm}
+                                        </div>
+                                    </div>`
+            $(`#breeding-mice-images`).append(_fakeJSXParents);
+        }
+    }
 
     const babies = await getOwnedBabies();
     $("#your-baby-mice").text(`Your Baby Mice (${babies.length})`);
-    for (let i = 0; i < babies.length; i++) {
-        let childId = babies[i];
-        let isRevealed = await breeding._tokenToRevealed(childId);
-        let _incubator = await breeding._tokenToIncubator(childId);
-        let _babySVG = await breedingDescriptor.tokenIdToSVG(childId);
-        if (!isRevealed) {
-            let blocksLeftBaby = await blocksLeftCalc((await provider.getBlockNumber()), _incubator.revealBlock);
-            let cheethCalcBaby = Math.ceil((blocksLeftBaby * 0.0005) * 100) / 100;
-            let timeCalcBaby = `${Math.floor(blocksLeftBaby * 12 / 60 / 60)} hours`;
 
-            let revealForm;
-            if (cheethCalcBaby == 0) {
-                revealForm = `<br><a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=revealBaby(${childId})>Reveal Baby</a>`;
+    if (babies.length == 0) {
+        $("#baby-mice-images").append("<p class='selected'><br>No babies available...</p>");
+    }
+    else {
+        for (let i = 0; i < babies.length; i++) {
+            let childId = babies[i];
+            let isRevealed = await breeding._tokenToRevealed(childId);
+            let _incubator = await breeding._tokenToIncubator(childId);
+            let _babySVG = await breedingDescriptor.tokenIdToSVG(childId);
+            if (!isRevealed) {
+                let blocksLeftBaby = await blocksLeftCalc((await provider.getBlockNumber()), _incubator.revealBlock);
+                let cheethCalcBaby = Math.ceil((blocksLeftBaby * 0.0005) * 100) / 100;
+                let timeCalcBaby = `${Math.floor(blocksLeftBaby * 12 / 60 / 60)} hours`;
+    
+                let revealForm;
+                if (cheethCalcBaby == 0) {
+                    revealForm = `<br><a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=revealBaby(${childId})>Reveal Baby</a>`;
+                }
+                else {
+                    revealForm = `<div>
+                                    <form><input type="number" id="speed-up-amt-reveal-${childId}" name="speed-up-amt-reveal-${childId}"
+                                        placeholder="🧀 QUANTITY" value=""></form>
+                                 </div><br>
+                                <a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=speedUpChildReveal(${childId})>Speed Up Reveal</a>`
+                }
+    
+                let _fakeJSXBaby = `<div class="baby-container ${_darkClass}" id="baby-${childId}">
+                                        <div id="child-info-${childId}">
+                                            <div class="baby-img ${_darkClass}">${_babySVG}</div>
+                                            <div>
+                                                <h4>#${childId}</h4>
+                                                Blocks Left: ${blocksLeftBaby}<br>
+                                                Time Left: ${timeCalcBaby}<br>
+                                                $CHEETH to Reveal: ${cheethCalcBaby}
+                                            </div>
+                                        </div>
+                                        <div id="speed-up-reveal-block-${childId}">
+                                            ${revealForm}
+                                        </div>
+                                    </div><br>`;
+                $("#baby-mice-images").append(_fakeJSXBaby);
             }
             else {
-                revealForm = `<div>
-                                <form><input type="number" id="speed-up-amt-reveal-${childId}" name="speed-up-amt-reveal-${childId}"
-                                    placeholder="🧀 QUANTITY" value=""></form>
-                             </div><br>
-                            <a href="#" class="updt-button breed-button button w-button ${_darkClass}" onclick=speedUpChildReveal(${childId})>Speed Up Reveal</a>`
+                let _parentId1 = _incubator.parentId1;
+                let _parentId2 = _incubator.parentId2;
+                
+                let _fakeJSXBaby = `<div class="baby-container ${_darkClass}" id="baby-${childId}">
+                                            <div class="baby-img ${_darkClass}">${_babySVG}</div>
+                                            <h4 class="heading-4">#${childId}</h4>
+                                            <div class="parent-images ${_darkClass}">
+                                                <div>
+                                                    <img src="${_baseImageURI}${_parentId1}.png">
+                                                    <p>#${_parentId1}</p>
+                                                </div>
+                                                <div>
+                                                    <img src="${_baseImageURI}${_parentId2}.png">
+                                                    <p>#${_parentId2}</p>
+                                                </div>
+                                            </div>
+                                       </div>`;
+    
+                $("#baby-mice-images").append(_fakeJSXBaby);
+    
             }
-
-            let _fakeJSXBaby = `<div class="baby-container ${_darkClass}" id="baby-${childId}">
-                                    <div id="child-info-${childId}">
-                                        <div class="baby-img ${_darkClass}">${_babySVG}</div>
-                                        <div>
-                                            <h4>#${childId}</h4>
-                                            Blocks Left: ${blocksLeftBaby}<br>
-                                            Time Left: ${timeCalcBaby}<br>
-                                            $CHEETH to Reveal: ${cheethCalcBaby}
-                                        </div>
-                                    </div>
-                                    <div id="speed-up-reveal-block-${childId}">
-                                        ${revealForm}
-                                    </div>
-                                </div><br>`;
-            $("#baby-mice-images").append(_fakeJSXBaby);
-        }
-        else {
-            let _parentId1 = _incubator.parentId1;
-            let _parentId2 = _incubator.parentId2;
-            
-            let _fakeJSXBaby = `<div class="baby-container ${_darkClass}" id="baby-${childId}">
-                                        <div class="baby-img ${_darkClass}">${_babySVG}</div>
-                                        <h4 class="heading-4">#${childId}</h4>
-                                        <div class="parent-images ${_darkClass}">
-                                            <div>
-                                                <img src="${_baseImageURI}${_parentId1}.png">
-                                                <p>#${_parentId1}</p>
-                                            </div>
-                                            <div>
-                                                <img src="${_baseImageURI}${_parentId2}.png">
-                                                <p>#${_parentId2}</p>
-                                            </div>
-                                        </div>
-                                   </div>`;
-
-            $("#baby-mice-images").append(_fakeJSXBaby);
-
         }
     }
 };

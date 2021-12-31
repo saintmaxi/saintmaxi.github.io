@@ -91,6 +91,13 @@
     text-align: center;
 }
 
+.selected {
+    font-size: 1.8vw;
+    line-height: 1.9vw;
+    max-width: 100%;
+    white-space: wrap;
+  }
+
 /* mobile */
 @media screen and (max-width: 600px){
     .parent-container, .baby-container {
@@ -120,6 +127,12 @@
     #selected-for-breeding {
         font-size: 4vw;
     }
+
+
+  .selected {
+    font-size: 4vw;
+  line-height: 4vw;
+  }  
 }
 
 @media screen and (min-width: 1700px){ 
@@ -149,6 +162,11 @@
     }
     
     #selected-for-breeding {
+        font-size: 1.4vw;
+        line-height: 1.5vw;
+    }
+
+    .selected {
         font-size: 1.4vw;
         line-height: 1.5vw;
     }
