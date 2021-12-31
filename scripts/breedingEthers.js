@@ -285,7 +285,7 @@ const getMiceImages = async()=>{
                                         <h4>#${_breedingEvent.breedingEventId}</h4>
                                         Blocks Left: ${blocksLeftParents}<br>
                                         Time Left: ${timeCalcParents}<br>
-                                        $CHEETH to Reveal: ${cheethCalcParents}
+                                        $CHEETH to Unlock: ${cheethCalcParents}
                                     </div>
                                     <div id="speed-up-release-block-${_breedingEvent.breedingEventId}">
                                         ${releaseForm}

@@ -827,6 +827,7 @@ th {
 }
 
 #error-popup {
+  text-align: center;
   background-color: var(--main-bg-color);
   z-index: 99999;
   color: var(--main-border-color);
@@ -955,6 +956,11 @@ th {
 
 /* mobile */
 @media screen and (max-width: 600px){
+
+  .loading-div {
+    font-size: 4vw;
+    line-height: 4vw;
+  }
 
   #activity-sections button {
     font-size: 4vw;
