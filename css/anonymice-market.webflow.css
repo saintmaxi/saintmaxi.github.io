@@ -1201,8 +1201,8 @@ th {
   transform: translate(-50%, -50%);
   position: fixed;
   top: 50%;;
-  width: 95vw;
-  height: 85vh;
+  width: 100vw;
+  height: 97vh;
   overflow-y: scroll;
 
 }
@@ -1249,7 +1249,7 @@ th {
     position: fixed;
     top: 50%;;
     width: 100vw;
-    height: 100vh;
+    height: 97vh;
   animation:unfoldInMobile .1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
   }
 
@@ -1365,6 +1365,8 @@ th {
 
   #close {
     font-size: 5vh;
+    padding-left: 1.5vh;
+    padding-right: 1.5vh;
   }
 
   #pending-transactions {
