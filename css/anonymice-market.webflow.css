@@ -623,7 +623,10 @@ select:focus {
 
 #close {
   position: absolute;
-  padding: 1vw;
+  padding: .5vw;
+  padding-top: 0;
+  padding-bottom: 0;
+  font-family: Arial, Helvetica, sans-serif;
   position: fixed;
   top: 0;
   right: 0;
@@ -1242,8 +1245,8 @@ th {
     transform: translate(-50%, -50%);
     position: fixed;
     top: 50%;;
-    width: 95vw;
-    height: 85vh;
+    width: 100vw;
+    height: 100vh;
   animation:unfoldInMobile .1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
   }
 
@@ -1358,7 +1361,7 @@ th {
   }
 
   #close {
-    font-size: 5vw;
+    font-size: 5vh;
   }
 
   #pending-transactions {
