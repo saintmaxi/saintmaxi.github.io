@@ -337,7 +337,7 @@ async function openEditPrompt(miceID) {
                                 <h3>Update Price</h3>
                                 <div>
                                 <form><input class="${_darkClass}" min=0 type="number" id="updatePrice-price" name="updatePrice-price"
-                                    placeholder="Price in ETH" value=""></form>
+                                    placeholder="Price (Ξ)" value=""></form>
                                 </div><br>
                                 <a href="#" class="updt-button button w-button ${_darkClass}" onclick=updateMiceOnSalePrice(${miceID})>Update Price</a>
                             </div>
@@ -366,7 +366,7 @@ async function openListPrompt(miceID) {
                                         <h3>Public Sale</h3>
                                         <div>
                                             <form><input type="number" min=0 id="publicSale-price" name="publicSale-price"
-                                                placeholder="Price in ETH" value=""></form>
+                                                placeholder="Price (Ξ)" value=""></form>
                                         </div><br>
                                         <a href="#" class="button w-button ${_darkClass}" onclick=putMiceUpForSale(${miceID})>Create Public Listing</a>
                                     </div>
@@ -377,7 +377,7 @@ async function openListPrompt(miceID) {
                                         <h3>Private Sale</h3>
                                         <div>
                                         <form><input type="number" min=0 id="privateSale-price" name="privateSale-price"
-                                            placeholder="Price in ETH" value=""></form>
+                                            placeholder="Price (Ξ)" value=""></form>
                                         </div><br>
                                         <div>
                                             <form><input type="text" id="privateSale-address" name="privateSale-address" placeholder="Recipient Address"
