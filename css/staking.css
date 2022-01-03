@@ -113,20 +113,3 @@
   line-height: 4vw;
   }  
 }
-
-@media screen and (min-width: 1700px){ 
-
-  .button, #claim-cheeth-button{
-    font-size: 1vw;
-  }
-
-  #stake-instructions {
-    font-size: 1.7vw;
-    line-height: 1.8vw;
-  }
-
-  .selected {
-    font-size: 1.4vw;
-    line-height: 1.5vw;
-}
-}

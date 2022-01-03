@@ -10,9 +10,9 @@ body {
 #block-screen, #block-screen-error {
   z-index: 9990;
   width: 100vw;
-  opacity: 0;
   position: absolute;
   top:0;
+  background-color: rgba(0,0,0,0.88);
 }
 
 #block-screen-error {
@@ -180,7 +180,7 @@ input:focus {
 }
 
 .mice-image, .sold-mice-img {
-  background-color: white;
+  background-color: #5e617c;
   border: solid var(--main-border-color) .3vw;
   border-radius: .2em;
 
@@ -586,9 +586,18 @@ select:focus {
   height: 85vh;
   border: outset 1vw var(--main-border-color);
   border-radius: .2em;
-  box-shadow: 0 0 5000px 5000px rgba(0,0,0,0.88);
-
+  /* box-shadow: 0 0 5000px 5000px rgba(0,0,0,0.88); */
+  animation:unfoldIn .2s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
   padding: 5px;
+}
+
+@keyframes unfoldIn {
+  0% {
+    transform:scaleY(.015) translate(-50%, 0);
+  }
+  100% {
+    transform:scaleY(1) translate(-50%, 0);
+  }
 }
 
 #click-info-header {
@@ -652,7 +661,7 @@ select:focus {
   right: 0; 
   margin-left: auto; 
   margin-right: auto;
-  background-color: white;
+  background-color: #5e617c;
   border: solid var(--main-border-color) .3vw;
   border-radius: .2em;
 
@@ -1235,7 +1244,18 @@ th {
     top: 50%;;
     width: 95vw;
     height: 85vh;
+  animation:unfoldInMobile .1s cubic-bezier(0.165, 0.840, 0.440, 1.000) forwards;
   }
+
+  @keyframes unfoldInMobile {
+    0% {
+      transform:scaleY(.015) translate(-50%, -50%);
+    }
+    100% {
+      transform:scaleY(1) translate(-50%, -50%);
+    }
+  }
+  
 
   #click-info-header {
     font-size: 6vw;
@@ -1504,37 +1524,15 @@ th {
     font-size: 1.1vw;
   }
 
-  #directory button {
-    height: 125%;
-  }
-
-  #filter, #sortBy, #filter-results-count, #check-private-sale {
-    font-size: 1vw;
-  }
-
   #price-filtering-container input{
-    font-size: 1vw;
     padding: .3vw;
     /* width: 35%; */
     text-align: center;
   }
   
   #price-filtering-container button{
-    font-size: 1vw;
     width: 15%;
   }
-
-  .mice-on-sale {
-    font-size: .8vw;
-  }
-
-  #reset-filter-button {
-    font-size: .85vw;
-  }
-
-  /* #edit-prompt, #list-prompt {
-    overflow-y: scroll;
-  } */
 
   #edit-prompt h3, #create-listing-prompt h3, #history-modal h3 {
     font-size: 2.5vh;
@@ -1566,11 +1564,6 @@ th {
   margin-bottom: 1vh;
 }
 
-#current-info {
-  /* margin-top: 2vh; */
-  /* margin-bottom: .4vh; */
-}
-
 .list-block {
   margin-top: 4vh;
   margin-bottom: 2vh;
@@ -1582,13 +1575,6 @@ th {
   height: 20%;
 }
   
-  .stats-box h5{
-    font-size: 1.1vw;
-  }
-  .stats-box {
-    font-size: 1vw;
-  }
-
   #click-info-header {
     font-size: 2vw;
   }

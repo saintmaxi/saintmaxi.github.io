@@ -213,7 +213,7 @@ color: white !important;
 } */
 
 .mice-image.dark, .sold-mice-img.dark {
-    background-color: var(--secondary-dark-bg-color);
+    background-color: #5e617c;
     border: solid white .3vw;
 }
 
@@ -228,7 +228,7 @@ color: white !important;
 }
 
 .info-image.dark {
-    background-color: var(--secondary-dark-bg-color);
+    background-color: #5e617c;
     border: solid white .3vw;
     display: block;
     margin:auto;
