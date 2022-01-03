@@ -281,6 +281,10 @@ body {
 
 }
 
+#filter-results-count-container {
+  width: 95%;
+}
+
 #price-filtering-container input{
   width: 30%;
   text-align: center;
