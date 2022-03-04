@@ -162,6 +162,8 @@ const updateMarketListings = async() => {
 
     let _darkClass = getDarkMode();
 
+    let publicSalesJSX = "";
+    let privateSalesJSX = "";
 
     let floor = 9999999999999;
     listedMice = new Map();
@@ -183,7 +185,7 @@ const updateMarketListings = async() => {
         _miceOnSale.fakeJSX = _fakeJSX;
         listedMice.set(Number(_miceId), _miceOnSale);
         if (_listingPrivacy == "Public") {
-            $("#mice-on-sale-block").append(_fakeJSX); 
+            publicSalesJSX += _fakeJSX; 
             publicListingsCount+=1;
             if (_micePriceInETH < floor) {
                 floor = _micePriceInETH;
@@ -192,13 +194,16 @@ const updateMarketListings = async() => {
         else {
             if (connected) {
                 if (_miceListing.privateSaleAddress == (await getAddress())) {
-                    $("#mice-on-sale-block-prvt").append(_fakeJSX); 
+                    privateSalesJSX += _fakeJSX; 
                     privateListingsCount += 1;
                 }
             }
         }
         floor = Number(Number(floor).toFixed(4));
     };
+
+    $("#mice-on-sale-block").append(publicSalesJSX); 
+    $("#mice-on-sale-block-prvt").append(privateSalesJSX); 
 
     sortBy("PriceLowToHigh");
 
@@ -512,12 +517,12 @@ const updateMarketplaceDetails = async() => {
         if (connected) {
             await updateInfo();
         }
-        if (window.location.pathname == "/create-listing") {
+        if (window.location.pathname == "/create-listing.html") {
             checkApprovalOfMice();
             await updateAvailableMice();
             await updateMarketListings();
         }
-        else if (window.location.pathname == "/activity") {
+        else if (window.location.pathname == "/activity.html") {
             await updateStats();
             await updateMarketListings();
             if (connected) {
@@ -527,14 +532,14 @@ const updateMarketplaceDetails = async() => {
             await getSalesHistory();
             await getHighestSales();
         }
-        else if (window.location.pathname == "/buy-mice") {
+        else if (window.location.pathname == "/buy-mice.html") {
             await updateMarketListings();
         }
-        else if (window.location.pathname == "/edit-listing") {
+        else if (window.location.pathname == "/edit-listing.html") {
             await updateMarketListings();
             await updateYourMarketMice();
         }
-        else if (window.location.pathname == '/all-mice') {
+        else if (window.location.pathname == '/all-mice.html') {
             await getAllMice();
             await updateMarketListings();
         }
